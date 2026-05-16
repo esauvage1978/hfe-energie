@@ -1,7 +1,7 @@
 ---
 import { navigation, site, services } from "@data/site";
 import { logos } from "@data/assets";
-import { legalLinks } from "@data/legal";
+import { legalLinks, legal } from "@data/legal";
 import Icon from "./Icon.astro";
 import Picture from "./Picture.astro";
 
@@ -125,5 +125,17 @@ const year = new Date().getFullYear();
         Assurance décennale & RC pro
       </p>
     </div>
+
+    <p class="mt-4 text-center text-xs text-neutral-600">
+      Site conçu et développé par
+      <a
+        href={legal.developer.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-neutral-400 hover:text-primary-300 font-semibold transition-colors"
+      >
+        {legal.developer.name}
+      </a>
+    </p>
   </div>
 </footer>

@@ -70,6 +70,13 @@ export const legal = {
     website: "https://www.cnil.fr",
   },
 
+  /** Conception, développement et réalisation du site */
+  developer: {
+    name: "Emmanuel SAUVAGE",
+    url: "https://emmanuel.sauvage.fr",
+    role: "Conception, développement & réalisation",
+  },
+
   /** Dates de dernière mise à jour des documents légaux */
   updatedAt: {
     mentionsLegales: "16 mai 2026",
