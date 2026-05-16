@@ -5,7 +5,9 @@ import CtaBanner from "@components/CtaBanner.astro";
 import Icon from "@components/Icon.astro";
 import StructuredData from "@components/StructuredData.astro";
 import Faq from "@components/Faq.tsx";
+import Picture from "@components/Picture.astro";
 import { site } from "@data/site";
+import { servicesImages } from "@data/assets";
 
 const title = "Chauffage à Lille : remplacement chaudière, plancher chauffant";
 const description =
@@ -96,13 +98,16 @@ const faqs = [
           </div>
         </div>
         <div>
-          <img
-            src="/service-chauffage.svg"
-            alt="Remplacement de chaudière par HFE Énergie"
-            width="400"
-            height="300"
-            class="rounded-2xl border border-neutral-100 shadow-xl bg-white w-full"
+          <Picture
+            src={servicesImages.chauffage.src}
+            alt={servicesImages.chauffage.alt}
+            width={servicesImages.chauffage.width}
+            height={servicesImages.chauffage.height}
+            class="rounded-3xl shadow-xl border border-neutral-100 w-full aspect-[4/3] object-cover"
             loading="eager"
+            fetchpriority="high"
+            decoding="sync"
+            sizes="(min-width: 1024px) 50vw, 100vw"
           />
         </div>
       </div>

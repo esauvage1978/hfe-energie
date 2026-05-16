@@ -5,7 +5,10 @@ import CtaBanner from "@components/CtaBanner.astro";
 import Icon from "@components/Icon.astro";
 import StructuredData from "@components/StructuredData.astro";
 import Faq from "@components/Faq.tsx";
+import Picture from "@components/Picture.astro";
+import Gallery from "@components/Gallery.astro";
 import { site } from "@data/site";
+import { servicesImages, realisationsClim } from "@data/assets";
 
 const title = "Climatisation réversible Lille : installation multi-split & gainable";
 const description =
@@ -120,13 +123,16 @@ const faqs = [
           </div>
         </div>
         <div>
-          <img
-            src="/service-clim.svg"
-            alt="Climatisation réversible Panasonic installée par HFE Énergie"
-            width="400"
-            height="300"
-            class="rounded-2xl border border-neutral-100 shadow-xl bg-white w-full"
+          <Picture
+            src={servicesImages.climatisation.src}
+            alt={servicesImages.climatisation.alt}
+            width={servicesImages.climatisation.width}
+            height={servicesImages.climatisation.height}
+            class="rounded-3xl shadow-xl border border-neutral-100 w-full aspect-[4/3] object-cover"
             loading="eager"
+            fetchpriority="high"
+            decoding="sync"
+            sizes="(min-width: 1024px) 50vw, 100vw"
           />
         </div>
       </div>
@@ -159,6 +165,13 @@ const faqs = [
       </div>
     </div>
   </section>
+
+  <Gallery
+    id="realisations-clim"
+    title="Nos installations de climatisation"
+    subtitle="Chantiers récents : mono-split, multi-split, gainable - particuliers et tertiaires."
+    items={realisationsClim}
+  />
 
   <CtaBanner
     title="Envie d'un été frais et d'un hiver doux ?"

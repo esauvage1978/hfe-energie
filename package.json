@@ -6,9 +6,12 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "npm run optimize-images && npm run build-og && npm run build-favicons && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "optimize-images": "node scripts/optimize-images.mjs",
+    "build-og": "node scripts/build-og-image.mjs",
+    "build-favicons": "node scripts/build-favicons.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^4.2.1",

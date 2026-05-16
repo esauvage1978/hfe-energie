@@ -3,8 +3,11 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import Breadcrumbs from "@components/Breadcrumbs.astro";
 import CtaBanner from "@components/CtaBanner.astro";
 import Icon from "@components/Icon.astro";
+import Picture from "@components/Picture.astro";
+import Gallery from "@components/Gallery.astro";
 import StructuredData from "@components/StructuredData.astro";
 import { site } from "@data/site";
+import { servicesImages, realisationsPlomberie } from "@data/assets";
 
 const title = "Plomberie Lille : dépannage, adoucisseur, sanitaire";
 const description =
@@ -63,7 +66,17 @@ const offers = [
           </div>
         </div>
         <div>
-          <img src="/service-plomberie.svg" alt="Plomberie à Lille" width="400" height="300" class="rounded-2xl border border-neutral-100 shadow-xl bg-white w-full" loading="eager" />
+          <Picture
+            src={servicesImages.plomberie.src}
+            alt={servicesImages.plomberie.alt}
+            width={servicesImages.plomberie.width}
+            height={servicesImages.plomberie.height}
+            class="rounded-3xl shadow-xl border border-neutral-100 w-full aspect-[4/3] object-cover"
+            loading="eager"
+            fetchpriority="high"
+            decoding="sync"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+          />
         </div>
       </div>
     </div>
@@ -87,6 +100,13 @@ const offers = [
       </div>
     </div>
   </section>
+
+  <Gallery
+    id="realisations-plomberie"
+    title="Nos réalisations en plomberie"
+    subtitle="Salles de bain, sanitaires, adoucisseurs : quelques chantiers récents."
+    items={realisationsPlomberie}
+  />
 
   <CtaBanner title="Une fuite, une panne, un projet sanitaire ?" subtitle="Notre équipe intervient rapidement à Lille et métropole." />
 </BaseLayout>

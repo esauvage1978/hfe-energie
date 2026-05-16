@@ -2,11 +2,14 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Breadcrumbs from "@components/Breadcrumbs.astro";
 import CtaBanner from "@components/CtaBanner.astro";
+import Gallery from "@components/Gallery.astro";
 import Icon from "@components/Icon.astro";
+import Picture from "@components/Picture.astro";
 import StructuredData from "@components/StructuredData.astro";
 import Faq from "@components/Faq.tsx";
 import SavingsCalculator from "@components/SavingsCalculator.tsx";
 import { site } from "@data/site";
+import { heroes, realisationsPAC } from "@data/assets";
 
 const title = "Pompe à chaleur Lille : installation PAC air-eau & air-air RGE";
 const description =
@@ -212,14 +215,16 @@ const seoCities = site.serviceArea;
         </div>
 
         <div>
-          <img
-            src="/hero-pac.svg"
+          <Picture
+            src={heroes.pac.src}
             alt="Installation d'une pompe à chaleur air-eau par HFE Énergie à Lille"
-            width="800"
-            height="600"
-            class="rounded-3xl shadow-2xl bg-white border border-neutral-100 w-full"
+            width={heroes.pac.width}
+            height={heroes.pac.height}
+            class="rounded-3xl shadow-2xl border border-neutral-100 w-full aspect-[4/3] object-cover"
             loading="eager"
             fetchpriority="high"
+            decoding="sync"
+            sizes="(min-width: 1024px) 50vw, 100vw"
           />
         </div>
       </div>
@@ -320,13 +325,13 @@ const seoCities = site.serviceArea;
         </div>
 
         <div>
-          <img
-            src="/service-pac.svg"
-            alt="Schéma du fonctionnement d'une pompe à chaleur air-eau"
-            width="400"
-            height="300"
-            class="rounded-2xl border border-neutral-200 bg-white w-full"
-            loading="lazy"
+          <Picture
+            src="/assets/pompeAChaleur/pompeChaleur.JPG"
+            alt="Pompe à chaleur installée dans une maison à Lille"
+            width={1280}
+            height={960}
+            class="rounded-3xl shadow-xl border border-neutral-100 w-full aspect-[4/3] object-cover"
+            sizes="(min-width: 1024px) 50vw, 100vw"
           />
         </div>
       </div>
@@ -346,6 +351,13 @@ const seoCities = site.serviceArea;
       <SavingsCalculator client:visible />
     </div>
   </section>
+
+  <Gallery
+    id="realisations-pac"
+    title="Nos dernières installations de pompe à chaleur"
+    subtitle="Découvrez quelques-uns de nos chantiers récents à Lille et dans la métropole - particuliers et professionnels."
+    items={realisationsPAC}
+  />
 
   <CtaBanner
     title="Prêt à passer à la pompe à chaleur ?"

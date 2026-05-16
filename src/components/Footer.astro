@@ -1,6 +1,8 @@
 ---
 import { navigation, site, services } from "@data/site";
+import { logos } from "@data/assets";
 import Icon from "./Icon.astro";
+import Picture from "./Picture.astro";
 
 const year = new Date().getFullYear();
 ---
@@ -9,10 +11,16 @@ const year = new Date().getFullYear();
   <div class="container-page py-12 md:py-16">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
       <div>
-        <div class="flex items-center gap-2 mb-4">
-          <span class="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 text-white font-bold text-lg shadow">
-            H
-          </span>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="bg-white rounded-xl p-1.5">
+            <Picture
+              src={logos.full.src}
+              alt={logos.full.alt}
+              width={56}
+              height={46}
+              class="h-10 w-auto"
+            />
+          </div>
           <span class="font-display font-extrabold text-lg text-white">
             HFE <span class="text-primary-300">Énergie</span>
           </span>

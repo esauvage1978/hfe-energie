@@ -1,0 +1,55 @@
+---
+/**
+ * <Picture> sert automatiquement la version optimale (AVIF > WebP > original)
+ * en utilisant l'élément <picture> natif.
+ *
+ * Les fichiers .webp et .avif sont générés par scripts/optimize-images.mjs
+ * et placés à côté de l'original.
+ *
+ * Usage :
+ *   <Picture src="/assets/pompeAChaleur/pompeAChaleur.jpg" alt="..." width={800} height={600} />
+ */
+export interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  class?: string;
+  loading?: "eager" | "lazy";
+  decoding?: "sync" | "async" | "auto";
+  fetchpriority?: "high" | "low" | "auto";
+  sizes?: string;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  class: cls,
+  loading = "lazy",
+  decoding = "async",
+  fetchpriority,
+  sizes,
+} = Astro.props;
+
+const lastDot = src.lastIndexOf(".");
+const base = lastDot > -1 ? src.slice(0, lastDot) : src;
+const webp = `${base}.webp`;
+const avif = `${base}.avif`;
+---
+
+<picture>
+  <source type="image/avif" srcset={avif} sizes={sizes} />
+  <source type="image/webp" srcset={webp} sizes={sizes} />
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+    decoding={decoding}
+    fetchpriority={fetchpriority}
+    class={cls}
+  />
+</picture>

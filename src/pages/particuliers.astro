@@ -3,8 +3,10 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import Breadcrumbs from "@components/Breadcrumbs.astro";
 import CtaBanner from "@components/CtaBanner.astro";
 import Icon from "@components/Icon.astro";
+import Picture from "@components/Picture.astro";
 import StructuredData from "@components/StructuredData.astro";
 import { site } from "@data/site";
+import { servicesImages } from "@data/assets";
 
 const title = "Particuliers - Pompe à chaleur, climatisation, chauffage à Lille";
 const description =
@@ -64,19 +66,34 @@ const offers = [
 
   <section class="bg-gradient-to-br from-primary-50 to-white">
     <div class="container-page py-10 md:py-16">
-      <div class="max-w-3xl">
-        <span class="badge bg-primary-100 text-primary-800">Particuliers</span>
-        <h1 class="mt-3 font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-neutral-900 leading-tight">
-          Votre confort thermique <span class="text-primary-700">clé en main</span>
-        </h1>
-        <p class="mt-4 text-lg text-neutral-700">
-          HFE Énergie accompagne les particuliers de Lille et métropole dans tous leurs projets d'énergie
-          renouvelable : pompe à chaleur, climatisation, chauffage, plomberie. Un seul interlocuteur, de
-          l'étude au SAV.
-        </p>
-        <div class="mt-6 flex flex-col sm:flex-row gap-3">
-          <a href="/contact" class="btn btn-primary"><Icon name="mail" size={18} /> Demander un devis</a>
-          <a href={`tel:${site.phoneRaw}`} class="btn btn-outline"><Icon name="phone" size={18} /> {site.phone}</a>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="badge bg-primary-100 text-primary-800">Particuliers</span>
+          <h1 class="mt-3 font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-neutral-900 leading-tight">
+            Votre confort thermique <span class="text-primary-700">clé en main</span>
+          </h1>
+          <p class="mt-4 text-lg text-neutral-700">
+            HFE Énergie accompagne les particuliers de Lille et métropole dans tous leurs projets d'énergie
+            renouvelable : pompe à chaleur, climatisation, chauffage, plomberie. Un seul interlocuteur, de
+            l'étude au SAV.
+          </p>
+          <div class="mt-6 flex flex-col sm:flex-row gap-3">
+            <a href="/contact" class="btn btn-primary"><Icon name="mail" size={18} /> Demander un devis</a>
+            <a href={`tel:${site.phoneRaw}`} class="btn btn-outline"><Icon name="phone" size={18} /> {site.phone}</a>
+          </div>
+        </div>
+        <div>
+          <Picture
+            src={servicesImages.particuliers.src}
+            alt={servicesImages.particuliers.alt}
+            width={servicesImages.particuliers.width}
+            height={servicesImages.particuliers.height}
+            class="rounded-3xl shadow-xl border border-neutral-100 w-full aspect-[4/3] object-cover"
+            loading="eager"
+            fetchpriority="high"
+            decoding="sync"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+          />
         </div>
       </div>
     </div>

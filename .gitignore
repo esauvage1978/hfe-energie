@@ -34,3 +34,8 @@ Thumbs.db
 
 # misc
 *.tsbuildinfo
+
+# Heavy media files (use external hosting / CDN if needed)
+public/assets/video/
+*.mp4
+*.mov
