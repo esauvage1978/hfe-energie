@@ -1,6 +1,7 @@
 ---
 import { navigation, site, services } from "@data/site";
 import { logos } from "@data/assets";
+import { legalLinks } from "@data/legal";
 import Icon from "./Icon.astro";
 import Picture from "./Picture.astro";
 
@@ -62,11 +63,6 @@ const year = new Date().getFullYear();
               </a>
             </li>
           ))}
-          <li>
-            <a href="/mentions-legales" class="text-neutral-400 hover:text-primary-300 transition-colors">
-              Mentions légales
-            </a>
-          </li>
         </ul>
       </div>
 
@@ -112,7 +108,17 @@ const year = new Date().getFullYear();
       </p>
     </div>
 
-    <div class="mt-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-xs text-neutral-500">
+    <nav class="mt-8 pt-6 border-t border-neutral-800" aria-label="Liens légaux">
+      <ul class="flex flex-wrap gap-x-5 gap-y-2 text-xs text-neutral-400">
+        {legalLinks.map((l) => (
+          <li>
+            <a href={l.href} class="hover:text-primary-300 transition-colors">{l.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="mt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-xs text-neutral-500">
       <p>&copy; {year} {site.legalName}. Tous droits réservés.</p>
       <p>
         Certifié <span class="text-primary-300 font-semibold">RGE QualiPAC</span> ·
