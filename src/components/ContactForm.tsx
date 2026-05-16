@@ -65,7 +65,7 @@ export default function ContactForm() {
     return (
       <div
         role="status"
-        className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 text-emerald-900"
+        className="rounded-2xl border border-accent-200 bg-accent-50 p-6 text-accent-900"
       >
         <h3 className="font-display font-bold text-lg">Demande bien reçue.</h3>
         <p className="mt-2 text-sm">

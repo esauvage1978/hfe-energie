@@ -30,21 +30,22 @@ async function main() {
   const logoW = logoMeta.width ?? 200;
   const logoH = logoMeta.height ?? 140;
 
+  // Couleurs HFE : bleu #0080C0, bleu profond #0060B0, vert #00B040
   const svgOverlay = `
   <svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="rgba(7,89,133,0.85)"/>
-        <stop offset="100%" stop-color="rgba(12,74,110,0.55)"/>
+        <stop offset="0%" stop-color="rgba(0,128,192,0.85)"/>
+        <stop offset="100%" stop-color="rgba(0,96,176,0.55)"/>
       </linearGradient>
     </defs>
     <rect width="${W}" height="${H}" fill="url(#fade)"/>
     <text x="60" y="320" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="62" fill="#ffffff">HFE Énergie</text>
-    <text x="60" y="385" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="38" fill="#bae6fd">Pompes à chaleur · Climatisation · Chauffage</text>
-    <text x="60" y="440" font-family="Arial, Helvetica, sans-serif" font-weight="500" font-size="26" fill="#e0f2fe">Installateur RGE QualiPAC à Lille &amp; métropole</text>
-    <rect x="60" y="490" width="260" height="62" rx="31" fill="#ea580c"/>
+    <text x="60" y="385" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="38" fill="#c9e6f6">Pompes à chaleur · Climatisation · Chauffage</text>
+    <text x="60" y="440" font-family="Arial, Helvetica, sans-serif" font-weight="500" font-size="26" fill="#e6f4fb">Installateur RGE QualiPAC à Lille &amp; métropole</text>
+    <rect x="60" y="490" width="260" height="62" rx="31" fill="#00b040"/>
     <text x="190" y="531" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="22" fill="#ffffff">DEVIS GRATUIT</text>
-    <text x="350" y="528" font-family="Arial, Helvetica, sans-serif" font-weight="600" font-size="20" fill="#bae6fd">15 ans d'expérience · 1500+ installations</text>
+    <text x="350" y="528" font-family="Arial, Helvetica, sans-serif" font-weight="600" font-size="20" fill="#c9e6f6">15 ans d'expérience · 1500+ installations</text>
   </svg>
   `;
 
