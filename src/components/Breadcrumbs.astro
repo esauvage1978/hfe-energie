@@ -1,0 +1,28 @@
+---
+import Icon from "./Icon.astro";
+
+export interface Props {
+  items: Array<{ name: string; url: string }>;
+}
+
+const { items } = Astro.props;
+---
+
+<nav aria-label="Fil d'Ariane" class="text-sm text-neutral-600 py-3">
+  <ol class="flex flex-wrap items-center gap-1.5">
+    {items.map((item, idx) => (
+      <li class="flex items-center gap-1.5">
+        {idx > 0 && <Icon name="chevron-right" size={14} class="text-neutral-400" />}
+        {idx === items.length - 1 ? (
+          <span aria-current="page" class="font-semibold text-neutral-800">
+            {item.name}
+          </span>
+        ) : (
+          <a href={item.url} class="hover:text-primary-700 transition-colors">
+            {item.name}
+          </a>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>

@@ -1,0 +1,154 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Breadcrumbs from "@components/Breadcrumbs.astro";
+import CtaBanner from "@components/CtaBanner.astro";
+import Icon from "@components/Icon.astro";
+import StructuredData from "@components/StructuredData.astro";
+import Faq from "@components/Faq.tsx";
+import { site } from "@data/site";
+
+const title = "MaPrimeRénov' & CEE 2026 : aides pour pompe à chaleur à Lille";
+const description =
+  "Toutes les aides pour votre pompe à chaleur en 2026 : MaPrimeRénov' (jusqu'à 5 000 €), CEE Coup de pouce (jusqu'à 5 500 €), TVA 5,5 %, éco-PTZ. HFE Énergie RGE QualiPAC.";
+const keywords = [
+  "MaPrimeRénov pompe à chaleur 2026",
+  "CEE pompe à chaleur Lille",
+  "aides PAC Lille",
+  "coup de pouce chauffage",
+  "éco-PTZ pompe à chaleur",
+];
+
+const breadcrumbs = [
+  { name: "Accueil", url: "/" },
+  { name: "Aides & Financements", url: "/aides-financement" },
+];
+
+const aides = [
+  {
+    name: "MaPrimeRénov'",
+    montant: "Jusqu'à 5 000 €",
+    desc: "Aide de l'État pour la rénovation énergétique. Montant variable selon les revenus du foyer (4 catégories : Bleu, Jaune, Violet, Rose).",
+    conditions: [
+      "Logement principal de plus de 15 ans",
+      "Travaux réalisés par un artisan RGE",
+      "Demande à effectuer AVANT le début des travaux",
+    ],
+  },
+  {
+    name: "CEE - Coup de pouce chauffage",
+    montant: "Jusqu'à 5 500 €",
+    desc: "Prime versée par les fournisseurs d'énergie (TotalEnergies, EDF, Engie...) pour remplacer une chaudière fioul/gaz/charbon par une PAC.",
+    conditions: [
+      "Remplacement d'une chaudière fioul, gaz ou charbon",
+      "Logement de plus de 2 ans",
+      "Artisan RGE obligatoire",
+    ],
+  },
+  {
+    name: "TVA à 5,5 %",
+    montant: "Économie immédiate",
+    desc: "Taux de TVA réduit sur la fourniture et la pose d'équipements énergétiques performants dans un logement de plus de 2 ans.",
+    conditions: [
+      "Logement de plus de 2 ans",
+      "Pose par un professionnel",
+      "Équipements éligibles",
+    ],
+  },
+  {
+    name: "Éco-prêt à taux zéro",
+    montant: "Jusqu'à 50 000 €",
+    desc: "Prêt sans intérêt pour financer le reste à charge de vos travaux de rénovation énergétique. Cumulable avec MaPrimeRénov' et CEE.",
+    conditions: [
+      "Banque partenaire",
+      "Travaux éligibles définis par l'État",
+      "Remboursement jusqu'à 20 ans",
+    ],
+  },
+];
+
+const faqs = [
+  {
+    question: "Comment cumuler MaPrimeRénov' et CEE en 2026 ?",
+    answer:
+      "Les deux aides sont cumulables sans restriction depuis 2021. Concrètement, vous pouvez obtenir simultanément MaPrimeRénov' (jusqu'à 5 000 € pour une PAC air-eau) ET le Coup de pouce chauffage CEE (jusqu'à 5 500 € pour le remplacement d'une chaudière fioul). Ajoutez la TVA réduite à 5,5 % et l'éco-PTZ : pour les ménages très modestes, le reste à charge peut être inférieur à 1 000 €. HFE Énergie monte gratuitement votre dossier MaPrimeRénov' et CEE.",
+  },
+  {
+    question: "Qui peut bénéficier de MaPrimeRénov' Parcours accompagné en 2026 ?",
+    answer:
+      "MaPrimeRénov' Parcours accompagné (anciennement MaPrimeRénov' Sérénité) est destiné aux ménages réalisant une rénovation d'ampleur (gain d'au moins 2 classes énergétiques au DPE). Elle est accessible à tous les niveaux de revenus et peut atteindre 70 % du montant des travaux pour les ménages très modestes. Un accompagnateur Rénov' est obligatoire.",
+  },
+  {
+    question: "Faut-il faire la demande d'aide AVANT les travaux ?",
+    answer:
+      "Oui, c'est OBLIGATOIRE pour MaPrimeRénov' : vous devez créer votre dossier sur maprimerenov.gouv.fr et attendre l'accord avant de signer le devis et de démarrer les travaux. Pour les CEE, le devis doit aussi être signé après acceptation de l'offre du partenaire CEE. HFE Énergie vous guide pas à pas pour ne rien rater.",
+  },
+];
+---
+
+<BaseLayout title={title} description={description} keywords={keywords} canonicalPath="/aides-financement">
+  <StructuredData type="BreadcrumbList" breadcrumbs={breadcrumbs} slot="head" />
+  <StructuredData type="FAQPage" faqs={faqs} slot="head" />
+
+  <div class="container-page">
+    <Breadcrumbs items={breadcrumbs} />
+  </div>
+
+  <section class="bg-gradient-to-br from-emerald-50 via-white to-primary-50">
+    <div class="container-page py-10 md:py-16">
+      <div class="max-w-3xl">
+        <span class="badge bg-emerald-100 text-emerald-800"><Icon name="euro" size={12} /> Aides 2026</span>
+        <h1 class="mt-3 font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-neutral-900 leading-tight">
+          Aides & financements pour votre <span class="text-primary-700">pompe à chaleur</span>
+        </h1>
+        <p class="mt-4 text-lg text-neutral-700">
+          Jusqu'à <strong>10 500 € d'aides cumulées</strong> pour l'installation d'une pompe à chaleur en 2026.
+          HFE Énergie, certifiée <strong>RGE QualiPAC</strong>, vous accompagne dans le montage de tous vos dossiers.
+        </p>
+        <div class="mt-6 flex flex-col sm:flex-row gap-3">
+          <a href="/contact" class="btn btn-primary"><Icon name="mail" size={18} /> Estimer mes aides</a>
+          <a href={`tel:${site.phoneRaw}`} class="btn btn-outline"><Icon name="phone" size={18} /> {site.phone}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container-page">
+      <h2 class="font-display text-3xl md:text-4xl font-extrabold text-neutral-900 max-w-3xl">
+        Les 4 aides cumulables pour votre PAC
+      </h2>
+      <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {aides.map((a) => (
+          <article class="card">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <h3 class="font-display font-extrabold text-xl text-neutral-900">{a.name}</h3>
+              <span class="badge bg-emerald-100 text-emerald-800 shrink-0">{a.montant}</span>
+            </div>
+            <p class="text-sm text-neutral-700 leading-relaxed">{a.desc}</p>
+            <ul class="mt-4 space-y-2">
+              {a.conditions.map((c) => (
+                <li class="flex items-start gap-2 text-sm">
+                  <Icon name="check" size={16} class="text-emerald-600 mt-0.5 shrink-0" strokeWidth={3} />
+                  <span class="text-neutral-700">{c}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner title="Calculez vos aides en moins de 24h" subtitle="HFE Énergie monte gratuitement votre dossier MaPrimeRénov' et CEE." />
+
+  <section class="section bg-neutral-50">
+    <div class="container-page">
+      <h2 class="font-display text-3xl md:text-4xl font-extrabold text-neutral-900 max-w-3xl">
+        Questions sur les aides
+      </h2>
+      <div class="mt-8 max-w-4xl">
+        <Faq items={faqs} idPrefix="aides-faq" client:visible />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

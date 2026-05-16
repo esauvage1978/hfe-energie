@@ -1,0 +1,115 @@
+---
+import { navigation, site, services } from "@data/site";
+import Icon from "./Icon.astro";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-neutral-900 text-neutral-300 mt-12">
+  <div class="container-page py-12 md:py-16">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <span class="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 text-white font-bold text-lg shadow">
+            H
+          </span>
+          <span class="font-display font-extrabold text-lg text-white">
+            HFE <span class="text-primary-300">Énergie</span>
+          </span>
+        </div>
+        <p class="text-sm leading-relaxed text-neutral-400">
+          {site.legalName} - Installateur RGE QualiPAC à Lille.
+          Pompes à chaleur, climatisation, chauffage et plomberie pour particuliers et professionnels.
+        </p>
+        <p class="mt-4 text-xs text-neutral-500">
+          {site.stats.installations}+ installations · {site.stats.yearsExperience} ans d'expérience
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-white font-display font-bold mb-4 text-sm uppercase tracking-wide">Nos services</h2>
+        <ul class="space-y-2 text-sm">
+          {services.map((s) => (
+            <li>
+              <a href={`/${s.slug}`} class="text-neutral-400 hover:text-primary-300 transition-colors">
+                {s.title}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a href="/aides-financement" class="text-neutral-400 hover:text-primary-300 transition-colors">
+              MaPrimeRénov' & CEE
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-white font-display font-bold mb-4 text-sm uppercase tracking-wide">Navigation</h2>
+        <ul class="space-y-2 text-sm">
+          {navigation.map((item) => (
+            <li>
+              <a href={item.href} class="text-neutral-400 hover:text-primary-300 transition-colors">
+                {item.label}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a href="/mentions-legales" class="text-neutral-400 hover:text-primary-300 transition-colors">
+              Mentions légales
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-white font-display font-bold mb-4 text-sm uppercase tracking-wide">Contact</h2>
+        <ul class="space-y-3 text-sm">
+          <li class="flex items-start gap-2">
+            <Icon name="map-pin" size={18} class="text-primary-400 mt-0.5 shrink-0" />
+            <address class="not-italic text-neutral-400 leading-relaxed">
+              {site.address.street}<br />
+              {site.address.postalCode} {site.address.city}<br />
+              {site.address.country}
+            </address>
+          </li>
+          <li class="flex items-center gap-2">
+            <Icon name="phone" size={18} class="text-primary-400 shrink-0" />
+            <a href={`tel:${site.phoneRaw}`} class="text-neutral-200 hover:text-primary-300 font-semibold">
+              {site.phone}
+            </a>
+          </li>
+          <li class="flex items-center gap-2">
+            <Icon name="mail" size={18} class="text-primary-400 shrink-0" />
+            <a href={`mailto:${site.email}`} class="text-neutral-200 hover:text-primary-300 break-all">
+              {site.email}
+            </a>
+          </li>
+          <li class="flex items-start gap-2">
+            <Icon name="clock" size={18} class="text-primary-400 mt-0.5 shrink-0" />
+            <div class="text-neutral-400 text-xs leading-relaxed">
+              Lun - Ven : 07h30 - 20h00<br />
+              Samedi : 09h00 - 17h00<br />
+              Dimanche : fermé
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-10 pt-8 border-t border-neutral-800">
+      <h2 class="sr-only">Zone d'intervention</h2>
+      <p class="text-xs text-neutral-500 leading-relaxed">
+        <strong class="text-neutral-400">Zone d'intervention :</strong> {site.serviceArea.join(" · ")} - et la métropole lilloise (MEL).
+      </p>
+    </div>
+
+    <div class="mt-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-xs text-neutral-500">
+      <p>&copy; {year} {site.legalName}. Tous droits réservés.</p>
+      <p>
+        Certifié <span class="text-primary-300 font-semibold">RGE QualiPAC</span> ·
+        Assurance décennale & RC pro
+      </p>
+    </div>
+  </div>
+</footer>

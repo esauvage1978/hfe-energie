@@ -1,0 +1,180 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Breadcrumbs from "@components/Breadcrumbs.astro";
+import CtaBanner from "@components/CtaBanner.astro";
+import Icon from "@components/Icon.astro";
+import StructuredData from "@components/StructuredData.astro";
+import Faq from "@components/Faq.tsx";
+import { site } from "@data/site";
+
+const title = "Climatisation réversible Lille : installation multi-split & gainable";
+const description =
+  "Installateur de climatisation réversible à Lille. Mono-split, multi-split, gainable, cassette. Marques Panasonic, Daikin, Mitsubishi. Devis gratuit, garantie décennale.";
+const keywords = [
+  "climatisation Lille",
+  "climatisation réversible Lille",
+  "installateur climatisation Lille",
+  "multi-split Lille",
+  "climatisation gainable Lille",
+  "Panasonic climatisation",
+];
+
+const breadcrumbs = [
+  { name: "Accueil", url: "/" },
+  { name: "Climatisation", url: "/climatisation" },
+];
+
+const types = [
+  {
+    name: "Mono-split",
+    description:
+      "Une unité extérieure connectée à une seule unité intérieure. Idéale pour climatiser une pièce de vie ou une chambre.",
+    use: "Pièce unique (15 à 45 m²)",
+  },
+  {
+    name: "Multi-split",
+    description:
+      "Une unité extérieure pour 2 à 5 unités intérieures. Solution complète pour climatiser plusieurs pièces avec une régulation indépendante.",
+    use: "Appartement, maison étage",
+  },
+  {
+    name: "Gainable",
+    description:
+      "Le climatiseur est dissimulé dans les combles ou le faux-plafond. Air diffusé via des bouches discrètes : confort et esthétique maximum.",
+    use: "Maison neuve ou rénovation lourde",
+  },
+  {
+    name: "Cassette",
+    description:
+      "Unité intégrée au plafond, diffusion homogène sur 4 directions. Solution privilégiée pour bureaux, commerces et grandes pièces.",
+    use: "Tertiaire & grandes pièces",
+  },
+];
+
+const faqs = [
+  {
+    question: "Quelle différence entre climatisation classique et climatisation réversible ?",
+    answer:
+      "Une climatisation classique ne fait que rafraîchir, tandis qu'une climatisation réversible peut aussi chauffer en inversant son cycle frigorifique. C'est ce qu'on appelle une pompe à chaleur air-air. Le rendement (COP) est excellent : 3 à 4 kWh de chaleur restitués pour 1 kWh consommé. C'est la solution 2-en-1 la plus rentable pour climatiser ET chauffer.",
+  },
+  {
+    question: "Quel est le prix d'une climatisation réversible à Lille ?",
+    answer:
+      "Pour un mono-split standard, comptez entre 1 800 € et 3 500 € TTC posé. Pour un multi-split 3 unités intérieures, entre 5 500 € et 9 000 € TTC. Une installation gainable maison entière débute autour de 9 500 € TTC. Tous nos devis sont gratuits, détaillés et incluent une étude de dimensionnement.",
+  },
+  {
+    question: "La climatisation réversible est-elle éligible aux aides ?",
+    answer:
+      "Une PAC air-air classique (climatisation réversible) n'est pas éligible à MaPrimeRénov' depuis 2023. En revanche, elle peut bénéficier des CEE (Certificats d'Économie d'Énergie) sous conditions, et de la TVA à 10 % pour les installations dans les logements de plus de 2 ans.",
+  },
+  {
+    question: "Quelles marques installez-vous ?",
+    answer:
+      "HFE Énergie est partenaire officiel Panasonic. Nous installons également Daikin, Mitsubishi Electric, Atlantic, LG et Toshiba. Toutes ces marques offrent une garantie constructeur de 3 à 5 ans, prolongeable jusqu'à 10 ans selon les modèles.",
+  },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  canonicalPath="/climatisation"
+>
+  <StructuredData type="BreadcrumbList" breadcrumbs={breadcrumbs} slot="head" />
+  <StructuredData
+    type="Service"
+    service={{
+      name: "Installation de climatisation réversible à Lille",
+      description:
+        "Installation, entretien et dépannage de climatisations réversibles (mono-split, multi-split, gainable, cassette) à Lille et métropole.",
+      slug: "climatisation",
+    }}
+    slot="head"
+  />
+  <StructuredData type="FAQPage" faqs={faqs} slot="head" />
+
+  <div class="container-page">
+    <Breadcrumbs items={breadcrumbs} />
+  </div>
+
+  <section class="bg-gradient-to-br from-primary-50 via-white to-blue-50">
+    <div class="container-page py-10 md:py-16">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="badge bg-primary-100 text-primary-800">
+            <Icon name="snowflake" size={12} />
+            Confort 4 saisons
+          </span>
+          <h1 class="mt-4 font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-neutral-900 leading-tight">
+            Climatisation réversible à <span class="text-primary-700">Lille</span>
+          </h1>
+          <p class="mt-4 text-lg text-neutral-700 leading-relaxed">
+            HFE Énergie installe des <strong>climatisations réversibles</strong> haute performance à Lille
+            et dans toute la métropole : mono-split, multi-split, gainable, cassette. Profitez d'un
+            <strong> confort optimal hiver comme été</strong> avec une consommation énergétique réduite.
+          </p>
+          <div class="mt-6 flex flex-col sm:flex-row gap-3">
+            <a href="/contact" class="btn btn-primary"><Icon name="mail" size={18} /> Devis gratuit</a>
+            <a href={`tel:${site.phoneRaw}`} class="btn btn-outline"><Icon name="phone" size={18} /> {site.phone}</a>
+          </div>
+        </div>
+        <div>
+          <img
+            src="/service-clim.svg"
+            alt="Climatisation réversible Panasonic installée par HFE Énergie"
+            width="400"
+            height="300"
+            class="rounded-2xl border border-neutral-100 shadow-xl bg-white w-full"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white" aria-labelledby="types-clim-title">
+    <div class="container-page">
+      <div class="max-w-3xl">
+        <h2 id="types-clim-title" class="font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
+          Quel type de climatisation pour vous ?
+        </h2>
+        <p class="mt-3 text-neutral-700">
+          Nous adaptons la solution à votre logement, votre budget et votre besoin de confort. Étude technique
+          systématique avant chaque chiffrage.
+        </p>
+      </div>
+
+      <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {types.map((t) => (
+          <div class="card">
+            <div class="w-12 h-12 rounded-xl bg-primary-100 text-primary-700 flex items-center justify-center mb-4">
+              <Icon name="snowflake" size={24} />
+            </div>
+            <h3 class="font-display font-bold text-lg text-neutral-900">{t.name}</h3>
+            <p class="mt-2 text-sm text-neutral-600 leading-relaxed">{t.description}</p>
+            <p class="mt-3 text-xs text-primary-700 font-semibold">{t.use}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner
+    title="Envie d'un été frais et d'un hiver doux ?"
+    subtitle="Installation de climatisation réversible Panasonic, Daikin, Mitsubishi - garantie décennale."
+  />
+
+  <section class="section bg-neutral-50" aria-labelledby="faq-clim-title">
+    <div class="container-page">
+      <div class="max-w-3xl">
+        <h2 id="faq-clim-title" class="font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
+          Questions fréquentes sur la climatisation
+        </h2>
+      </div>
+      <div class="mt-8 max-w-4xl">
+        <Faq items={faqs} idPrefix="clim-faq" client:visible />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

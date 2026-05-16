@@ -1,0 +1,19 @@
+{
+  "name": "HFE Énergie - Hecker & Frères Énergie",
+  "short_name": "HFE Énergie",
+  "description": "Installateur RGE QualiPAC à Lille : pompes à chaleur, climatisation, chauffage et plomberie.",
+  "lang": "fr-FR",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0369a1",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

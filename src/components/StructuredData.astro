@@ -1,0 +1,127 @@
+---
+import { site } from "@data/site";
+
+export interface Props {
+  type?: "LocalBusiness" | "Service" | "FAQPage" | "BreadcrumbList" | "Article";
+  service?: {
+    name: string;
+    description: string;
+    slug: string;
+  };
+  faqs?: Array<{ question: string; answer: string }>;
+  breadcrumbs?: Array<{ name: string; url: string }>;
+}
+
+const { type = "LocalBusiness", service, faqs, breadcrumbs } = Astro.props;
+
+const localBusiness = {
+  "@context": "https://schema.org",
+  "@type": "HVACBusiness",
+  "@id": `${site.baseUrl}/#business`,
+  name: site.legalName,
+  alternateName: site.name,
+  description: site.longDescription,
+  url: site.baseUrl,
+  telephone: site.phoneRaw,
+  email: site.email,
+  image: `${site.baseUrl}/og-image.svg`,
+  logo: `${site.baseUrl}/logo.svg`,
+  priceRange: "€€",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.address.street,
+    postalCode: site.address.postalCode,
+    addressLocality: site.address.city,
+    addressRegion: site.address.region,
+    addressCountry: site.address.countryCode,
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: site.geo.latitude,
+    longitude: site.geo.longitude,
+  },
+  areaServed: site.serviceArea.map((city) => ({
+    "@type": "City",
+    name: city,
+  })),
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "07:30",
+      closes: "20:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Saturday",
+      opens: "09:00",
+      closes: "17:00",
+    },
+  ],
+  hasCredential: [
+    "RGE QualiPAC Chauffage",
+    "RGE QualiPAC Chauffe-eau thermodynamique",
+  ],
+  knowsAbout: [
+    "Pompe à chaleur air-eau",
+    "Pompe à chaleur air-air",
+    "Climatisation réversible",
+    "Chauffe-eau thermodynamique",
+    "MaPrimeRénov'",
+    "Certificats d'économie d'énergie",
+    "Plancher chauffant",
+  ],
+  slogan: "Chauffagiste & climaticien à Lille",
+  foundingDate: "2010",
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.9",
+    reviewCount: "200",
+    bestRating: "5",
+    worstRating: "1",
+  },
+};
+
+const buildServiceLd = (s: { name: string; description: string; slug: string }) => ({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: s.name,
+  name: s.name,
+  description: s.description,
+  url: `${site.baseUrl}/${s.slug}`,
+  provider: { "@id": `${site.baseUrl}/#business` },
+  areaServed: site.serviceArea.map((city) => ({ "@type": "City", name: city })),
+  category: "Énergies renouvelables - Chauffage - Climatisation",
+});
+
+const buildFaqLd = (items: Array<{ question: string; answer: string }>) => ({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: items.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+});
+
+const buildBreadcrumbLd = (items: Array<{ name: string; url: string }>) => ({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: items.map((item, idx) => ({
+    "@type": "ListItem",
+    position: idx + 1,
+    name: item.name,
+    item: new URL(item.url, site.baseUrl).toString(),
+  })),
+});
+
+let jsonLd: unknown = localBusiness;
+if (type === "Service" && service) jsonLd = buildServiceLd(service);
+if (type === "FAQPage" && faqs) jsonLd = buildFaqLd(faqs);
+if (type === "BreadcrumbList" && breadcrumbs) jsonLd = buildBreadcrumbLd(breadcrumbs);
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />

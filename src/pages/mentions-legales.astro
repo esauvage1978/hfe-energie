@@ -1,0 +1,69 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Breadcrumbs from "@components/Breadcrumbs.astro";
+import { site } from "@data/site";
+
+const title = "Mentions légales";
+const description =
+  "Mentions légales et politique de confidentialité du site HFE Énergie - Hecker & Frères Énergie à Lille.";
+
+const breadcrumbs = [
+  { name: "Accueil", url: "/" },
+  { name: "Mentions légales", url: "/mentions-legales" },
+];
+---
+
+<BaseLayout title={title} description={description} canonicalPath="/mentions-legales" noIndex>
+  <div class="container-page">
+    <Breadcrumbs items={breadcrumbs} />
+  </div>
+
+  <section class="section bg-white">
+    <div class="container-page">
+      <article class="max-w-3xl prose-custom">
+        <h1 class="font-display text-3xl md:text-4xl font-extrabold text-neutral-900">Mentions légales</h1>
+
+        <h2>Éditeur du site</h2>
+        <p>
+          <strong>{site.legalName}</strong><br />
+          {site.address.street}<br />
+          {site.address.postalCode} {site.address.city}<br />
+          Téléphone : <a href={`tel:${site.phoneRaw}`}>{site.phone}</a><br />
+          E-mail : <a href={`mailto:${site.email}`}>{site.email}</a>
+        </p>
+
+        <h2>Hébergeur</h2>
+        <p>Ce site est hébergé via une infrastructure cloud. Coordonnées de l'hébergeur disponibles sur demande.</p>
+
+        <h2>Propriété intellectuelle</h2>
+        <p>
+          L'ensemble des contenus présents sur ce site (textes, images, vidéos, logos, marques) sont la
+          propriété de {site.legalName} ou de leurs ayants droit respectifs. Toute reproduction, totale ou
+          partielle, sans autorisation écrite préalable est interdite.
+        </p>
+
+        <h2>Protection des données personnelles (RGPD)</h2>
+        <p>
+          Les informations recueillies via le formulaire de contact sont utilisées exclusivement pour répondre
+          à votre demande. Aucune donnée n'est cédée à des tiers. Conformément à la réglementation européenne
+          (RGPD) et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification, de
+          suppression et d'opposition sur vos données. Pour exercer ce droit, contactez-nous à
+          <a href={`mailto:${site.email}`}> {site.email}</a>.
+        </p>
+
+        <h2>Cookies</h2>
+        <p>
+          Ce site n'utilise pas de cookies de traçage publicitaire. Seuls des cookies techniques nécessaires
+          au bon fonctionnement du site peuvent être déposés.
+        </p>
+
+        <h2>Certifications & assurances</h2>
+        <p>
+          {site.legalName} est certifié <strong>RGE QualiPAC Chauffage</strong> et
+          <strong> RGE QualiPAC Chauffe-eau thermodynamique</strong>. L'entreprise dispose d'une assurance
+          décennale et d'une responsabilité civile professionnelle.
+        </p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>

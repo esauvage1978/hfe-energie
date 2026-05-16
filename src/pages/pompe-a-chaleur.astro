@@ -1,0 +1,398 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Breadcrumbs from "@components/Breadcrumbs.astro";
+import CtaBanner from "@components/CtaBanner.astro";
+import Icon from "@components/Icon.astro";
+import StructuredData from "@components/StructuredData.astro";
+import Faq from "@components/Faq.tsx";
+import SavingsCalculator from "@components/SavingsCalculator.tsx";
+import { site } from "@data/site";
+
+const title = "Pompe à chaleur Lille : installation PAC air-eau & air-air RGE";
+const description =
+  "Installateur RGE QualiPAC à Lille : pompe à chaleur air-eau, air-air, chauffe-eau thermodynamique. Devis gratuit, MaPrimeRénov' & CEE. 15 ans d'expérience.";
+
+const keywords = [
+  "pompe à chaleur Lille",
+  "PAC air-eau Lille",
+  "PAC air-air Lille",
+  "installateur pompe à chaleur Lille",
+  "installateur RGE QualiPAC",
+  "MaPrimeRénov pompe à chaleur",
+  "prix pompe à chaleur",
+  "chauffe-eau thermodynamique Lille",
+  "remplacement chaudière par PAC",
+];
+
+const breadcrumbs = [
+  { name: "Accueil", url: "/" },
+  { name: "Pompe à chaleur", url: "/pompe-a-chaleur" },
+];
+
+const pacTypes = [
+  {
+    name: "PAC air-eau",
+    slug: "air-eau",
+    description:
+      "La pompe à chaleur air-eau capte les calories dans l'air extérieur pour les restituer à l'eau du circuit de chauffage central : radiateurs, plancher chauffant, et production d'eau chaude sanitaire.",
+    pros: [
+      "Idéale en rénovation pour remplacer une chaudière fioul ou gaz",
+      "Compatible avec radiateurs et plancher chauffant existants",
+      "Production d'eau chaude sanitaire intégrée possible",
+      "Éligible MaPrimeRénov' (jusqu'à 5 000 €) et CEE",
+    ],
+    scop: "3,8 à 4,5",
+    price: "12 000 € à 18 000 €",
+  },
+  {
+    name: "PAC air-air",
+    slug: "air-air",
+    description:
+      "La pompe à chaleur air-air, aussi appelée climatisation réversible, diffuse l'air chaud (ou froid) directement dans vos pièces via des unités intérieures (split, gainable, cassette).",
+    pros: [
+      "Solution 2-en-1 : chauffage l'hiver et climatisation l'été",
+      "Installation rapide, peu de travaux",
+      "Plusieurs unités intérieures possibles (multi-split)",
+      "Filtration de l'air et déshumidification",
+    ],
+    scop: "3,5 à 4,2",
+    price: "3 500 € à 9 000 €",
+  },
+  {
+    name: "Chauffe-eau thermodynamique",
+    slug: "chauffe-eau-thermodynamique",
+    description:
+      "Le chauffe-eau thermodynamique combine un ballon d'eau chaude et une mini-pompe à chaleur pour produire votre eau chaude sanitaire jusqu'à 3 fois moins cher qu'un ballon électrique classique.",
+    pros: [
+      "Jusqu'à 70 % d'économies sur l'eau chaude sanitaire",
+      "Éligible MaPrimeRénov' & CEE",
+      "Durée de vie de 15 ans en moyenne",
+      "Installation rapide en remplacement d'un ballon électrique",
+    ],
+    scop: "COP 3,0 à 3,5",
+    price: "2 500 € à 4 500 €",
+  },
+];
+
+const benefits = [
+  {
+    icon: "euro",
+    title: "Jusqu'à 75 % d'économies",
+    text: "Une PAC moderne consomme 3 à 4 fois moins d'énergie qu'un chauffage électrique ou au fioul.",
+  },
+  {
+    icon: "leaf",
+    title: "Énergie renouvelable",
+    text: "70 à 80 % de l'énergie produite provient de l'air extérieur, une source gratuite et inépuisable.",
+  },
+  {
+    icon: "shield",
+    title: "Aides cumulables",
+    text: "MaPrimeRénov', CEE Coup de pouce, TVA réduite à 5,5 %, éco-PTZ : jusqu'à 10 500 € d'aides cumulées.",
+  },
+  {
+    icon: "snowflake",
+    title: "Confort 4 saisons",
+    text: "Avec une PAC air-air ou une PAC hybride, vous chauffez l'hiver et rafraîchissez l'été.",
+  },
+];
+
+const faqs = [
+  {
+    question: "Quel est le prix d'une pompe à chaleur installée à Lille en 2026 ?",
+    answer:
+      "Le prix d'une pompe à chaleur air-eau installée à Lille est compris entre 12 000 € et 18 000 € TTC (hors aides), selon la puissance, la marque et la complexité de la pose. Une PAC air-air (clim réversible) coûte entre 3 500 € et 9 000 € TTC. Avec MaPrimeRénov' (jusqu'à 5 000 €) et les CEE (jusqu'à 5 500 €), le reste à charge peut descendre à 2 000 € - 4 000 € pour les ménages modestes. HFE Énergie est certifiée RGE QualiPAC : votre projet est éligible à toutes les aides.",
+  },
+  {
+    question: "Quelle pompe à chaleur choisir : air-eau ou air-air ?",
+    answer:
+      "Choisissez une PAC air-eau si vous avez déjà un circuit de chauffage central (radiateurs ou plancher chauffant) : elle remplace votre chaudière fioul ou gaz et peut produire l'eau chaude sanitaire. Choisissez une PAC air-air (clim réversible) si vous chauffez à l'électrique ou si vous voulez climatiser votre logement en été. La PAC air-eau est plus chère à l'installation mais offre un confort supérieur et un meilleur rendement.",
+  },
+  {
+    question: "Est-ce qu'une pompe à chaleur fonctionne bien dans le Nord ?",
+    answer:
+      "Oui, parfaitement. Les pompes à chaleur modernes restent performantes jusqu'à -15 °C, et le climat du Nord (températures hivernales descendant rarement sous -5 °C) est tout à fait adapté. Les PAC haute température peuvent même remplacer une chaudière fioul sans changer les radiateurs. Le SCOP (rendement saisonnier) reste élevé : entre 3,5 et 4,5 dans les Hauts-de-France.",
+  },
+  {
+    question: "Combien de temps prend l'installation d'une pompe à chaleur ?",
+    answer:
+      "Pour une PAC air-eau en remplacement d'une chaudière : 2 à 3 jours d'intervention. Pour une PAC air-air mono-split : 1 journée. Pour un multi-split (3-4 unités intérieures) : 2 jours. HFE Énergie réalise au préalable une étude thermique et un dimensionnement précis pour garantir la performance de l'installation.",
+  },
+  {
+    question: "Quelles sont les aides MaPrimeRénov' et CEE pour une PAC en 2026 ?",
+    answer:
+      "MaPrimeRénov' pour une PAC air-eau : de 1 000 € (revenus supérieurs) à 5 000 € (revenus très modestes). Les CEE « Coup de pouce chauffage » apportent jusqu'à 5 500 € supplémentaires si vous remplacez une chaudière fioul, gaz ou charbon. La TVA est réduite à 5,5 % sur la fourniture et la pose. Les ménages très modestes peuvent obtenir jusqu'à 80 à 90 % du montant des travaux pris en charge.",
+  },
+  {
+    question: "Faut-il entretenir sa pompe à chaleur ?",
+    answer:
+      "Oui, l'entretien d'une pompe à chaleur est obligatoire depuis le décret du 30 juillet 2020 : tous les 2 ans pour les PAC < 12 kW, tous les ans pour les PAC ≥ 12 kW. HFE Énergie propose des contrats d'entretien dès 149 € TTC / an, incluant le contrôle d'étanchéité du circuit frigorifique, le nettoyage des filtres et la vérification des performances.",
+  },
+  {
+    question: "Quelle est la durée de vie d'une pompe à chaleur ?",
+    answer:
+      "Une PAC bien entretenue dure entre 15 et 20 ans. La garantie constructeur est généralement de 2 à 5 ans, prolongeable à 7 ou 10 ans selon les marques (Panasonic, Daikin, Mitsubishi, Atlantic). HFE Énergie est partenaire Panasonic et offre la garantie décennale sur l'installation.",
+  },
+  {
+    question: "La PAC fait-elle du bruit ?",
+    answer:
+      "Les pompes à chaleur récentes sont très silencieuses : entre 38 et 55 dB(A) à 1 mètre pour l'unité extérieure (équivalent d'un réfrigérateur). Notre équipe vous conseille sur l'emplacement optimal pour respecter la réglementation acoustique (arrêté du 5 décembre 2006) et préserver le confort de vos voisins.",
+  },
+];
+
+const seoCities = site.serviceArea;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  canonicalPath="/pompe-a-chaleur"
+>
+  <StructuredData type="BreadcrumbList" breadcrumbs={breadcrumbs} slot="head" />
+  <StructuredData
+    type="Service"
+    service={{
+      name: "Installation de pompe à chaleur à Lille",
+      description:
+        "Installation et entretien de pompes à chaleur air-eau, air-air et chauffe-eau thermodynamiques par HFE Énergie, artisan RGE QualiPAC à Lille.",
+      slug: "pompe-a-chaleur",
+    }}
+    slot="head"
+  />
+  <StructuredData type="FAQPage" faqs={faqs} slot="head" />
+
+  <div class="container-page">
+    <Breadcrumbs items={breadcrumbs} />
+  </div>
+
+  <section class="relative overflow-hidden bg-gradient-to-br from-primary-50 via-white to-accent-50/20">
+    <div class="container-page py-10 md:py-16">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="badge bg-primary-100 text-primary-800 border border-primary-200">
+            <Icon name="shield" size={12} />
+            Service RGE QualiPAC
+          </span>
+          <h1 class="mt-4 font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-neutral-900 leading-tight">
+            Installation de <span class="text-primary-700">pompes à chaleur</span> à Lille
+          </h1>
+          <p class="mt-4 text-lg text-neutral-700 leading-relaxed">
+            HFE Énergie installe et entretient des <strong>pompes à chaleur air-eau</strong> et
+            <strong> air-air</strong> performantes à Lille et dans toute la métropole lilloise. Bénéficiez
+            d'un <strong>devis gratuit</strong>, des aides <strong>MaPrimeRénov'</strong> et <strong>CEE</strong>,
+            et de la garantie décennale.
+          </p>
+
+          <div class="mt-6 flex flex-col sm:flex-row gap-3">
+            <a href="/contact" class="btn btn-primary">
+              <Icon name="mail" size={18} />
+              Devis gratuit en 24h
+            </a>
+            <a href={`tel:${site.phoneRaw}`} class="btn btn-outline">
+              <Icon name="phone" size={18} />
+              {site.phone}
+            </a>
+          </div>
+
+          <dl class="mt-8 grid grid-cols-3 gap-4 max-w-md">
+            <div>
+              <dt class="text-xs text-neutral-500 font-semibold uppercase">Économies</dt>
+              <dd class="mt-1 font-display text-2xl font-extrabold text-primary-700">75 %</dd>
+            </div>
+            <div>
+              <dt class="text-xs text-neutral-500 font-semibold uppercase">Aides</dt>
+              <dd class="mt-1 font-display text-2xl font-extrabold text-accent-600">10 500 €</dd>
+            </div>
+            <div>
+              <dt class="text-xs text-neutral-500 font-semibold uppercase">Garantie</dt>
+              <dd class="mt-1 font-display text-2xl font-extrabold text-emerald-600">10 ans</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div>
+          <img
+            src="/hero-pac.svg"
+            alt="Installation d'une pompe à chaleur air-eau par HFE Énergie à Lille"
+            width="800"
+            height="600"
+            class="rounded-3xl shadow-2xl bg-white border border-neutral-100 w-full"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white" aria-labelledby="benefits-title">
+    <div class="container-page">
+      <div class="max-w-3xl">
+        <h2 id="benefits-title" class="font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
+          Pourquoi choisir une pompe à chaleur ?
+        </h2>
+        <p class="mt-3 text-neutral-700">
+          Système de chauffage le plus efficace du marché, la pompe à chaleur exploite une énergie renouvelable
+          (l'air extérieur) pour chauffer votre logement avec un excellent rendement (SCOP de 3,5 à 4,5).
+        </p>
+      </div>
+
+      <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {benefits.map((b) => (
+          <div class="card">
+            <div class="w-12 h-12 rounded-xl bg-primary-100 text-primary-700 flex items-center justify-center mb-4">
+              <Icon name={b.icon} size={24} />
+            </div>
+            <h3 class="font-display font-bold text-lg text-neutral-900">{b.title}</h3>
+            <p class="mt-2 text-sm text-neutral-600 leading-relaxed">{b.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-neutral-50" aria-labelledby="types-title">
+    <div class="container-page">
+      <div class="max-w-3xl">
+        <span class="badge bg-primary-100 text-primary-800">Nos installations</span>
+        <h2 id="types-title" class="mt-3 font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
+          Les 3 types de pompes à chaleur que nous installons
+        </h2>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {pacTypes.map((pac) => (
+          <article class="card flex flex-col h-full" id={pac.slug}>
+            <div class="flex items-start justify-between gap-3">
+              <h3 class="font-display font-extrabold text-xl text-neutral-900">{pac.name}</h3>
+              <span class="badge bg-emerald-100 text-emerald-800 shrink-0">
+                SCOP {pac.scop}
+              </span>
+            </div>
+            <p class="mt-3 text-sm text-neutral-700 leading-relaxed">{pac.description}</p>
+
+            <ul class="mt-5 space-y-2 flex-1">
+              {pac.pros.map((p) => (
+                <li class="flex items-start gap-2 text-sm">
+                  <Icon name="check" size={16} class="text-emerald-600 mt-0.5 shrink-0" strokeWidth={3} />
+                  <span class="text-neutral-700">{p}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div class="mt-5 pt-5 border-t border-neutral-100">
+              <p class="text-xs text-neutral-500 font-semibold uppercase">Budget indicatif</p>
+              <p class="mt-1 font-display font-bold text-primary-700">{pac.price}</p>
+              <p class="text-xs text-neutral-500 mt-1">avant aides MaPrimeRénov' & CEE</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white" aria-labelledby="how-title">
+    <div class="container-page">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="badge bg-accent-100 text-accent-800">Fonctionnement</span>
+          <h2 id="how-title" class="mt-3 font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
+            Comment fonctionne une pompe à chaleur ?
+          </h2>
+          <div class="prose-custom mt-5 text-neutral-700">
+            <p>
+              Une pompe à chaleur (PAC) utilise les calories naturellement présentes dans l'air extérieur,
+              même par temps froid, pour chauffer votre logement. Elle fonctionne comme un réfrigérateur, mais
+              à l'envers.
+            </p>
+            <ol class="mt-4 space-y-3 list-decimal pl-5">
+              <li><strong>Captage</strong> : l'unité extérieure aspire l'air ambiant et en capte les calories.</li>
+              <li><strong>Compression</strong> : un fluide frigorigène circule, est compressé et monte en température.</li>
+              <li><strong>Restitution</strong> : la chaleur est transférée à l'eau du circuit de chauffage (PAC air-eau) ou directement à l'air (PAC air-air).</li>
+              <li><strong>Détente</strong> : le fluide retrouve son état initial et le cycle recommence.</li>
+            </ol>
+            <p>
+              Pour 1 kWh d'électricité consommé, une PAC restitue 3 à 5 kWh de chaleur :
+              c'est le <strong>coefficient de performance (COP)</strong>.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <img
+            src="/service-pac.svg"
+            alt="Schéma du fonctionnement d'une pompe à chaleur air-eau"
+            width="400"
+            height="300"
+            class="rounded-2xl border border-neutral-200 bg-white w-full"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-gradient-to-br from-primary-50 to-white" aria-labelledby="calc-pac-title">
+    <div class="container-page">
+      <div class="max-w-3xl mb-8">
+        <h2 id="calc-pac-title" class="font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
+          Estimez vos économies en 30 secondes
+        </h2>
+        <p class="mt-3 text-neutral-700">
+          Comparez le coût de votre chauffage actuel avec celui d'une pompe à chaleur HFE Énergie.
+        </p>
+      </div>
+      <SavingsCalculator client:visible />
+    </div>
+  </section>
+
+  <CtaBanner
+    title="Prêt à passer à la pompe à chaleur ?"
+    subtitle="Étude thermique offerte, devis sous 48h, accompagnement complet pour MaPrimeRénov' & CEE."
+  />
+
+  <section class="section bg-white" aria-labelledby="zones-title">
+    <div class="container-page">
+      <div class="max-w-3xl">
+        <span class="badge bg-primary-100 text-primary-800">Zone d'intervention</span>
+        <h2 id="zones-title" class="mt-3 font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
+          Installateur PAC à Lille et dans toute la métropole
+        </h2>
+        <p class="mt-3 text-neutral-700">
+          Basée à Lille, HFE Énergie intervient sur l'ensemble de la <strong>Métropole Européenne de Lille (MEL)</strong>
+          dans un rayon d'environ 30 km. Nous installons des pompes à chaleur, climatisations et chauffe-eau
+          thermodynamiques chez les particuliers comme dans les locaux professionnels.
+        </p>
+      </div>
+
+      <ul class="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+        {seoCities.map((city) => (
+          <li class="flex items-center gap-2 p-3 rounded-xl bg-neutral-50 border border-neutral-200 text-sm">
+            <Icon name="map-pin" size={14} class="text-primary-600 shrink-0" />
+            <span class="text-neutral-700 font-medium">Pompe à chaleur {city}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section bg-neutral-50" aria-labelledby="faq-pac-title">
+    <div class="container-page">
+      <div class="max-w-3xl">
+        <span class="badge bg-primary-100 text-primary-800">FAQ pompe à chaleur</span>
+        <h2 id="faq-pac-title" class="mt-3 font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
+          Tout savoir sur la pompe à chaleur
+        </h2>
+        <p class="mt-3 text-neutral-700">
+          Réponses détaillées aux questions les plus fréquentes sur l'installation, le coût, les aides et
+          l'entretien d'une pompe à chaleur.
+        </p>
+      </div>
+
+      <div class="mt-8 max-w-4xl">
+        <Faq items={faqs} idPrefix="pac-faq" client:visible />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

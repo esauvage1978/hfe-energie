@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Disallow: /api/
+Disallow: /*.json$
+
+Sitemap: https://hfe-energie.fr/sitemap-index.xml
