@@ -44,12 +44,13 @@ export const legal = {
 
   /** Hébergement technique du site */
   host: {
-    // TODO: adapter selon votre hébergeur (Vercel, Netlify, OVH, etc.)
-    name: "Nom de l'hébergeur",
-    company: "Société d'hébergement",
-    address: "Adresse complète de l'hébergeur",
-    phone: "Téléphone hébergeur",
-    website: "https://hebergeur.example",
+    name: "OVHcloud",
+    company: "OVH SAS",
+    legalForm: "SAS au capital de 50 000 000 €",
+    address: "2 rue Kellermann, 59100 Roubaix, France",
+    rcs: "RCS Lille Métropole 424 761 419",
+    phone: "1007 (depuis la France) - +33 9 72 10 10 07 (depuis l'étranger)",
+    website: "https://www.ovhcloud.com",
   },
 
   /** Médiateur de la consommation - obligatoire pour B2C en France */
