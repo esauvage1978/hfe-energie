@@ -15,8 +15,11 @@ export const site = {
   email: "contact@hfe-energie.fr",
   phone: "07 67 34 12 63",
   phoneRaw: "+33767341263",
+  /** Ligne dédiée plomberie / dépannage sanitaire uniquement */
+  plumbingPhone: "06 13 46 67 90",
+  plumbingPhoneRaw: "+33613466790",
   address: {
-    street: "16 Rue Bartholomé Masurel",
+    street: "44 Rue Jean sans peur",
     postalCode: "59800",
     city: "Lille",
     region: "Hauts-de-France",
@@ -24,8 +27,8 @@ export const site = {
     countryCode: "FR",
   },
   geo: {
-    latitude: 50.6378,
-    longitude: 3.0573,
+    latitude: 50.6335,
+    longitude: 3.0598,
   },
   hours: [
     { day: "Lundi", value: "07:30 - 20:00" },
@@ -61,30 +64,42 @@ export const site = {
   socials: {
     facebook: "https://www.facebook.com/hfeenergie",
     instagram: "",
-    google: "",
+    google: "https://g.page/r/CawB00LcHY7jEAE/review",
   },
 } as const;
 
-export const navigation: Array<{
+export type NavItem = {
   label: string;
-  href: string;
+  href?: string;
   description?: string;
-}> = [
-  { label: "Accueil", href: "/" },
+  children?: NavItem[];
+};
+
+export const navigation: NavItem[] = [
   {
-    label: "Pompes à chaleur",
-    href: "/pompe-a-chaleur",
-    description: "Installation PAC air-eau & air-air RGE QualiPAC",
-  },
-  {
-    label: "Climatisation",
-    href: "/climatisation",
-    description: "Climatisation réversible multi-split, gainable, cassette",
-  },
-  {
-    label: "Chauffage",
-    href: "/chauffage",
-    description: "Chaudières, plancher chauffant, radiateurs",
+    label: "Nos services",
+    children: [
+      {
+        label: "Pompes à chaleur",
+        href: "/pompe-a-chaleur",
+        description: "Installation PAC air-eau & air-air RGE QualiPAC",
+      },
+      {
+        label: "Climatisation",
+        href: "/climatisation",
+        description: "Climatisation réversible multi-split, gainable, cassette",
+      },
+      {
+        label: "Chauffage",
+        href: "/chauffage",
+        description: "Chaudières, plancher chauffant, radiateurs",
+      },
+      {
+        label: "Plomberie",
+        href: "/plomberie",
+        description: "Installation, rénovation, dépannage sanitaire",
+      },
+    ],
   },
   {
     label: "Particuliers",
@@ -108,34 +123,38 @@ export const services = [
   {
     slug: "pompe-a-chaleur",
     title: "Pompes à chaleur",
-    short: "PAC air-eau & air-air",
+    short: "Air / Eau & Air / Air",
     description:
       "Installation et entretien de pompes à chaleur haute performance : jusqu'à 75 % d'économies sur la facture de chauffage.",
     icon: "heat-pump",
+    iconUrl: "/assets/icons-services/pac.png",
   },
   {
     slug: "climatisation",
-    title: "Climatisation réversible",
-    short: "Confort été comme hiver",
+    title: "Climatisation",
+    short: "Réversible",
     description:
       "Climatisation réversible mono-split, multi-split, gainable et cassette pour un confort thermique toute l'année.",
-    icon: "snowflake",
+    icon: "ac-unit",
+    iconUrl: "/assets/icons-services/clim.png",
   },
   {
     slug: "chauffage",
-    title: "Chauffage & chaudières",
-    short: "Remplacement de chaudière",
+    title: "Chauffage",
+    short: "Toutes énergies",
     description:
       "Remplacement de chaudières, installation de planchers chauffants, radiateurs et chauffe-eau thermodynamiques.",
-    icon: "flame",
+    icon: "radiator",
+    iconUrl: "/assets/icons-services/chauffage.png",
   },
   {
     slug: "plomberie",
-    title: "Plomberie & sanitaire",
-    short: "Dépannage & adoucisseurs",
+    title: "Plomberie",
+    short: "Installation & Rénovation",
     description:
       "Dépannage plomberie, installation d'adoucisseurs d'eau, ballons électriques et solutions sanitaires complètes.",
-    icon: "droplet",
+    icon: "faucet",
+    iconUrl: "/assets/icons-services/plomberie.png",
   },
 ] as const;
 

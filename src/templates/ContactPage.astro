@@ -1,0 +1,151 @@
+---
+import type { Locale } from "@i18n";
+import { getContactContent, pathFor } from "@i18n";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Breadcrumbs from "@components/Breadcrumbs.astro";
+import Icon from "@components/Icon.astro";
+import Picture from "@components/Picture.astro";
+import StructuredData from "@components/StructuredData.astro";
+import ContactForm from "@components/ContactForm.tsx";
+import { site } from "@data/site";
+import { heroes } from "@data/assets";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const content = getContactContent(locale);
+const canonicalPath = pathFor("contact", locale);
+
+const { latitude, longitude } = site.geo;
+const mapPadding = 0.008;
+const mapBbox = [
+  longitude - mapPadding,
+  latitude - mapPadding,
+  longitude + mapPadding,
+  latitude + mapPadding,
+].join(",");
+const mapEmbedUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${mapBbox}&layer=mapnik&marker=${latitude},${longitude}`;
+---
+
+<BaseLayout locale={locale} title={content.seo.title} description={content.seo.description} canonicalPath={canonicalPath}>
+  <StructuredData type="BreadcrumbList" breadcrumbs={content.breadcrumbs} slot="head" />
+
+  <div class="container-page">
+    <Breadcrumbs items={content.breadcrumbs} />
+  </div>
+
+  <section class="bg-gradient-to-br from-accent-50 via-white to-accent-50/20">
+    <div class="container-page py-8 md:py-12">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div>
+          <span class="badge bg-accent-100 text-accent-800"><Icon name="mail" size={12} /> {content.hero.badge}</span>
+          <h1 class="mt-3 font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-neutral-900 leading-tight">
+            {content.hero.title}
+          </h1>
+          <p class="mt-4 text-lg text-neutral-700">{content.hero.description}</p>
+          <p class="mt-3 text-sm text-neutral-600">{content.hero.subtext}</p>
+        </div>
+        <div class="flex justify-center lg:justify-end">
+          <Picture
+            src={heroes.contactTruck.src}
+            alt={heroes.contactTruck.alt}
+            width={heroes.contactTruck.width}
+            height={heroes.contactTruck.height}
+            class="w-full max-w-xl h-auto drop-shadow-lg"
+            loading="eager"
+            fetchpriority="high"
+            decoding="sync"
+            sizes="(min-width: 1024px) 36rem, 100vw"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section pt-0">
+    <div class="container-page">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2">
+          <ContactForm locale={locale} client:visible />
+        </div>
+
+        <aside class="space-y-6">
+          <div class="rounded-2xl bg-white border border-neutral-200 p-6 shadow-sm">
+            <h2 class="font-display font-bold text-lg text-neutral-900">{content.sidebar.contactTitle}</h2>
+            <ul class="mt-4 space-y-4">
+              <li class="flex items-start gap-3">
+                <Icon name="map-pin" size={20} class="text-accent-600 mt-0.5 shrink-0" />
+                <address class="not-italic text-sm text-neutral-700 leading-relaxed">
+                  <strong class="block text-neutral-900">{site.legalName}</strong>
+                  {site.address.street}<br />
+                  {site.address.postalCode} {site.address.city}<br />
+                  {site.address.country}
+                </address>
+              </li>
+              <li class="flex items-center gap-3">
+                <Icon name="phone" size={20} class="text-accent-600 shrink-0" />
+                <a href={`tel:${site.phoneRaw}`} class="text-base font-semibold text-accent-700">
+                  {site.phone}
+                </a>
+              </li>
+              <li class="flex items-center gap-3">
+                <Icon name="mail" size={20} class="text-accent-600 shrink-0" />
+                <a href={`mailto:${site.email}`} class="text-sm text-accent-700 break-all">
+                  {site.email}
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="rounded-2xl bg-neutral-900 text-white p-6">
+            <h2 class="font-display font-bold text-lg text-white flex items-center gap-2">
+              <Icon name="clock" size={20} />
+              {content.sidebar.hoursTitle}
+            </h2>
+            <ul class="mt-4 space-y-2 text-sm">
+              {site.hours.map((h) => (
+                <li class="flex justify-between text-neutral-300">
+                  <span>{h.day}</span>
+                  <span class="text-white font-medium">{h.value}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="rounded-2xl bg-accent-50 border border-accent-200 p-6">
+            <h2 class="font-display font-bold text-lg text-accent-900 flex items-center gap-2">
+              <Icon name="shield" size={20} />
+              {content.sidebar.emergencyTitle}
+            </h2>
+            <p class="mt-2 text-sm text-accent-900/80">{content.sidebar.emergencyText}</p>
+            <a href={`tel:${site.phoneRaw}`} class="btn btn-accent w-full mt-4">
+              <Icon name="phone" size={16} />
+              {site.phone}
+            </a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white border-t border-neutral-200">
+    <div class="container-page py-10">
+      <h2 class="font-display text-2xl md:text-3xl font-extrabold text-neutral-900 mb-4">
+        {content.map.title}
+      </h2>
+      <div class="rounded-2xl overflow-hidden border border-neutral-200 aspect-[16/9] md:aspect-[21/9] bg-neutral-100">
+        <iframe
+          title={content.map.iframeTitle}
+          src={mapEmbedUrl}
+          width="100%"
+          height="100%"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          style="border: 0;"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
