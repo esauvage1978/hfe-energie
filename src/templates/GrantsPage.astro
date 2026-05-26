@@ -1,0 +1,90 @@
+---
+import type { Locale } from "@i18n";
+import { getGrantsContent, pathFor } from "@i18n";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Breadcrumbs from "@components/Breadcrumbs.astro";
+import CtaBanner from "@components/CtaBanner.astro";
+import Icon from "@components/Icon.astro";
+import StructuredData from "@components/StructuredData.astro";
+import Faq from "@components/Faq.tsx";
+import { site } from "@data/site";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const content = getGrantsContent(locale);
+const canonicalPath = pathFor("grants", locale);
+---
+
+<BaseLayout
+  locale={locale}
+  title={content.seo.title}
+  description={content.seo.description}
+  keywords={[...content.seo.keywords]}
+  canonicalPath={canonicalPath}
+>
+  <StructuredData type="BreadcrumbList" breadcrumbs={content.breadcrumbs} slot="head" />
+  <StructuredData type="FAQPage" faqs={content.faq.items} slot="head" />
+
+  <div class="container-page">
+    <Breadcrumbs items={content.breadcrumbs} />
+  </div>
+
+  <section class="bg-gradient-to-br from-accent-50 via-white to-accent-50">
+    <div class="container-page py-10 md:py-16">
+      <div class="max-w-3xl">
+        <span class="badge bg-accent-100 text-accent-800"><Icon name="euro" size={12} /> {content.hero.badge}</span>
+        <h1 class="mt-3 font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-neutral-900 leading-tight">
+          {content.hero.titleBefore}<span class="text-accent-700">{content.hero.titleHighlight}</span>
+        </h1>
+        <p class="mt-4 text-lg text-neutral-700">{content.hero.description}</p>
+        <div class="mt-6 flex flex-col sm:flex-row gap-3">
+          <a href={pathFor("contact", locale)} class="btn btn-accent"><Icon name="mail" size={18} /> {content.hero.ctaEstimate}</a>
+          <a href={`tel:${site.phoneRaw}`} class="btn btn-outline-accent"><Icon name="phone" size={18} /> {site.phone}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container-page">
+      <h2 class="font-display text-3xl md:text-4xl font-extrabold text-neutral-900 max-w-3xl">
+        {content.schemes.title}
+      </h2>
+      <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {content.schemes.items.map((a) => (
+          <article class="card">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <h3 class="font-display font-extrabold text-xl text-neutral-900">{a.name}</h3>
+              <span class="badge bg-accent-100 text-accent-800 shrink-0">{a.amount}</span>
+            </div>
+            <p class="text-sm text-neutral-700 leading-relaxed">{a.desc}</p>
+            <ul class="mt-4 space-y-2">
+              {a.conditions.map((c) => (
+                <li class="flex items-start gap-2 text-sm">
+                  <Icon name="check" size={16} class="text-accent-600 mt-0.5 shrink-0" strokeWidth={3} />
+                  <span class="text-neutral-700">{c}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner locale={locale} title={content.cta.title} subtitle={content.cta.subtitle} />
+
+  <section class="section bg-neutral-50">
+    <div class="container-page">
+      <h2 class="font-display text-3xl md:text-4xl font-extrabold text-neutral-900 max-w-3xl">
+        {content.faq.title}
+      </h2>
+      <div class="mt-8 max-w-4xl">
+        <Faq items={content.faq.items} idPrefix="aides-faq" locale={locale} client:visible />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,343 @@
+---
+import type { Locale } from "@i18n";
+import { pathFor } from "@i18n";
+import LegalLayout from "@layouts/LegalLayout.astro";
+import { legal } from "@data/legal";
+import { site } from "@data/site";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const isEn = locale === "en";
+
+const title = isEn ? "Legal notice" : "Mentions légales";
+const description = isEn
+  ? "Legal notice for the HFE Énergie website: publisher, host, intellectual property, consumer mediation, insurance and certifications."
+  : "Mentions légales du site HFE Énergie : éditeur, hébergeur, propriété intellectuelle, médiateur de la consommation, assurances et certifications.";
+
+const privacyPath = pathFor("privacy", locale);
+const cookiesPath = pathFor("cookies", locale);
+const updatedAt = isEn ? "May 16, 2026" : legal.updatedAt.mentionsLegales;
+---
+
+<LegalLayout
+  locale={locale}
+  title={title}
+  description={description}
+  canonicalPath={pathFor("legalNotice", locale)}
+  updatedAt={updatedAt}
+>
+  {isEn ? (
+    <>
+      <p>
+        This legal notice is published in accordance with Article 6-III of French Law No. 2004-575 of 21 June
+        2004 on confidence in the digital economy (LCEN).
+      </p>
+
+      <h2>1. Website publisher</h2>
+      <p>
+        The website <a href={site.baseUrl}>{site.baseUrl}</a> is published by:
+      </p>
+      <ul>
+        <li><strong>Legal name</strong>: {legal.company.legalName}</li>
+        <li><strong>Trading name</strong>: {legal.company.name}</li>
+        <li><strong>Legal form</strong>: {legal.company.legalForm}</li>
+        {legal.company.capital && <li><strong>Share capital</strong>: {legal.company.capital}</li>}
+        <li><strong>Registered office</strong>: {legal.company.address}</li>
+        <li><strong>SIRET</strong>: {legal.company.siret}</li>
+        <li><strong>Trade register (RCS)</strong>: {legal.company.rcs}</li>
+        <li><strong>NAF / APE code</strong>: {legal.company.naf}</li>
+        <li><strong>EU VAT number</strong>: {legal.company.vat}</li>
+        <li><strong>Phone</strong>: <a href={`tel:${legal.company.phoneRaw}`}>{legal.company.phone}</a></li>
+        <li><strong>Email</strong>: <a href={`mailto:${legal.company.email}`}>{legal.company.email}</a></li>
+      </ul>
+
+      <h2>2. Publication director</h2>
+      <p>
+        The publication director is <strong>{legal.company.publicationDirector}</strong>, acting as the legal
+        representative of {legal.company.legalName}.
+      </p>
+
+      <h2>3. Hosting</h2>
+      <p>The website is hosted by:</p>
+      <ul>
+        <li><strong>Host</strong>: {legal.host.company} ({legal.host.name})</li>
+        <li><strong>Legal form</strong>: {legal.host.legalForm}</li>
+        <li><strong>Registered office</strong>: {legal.host.address}</li>
+        <li><strong>Trade register (RCS)</strong>: {legal.host.rcs}</li>
+        <li><strong>Phone</strong>: {legal.host.phone}</li>
+        <li><strong>Website</strong>: <a href={legal.host.website} target="_blank" rel="noopener noreferrer">{legal.host.website}</a></li>
+      </ul>
+
+      <h2>4. Regulated activity</h2>
+      <p>
+        {legal.company.legalName} carries out installation, commissioning, maintenance and repair of heating and
+        air-conditioning equipment (heat pumps, air conditioning, boilers, plumbing) governed by the{" "}
+        <strong>French Construction and Housing Code</strong> and subject to the{" "}
+        <strong>ten-year liability guarantee</strong> under Articles 1792 et seq. of the French Civil Code.
+      </p>
+
+      <h3>Professional certifications</h3>
+      <ul>
+        {legal.company.certifications.map((c) => <li>{c}</li>)}
+      </ul>
+      <p>
+        These certifications, issued by <strong>Qualit'EnR</strong>, enable our customers to benefit from public
+        energy renovation grants: MaPrimeRénov', Energy Savings Certificates (CEE), zero-interest eco-loans and
+        reduced VAT (5.5%).
+      </p>
+
+      <h3>Professional insurance</h3>
+      <p>
+        In accordance with Articles L.241-1 et seq. of the French Insurance Code, {legal.company.legalName} holds:
+      </p>
+      <ul>
+        <li><strong>Professional liability insurance</strong></li>
+        <li>
+          <strong>Ten-year liability insurance</strong> covering works for 10 years from acceptance
+        </li>
+      </ul>
+      <p>
+        <strong>Insurer</strong>: {legal.company.insurance.company}<br />
+        <strong>Geographical coverage</strong>: {legal.company.insurance.coverage}<br />
+        <strong>Policy number</strong>: {legal.company.insurance.contract}
+      </p>
+
+      <h2>5. Intellectual property</h2>
+      <p>
+        All content on this website (structure, text, logos, trademarks, images, photographs, illustrations,
+        diagrams, videos, source code, layout, graphic charter) is the exclusive property of {legal.company.legalName}
+        or is used with authorisation. It is protected by French and international intellectual property laws.
+      </p>
+      <p>
+        Any reproduction, representation, modification, publication, adaptation, transmission or exploitation of
+        all or part of the site, by any means whatsoever, without prior written authorisation from{" "}
+        {legal.company.legalName}, is strictly prohibited and constitutes infringement under Articles L.335-2 et seq.
+        of the French Intellectual Property Code.
+      </p>
+      <p>
+        Trademarks and logos appearing on the site are registered trademarks of their respective owners (Panasonic®,
+        Daikin®, Mitsubishi Electric®, Atlantic®, Toshiba®, Samsung®, etc.).
+      </p>
+
+      <h2>6. Credits</h2>
+      <p>
+        <strong>{legal.developer.role}</strong>:
+        <a href={legal.developer.url} target="_blank" rel="noopener noreferrer">{legal.developer.name}</a> (
+        <a href={legal.developer.url} target="_blank" rel="noopener noreferrer">{legal.developer.url}</a>) —
+        independent web developer.<br />
+        <strong>Photography credits</strong>: {legal.company.legalName} — all rights reserved. Photos of worksites,
+        team and installations produced by {legal.company.legalName}.
+      </p>
+
+      <h2>7. Hyperlinks</h2>
+      <p>
+        The website may contain hyperlinks to third-party sites (equipment manufacturers, government sites relating
+        to renovation grants, etc.). {legal.company.legalName} exercises no control over these sites and declines
+        all liability for their content, availability or the practices of their publishers.
+      </p>
+
+      <h2>8. Personal data & cookies</h2>
+      <p>
+        For information on how your personal data is processed, please see our{" "}
+        <a href={privacyPath}>Privacy policy</a>.
+      </p>
+      <p>
+        For details of cookies used on this site, please see our <a href={cookiesPath}>Cookie policy</a>.
+      </p>
+
+      <h2>9. Consumer mediation</h2>
+      <p>
+        In accordance with Articles L.611-1 et seq. of the French Consumer Code, {legal.company.legalName} offers
+        individual customers free consumer mediation where a dispute has not been resolved amicably:
+      </p>
+      <ul>
+        <li><strong>Mediator</strong>: {legal.mediator.name}</li>
+        <li><strong>Address</strong>: {legal.mediator.address}</li>
+        <li><strong>Website</strong>: <a href={legal.mediator.website} target="_blank" rel="noopener noreferrer">{legal.mediator.website}</a></li>
+        <li><strong>Email</strong>: <a href={`mailto:${legal.mediator.email}`}>{legal.mediator.email}</a></li>
+      </ul>
+      <p>
+        The European Commission also provides an Online Dispute Resolution (ODR) platform:
+        <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr</a>
+      </p>
+
+      <h2>10. Governing law & jurisdiction</h2>
+      <p>
+        This legal notice is governed by <strong>French law</strong>. In the event of a dispute, and after failure
+        of an amicable settlement and mediation attempt, the French courts shall have sole jurisdiction. The
+        competent court shall be that of the registered office of {legal.company.legalName}, namely the{" "}
+        <strong>Lille Métropole Commercial Court</strong>.
+      </p>
+
+      <h2>11. Contact</h2>
+      <p>For any questions regarding this legal notice:</p>
+      <ul>
+        <li>By email: <a href={`mailto:${legal.company.email}`}>{legal.company.email}</a></li>
+        <li>By phone: <a href={`tel:${legal.company.phoneRaw}`}>{legal.company.phone}</a></li>
+        <li>By post: {legal.company.legalName} — {legal.company.address}</li>
+      </ul>
+    </>
+  ) : (
+    <>
+      <p>
+        Les présentes mentions légales sont publiées conformément à l'article 6-III de la loi n° 2004-575 du
+        21 juin 2004 pour la confiance dans l'économie numérique (LCEN).
+      </p>
+
+      <h2>1. Éditeur du site</h2>
+      <p>
+        Le site <a href={site.baseUrl}>{site.baseUrl}</a> est édité par :
+      </p>
+      <ul>
+        <li><strong>Raison sociale</strong> : {legal.company.legalName}</li>
+        <li><strong>Nom commercial</strong> : {legal.company.name}</li>
+        <li><strong>Forme juridique</strong> : {legal.company.legalForm}</li>
+        {legal.company.capital && <li><strong>Capital social</strong> : {legal.company.capital}</li>}
+        <li><strong>Siège social</strong> : {legal.company.address}</li>
+        <li><strong>SIRET</strong> : {legal.company.siret}</li>
+        <li><strong>RCS</strong> : {legal.company.rcs}</li>
+        <li><strong>Code APE / NAF</strong> : {legal.company.naf}</li>
+        <li><strong>N° TVA intracommunautaire</strong> : {legal.company.vat}</li>
+        <li><strong>Téléphone</strong> : <a href={`tel:${legal.company.phoneRaw}`}>{legal.company.phone}</a></li>
+        <li><strong>E-mail</strong> : <a href={`mailto:${legal.company.email}`}>{legal.company.email}</a></li>
+      </ul>
+
+      <h2>2. Directeur de la publication</h2>
+      <p>
+        Le directeur de la publication est <strong>{legal.company.publicationDirector}</strong>, en qualité
+        de représentant légal de {legal.company.legalName}.
+      </p>
+
+      <h2>3. Hébergement</h2>
+      <p>Le site est hébergé par :</p>
+      <ul>
+        <li><strong>Hébergeur</strong> : {legal.host.company} ({legal.host.name})</li>
+        <li><strong>Forme juridique</strong> : {legal.host.legalForm}</li>
+        <li><strong>Siège social</strong> : {legal.host.address}</li>
+        <li><strong>RCS</strong> : {legal.host.rcs}</li>
+        <li><strong>Téléphone</strong> : {legal.host.phone}</li>
+        <li><strong>Site web</strong> : <a href={legal.host.website} target="_blank" rel="noopener noreferrer">{legal.host.website}</a></li>
+      </ul>
+
+      <h2>4. Activité réglementée</h2>
+      <p>
+        {legal.company.legalName} exerce une activité d'installation, de mise en service, d'entretien et de
+        dépannage d'équipements thermiques et climatiques (pompes à chaleur, climatisation, chaudières,
+        plomberie sanitaire) régie par le <strong>Code de la construction et de l'habitation</strong> et
+        soumise à la <strong>garantie décennale</strong> au titre des articles 1792 et suivants du Code civil.
+      </p>
+
+      <h3>Certifications professionnelles</h3>
+      <ul>
+        {legal.company.certifications.map((c) => <li>{c}</li>)}
+      </ul>
+      <p>
+        Ces certifications, délivrées par <strong>Qualit'EnR</strong>, permettent à nos clients de bénéficier
+        des aides publiques à la rénovation énergétique : MaPrimeRénov', Certificats d'Économie d'Énergie (CEE),
+        éco-prêt à taux zéro et TVA à taux réduit (5,5 %).
+      </p>
+
+      <h3>Assurances professionnelles</h3>
+      <p>
+        Conformément aux articles L.241-1 et suivants du Code des assurances, {legal.company.legalName}
+        est titulaire :
+      </p>
+      <ul>
+        <li>D'une <strong>assurance de responsabilité civile professionnelle</strong></li>
+        <li>
+          D'une <strong>assurance décennale</strong> garantissant les travaux pendant 10 ans à compter de
+          leur réception
+        </li>
+      </ul>
+      <p>
+        <strong>Compagnie</strong> : {legal.company.insurance.company}<br />
+        <strong>Couverture géographique</strong> : {legal.company.insurance.coverage}<br />
+        <strong>N° de contrat</strong> : {legal.company.insurance.contract}
+      </p>
+
+      <h2>5. Propriété intellectuelle</h2>
+      <p>
+        L'ensemble du contenu de ce site (structure générale, textes, logos, marques, images, photographies,
+        illustrations, schémas, vidéos, code source, mises en page, charte graphique) est la propriété
+        exclusive de {legal.company.legalName} ou fait l'objet d'une autorisation d'utilisation. Il est
+        protégé par les lois françaises et internationales relatives à la propriété intellectuelle.
+      </p>
+      <p>
+        Toute reproduction, représentation, modification, publication, adaptation, transmission ou
+        exploitation de tout ou partie des éléments du site, par quelque procédé que ce soit, sans
+        autorisation écrite préalable de {legal.company.legalName}, est strictement interdite et constitue
+        une contrefaçon sanctionnée par les articles L.335-2 et suivants du Code de la propriété
+        intellectuelle.
+      </p>
+      <p>
+        Les marques et logos figurant sur le site sont des marques déposées par leurs propriétaires
+        respectifs (Panasonic®, Daikin®, Mitsubishi Electric®, Atlantic®, Toshiba®, Samsung®, etc.).
+      </p>
+
+      <h2>6. Crédits</h2>
+      <p>
+        <strong>{legal.developer.role}</strong> :
+        <a href={legal.developer.url} target="_blank" rel="noopener noreferrer">{legal.developer.name}</a>
+        (<a href={legal.developer.url} target="_blank" rel="noopener noreferrer">{legal.developer.url}</a>) -
+        développeur web indépendant.<br />
+        <strong>Crédits photographiques</strong> : {legal.company.legalName} - tous droits réservés. Photos
+        de chantiers, équipe et installations réalisées par {legal.company.legalName}.
+      </p>
+
+      <h2>7. Liens hypertextes</h2>
+      <p>
+        Le site peut contenir des liens hypertextes vers des sites tiers (partenaires constructeurs, sites
+        gouvernementaux relatifs aux aides à la rénovation, etc.). {legal.company.legalName} n'exerce aucun
+        contrôle sur ces sites et décline toute responsabilité quant à leur contenu, leur disponibilité ou
+        aux pratiques de leurs éditeurs.
+      </p>
+
+      <h2>8. Données personnelles & cookies</h2>
+      <p>
+        Pour toute information concernant le traitement de vos données personnelles, consultez notre
+        <a href={privacyPath}>Politique de confidentialité</a>.
+      </p>
+      <p>
+        Pour le détail des cookies utilisés sur ce site, consultez notre
+        <a href={cookiesPath}>Politique des cookies</a>.
+      </p>
+
+      <h2>9. Médiation de la consommation</h2>
+      <p>
+        Conformément aux articles L.611-1 et suivants du Code de la consommation, {legal.company.legalName}
+        propose à ses clients particuliers un dispositif de médiation de la consommation gratuit en cas de
+        litige non résolu à l'amiable :
+      </p>
+      <ul>
+        <li><strong>Médiateur</strong> : {legal.mediator.name}</li>
+        <li><strong>Adresse</strong> : {legal.mediator.address}</li>
+        <li><strong>Site web</strong> : <a href={legal.mediator.website} target="_blank" rel="noopener noreferrer">{legal.mediator.website}</a></li>
+        <li><strong>E-mail</strong> : <a href={`mailto:${legal.mediator.email}`}>{legal.mediator.email}</a></li>
+      </ul>
+      <p>
+        Une plateforme européenne de Règlement en Ligne des Litiges (RLL) est également mise à disposition
+        par la Commission européenne :
+        <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr</a>
+      </p>
+
+      <h2>10. Droit applicable & juridiction</h2>
+      <p>
+        Les présentes mentions légales sont régies par le <strong>droit français</strong>. En cas de litige,
+        et après échec d'une tentative de règlement amiable et de médiation, les tribunaux français seront
+        seuls compétents. Le tribunal compétent sera celui du ressort du siège social de
+        {legal.company.legalName}, soit le <strong>Tribunal de commerce de Lille Métropole</strong>.
+      </p>
+
+      <h2>11. Contact</h2>
+      <p>Pour toute question relative aux présentes mentions légales :</p>
+      <ul>
+        <li>Par e-mail : <a href={`mailto:${legal.company.email}`}>{legal.company.email}</a></li>
+        <li>Par téléphone : <a href={`tel:${legal.company.phoneRaw}`}>{legal.company.phone}</a></li>
+        <li>Par courrier : {legal.company.legalName} — {legal.company.address}</li>
+      </ul>
+    </>
+  )}
+</LegalLayout>

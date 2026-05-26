@@ -8,6 +8,13 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://hfe-energie.fr',
   trailingSlash: 'ignore',
+  i18n: {
+    defaultLocale: 'fr',
+    locales: ['fr', 'en'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
   prefetch: {
     prefetchAll: true,
     defaultStrategy: 'viewport',
@@ -22,6 +29,7 @@ export default defineConfig({
         defaultLocale: 'fr',
         locales: {
           fr: 'fr-FR',
+          en: 'en-GB',
         },
       },
       serialize(item) {
@@ -53,6 +61,16 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()],
+    server: {
+      proxy: {
+        // Dev local : Astro ne exécute pas PHP — proxy vers Webhooky
+        '/__contact-proxy': {
+          target: 'https://webhooky.builders',
+          changeOrigin: true,
+          rewrite: () => '/webhook/form/0b40160efaa335f00324-521b-4203-b686-3ffee6129a06',
+        },
+      },
+    },
   },
   build: {
     inlineStylesheets: 'auto',

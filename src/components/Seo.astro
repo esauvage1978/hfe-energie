@@ -1,10 +1,14 @@
 ---
+import type { Locale } from "@i18n";
+import { htmlLang, ogLocale } from "@i18n";
 import { site } from "@data/site";
 
 export interface Props {
+  locale: Locale;
   title: string;
   description: string;
-  canonicalPath?: string;
+  canonicalPath: string;
+  alternates: Record<Locale, string>;
   image?: string;
   ogType?: "website" | "article" | "profile";
   noIndex?: boolean;
@@ -12,26 +16,31 @@ export interface Props {
 }
 
 const {
+  locale,
   title,
   description,
-  canonicalPath = Astro.url.pathname,
+  canonicalPath,
+  alternates,
   image = "/og-image.jpg",
   ogType = "website",
   noIndex = false,
   keywords = [],
 } = Astro.props;
 
-const cleanPath = canonicalPath.replace(/\/$/, "") || "/";
-const canonical = new URL(cleanPath, site.baseUrl).toString();
+const canonical = new URL(canonicalPath, site.baseUrl).toString();
 const ogImage = new URL(image, site.baseUrl).toString();
-const fullTitle =
-  title.includes(site.name) ? title : `${title} | ${site.name}`;
+const fullTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
+const alternateFr = new URL(alternates.fr, site.baseUrl).toString();
+const alternateEn = new URL(alternates.en, site.baseUrl).toString();
 ---
 
 <title>{fullTitle}</title>
 <meta name="description" content={description} />
 {keywords.length > 0 && <meta name="keywords" content={keywords.join(", ")} />}
 <link rel="canonical" href={canonical} />
+<link rel="alternate" hreflang="fr-FR" href={alternateFr} />
+<link rel="alternate" hreflang="en-GB" href={alternateEn} />
+<link rel="alternate" hreflang="x-default" href={alternateFr} />
 
 <meta name="robots" content={noIndex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} />
 <meta name="googlebot" content={noIndex ? "noindex, nofollow" : "index, follow"} />
@@ -44,7 +53,9 @@ const fullTitle =
 <meta name="ICBM" content={`${site.geo.latitude}, ${site.geo.longitude}`} />
 
 <meta property="og:type" content={ogType} />
-<meta property="og:locale" content="fr_FR" />
+<meta property="og:locale" content={ogLocale[locale]} />
+{locale === "fr" && <meta property="og:locale:alternate" content={ogLocale.en} />}
+{locale === "en" && <meta property="og:locale:alternate" content={ogLocale.fr} />}
 <meta property="og:site_name" content={site.name} />
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />

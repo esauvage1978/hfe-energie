@@ -124,6 +124,19 @@ npm run preview
 | `npm run build` | Build de production statique (dans `dist/`) |
 | `npm run preview` | Aperçu local du build de production |
 | `npm run astro` | CLI Astro |
+| `npm run fetch-google-reviews` | *(Optionnel)* Synchro API Google — nécessite `GOOGLE_PLACES_API_KEY` dans `.env` |
+
+### Avis Google (page d'accueil)
+
+**Sans clé API** (cas le plus courant) : voir le guide **[docs/avis-google.md](docs/avis-google.md)**.
+
+| Mode | Configuration |
+|------|----------------|
+| **Manuel** (défaut) | Éditer `src/data/google-reviews.json` — copier nom complet, texte et date depuis Google Maps |
+| **Widget tiers** | `src/data/google-reviews.config.ts` → `mode: "widget"` + URL iframe (SociableKIT, Elfsight…) |
+| **API Google** | `.env` + `npm run fetch-google-reviews` (crédit Cloud gratuit possible) |
+
+Modèle JSON : `src/data/google-reviews.example.json`. Le bouton **« Laisser un avis »** : `https://g.page/r/CawB00LcHY7jEAE/review`.
 
 ---
 

@@ -1,14 +1,29 @@
 ---
-import { navigation, site, services } from "@data/site";
+import type { Locale } from "@i18n";
+import { getUi, pathFor } from "@i18n";
+import { site } from "@data/site";
 import { logos } from "@data/assets";
-import { legalLinks, legal } from "@data/legal";
+import { legal } from "@data/legal";
 import Icon from "./Icon.astro";
 import Picture from "./Picture.astro";
 
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { strings: t, navigation, legalLinks } = getUi(locale);
 const year = new Date().getFullYear();
+
+const serviceLinks = [
+  { label: t.services.heatPump, href: pathFor("heatPump", locale) },
+  { label: t.services.airConditioning, href: pathFor("airConditioning", locale) },
+  { label: t.services.heating, href: pathFor("heating", locale) },
+  { label: t.services.plumbing, href: pathFor("plumbing", locale) },
+];
 ---
 
-<footer class="bg-neutral-900 text-neutral-300 mt-12">
+<footer class="bg-neutral-900 text-neutral-300 mt-12 mb-[calc(3.5rem+env(safe-area-inset-bottom,0px))] lg:mb-0">
   <div class="container-page py-12 md:py-16">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
       <div>
@@ -23,54 +38,59 @@ const year = new Date().getFullYear();
             />
           </div>
           <span class="font-display font-extrabold text-lg text-white">
-            HFE <span class="text-primary-300">Énergie</span>
+            HFE <span class="text-accent-300">Énergie</span>
           </span>
         </div>
-        <p class="text-sm leading-relaxed text-neutral-400">
-          {site.legalName} - Installateur RGE QualiPAC à Lille.
-          Pompes à chaleur, climatisation, chauffage et plomberie pour particuliers et professionnels.
-        </p>
+        <p class="text-sm leading-relaxed text-neutral-400">{t.footer.about}</p>
         <p class="mt-4 text-xs text-neutral-500">
-          {site.stats.installations}+ installations · {site.stats.yearsExperience} ans d'expérience
+          {t.footer.stats(site.stats.installations, site.stats.yearsExperience)}
         </p>
       </div>
 
       <div>
-        <h2 class="text-white font-display font-bold mb-4 text-sm uppercase tracking-wide">Nos services</h2>
+        <h2 class="text-white font-display font-bold mb-4 text-sm uppercase tracking-wide">
+          {t.footer.servicesTitle}
+        </h2>
         <ul class="space-y-2 text-sm">
-          {services.map((s) => (
+          {serviceLinks.map((s) => (
             <li>
-              <a href={`/${s.slug}`} class="text-neutral-400 hover:text-primary-300 transition-colors">
-                {s.title}
+              <a href={s.href} class="text-neutral-400 hover:text-accent-300 transition-colors">
+                {s.label}
               </a>
             </li>
           ))}
           <li>
-            <a href="/aides-financement" class="text-neutral-400 hover:text-primary-300 transition-colors">
-              MaPrimeRénov' & CEE
+            <a href={pathFor("grants", locale)} class="text-neutral-400 hover:text-accent-300 transition-colors">
+              {t.footer.grantsLink}
             </a>
           </li>
         </ul>
       </div>
 
       <div>
-        <h2 class="text-white font-display font-bold mb-4 text-sm uppercase tracking-wide">Navigation</h2>
+        <h2 class="text-white font-display font-bold mb-4 text-sm uppercase tracking-wide">
+          {t.footer.navTitle}
+        </h2>
         <ul class="space-y-2 text-sm">
-          {navigation.map((item) => (
-            <li>
-              <a href={item.href} class="text-neutral-400 hover:text-primary-300 transition-colors">
-                {item.label}
-              </a>
-            </li>
-          ))}
+          {navigation
+            .filter((item) => !!item.href)
+            .map((item) => (
+              <li>
+                <a href={item.href} class="text-neutral-400 hover:text-accent-300 transition-colors">
+                  {item.label}
+                </a>
+              </li>
+            ))}
         </ul>
       </div>
 
       <div>
-        <h2 class="text-white font-display font-bold mb-4 text-sm uppercase tracking-wide">Contact</h2>
+        <h2 class="text-white font-display font-bold mb-4 text-sm uppercase tracking-wide">
+          {t.footer.contactTitle}
+        </h2>
         <ul class="space-y-3 text-sm">
           <li class="flex items-start gap-2">
-            <Icon name="map-pin" size={18} class="text-primary-400 mt-0.5 shrink-0" />
+            <Icon name="map-pin" size={18} class="text-accent-400 mt-0.5 shrink-0" />
             <address class="not-italic text-neutral-400 leading-relaxed">
               {site.address.street}<br />
               {site.address.postalCode} {site.address.city}<br />
@@ -78,23 +98,23 @@ const year = new Date().getFullYear();
             </address>
           </li>
           <li class="flex items-center gap-2">
-            <Icon name="phone" size={18} class="text-primary-400 shrink-0" />
-            <a href={`tel:${site.phoneRaw}`} class="text-neutral-200 hover:text-primary-300 font-semibold">
+            <Icon name="phone" size={18} class="text-accent-400 shrink-0" />
+            <a href={`tel:${site.phoneRaw}`} class="text-neutral-200 hover:text-accent-300 font-semibold">
               {site.phone}
             </a>
           </li>
           <li class="flex items-center gap-2">
-            <Icon name="mail" size={18} class="text-primary-400 shrink-0" />
-            <a href={`mailto:${site.email}`} class="text-neutral-200 hover:text-primary-300 break-all">
+            <Icon name="mail" size={18} class="text-accent-400 shrink-0" />
+            <a href={`mailto:${site.email}`} class="text-neutral-200 hover:text-accent-300 break-all">
               {site.email}
             </a>
           </li>
           <li class="flex items-start gap-2">
-            <Icon name="clock" size={18} class="text-primary-400 mt-0.5 shrink-0" />
+            <Icon name="clock" size={18} class="text-accent-400 mt-0.5 shrink-0" />
             <div class="text-neutral-400 text-xs leading-relaxed">
-              Lun - Ven : 07h30 - 20h00<br />
-              Samedi : 09h00 - 17h00<br />
-              Dimanche : fermé
+              {t.footer.hoursShort}<br />
+              {t.footer.hoursSat}<br />
+              {t.footer.hoursSun}
             </div>
           </li>
         </ul>
@@ -102,37 +122,35 @@ const year = new Date().getFullYear();
     </div>
 
     <div class="mt-10 pt-8 border-t border-neutral-800">
-      <h2 class="sr-only">Zone d'intervention</h2>
+      <h2 class="sr-only">{t.footer.serviceAreaTitle}</h2>
       <p class="text-xs text-neutral-500 leading-relaxed">
-        <strong class="text-neutral-400">Zone d'intervention :</strong> {site.serviceArea.join(" · ")} - et la métropole lilloise (MEL).
+        <strong class="text-neutral-400">{t.footer.serviceAreaTitle}:</strong>{" "}
+        {t.footer.serviceArea(site.serviceArea.join(" · "))}
       </p>
     </div>
 
-    <nav class="mt-8 pt-6 border-t border-neutral-800" aria-label="Liens légaux">
+    <nav class="mt-8 pt-6 border-t border-neutral-800" aria-label={t.footer.legalNav}>
       <ul class="flex flex-wrap gap-x-5 gap-y-2 text-xs text-neutral-400">
         {legalLinks.map((l) => (
           <li>
-            <a href={l.href} class="hover:text-primary-300 transition-colors">{l.label}</a>
+            <a href={l.href} class="hover:text-accent-300 transition-colors">{l.label}</a>
           </li>
         ))}
       </ul>
     </nav>
 
     <div class="mt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-xs text-neutral-500">
-      <p>&copy; {year} {site.legalName}. Tous droits réservés.</p>
-      <p>
-        Certifié <span class="text-primary-300 font-semibold">RGE QualiPAC</span> ·
-        Assurance décennale & RC pro
-      </p>
+      <p>{t.footer.copyright(year, site.legalName)}</p>
+      <p>{t.footer.certifications}</p>
     </div>
 
     <p class="mt-4 text-center text-xs text-neutral-600">
-      Site conçu et développé par
+      {t.footer.builtBy}{" "}
       <a
         href={legal.developer.url}
         target="_blank"
         rel="noopener noreferrer"
-        class="text-neutral-400 hover:text-primary-300 font-semibold transition-colors"
+        class="text-neutral-400 hover:text-accent-300 font-semibold transition-colors"
       >
         {legal.developer.name}
       </a>

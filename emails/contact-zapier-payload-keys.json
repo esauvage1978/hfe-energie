@@ -1,0 +1,104 @@
+{
+  "description": "Variables Mailjet — formulaire contact hfe-energie.fr (notification interne + confirmation visiteur)",
+  "templates": {
+    "internal": "contact-notification-mailjet.mjml",
+    "visitor": "contact-confirmation-visiteur-mailjet.mjml"
+  },
+  "googleReviewUrl": "https://g.page/r/CawB00LcHY7jEAE/review",
+  "fields": {
+    "client_type": {
+      "formField": "client_type",
+      "label": "Code profil client",
+      "required": true,
+      "values": ["particulier", "professionnel"]
+    },
+    "client_type_label": {
+      "formField": "client_type",
+      "label": "Profil client",
+      "required": true,
+      "labels": {
+        "particulier": "Particulier",
+        "professionnel": "Professionnel"
+      }
+    },
+    "name": {
+      "formField": "name",
+      "label": "Nom & prénom",
+      "required": true
+    },
+    "email": {
+      "formField": "email",
+      "label": "E-mail",
+      "required": true
+    },
+    "phone": {
+      "formField": "phone",
+      "label": "Téléphone (affichage)",
+      "required": false,
+      "fallback": "—"
+    },
+    "phone_raw": {
+      "formField": "phone",
+      "label": "Téléphone (format tel: pour lien cliquable)",
+      "required": false,
+      "transform": "E.164 ou chiffres uniquement (+33767341263)",
+      "fallback": ""
+    },
+    "postal": {
+      "formField": "postal",
+      "label": "Code postal",
+      "required": false,
+      "fallback": "—"
+    },
+    "service": {
+      "formField": "service",
+      "label": "Code type de projet",
+      "required": true,
+      "values": [
+        "pompe-a-chaleur",
+        "climatisation",
+        "chauffage",
+        "chauffe-eau",
+        "plomberie",
+        "depannage",
+        "autre"
+      ]
+    },
+    "service_label": {
+      "formField": "service",
+      "label": "Libellé type de projet",
+      "required": true,
+      "labels": {
+        "pompe-a-chaleur": "Pompe à chaleur",
+        "climatisation": "Climatisation réversible",
+        "chauffage": "Chauffage / chaudière",
+        "chauffe-eau": "Chauffe-eau thermodynamique",
+        "plomberie": "Plomberie / sanitaire",
+        "depannage": "Dépannage urgent",
+        "autre": "Autre projet"
+      }
+    },
+    "message": {
+      "formField": "message",
+      "label": "Description du projet",
+      "required": true
+    },
+    "source": {
+      "label": "Origine du lead",
+      "example": "hfe-energie.fr"
+    },
+    "page": {
+      "label": "URL ou chemin de la page d'envoi",
+      "example": "/contact"
+    },
+    "privacy_policy_accepted_at": {
+      "formField": "rgpd",
+      "label": "Horodatage consentement RGPD (ISO 8601)",
+      "required": true
+    },
+    "submitted_at": {
+      "label": "Horodatage réception (ISO 8601)",
+      "required": true
+    }
+  }
+}

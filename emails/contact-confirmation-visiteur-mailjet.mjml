@@ -1,0 +1,178 @@
+<!--
+  Template MJML — Accusé de réception / confirmation à l'émetteur (HFE Énergie)
+  Envoyé à {{var:email}} — 2ᵉ flux Zapier / Mailjet (après la notification interne).
+
+  Compiler : npx mjml emails/contact-confirmation-visiteur-mailjet.mjml -o emails/contact-confirmation-visiteur-mailjet.html
+
+  Champs : identiques à public/contact-zapier.php — voir contact-zapier-payload-keys.json
+  Variables Mailjet : {{var:name}}, {{var:email}}, etc.
+
+  Différence avec la notification interne : ton « vous », pas de bouton « répondre »,
+  CTA « Retour au site », pas d'affichage « Source » (usage interne).
+  Lien Google Avis : https://g.page/r/CawB00LcHY7jEAE/review
+-->
+<mjml>
+  <mj-head>
+    <mj-title>Votre demande a bien été reçue — HFE Énergie</mj-title>
+    <mj-preview>Merci : accusé de réception et copie de votre demande de devis.</mj-preview>
+    <mj-attributes>
+      <mj-all font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" />
+      <mj-text color="#1e293b" font-size="16px" line-height="24px" />
+      <mj-button
+        background-color="#00B040"
+        color="#ffffff"
+        font-size="16px"
+        font-weight="600"
+        border-radius="12px"
+        inner-padding="14px 28px"
+      />
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="#f8fafc" width="600px">
+    <!-- Hero sombre + logo sur fond blanc pour le contraste -->
+    <mj-section background-color="#0f172a" padding="28px 40px 20px">
+      <mj-column width="100%">
+        <mj-image
+          src="https://hfe-energie.fr/assets/logo/hfe-sansFond.png"
+          alt="HFE Énergie — Hecker &amp; Frères Énergie"
+          width="130px"
+          padding="14px 24px"
+          container-background-color="#ffffff"
+          border-radius="12px"
+          href="https://hfe-energie.fr/"
+        />
+        <mj-text
+          align="center"
+          font-size="13px"
+          font-weight="700"
+          letter-spacing="0.06em"
+          text-transform="uppercase"
+          color="#99e1ab"
+          padding="12px 0 0"
+          line-height="20px"
+        >
+          Chauffagiste · Climaticien · RGE QualiPAC
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section padding="0" background-color="#0f172a">
+      <mj-column width="100%">
+        <mj-divider border-width="3px" border-color="#00B040" padding="0" />
+      </mj-column>
+    </mj-section>
+
+    <!-- Accusé de réception -->
+    <mj-section background-color="#ffffff" padding="32px 40px 16px">
+      <mj-column width="100%">
+        <mj-text font-size="20px" font-weight="700" color="#0080C0" padding-bottom="8px">
+          Bonjour {{var:name}},
+        </mj-text>
+        <mj-text font-size="14px" color="#475569" padding-bottom="0">
+          Nous accusons réception de votre demande envoyée depuis le formulaire de
+          <strong style="color: #0080C0">hfe-energie.fr</strong>. Ci-dessous la copie des informations transmises.
+          Notre équipe vous recontacte sous <strong style="color: #0080C0">72 h ouvrées</strong> à l'adresse
+          <a href="mailto:{{var:email}}" style="color: #009638; font-weight: 600;">{{var:email}}</a>
+          avec une première estimation et une proposition de rendez-vous.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section background-color="#ffffff" padding="0 40px 8px">
+      <mj-column width="100%">
+        <mj-text font-size="15px" font-weight="700" color="#0080C0" padding-bottom="12px">
+          Récapitulatif de votre demande
+        </mj-text>
+        <mj-text padding-bottom="12px">
+          <strong style="color: #0080C0">Profil</strong><br />
+          {{var:client_type_label}}
+        </mj-text>
+        <mj-text padding-bottom="12px">
+          <strong style="color: #0080C0">Type de projet</strong><br />
+          {{var:service_label}}
+          <span style="color: #64748b; font-size: 13px;"> (réf. : {{var:service}})</span>
+        </mj-text>
+        <mj-text padding-bottom="12px">
+          <strong style="color: #0080C0">Code postal</strong><br />
+          {{var:postal}}
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section background-color="#ffffff" padding="0 40px 24px">
+      <mj-column width="100%">
+        <mj-text padding-bottom="12px">
+          <strong style="color: #0080C0">Nom &amp; prénom</strong><br />
+          {{var:name}}
+        </mj-text>
+        <mj-text padding-bottom="12px">
+          <strong style="color: #0080C0">E-mail</strong><br />
+          <a href="mailto:{{var:email}}" style="color: #009638; font-weight: 600;">{{var:email}}</a>
+        </mj-text>
+        <mj-text padding-bottom="12px">
+          <strong style="color: #0080C0">Téléphone</strong><br />
+          {{var:phone}}
+        </mj-text>
+        <mj-text padding-bottom="8px">
+          <strong style="color: #0080C0">Votre projet</strong>
+        </mj-text>
+        <mj-text padding="12px 16px" container-background-color="#f8fafc" color="#1e293b">
+          {{var:message}}
+        </mj-text>
+        <mj-text font-size="12px" color="#64748b" padding-top="14px" padding-bottom="0">
+          Envoyé le : {{var:submitted_at}} — Page : {{var:page}}
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section background-color="#ffffff" padding="0 40px 32px">
+      <mj-column width="100%">
+        <mj-button href="https://hfe-energie.fr/" align="left">Retour au site</mj-button>
+      </mj-column>
+    </mj-section>
+
+    <!-- Section marketing — avis Google -->
+    <mj-section background-color="#e6f7ec" padding="28px 40px" border-radius="0">
+      <mj-column width="100%">
+        <mj-text font-size="18px" font-weight="700" color="#00521f" align="center" padding-bottom="8px">
+          Votre avis compte pour nous
+        </mj-text>
+        <mj-text font-size="14px" color="#334155" align="center" padding-bottom="16px" line-height="22px">
+          Vous avez déjà fait appel à HFE Énergie pour une installation, un entretien ou un dépannage ?
+          Partagez votre expérience sur Google : cela nous aide à faire connaître notre savoir-faire
+          auprès des particuliers et professionnels de la métropole lilloise.
+        </mj-text>
+        <mj-button
+          href="https://g.page/r/CawB00LcHY7jEAE/review"
+          align="center"
+          background-color="#ffffff"
+          color="#009638"
+          border="2px solid #00B040"
+          inner-padding="12px 24px"
+        >
+          Laisser un avis sur Google
+        </mj-button>
+        <mj-text font-size="12px" color="#64748b" align="center" padding-top="14px" padding-bottom="0">
+          Merci pour votre confiance — chaque avis compte.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section background-color="#e6f4fb" padding="22px 40px">
+      <mj-column width="100%">
+        <mj-text font-size="12px" color="#475569" align="center" padding="0">
+          <a href="https://hfe-energie.fr/politique-de-confidentialite" style="color: #0080C0;">Politique de confidentialité</a>
+          ·
+          <a href="https://hfe-energie.fr/contact" style="color: #0080C0;">Contact</a><br /><br />
+          HFE Énergie — Hecker &amp; Frères Énergie<br />
+          <a href="https://hfe-energie.fr/" style="color: #0080C0;">hfe-energie.fr</a>
+          · Installateur RGE QualiPAC à Lille<br />
+          <span style="color: #64748b;">
+            Cet e-mail est un accusé de réception automatique. Pour toute précision, attendez notre réponse
+            ou appelez le <a href="tel:+33767341263" style="color: #0080C0;">07 67 34 12 63</a>.
+          </span>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

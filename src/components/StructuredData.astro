@@ -1,5 +1,6 @@
 ---
 import { site } from "@data/site";
+import { googleReviews } from "@data/google";
 
 export interface Props {
   type?: "LocalBusiness" | "Service" | "FAQPage" | "BreadcrumbList" | "Article";
@@ -75,8 +76,8 @@ const localBusiness = {
   foundingDate: "2010",
   aggregateRating: {
     "@type": "AggregateRating",
-    ratingValue: "4.9",
-    reviewCount: "200",
+    ratingValue: String(googleReviews.rating),
+    reviewCount: String(googleReviews.userRatingCount || 200),
     bestRating: "5",
     worstRating: "1",
   },

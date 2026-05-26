@@ -1,51 +1,116 @@
 ---
-import { navigation, site } from "@data/site";
+import type { Locale } from "@i18n";
+import { getUi, pathFor } from "@i18n";
+import { site } from "@data/site";
 import { logos } from "@data/assets";
 import Icon from "./Icon.astro";
 import Picture from "./Picture.astro";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
 
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { strings: t, navigation, homePath } = getUi(locale);
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+
+function isItemActive(item: (typeof navigation)[number]): boolean {
+  if (item.href) {
+    const itemPath = item.href.replace(/\/$/, "") || "/";
+    if (currentPath === itemPath) return true;
+  }
+  if (item.children) {
+    return item.children.some((child) => isItemActive(child));
+  }
+  return false;
+}
 ---
 
 <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-neutral-200 shadow-sm">
-  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:bg-primary-700 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:z-50">
-    Aller au contenu principal
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:bg-accent-700 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:z-50">
+    {t.meta.skipToContent}
   </a>
 
   <div class="container-page">
-    <div class="flex items-center justify-between h-16 md:h-20 gap-4">
-      <a href="/" class="flex items-center gap-3 shrink-0" aria-label={`${site.name} - Retour à l'accueil`}>
+    <div class="flex items-center justify-between min-h-[4.75rem] h-[4.75rem] sm:h-[5.25rem] lg:h-[6rem] gap-3 lg:gap-4">
+      <a href={homePath} class="flex items-center shrink-0 -my-1 lg:-my-2" aria-label={t.meta.homeAria}>
         <Picture
-          src={logos.full.src}
-          alt={logos.full.alt}
-          width={56}
-          height={46}
+          src={logos.icon.src}
+          alt={logos.icon.alt}
+          width={logos.icon.width}
+          height={logos.icon.height}
           loading="eager"
           fetchpriority="high"
           decoding="sync"
-          class="h-10 sm:h-12 w-auto"
+          class="h-14 sm:h-16 md:h-[4.5rem] lg:h-20 w-auto max-w-[min(14rem,52vw)] sm:max-w-none"
         />
-        <span class="hidden md:flex flex-col leading-tight">
-          <span class="font-display font-extrabold text-base lg:text-lg text-neutral-900">
-            HFE <span class="text-primary-700">Énergie</span>
-          </span>
-          <span class="text-[10px] lg:text-xs font-medium text-neutral-500 uppercase tracking-wide">
-            Chauffagiste · Climaticien · RGE
-          </span>
-        </span>
       </a>
 
-      <nav class="hidden lg:flex items-center gap-1" aria-label="Navigation principale">
-        {navigation.map((item) => {
-          const itemPath = item.href.replace(/\/$/, "") || "/";
-          const isActive = currentPath === itemPath;
+      <nav class="hidden lg:flex items-center gap-1" aria-label={t.meta.mainNav}>
+        {navigation.map((item, idx) => {
+          const isActive = isItemActive(item);
+          if (item.children) {
+            const menuId = `nav-submenu-${idx}`;
+            return (
+              <div class="relative" data-nav-dropdown>
+                <button
+                  type="button"
+                  class={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    isActive
+                      ? "text-accent-700 bg-accent-50"
+                      : "text-neutral-700 hover:text-accent-700 hover:bg-neutral-50"
+                  }`}
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  aria-controls={menuId}
+                  data-nav-dropdown-toggle
+                >
+                  {item.label}
+                  <Icon
+                    name="chevron-right"
+                    size={14}
+                    class="rotate-90 transition-transform duration-150 nav-chevron"
+                  />
+                </button>
+                <div
+                  id={menuId}
+                  class="absolute top-full left-0 mt-1 w-80 bg-white border border-neutral-200 rounded-xl shadow-lg p-2 opacity-0 invisible -translate-y-1 transition-all duration-150 data-[open=true]:opacity-100 data-[open=true]:visible data-[open=true]:translate-y-0"
+                  data-nav-dropdown-panel
+                  role="menu"
+                >
+                  {item.children.map((child) => {
+                    const childPath = child.href!.replace(/\/$/, "") || "/";
+                    const childActive = currentPath === childPath;
+                    return (
+                      <a
+                        href={child.href}
+                        role="menuitem"
+                        class={`flex flex-col gap-0.5 px-3 py-2 rounded-lg transition-colors ${
+                          childActive
+                            ? "bg-accent-50 text-accent-700"
+                            : "text-neutral-800 hover:bg-neutral-50 hover:text-accent-700"
+                        }`}
+                        aria-current={childActive ? "page" : undefined}
+                      >
+                        <span class="text-sm font-semibold">{child.label}</span>
+                        {child.description && (
+                          <span class="text-xs text-neutral-500 leading-snug">{child.description}</span>
+                        )}
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          }
           return (
             <a
               href={item.href}
               class={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                 isActive
-                  ? "text-primary-700 bg-primary-50"
-                  : "text-neutral-700 hover:text-primary-700 hover:bg-neutral-50"
+                  ? "text-accent-700 bg-accent-50"
+                  : "text-neutral-700 hover:text-accent-700 hover:bg-neutral-50"
               }`}
               aria-current={isActive ? "page" : undefined}
             >
@@ -56,31 +121,27 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
       </nav>
 
       <div class="flex items-center gap-2 sm:gap-3 shrink-0">
-        <a
-          href={`tel:${site.phoneRaw}`}
-          class="hidden sm:inline-flex btn btn-accent text-sm"
-          aria-label={`Appeler le ${site.phone}`}
-        >
-          <Icon name="phone" size={16} />
-          <span class="hidden md:inline">{site.phone}</span>
-          <span class="md:hidden">Appeler</span>
-        </a>
+        <LanguageSwitcher locale={locale} currentPath={currentPath} />
 
         <a
           href={`tel:${site.phoneRaw}`}
-          class="sm:hidden inline-flex items-center justify-center w-11 h-11 rounded-xl bg-accent-600 text-white shadow-md"
-          aria-label={`Appeler le ${site.phone}`}
+          class="hidden lg:inline-flex btn btn-accent text-sm"
+          aria-label={t.meta.callAria(site.phone)}
         >
-          <Icon name="phone" size={20} />
+          <Icon name="phone" size={16} />
+          <span class="hidden xl:inline">{site.phone}</span>
+          <span class="xl:hidden">{t.meta.call}</span>
         </a>
 
         <button
           type="button"
           class="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-xl border border-neutral-200 text-neutral-700 hover:bg-neutral-50"
-          aria-label="Ouvrir le menu"
+          aria-label={t.meta.openMenu}
           aria-controls="mobile-menu"
           aria-expanded="false"
           data-menu-toggle
+          data-open-label={t.meta.openMenu}
+          data-close-label={t.meta.closeMenu}
         >
           <Icon name="menu" size={22} class="menu-icon-open" />
           <Icon name="close" size={22} class="menu-icon-close hidden" />
@@ -94,18 +155,75 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
     class="lg:hidden hidden border-t border-neutral-200 bg-white"
     data-mobile-menu
   >
-    <nav class="container-page py-4" aria-label="Navigation mobile">
+    <nav class="container-page py-4" aria-label={t.meta.mobileNav}>
       <ul class="space-y-1">
-        {navigation.map((item) => {
-          const itemPath = item.href.replace(/\/$/, "") || "/";
-          const isActive = currentPath === itemPath;
+        {navigation.map((item, idx) => {
+          const isActive = isItemActive(item);
+          if (item.children) {
+            const mobileId = `mobile-submenu-${idx}`;
+            return (
+              <li>
+                <button
+                  type="button"
+                  class={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium transition-colors min-h-[48px] ${
+                    isActive ? "bg-accent-50 text-accent-700" : "text-neutral-800 hover:bg-neutral-50"
+                  }`}
+                  aria-expanded={isActive ? "true" : "false"}
+                  aria-controls={mobileId}
+                  data-mobile-submenu-toggle
+                >
+                  <span>{item.label}</span>
+                  <Icon
+                    name="chevron-right"
+                    size={18}
+                    class={`text-neutral-400 rotate-90 transition-transform duration-150 mobile-submenu-chevron ${
+                      isActive ? "rotate-[-90deg]" : ""
+                    }`}
+                  />
+                </button>
+                <ul
+                  id={mobileId}
+                  class={`pl-3 mt-1 mb-1 space-y-1 ${isActive ? "" : "hidden"}`}
+                  data-mobile-submenu
+                >
+                  {item.children.map((child) => {
+                    const childPath = child.href!.replace(/\/$/, "") || "/";
+                    const childActive = currentPath === childPath;
+                    return (
+                      <li>
+                        <a
+                          href={child.href}
+                          class={`flex items-center justify-between px-4 py-2.5 rounded-lg text-sm font-medium transition-colors min-h-[44px] ${
+                            childActive
+                              ? "bg-accent-50 text-accent-700"
+                              : "text-neutral-700 hover:bg-neutral-50"
+                          }`}
+                          aria-current={childActive ? "page" : undefined}
+                        >
+                          <span class="flex flex-col">
+                            <span>{child.label}</span>
+                            {child.description && (
+                              <span class="text-xs font-normal text-neutral-500 mt-0.5">
+                                {child.description}
+                              </span>
+                            )}
+                          </span>
+                          <Icon name="chevron-right" size={16} class="text-neutral-400" />
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </li>
+            );
+          }
           return (
             <li>
               <a
                 href={item.href}
                 class={`flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium transition-colors min-h-[48px] ${
                   isActive
-                    ? "bg-primary-50 text-primary-700"
+                    ? "bg-accent-50 text-accent-700"
                     : "text-neutral-800 hover:bg-neutral-50"
                 }`}
                 aria-current={isActive ? "page" : undefined}
@@ -126,8 +244,8 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
         <a href={`tel:${site.phoneRaw}`} class="btn btn-accent w-full">
           <Icon name="phone" size={16} /> {site.phone}
         </a>
-        <a href="/contact" class="btn btn-outline w-full">
-          <Icon name="mail" size={16} /> Demander un devis gratuit
+        <a href={pathFor("contact", locale)} class="btn btn-outline-accent w-full">
+          <Icon name="mail" size={16} /> {t.nav.freeQuote}
         </a>
       </div>
     </nav>
@@ -138,16 +256,92 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
   (() => {
     const toggle = document.querySelector("[data-menu-toggle]");
     const menu = document.querySelector("[data-mobile-menu]");
-    if (!toggle || !menu) return;
-    const openIcon = toggle.querySelector(".menu-icon-open");
-    const closeIcon = toggle.querySelector(".menu-icon-close");
-    toggle.addEventListener("click", () => {
-      const isOpen = !menu.classList.contains("hidden");
-      menu.classList.toggle("hidden", isOpen);
-      toggle.setAttribute("aria-expanded", String(!isOpen));
-      openIcon?.classList.toggle("hidden", !isOpen);
-      closeIcon?.classList.toggle("hidden", isOpen);
-      toggle.setAttribute("aria-label", isOpen ? "Ouvrir le menu" : "Fermer le menu");
+    if (toggle && menu) {
+      const openIcon = toggle.querySelector(".menu-icon-open");
+      const closeIcon = toggle.querySelector(".menu-icon-close");
+      toggle.addEventListener("click", () => {
+        const isOpen = !menu.classList.contains("hidden");
+        menu.classList.toggle("hidden", isOpen);
+        toggle.setAttribute("aria-expanded", String(!isOpen));
+        openIcon?.classList.toggle("hidden", !isOpen);
+        closeIcon?.classList.toggle("hidden", isOpen);
+        const openLabel = toggle.getAttribute("data-open-label") || "Open menu";
+        const closeLabel = toggle.getAttribute("data-close-label") || "Close menu";
+        toggle.setAttribute("aria-label", isOpen ? openLabel : closeLabel);
+      });
+    }
+
+    document.querySelectorAll("[data-nav-dropdown]").forEach((wrapper) => {
+      const btn = wrapper.querySelector("[data-nav-dropdown-toggle]");
+      const panel = wrapper.querySelector("[data-nav-dropdown-panel]");
+      const chevron = wrapper.querySelector(".nav-chevron");
+      if (!btn || !panel) return;
+
+      const setOpen = (open) => {
+        panel.dataset.open = String(open);
+        btn.setAttribute("aria-expanded", String(open));
+        chevron?.classList.toggle("rotate-[-90deg]", open);
+        chevron?.classList.toggle("rotate-90", !open);
+      };
+
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const open = panel.dataset.open === "true";
+        document
+          .querySelectorAll("[data-nav-dropdown-panel]")
+          .forEach((p) => (p.dataset.open = "false"));
+        document
+          .querySelectorAll("[data-nav-dropdown-toggle]")
+          .forEach((b) => b.setAttribute("aria-expanded", "false"));
+        document.querySelectorAll(".nav-chevron").forEach((c) => {
+          c.classList.add("rotate-90");
+          c.classList.remove("rotate-[-90deg]");
+        });
+        setOpen(!open);
+      });
+
+      wrapper.addEventListener("mouseenter", () => setOpen(true));
+      wrapper.addEventListener("mouseleave", () => setOpen(false));
+      wrapper.addEventListener("focusout", (e) => {
+        if (!wrapper.contains(e.relatedTarget)) setOpen(false);
+      });
+
+      btn.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          setOpen(false);
+          btn.focus();
+        }
+      });
+    });
+
+    document.addEventListener("click", (e) => {
+      document.querySelectorAll("[data-nav-dropdown]").forEach((wrapper) => {
+        if (!wrapper.contains(e.target)) {
+          const panel = wrapper.querySelector("[data-nav-dropdown-panel]");
+          const btn = wrapper.querySelector("[data-nav-dropdown-toggle]");
+          const chevron = wrapper.querySelector(".nav-chevron");
+          if (panel) panel.dataset.open = "false";
+          if (btn) btn.setAttribute("aria-expanded", "false");
+          if (chevron) {
+            chevron.classList.add("rotate-90");
+            chevron.classList.remove("rotate-[-90deg]");
+          }
+        }
+      });
+    });
+
+    document.querySelectorAll("[data-mobile-submenu-toggle]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const targetId = btn.getAttribute("aria-controls");
+        const target = targetId ? document.getElementById(targetId) : null;
+        const chevron = btn.querySelector(".mobile-submenu-chevron");
+        if (!target) return;
+        const willOpen = target.classList.contains("hidden");
+        target.classList.toggle("hidden", !willOpen);
+        btn.setAttribute("aria-expanded", String(willOpen));
+        chevron?.classList.toggle("rotate-[-90deg]", willOpen);
+        chevron?.classList.toggle("rotate-90", !willOpen);
+      });
     });
   })();
 </script>

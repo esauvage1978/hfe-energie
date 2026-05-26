@@ -1,0 +1,42 @@
+---
+import type { Locale } from "@i18n";
+import { localeLabels, switchLocalePath } from "@i18n";
+
+interface Props {
+  locale: Locale;
+  currentPath: string;
+}
+
+const { locale, currentPath } = Astro.props;
+const frHref = locale === "fr" ? currentPath : switchLocalePath(currentPath, "fr");
+const enHref = locale === "en" ? currentPath : switchLocalePath(currentPath, "en");
+const ariaLabel = locale === "fr" ? "English version" : "Version française";
+---
+
+<div class="flex items-center rounded-lg border border-neutral-200 bg-neutral-50 p-0.5 text-xs font-semibold" role="group" aria-label="Language">
+  <a
+    href={frHref}
+    class:list={[
+      "px-2.5 py-1.5 rounded-md transition-colors min-w-[2.25rem] text-center",
+      locale === "fr" ? "bg-white text-accent-700 shadow-sm" : "text-neutral-600 hover:text-accent-700",
+    ]}
+    hreflang="fr"
+    lang="fr"
+    aria-current={locale === "fr" ? "page" : undefined}
+  >
+    {localeLabels.fr}
+  </a>
+  <a
+    href={enHref}
+    class:list={[
+      "px-2.5 py-1.5 rounded-md transition-colors min-w-[2.25rem] text-center",
+      locale === "en" ? "bg-white text-accent-700 shadow-sm" : "text-neutral-600 hover:text-accent-700",
+    ]}
+    hreflang="en"
+    lang="en"
+    aria-label={ariaLabel}
+    aria-current={locale === "en" ? "page" : undefined}
+  >
+    {localeLabels.en}
+  </a>
+</div>

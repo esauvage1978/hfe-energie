@@ -33,10 +33,13 @@ const {
   sizes,
 } = Astro.props;
 
-const lastDot = src.lastIndexOf(".");
-const base = lastDot > -1 ? src.slice(0, lastDot) : src;
-const webp = `${base}.webp`;
-const avif = `${base}.avif`;
+// Convention : les variantes optimisées conservent l'extension d'origine
+// dans leur nom (ex. equipe.jpg → equipe.jpg.webp / equipe.jpg.avif).
+// Cela évite toute collision quand deux sources partagent le même nom
+// mais une extension différente (equipe.jpg vs equipe.jpeg, camion.jpg
+// vs camion.png, etc.). Voir scripts/optimize-images.mjs.
+const webp = `${src}.webp`;
+const avif = `${src}.avif`;
 ---
 
 <picture>

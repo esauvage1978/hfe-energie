@@ -35,6 +35,8 @@ const OUT_DIR = path.join(ROOT, "public");
 /** Couleurs HFE — alignées sur global.css */
 const HFE_BLUE_HEX = "#0080c0"; // primary-600
 const HFE_BLUE_DEEP = "#0060b0"; // primary-800
+const HFE_BG = "#ffffff"; // fond blanc demandé pour les favicons
+const HFE_BORDER = "#e2e8f0"; // neutral-200, bordure légère pour visibilité sur onglets blancs
 
 /**
  * Détecte la bounding-box de la flamme (la partie colorée la plus à gauche).
@@ -146,15 +148,20 @@ async function makeFlameOnBackground(srcPath, box, finalSize, padding = 0.18) {
   const top = Math.round((finalSize - fh) / 2);
 
   const radius = Math.round(finalSize * 0.22);
+  // En 16/32 px la bordure 1 px serait quasi invisible et grignoterait du
+  // contenu, on l'omet sur les très petites tailles.
+  const stroke = finalSize >= 48 ? Math.max(1, Math.round(finalSize / 96)) : 0;
+  const inset = stroke / 2;
   const bgSvg = Buffer.from(
     `<svg xmlns="http://www.w3.org/2000/svg" width="${finalSize}" height="${finalSize}">
-       <defs>
-         <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-           <stop offset="0%" stop-color="${HFE_BLUE_HEX}"/>
-           <stop offset="100%" stop-color="${HFE_BLUE_DEEP}"/>
-         </linearGradient>
-       </defs>
-       <rect width="${finalSize}" height="${finalSize}" rx="${radius}" ry="${radius}" fill="url(#g)"/>
+       <rect
+         x="${inset}" y="${inset}"
+         width="${finalSize - stroke}" height="${finalSize - stroke}"
+         rx="${radius}" ry="${radius}"
+         fill="${HFE_BG}"
+         stroke="${stroke > 0 ? HFE_BORDER : "none"}"
+         stroke-width="${stroke}"
+       />
      </svg>`,
   );
 

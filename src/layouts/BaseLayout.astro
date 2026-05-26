@@ -1,11 +1,15 @@
 ---
 import "@styles/global.css";
+import type { Locale } from "@i18n";
+import { getAlternatePaths, htmlLang } from "@i18n";
 import Seo from "@components/Seo.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
+import MobileBottomBar from "@components/MobileBottomBar.astro";
 import StructuredData from "@components/StructuredData.astro";
 
 export interface Props {
+  locale: Locale;
   title: string;
   description: string;
   canonicalPath?: string;
@@ -15,37 +19,46 @@ export interface Props {
   keywords?: string[];
 }
 
-const { title, description, canonicalPath, image, ogType, noIndex, keywords } = Astro.props;
+const { locale, title, description, canonicalPath, image, ogType, noIndex, keywords } = Astro.props;
+const cleanPath = (canonicalPath ?? Astro.url.pathname).replace(/\/$/, "") || "/";
+const alternates = getAlternatePaths(cleanPath);
 ---
 
 <!doctype html>
-<html lang="fr-FR">
+<html lang={htmlLang[locale]}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="generator" content={Astro.generator} />
 
     <Seo
+      locale={locale}
       title={title}
       description={description}
-      canonicalPath={canonicalPath}
+      canonicalPath={cleanPath}
+      alternates={alternates}
       image={image}
       ogType={ogType}
       noIndex={noIndex}
       keywords={keywords}
     />
 
-    <StructuredData type="LocalBusiness" />
+    <StructuredData type="LocalBusiness" locale={locale} />
 
     <slot name="head" />
   </head>
   <body>
-    <Header />
+    <Header locale={locale} />
 
-    <main id="main" tabindex="-1">
+    <main
+      id="main"
+      class="pb-[calc(3.5rem+env(safe-area-inset-bottom,0px))] lg:pb-0"
+      tabindex="-1"
+    >
       <slot />
     </main>
 
-    <Footer />
+    <Footer locale={locale} />
+    <MobileBottomBar locale={locale} />
   </body>
 </html>

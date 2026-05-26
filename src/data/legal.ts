@@ -14,7 +14,7 @@ export const legal = {
     legalForm: "SARL",
     // TODO: capital social (laissez vide pour les Entreprises Individuelles)
     capital: "10 000 €",
-    address: "16 Rue Bartholomé Masurel, 59800 Lille, France",
+    address: "44 Rue Jean sans peur, 59800 Lille, France",
     // TODO: SIRET officiel
     siret: "XXX XXX XXX 00012",
     // TODO: RCS officiel

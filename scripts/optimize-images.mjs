@@ -7,10 +7,13 @@
  *   - une version AVIF (qualité 55)
  *   - éventuellement une version redimensionnée si l'image dépasse maxWidth
  *
- * Les fichiers générés sont placés à côté de l'original :
+ * Les fichiers générés sont placés à côté de l'original et conservent
+ * l'extension d'origine dans leur nom afin d'éviter toute collision
+ * entre des sources comme equipe.jpg et equipe.jpeg.
+ *
  *   ex. public/assets/pompeAChaleur/pompeAChaleur.jpg
- *    -> public/assets/pompeAChaleur/pompeAChaleur.webp
- *    -> public/assets/pompeAChaleur/pompeAChaleur.avif
+ *    -> public/assets/pompeAChaleur/pompeAChaleur.jpg.webp
+ *    -> public/assets/pompeAChaleur/pompeAChaleur.jpg.avif
  *
  * Usage : node scripts/optimize-images.mjs
  */
@@ -61,9 +64,11 @@ async function walk(dir) {
 async function processImage(filePath) {
   stats.scanned += 1;
 
-  const { dir, name } = path.parse(filePath);
-  const webpPath = path.join(dir, `${name}.webp`);
-  const avifPath = path.join(dir, `${name}.avif`);
+  // Convention : la variante optimisée conserve l'extension d'origine dans
+  // son nom (ex. equipe.jpg → equipe.jpg.webp). Cela garantit l'unicité
+  // même quand deux sources partagent le même nom de base.
+  const webpPath = `${filePath}.webp`;
+  const avifPath = `${filePath}.avif`;
 
   const original = await stat(filePath);
   stats.originalBytes += original.size;

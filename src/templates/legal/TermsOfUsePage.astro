@@ -1,0 +1,374 @@
+---
+import type { Locale } from "@i18n";
+import { pathFor } from "@i18n";
+import LegalLayout from "@layouts/LegalLayout.astro";
+import { legal } from "@data/legal";
+import { site } from "@data/site";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const isEn = locale === "en";
+
+const title = isEn ? "Terms of use" : "Conditions Générales d'Utilisation (CGU)";
+const description = isEn
+  ? "HFE Énergie website terms of use: rules of use, intellectual property, liability and limitations relating to hfe-energie.fr."
+  : "CGU du site HFE Énergie : règles d'utilisation, propriété intellectuelle, responsabilités et limitations relatives au site web hfe-energie.fr.";
+
+const termsOfSalePath = pathFor("termsOfSale", locale);
+const privacyPath = pathFor("privacy", locale);
+const cookiesPath = pathFor("cookies", locale);
+const updatedAt = isEn ? "May 16, 2026" : legal.updatedAt.cgu;
+---
+
+<LegalLayout
+  locale={locale}
+  title={title}
+  description={description}
+  canonicalPath={pathFor("termsOfUse", locale)}
+  updatedAt={updatedAt}
+>
+  {isEn ? (
+    <>
+      <p>
+        These General Terms of Use (hereinafter "GTU") govern access to and use of the website{" "}
+        <a href={site.baseUrl}>{site.baseUrl}</a> (hereinafter "the Site"), published by{" "}
+        <strong>{legal.company.legalName}</strong> ({legal.company.name}).
+      </p>
+      <p>
+        Use of the Site implies <strong>full and unreserved acceptance</strong> of these GTU by any visitor
+        (hereinafter "the User"). In the event of disagreement, the User is invited to leave the Site
+        immediately.
+      </p>
+
+      <h2>Article 1 - Purpose of the Site</h2>
+      <p>The Site is intended to:</p>
+      <ul>
+        <li>Present the activity, services and expertise of {legal.company.name}</li>
+        <li>Inform visitors about heating, air-conditioning and plumbing solutions</li>
+        <li>Enable contact via a dedicated form</li>
+        <li>Provide information on energy renovation grants</li>
+      </ul>
+      <p>
+        The Site is a <strong>showcase website</strong>: no sales or online payments are made on it. Any
+        service is governed by the <a href={termsOfSalePath}>Terms of sale</a>, after acceptance of a
+        personalised quote.
+      </p>
+
+      <h2>Article 2 - Access to the Site</h2>
+      <p>
+        The Site is accessible free of charge to any User with internet access. Costs relating to such access
+        (equipment, software, subscription) remain solely at the User's expense.
+      </p>
+      <p>
+        {legal.company.name} endeavours to ensure Site availability 24/7, but cannot guarantee uninterrupted
+        accessibility. The Site may be temporarily unavailable for maintenance, updates, or in the event of
+        force majeure. {legal.company.name} shall not be liable for the consequences of such unavailability.
+      </p>
+
+      <h2>Article 3 - User conduct</h2>
+      <p>
+        The User undertakes to use the Site fairly, in accordance with its purpose and applicable law. The User
+        is prohibited in particular from:
+      </p>
+      <ul>
+        <li>Compromising the security or integrity of the Site</li>
+        <li>
+          Collecting or using data on the Site for commercial or malicious purposes (scraping, spam, etc.)
+        </li>
+        <li>
+          Disseminating unlawful, defamatory, insulting, racist content or content undermining public order via
+          the contact form
+        </li>
+        <li>
+          Using the Site to transmit or propagate viruses, malware or any other harmful computer code
+        </li>
+        <li>Attempting to access non-public areas of the Site</li>
+      </ul>
+      <p>
+        Any breach of these rules may result in blocking of access to the Site and engage the User's civil
+        and/or criminal liability.
+      </p>
+
+      <h2>Article 4 - Intellectual property</h2>
+      <p>
+        All elements comprising the Site (text, images, photographs, logos, trademarks, videos, diagrams,
+        graphic charter, source code, databases, etc.) are protected by intellectual property law. These
+        elements are the exclusive property of {legal.company.legalName} or its partners.
+      </p>
+      <p>
+        Any reproduction, representation, modification, publication, transmission, distortion, in whole or in
+        part of the Site or its content, by any means and on any medium, is strictly prohibited without prior
+        written authorisation from {legal.company.legalName}, on pain of proceedings under Articles L.335-2 et
+        seq. of the French Intellectual Property Code.
+      </p>
+      <p>Any unauthorised use of the Site or any of its elements shall be deemed infringement.</p>
+
+      <h2>Article 5 - Hyperlinks</h2>
+
+      <h3>5.1 Outgoing links</h3>
+      <p>
+        The Site may contain hyperlinks to third-party sites (partners, public bodies, manufacturers, etc.).{" "}
+        {legal.company.legalName} exercises no control over these sites and declines all liability for their
+        content, data protection practices or availability.
+      </p>
+
+      <h3>5.2 Incoming links</h3>
+      <p>Creation of hyperlinks pointing to the Site is permitted provided that:</p>
+      <ul>
+        <li>No confusion is created as to the source or nature of the content</li>
+        <li>
+          The Site is not used in a manner contrary to good morals or damaging to the image of{" "}
+          {legal.company.name}
+        </li>
+        <li>The source ({legal.company.name}) is clearly stated</li>
+      </ul>
+      <p>{legal.company.legalName} reserves the right to request removal of any link it deems inappropriate.</p>
+
+      <h2>Article 6 - Contact form</h2>
+      <p>
+        The contact form on the Site is intended to collect information and quote requests from Users. The User
+        undertakes to provide accurate, complete and up-to-date information. Transmission of deliberately false
+        or fraudulent information may result in no response and engage the User's liability.
+      </p>
+      <p>
+        Data entered in the form is processed in accordance with the GDPR. For more information, please see our{" "}
+        <a href={privacyPath}>Privacy policy</a>.
+      </p>
+
+      <h2>Article 7 - Personal data & cookies</h2>
+      <p>
+        Processing of your personal data is detailed in our <a href={privacyPath}>Privacy policy</a>.
+      </p>
+      <p>
+        Use of cookies on the Site is covered by a dedicated policy: <a href={cookiesPath}>Cookie policy</a>.
+      </p>
+
+      <h2>Article 8 - Limitation of liability</h2>
+      <p>
+        Information on the Site is provided for guidance only and has no contractual value. {legal.company.legalName}
+        endeavours to keep this information up to date and accurate, but cannot guarantee its completeness or
+        absence of error.
+      </p>
+      <p>
+        In particular, estimates provided by the savings simulator (heat pump savings calculator), grant amounts
+        (MaPrimeRénov', CEE) and intervention deadlines mentioned on the Site are indicative. Only a personalised
+        quote following a technical assessment constitutes a contractual commitment.
+      </p>
+      <p>
+        {legal.company.legalName} shall not be liable for direct or indirect damage resulting from use of the
+        Site, except in the event of gross negligence or wilful misconduct.
+      </p>
+
+      <h2>Article 9 - Security</h2>
+      <p>
+        {legal.company.legalName} implements reasonable means to ensure Site security: HTTPS encryption,
+        professional hosting, regular updates. However, the User acknowledges that no information system is
+        completely infallible and that each person must take all appropriate measures to protect their own
+        equipment.
+      </p>
+
+      <h2>Article 10 - Amendment of the GTU</h2>
+      <p>
+        {legal.company.legalName} reserves the right to amend these GTU at any time to adapt them to developments
+        of the Site, services offered or legislation. The applicable GTU are those in force on the date of
+        consultation. Users are therefore invited to consult them regularly.
+      </p>
+
+      <h2>Article 11 - Governing law & jurisdiction</h2>
+      <p>
+        These GTU are governed by French law. In the event of a dispute relating to their interpretation or
+        performance, the parties shall endeavour to find an amicable solution. Failing that, the dispute shall
+        be brought before the competent French courts of the registered office of {legal.company.legalName}.
+      </p>
+
+      <h2>Article 12 - Contact</h2>
+      <p>
+        For any questions regarding these GTU or use of the Site, you may contact {legal.company.legalName}:
+      </p>
+      <ul>
+        <li>By email: <a href={`mailto:${legal.company.email}`}>{legal.company.email}</a></li>
+        <li>By phone: <a href={`tel:${legal.company.phoneRaw}`}>{legal.company.phone}</a></li>
+        <li>By post: {legal.company.legalName} - {legal.company.address}</li>
+      </ul>
+    </>
+  ) : (
+    <>
+      <p>
+        Les présentes Conditions Générales d'Utilisation (ci-après "CGU") régissent l'accès et
+        l'utilisation du site internet <a href={site.baseUrl}>{site.baseUrl}</a> (ci-après "le Site"),
+        édité par <strong>{legal.company.legalName}</strong> ({legal.company.name}).
+      </p>
+      <p>
+        L'utilisation du Site implique l'<strong>acceptation pleine et entière</strong> des présentes CGU
+        par tout visiteur (ci-après "l'Utilisateur"). En cas de désaccord, l'Utilisateur est invité à
+        quitter immédiatement le Site.
+      </p>
+
+      <h2>Article 1 - Objet du Site</h2>
+      <p>Le Site a pour vocation de :</p>
+      <ul>
+        <li>Présenter l'activité, les services et le savoir-faire de {legal.company.name}</li>
+        <li>Informer les internautes sur les solutions de chauffage, climatisation et plomberie</li>
+        <li>Permettre la prise de contact via un formulaire dédié</li>
+        <li>Communiquer des informations relatives aux aides à la rénovation énergétique</li>
+      </ul>
+      <p>
+        Le Site est un site <strong>vitrine</strong> : aucune vente ni paiement en ligne n'y est effectué.
+        Toute prestation est régie par les
+        <a href={termsOfSalePath}>Conditions Générales de Vente</a>, après acceptation d'un devis personnalisé.
+      </p>
+
+      <h2>Article 2 - Accès au Site</h2>
+      <p>
+        Le Site est accessible gratuitement à tout Utilisateur disposant d'un accès à internet. Les frais
+        relatifs à cet accès (matériel, logiciel, abonnement) restent à la charge exclusive de
+        l'Utilisateur.
+      </p>
+      <p>
+        {legal.company.name} s'efforce d'assurer la disponibilité du Site 24h/24 et 7j/7, mais ne peut
+        en garantir une accessibilité ininterrompue. Le Site peut être temporairement indisponible pour
+        des raisons de maintenance, de mise à jour, ou en cas de force majeure. {legal.company.name} ne
+        saurait être tenu responsable des conséquences d'une telle indisponibilité.
+      </p>
+
+      <h2>Article 3 - Comportement de l'Utilisateur</h2>
+      <p>
+        L'Utilisateur s'engage à utiliser le Site de manière loyale, conformément à sa destination et au
+        droit en vigueur. Il s'interdit notamment :
+      </p>
+      <ul>
+        <li>De porter atteinte à la sécurité ou à l'intégrité du Site</li>
+        <li>De collecter ou d'utiliser des données présentes sur le Site à des fins commerciales ou
+          malveillantes (scraping, spam, etc.)</li>
+        <li>De diffuser des contenus illicites, diffamatoires, injurieux, racistes ou portant atteinte à
+          l'ordre public via le formulaire de contact</li>
+        <li>D'utiliser le Site pour transmettre ou propager des virus, logiciels malveillants, ou tout
+          autre code informatique préjudiciable</li>
+        <li>De tenter d'accéder à des espaces non publics du Site</li>
+      </ul>
+      <p>
+        Tout manquement à ces règles pourra entraîner le blocage de l'accès au Site et engager la
+        responsabilité civile et/ou pénale de l'Utilisateur.
+      </p>
+
+      <h2>Article 4 - Propriété intellectuelle</h2>
+      <p>
+        L'ensemble des éléments composant le Site (textes, images, photographies, logos, marques, vidéos,
+        schémas, charte graphique, code source, bases de données, etc.) est protégé par le droit de la
+        propriété intellectuelle. Ces éléments sont la propriété exclusive de {legal.company.legalName} ou
+        de ses partenaires.
+      </p>
+      <p>
+        Toute reproduction, représentation, modification, publication, transmission, dénaturation, totale
+        ou partielle du Site ou de son contenu, par quelque procédé que ce soit et sur quelque support que
+        ce soit, est strictement interdite sans l'autorisation écrite et préalable de
+        {legal.company.legalName}, sous peine de poursuites au titre des articles L.335-2 et suivants du
+        Code de la propriété intellectuelle.
+      </p>
+      <p>
+        Toute exploitation non autorisée du Site ou de l'un quelconque des éléments qu'il contient sera
+        considérée comme constitutive d'une contrefaçon.
+      </p>
+
+      <h2>Article 5 - Liens hypertextes</h2>
+
+      <h3>5.1 Liens sortants</h3>
+      <p>
+        Le Site peut contenir des liens hypertextes pointant vers des sites tiers (partenaires, organismes
+        publics, fabricants, etc.). {legal.company.legalName} n'exerce aucun contrôle sur ces sites et
+        décline toute responsabilité quant à leur contenu, leurs pratiques en matière de protection des
+        données ou leur disponibilité.
+      </p>
+
+      <h3>5.2 Liens entrants</h3>
+      <p>La création de liens hypertextes pointant vers le Site est autorisée à condition de :</p>
+      <ul>
+        <li>Ne pas créer de confusion sur la source ou la nature du contenu</li>
+        <li>Ne pas utiliser le Site dans un cadre contraire aux bonnes mœurs ou portant atteinte à
+          l'image de {legal.company.name}</li>
+        <li>Mentionner clairement la source ({legal.company.name})</li>
+      </ul>
+      <p>
+        {legal.company.legalName} se réserve le droit de demander la suppression de tout lien qu'il
+        jugerait inapproprié.
+      </p>
+
+      <h2>Article 6 - Formulaire de contact</h2>
+      <p>
+        Le formulaire de contact mis à disposition sur le Site est destiné à recueillir les demandes
+        d'information et de devis des Utilisateurs. L'Utilisateur s'engage à fournir des informations
+        exactes, complètes et à jour. La transmission d'informations volontairement erronées ou
+        frauduleuses pourra entraîner l'absence de réponse et engager la responsabilité de l'Utilisateur.
+      </p>
+      <p>
+        Les données saisies dans le formulaire font l'objet d'un traitement conforme au RGPD. Pour en
+        savoir plus, consultez notre <a href={privacyPath}>Politique de confidentialité</a>.
+      </p>
+
+      <h2>Article 7 - Données personnelles & cookies</h2>
+      <p>
+        Le traitement de vos données personnelles est détaillé dans notre
+        <a href={privacyPath}>Politique de confidentialité</a>.
+      </p>
+      <p>
+        L'utilisation de cookies sur le Site fait l'objet d'une politique dédiée :
+        <a href={cookiesPath}>Politique des cookies</a>.
+      </p>
+
+      <h2>Article 8 - Limitation de responsabilité</h2>
+      <p>
+        Les informations diffusées sur le Site sont fournies à titre indicatif et n'ont aucune valeur
+        contractuelle. {legal.company.legalName} s'efforce de tenir ces informations à jour et exactes,
+        mais ne saurait garantir leur exhaustivité ou leur absence d'erreur.
+      </p>
+      <p>
+        En particulier, les estimations fournies par le simulateur d'économies (calculateur de gains d'une
+        pompe à chaleur), les montants des aides (MaPrimeRénov', CEE) et les délais d'intervention
+        mentionnés sur le Site sont indicatifs. Seul un devis personnalisé établi à l'issue d'une étude
+        technique constitue un engagement contractuel.
+      </p>
+      <p>
+        {legal.company.legalName} ne pourra être tenu responsable des dommages directs ou indirects
+        résultant de l'utilisation du Site, sauf en cas de faute lourde ou intentionnelle.
+      </p>
+
+      <h2>Article 9 - Sécurité</h2>
+      <p>
+        {legal.company.legalName} met en œuvre les moyens raisonnables pour assurer la sécurité du Site :
+        chiffrement HTTPS, hébergement professionnel, mises à jour régulières. Toutefois, l'Utilisateur
+        reconnaît qu'aucun système d'information n'est totalement infaillible et qu'il appartient à chacun
+        de prendre toutes les mesures appropriées pour protéger son propre matériel.
+      </p>
+
+      <h2>Article 10 - Modification des CGU</h2>
+      <p>
+        {legal.company.legalName} se réserve la possibilité de modifier à tout moment les présentes CGU
+        afin de les adapter aux évolutions du Site, des services proposés ou de la législation. Les CGU
+        applicables sont celles en vigueur au jour de la consultation. Il appartient donc à l'Utilisateur
+        de les consulter régulièrement.
+      </p>
+
+      <h2>Article 11 - Droit applicable & juridiction</h2>
+      <p>
+        Les présentes CGU sont régies par le droit français. En cas de litige relatif à leur interprétation
+        ou à leur exécution, les parties s'efforceront de trouver une solution amiable. À défaut, le
+        litige sera porté devant les juridictions françaises compétentes du ressort du siège social de
+        {legal.company.legalName}.
+      </p>
+
+      <h2>Article 12 - Contact</h2>
+      <p>
+        Pour toute question relative aux présentes CGU ou à l'utilisation du Site, vous pouvez contacter
+        {legal.company.legalName} :
+      </p>
+      <ul>
+        <li>Par e-mail : <a href={`mailto:${legal.company.email}`}>{legal.company.email}</a></li>
+        <li>Par téléphone : <a href={`tel:${legal.company.phoneRaw}`}>{legal.company.phone}</a></li>
+        <li>Par courrier : {legal.company.legalName} - {legal.company.address}</li>
+      </ul>
+    </>
+  )}
+</LegalLayout>

@@ -1,0 +1,42 @@
+---
+import type { Locale } from "@i18n";
+import { getUi, pathFor } from "@i18n";
+import { site } from "@data/site";
+import Icon from "./Icon.astro";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { strings: t } = getUi(locale);
+const contactPath = pathFor("contact", locale);
+---
+
+<nav
+  class="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-white border-t border-neutral-200 shadow-[0_-4px_20px_rgba(15,23,42,0.08)]"
+  aria-label={t.meta.mobileQuickActions}
+  data-mobile-bottom-bar
+>
+  <div
+    class="grid grid-cols-2 divide-x divide-neutral-200"
+    style="padding-bottom: env(safe-area-inset-bottom, 0px);"
+  >
+    <a
+      href={`tel:${site.phoneRaw}`}
+      class="flex flex-col items-center justify-center gap-1 min-h-[3.5rem] py-3 text-accent-700 hover:bg-accent-50 active:bg-accent-100 transition-colors"
+      aria-label={t.meta.callAria(site.phone)}
+    >
+      <Icon name="phone" size={24} class="text-accent-600" />
+      <span class="text-xs font-semibold">{t.meta.call}</span>
+    </a>
+    <a
+      href={contactPath}
+      class="flex flex-col items-center justify-center gap-1 min-h-[3.5rem] py-3 text-primary-700 hover:bg-primary-50 active:bg-primary-100 transition-colors"
+      aria-label={t.nav.contact.label}
+    >
+      <Icon name="mail" size={24} class="text-primary-600" />
+      <span class="text-xs font-semibold">{t.nav.contact.label}</span>
+    </a>
+  </div>
+</nav>

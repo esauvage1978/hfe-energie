@@ -1,0 +1,18 @@
+{
+  "fetchedAt": "2026-05-25T10:00:00.000Z",
+  "source": "manual",
+  "placeId": null,
+  "rating": 4.9,
+  "userRatingCount": 51,
+  "googleMapsUri": "https://g.page/r/CawB00LcHY7jEAE/review",
+  "reviewUrl": "https://g.page/r/CawB00LcHY7jEAE/review",
+  "reviews": [
+    {
+      "author": "Prénom Nom tel qu’affiché sur Google",
+      "rating": 5,
+      "text": "Texte complet de l’avis copié depuis Google Maps.",
+      "relativeTime": "il y a 2 mois",
+      "publishTime": "2026-03-20T12:00:00.000Z"
+    }
+  ]
+}

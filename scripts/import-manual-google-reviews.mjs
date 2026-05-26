@@ -1,0 +1,93 @@
+/**
+ * Import ponctuel des 51 avis fournis manuellement → google-reviews.json
+ */
+import { writeFileSync, mkdirSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const root = join(__dirname, "..");
+
+/** @type {Array<{author:string,rating:number,relativeTime:string,publishTime:string,text:string}>} */
+const reviews = [
+  { author: "Marion Vanhille", rating: 5, relativeTime: "il y a 4 mois", publishTime: "2025-12-01", text: "Très satisfaite de l'installation de ma pompe à chaleur. Travail sérieux, soigné et conforme à ce qui était prévu. Un grand merci à Romain, qui est intervenu avec professionnalisme." },
+  { author: "adrien L", rating: 5, relativeTime: "il y a 6 mois", publishTime: "2025-11-01", text: "L'équipe est réactive et ponctuelle ! Mon chauffage était en panne à 16h, fonctionnel à 17h ! Un grand merci. Je recommande à 100 %." },
+  { author: "Marino", rating: 5, relativeTime: "Modifié il y a 2 ans", publishTime: "2023-01-01", text: "Super équipe professionnelle, réactive, bienveillante, jeune et dynamique. Compétente, transparente, au service et à l'écoute du client." },
+  { author: "M S", rating: 5, relativeTime: "il y a un an", publishTime: "2025-04-01", text: "Excellente expérience !" },
+  { author: "adriano gubellini", rating: 5, relativeTime: "il y a 3 mois", publishTime: "2026-02-01", text: "Très bonne réactivité, travail rapide et impeccable. Je conseille sans hésitation." },
+  { author: "gabriel ruget", rating: 5, relativeTime: "il y a 5 mois", publishTime: "2025-12-15", text: "Intervention rapide, efficace, pour un prix très compétitif, l'amabilité et le sens du service en plus !" },
+  { author: "dorina parreno", rating: 5, relativeTime: "il y a 3 ans", publishTime: "2022-12-01", text: "L'entreprise a été très réactive, ils ont pu nous proposer une date rapidement, ils sont très professionnels et sérieux. La pompe à chaleur fonctionne très bien et nous en sommes ravis. Merci." },
+  { author: "Blg Siham", rating: 5, relativeTime: "il y a 3 ans", publishTime: "2022-11-01", text: "HFE une entreprise comme on n'en fait plus ! Des artisans qui maîtrisent leur métier, très arrangeants et qui ont le souci du détail." },
+  { author: "Wenceslas Duchesnes", rating: 5, relativeTime: "il y a 9 mois", publishTime: "2025-08-01", text: "Installation d'une pompe à chaleur de marque Panasonic. Super installation, entreprise réactive et une équipe super sympa. Je recommande." },
+  { author: "martin Van Heems", rating: 5, relativeTime: "il y a 3 ans", publishTime: "2022-12-01", text: "Superbe expérience avec l'installation d'une pompe à chaleur dans notre nouvelle maison cet automne. Julien et Kévin ont été très pro avec une volonté de nous accompagner." },
+  { author: "Davy Guilloton", rating: 5, relativeTime: "il y a un an", publishTime: "2024-07-01", text: "J'ai sollicité et fais confiance à l'équipe pour l'installation d'une climatisation complète dans mon domicile." },
+  { author: "J T", rating: 5, relativeTime: "il y a 2 ans", publishTime: "2023-06-01", text: "Pose de climatisation dans trois chambres avec la contrainte de ne pas pouvoir passer dans le plafond. Travail réalisé avec des goulottes apparentes, résultat soigné." },
+  { author: "Olivier Capon", rating: 5, relativeTime: "il y a 2 ans", publishTime: "2023-09-01", text: "J'ai fait appel à HFE pour climatiser 2 chambres de mon habitation principale (2 unités intérieures + 1 unité extérieure). Prise de rendez-vous et installation au top." },
+  { author: "Fabien Pique", rating: 5, relativeTime: "il y a un an", publishTime: "2024-11-01", text: "J'ai sollicité ce plombier pour me réparer une fuite au niveau de mon sèche-serviette. Une première société m'avait proposé un devis à 2 000 € ; HFE a réglé le problème pour bien moins." },
+  { author: "Kat Boulogne", rating: 1, relativeTime: "Modifié il y a un an", publishTime: "2024-10-01", text: "J'ai fait refaire la plomberie d'un appartement. Ce jour, je fais le point des factures et je constate que le cumulus et le sèche-serviette ont été facturés deux fois." },
+  { author: "Florian Ramon", rating: 5, relativeTime: "il y a 2 ans", publishTime: "2023-10-01", text: "L'entreprise HFE a installé une pompe à chaleur air/eau dans ma résidence principale, elle s'est occupée du dossier d'aides, devis rapide et installation soignée." },
+  { author: "Latton", rating: 5, relativeTime: "il y a 3 ans", publishTime: "2023-04-01", text: "Très satisfait d'avoir fait appel à HFE. Je les ai contactés pour l'installation d'une pompe à chaleur, réactifs avec un travail de qualité à l'arrivée." },
+  { author: "Agathe Destombes", rating: 5, relativeTime: "il y a 4 ans", publishTime: "2022-02-01", text: "Service irréprochable, je recommande fortement ! J'ai appelé l'équipe de HFE la semaine dernière suite à la recommandation d'une connaissance." },
+  { author: "Tom Barde", rating: 5, relativeTime: "il y a un an", publishTime: "2025-02-01", text: "Je tenais à remercier HFE pour la pose de ma pompe à chaleur, ils ont été réactifs et professionnels. Je les recommande pour la qualité de leurs travaux !" },
+  { author: "corentin Hanot", rating: 5, relativeTime: "il y a 3 ans", publishTime: "2022-06-01", text: "L'entreprise HFE est intervenue dans mon restaurant pour une installation de climatisation dont je suis très satisfait. Délais courts entre rendez-vous et intervention, équipe professionnelle, chantier toujours propre. Je recommande sans hésitation." },
+  { author: "Patrick Ranty", rating: 5, relativeTime: "il y a un an", publishTime: "2025-03-01", text: "Contrairement aux deux plombiers contactés précédemment : politesse, respect des rendez-vous, professionnalisme, coût correct et aidant. Vivement recommandé." },
+  { author: "Sadia Pamart", rating: 5, relativeTime: "il y a un an", publishTime: "2025-03-17", text: "Prestations de qualité par HFE pour la plomberie et plus. Dépannage rapide. Sympathique et fiable." },
+  { author: "Colloc VieuxLille", rating: 5, relativeTime: "il y a 4 ans", publishTime: "2022-03-01", text: "Très réactif et professionnel ! Ils ont été très sympas et sont venus le lendemain pour réparer nos thermostats." },
+  { author: "Simon Desplanques", rating: 5, relativeTime: "il y a 3 ans", publishTime: "2022-08-01", text: "J'ai rencontré des personnes avec beaucoup de conseils, plein de sincérité !" },
+  { author: "REG ART OPTIQUE", rating: 5, relativeTime: "il y a 3 ans", publishTime: "2022-10-01", text: "Après étude et réflexion sur les enjeux climatiques et le coût de l'énergie, j'ai opté pour la pompe à chaleur dans mon entreprise. Très satisfaite des conseils, du rapport qualité-prix et du professionnalisme de toute l'équipe. Je recommande Hecker et Frères Énergie." },
+  { author: "Francois Dehoet", rating: 5, relativeTime: "il y a 3 ans", publishTime: "2022-05-01", text: "Je les ai contactés pour l'installation d'une pompe à chaleur. Satisfait de la prestation réalisée et tarif correct. Je referai appel à leurs services sans hésiter." },
+  { author: "Christine Bracquenier", rating: 5, relativeTime: "il y a 3 ans", publishTime: "2023-05-01", text: "Merci à HFE, intervenus très rapidement et de manière très efficace. Très satisfaite de leurs services, professionnels et arrangeants." },
+  { author: "Grégoire Petit", rating: 5, relativeTime: "il y a 3 ans", publishTime: "2022-06-01", text: "L'équipe HFE a posé une pompe à chaleur Mitsubishi dans ma maison de campagne. J'ai pu bénéficier des aides de l'État. Je recommande." },
+  { author: "Samuel Agrapart", rating: 5, relativeTime: "il y a un an", publishTime: "2024-12-01", text: "Installation d'une pompe à chaleur cet hiver. Très pro, réactifs et de très bons conseils. Je recommande !" },
+  { author: "Joelle Segard", rating: 5, relativeTime: "il y a 2 ans", publishTime: "2023-08-01", text: "Merci et félicitations pour le travail effectué, la rapidité d'intervention et la qualité du suivi." },
+  { author: "Tom Rives", rating: 5, relativeTime: "il y a 4 ans", publishTime: "2022-01-01", text: "Entreprise très sérieuse. J'ai fait appel à eux pour changer deux radiateurs. Travail de qualité, dans les délais." },
+  { author: "Simon Garnier", rating: 5, relativeTime: "il y a 3 ans", publishTime: "2023-03-01", text: "J'ai eu recours fin mars à HFE pour une installation d'une pompe à chaleur Panasonic. Super produit et super professionnalisme de l'entreprise." },
+  { author: "Stephane Agaësse", rating: 5, relativeTime: "il y a 11 mois", publishTime: "2025-06-01", text: "Sympa — travail propre, efficace et avec le sourire. Bonne expérience." },
+  { author: "caroline defoor", rating: 5, relativeTime: "il y a un an", publishTime: "2025-01-01", text: "Un grand merci ! Intervention rapide et soignée ! Je recommande vivement, les yeux fermés !" },
+  { author: "Compagnie Les Mariottes", rating: 5, relativeTime: "il y a 4 ans", publishTime: "2022-04-01", text: "Je remercie l'entreprise HFE pour son professionnalisme dans l'installation d'une pompe à chaleur, une équipe sympathique. Je n'hésiterai pas à faire appel à eux à nouveau." },
+  { author: "Jean Bridoux", rating: 5, relativeTime: "il y a 3 ans", publishTime: "2023-01-01", text: "Très belle prestation ! Kevin, Julien et leur associé sont aussi professionnels que sympathiques, en plus d'être très arrangeants. Très beau boulot, propre, une belle équipe de confiance." },
+  { author: "KAMELIA BOUAZZA", rating: 5, relativeTime: "il y a 4 ans", publishTime: "2022-01-01", text: "J'ai eu recours à cette entreprise pour une pose de climatisations. Ils ont également fait une réparation sur ma pompe à chaleur." },
+  { author: "Claire Prudhomme", rating: 5, relativeTime: "il y a un an", publishTime: "2025-01-01", text: "Équipe super, efficace, souriante, de bons conseils. Intervention hyper rapide. Je recommande à 100 %." },
+  { author: "Didier S", rating: 5, relativeTime: "il y a 4 ans", publishTime: "2022-02-01", text: "Suite à une fuite sur chasse d'eau, j'ai appelé le lundi, la réparation a été faite le lendemain. Bravo !" },
+  { author: "Sophie Baillot", rating: 5, relativeTime: "il y a un an", publishTime: "2024-07-01", text: "Intervention rapide et très efficace pour changer un robinet qui fuyait. Je recommande chaleureusement cette entreprise." },
+  { author: "Antoine Salinas", rating: 5, relativeTime: "il y a 4 ans", publishTime: "2022-01-01", text: "J'ai fait appel à l'entreprise HFE pour un problème sur ma climatisation, entreprise sérieuse qui conseille très bien. Je recommande." },
+  { author: "Jules Boulerie", rating: 5, relativeTime: "il y a 2 ans", publishTime: "2023-09-01", text: "Service pro et de qualité ! Les équipes sont également très rapides pour la prise de rendez-vous. Je recommande !" },
+  { author: "Greck Alexandre", rating: 5, relativeTime: "il y a 3 ans", publishTime: "2022-07-01", text: "Merci beaucoup pour cette pose de pompe à chaleur Mitsubishi. Entreprise sérieuse, je recommande." },
+  { author: "Francois Defebvre", rating: 5, relativeTime: "il y a un an", publishTime: "2024-03-01", text: "Excellente équipe qui a su nous conseiller pour l'installation d'une pompe à chaleur." },
+  { author: "Thomas Renard", rating: 5, relativeTime: "il y a 3 ans", publishTime: "2022-07-01", text: "Bonne expérience pour la pose de ma pompe à chaleur. Jeune entreprise dynamique !" },
+  { author: "isabelle woch", rating: 5, relativeTime: "il y a un an", publishTime: "2024-07-01", text: "Intervention rapide et efficace. Très professionnels, de bons conseils. Je recommande vivement." },
+  { author: "Thomas GEORGE", rating: 5, relativeTime: "il y a 2 mois", publishTime: "2026-03-10", text: "Très très pro !" },
+  { author: "Souk Nh", rating: 5, relativeTime: "il y a un an", publishTime: "2025-01-01", text: "Parfait." },
+  { author: "Léonard HEMON", rating: 5, relativeTime: "il y a 2 mois", publishTime: "2026-03-20", text: "Je recommande HFE, ils m'ont fait une installation de climatisation Panasonic parfaite ! Leur réactivité est très agréable." },
+  { author: "Olivier Darcy", rating: 5, relativeTime: "il y a 4 ans", publishTime: "2022-03-01", text: "Expérience positive avec HFE." },
+  { author: "Vincent Soland", rating: 4, relativeTime: "il y a 2 ans", publishTime: "2024-05-01", text: "Avis Google — note 4/5." },
+];
+
+const sum = reviews.reduce((a, r) => a + r.rating, 0);
+const avg = Math.round((sum / reviews.length) * 10) / 10;
+
+const payload = {
+  fetchedAt: new Date().toISOString(),
+  source: "manual",
+  placeId: null,
+  rating: avg,
+  userRatingCount: reviews.length,
+  googleMapsUri: "https://g.page/r/CawB00LcHY7jEAE/review",
+  reviewUrl: "https://g.page/r/CawB00LcHY7jEAE/review",
+  reviews: reviews.map((r) => ({
+    ...r,
+    publishTime: `${r.publishTime}T12:00:00.000Z`,
+  })),
+};
+
+const paths = [
+  join(root, "src", "data", "google-reviews.json"),
+  join(root, "public", "data", "google-reviews.json"),
+];
+
+for (const p of paths) {
+  mkdirSync(dirname(p), { recursive: true });
+  writeFileSync(p, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
+}
+
+console.log(`Importé ${reviews.length} avis — note moyenne ${avg}/5`);

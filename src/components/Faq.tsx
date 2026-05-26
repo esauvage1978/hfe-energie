@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type { Locale } from "@i18n";
 
 export interface FaqItem {
   question: string;
@@ -8,9 +9,10 @@ export interface FaqItem {
 interface FaqProps {
   items: FaqItem[];
   idPrefix?: string;
+  locale: Locale;
 }
 
-export default function Faq({ items, idPrefix = "faq" }: FaqProps) {
+export default function Faq({ items, idPrefix = "faq", locale: _locale }: FaqProps) {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   return (
@@ -22,7 +24,7 @@ export default function Faq({ items, idPrefix = "faq" }: FaqProps) {
           <article
             key={id}
             className={`rounded-2xl border bg-white transition-colors ${
-              isOpen ? "border-primary-200 shadow-md" : "border-neutral-200"
+              isOpen ? "border-accent-200 shadow-md" : "border-neutral-200"
             }`}
           >
             <h3 className="m-0">
@@ -36,7 +38,7 @@ export default function Faq({ items, idPrefix = "faq" }: FaqProps) {
               >
                 <span>{item.question}</span>
                 <span
-                  className={`shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary-50 text-primary-700 transition-transform ${
+                  className={`shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-accent-50 text-accent-700 transition-transform ${
                     isOpen ? "rotate-45" : ""
                   }`}
                   aria-hidden="true"

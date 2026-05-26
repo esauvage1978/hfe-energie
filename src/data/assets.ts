@@ -36,10 +36,10 @@ export const logos = {
 
 export const heroes = {
   pac: {
-    src: "/assets/pompeAChaleur/pompeAChaleur.jpg",
-    alt: "Pompe à chaleur air-eau installée par HFE Énergie",
-    width: 736,
-    height: 482,
+    src: "/assets/pompeAChaleur/pac-hero.jpg",
+    alt: "Pompe à chaleur air-eau installée par HFE Énergie sur un mur extérieur de maison",
+    width: 664,
+    height: 850,
   },
   background: {
     src: "/assets/fondImage/imageFond.png",
@@ -58,6 +58,12 @@ export const heroes = {
     alt: "Camion HFE Énergie en intervention dans la métropole lilloise",
     width: 1535,
     height: 1189,
+  },
+  contactTruck: {
+    src: "/assets/camion/maquetteCamion.png",
+    alt: "Camion HFE Énergie — intervention rapide sur Lille et métropole",
+    width: 715,
+    height: 349,
   },
 } as const;
 

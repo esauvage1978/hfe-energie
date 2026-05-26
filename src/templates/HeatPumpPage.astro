@@ -1,0 +1,260 @@
+---
+import type { Locale } from "@i18n";
+import { getHeatPumpContent, pathFor } from "@i18n";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Breadcrumbs from "@components/Breadcrumbs.astro";
+import CtaBanner from "@components/CtaBanner.astro";
+import Gallery from "@components/Gallery.astro";
+import Icon from "@components/Icon.astro";
+import Picture from "@components/Picture.astro";
+import StructuredData from "@components/StructuredData.astro";
+import Faq from "@components/Faq.tsx";
+import PartnersCertificationsSections from "@components/PartnersCertificationsSections.astro";
+import SavingsCalculator from "@components/SavingsCalculator.tsx";
+import { site } from "@data/site";
+import { heroes, realisationsPAC } from "@data/assets";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const content = getHeatPumpContent(locale);
+const canonicalPath = pathFor("heatPump", locale);
+const seoCities = site.serviceArea;
+---
+
+<BaseLayout
+  locale={locale}
+  title={content.seo.title}
+  description={content.seo.description}
+  keywords={[...content.seo.keywords]}
+  canonicalPath={canonicalPath}
+>
+  <StructuredData type="BreadcrumbList" breadcrumbs={content.breadcrumbs} slot="head" />
+  <StructuredData
+    type="Service"
+    service={{
+      name: content.structuredData.serviceName,
+      description: content.structuredData.serviceDescription,
+      slug: content.structuredData.slug,
+    }}
+    slot="head"
+  />
+  <StructuredData type="FAQPage" faqs={content.faq.items} slot="head" />
+
+  <div class="container-page">
+    <Breadcrumbs items={content.breadcrumbs} />
+  </div>
+
+  <section class="relative overflow-hidden bg-gradient-to-br from-accent-50 via-white to-accent-50/20">
+    <div class="container-page py-10 md:py-16">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="badge bg-accent-100 text-accent-800 border border-accent-200">
+            <Icon name="shield" size={12} />
+            {content.hero.badge}
+          </span>
+          <h1 class="mt-4 font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-neutral-900 leading-tight">
+            {content.hero.titleBefore}<span class="text-accent-700">{content.hero.titleHighlight}</span>{content.hero.titleAfter}
+          </h1>
+          <p class="mt-4 text-lg text-neutral-700 leading-relaxed">{content.hero.description}</p>
+
+          <div class="mt-6 flex flex-col sm:flex-row gap-3">
+            <a href={pathFor("contact", locale)} class="btn btn-accent">
+              <Icon name="mail" size={18} />
+              {content.hero.ctaQuote}
+            </a>
+            <a href={`tel:${site.phoneRaw}`} class="btn btn-outline-accent">
+              <Icon name="phone" size={18} />
+              {site.phone}
+            </a>
+          </div>
+
+          <dl class="mt-8 grid grid-cols-3 gap-4 max-w-md">
+            {content.hero.stats.map((stat) => (
+              <div>
+                <dt class="text-xs text-neutral-500 font-semibold uppercase">{stat.label}</dt>
+                <dd class="mt-1 font-display text-2xl font-extrabold text-accent-700">{stat.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+
+        <div class="flex justify-center lg:justify-start">
+          <Picture
+            src={heroes.pac.src}
+            alt={content.hero.imageAlt}
+            width={heroes.pac.width}
+            height={heroes.pac.height}
+            class="rounded-3xl shadow-2xl border border-neutral-100 w-full max-w-md lg:max-w-none h-auto"
+            loading="eager"
+            fetchpriority="high"
+            decoding="sync"
+            sizes="(min-width: 1024px) 50vw, (min-width: 640px) 28rem, 100vw"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white" aria-labelledby="benefits-title">
+    <div class="container-page">
+      <div class="max-w-3xl">
+        <h2 id="benefits-title" class="font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
+          {content.benefits.title}
+        </h2>
+        <p class="mt-3 text-neutral-700">{content.benefits.intro}</p>
+      </div>
+
+      <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {content.benefits.items.map((b) => (
+          <div class="card">
+            <div class="w-12 h-12 rounded-xl bg-accent-100 text-accent-700 flex items-center justify-center mb-4">
+              <Icon name={b.icon} size={24} />
+            </div>
+            <h3 class="font-display font-bold text-lg text-neutral-900">{b.title}</h3>
+            <p class="mt-2 text-sm text-neutral-600 leading-relaxed">{b.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-neutral-50" aria-labelledby="types-title">
+    <div class="container-page">
+      <div class="max-w-3xl">
+        <span class="badge bg-accent-100 text-accent-800">{content.types.badge}</span>
+        <h2 id="types-title" class="mt-3 font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
+          {content.types.title}
+        </h2>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {content.types.items.map((pac) => (
+          <article class="card flex flex-col h-full" id={pac.slug}>
+            <div class="flex items-start justify-between gap-3">
+              <h3 class="font-display font-extrabold text-xl text-neutral-900">{pac.name}</h3>
+              <span class="badge bg-accent-100 text-accent-800 shrink-0">
+                {content.types.scopLabel} {pac.scop}
+              </span>
+            </div>
+            <p class="mt-3 text-sm text-neutral-700 leading-relaxed">{pac.description}</p>
+
+            <ul class="mt-5 space-y-2 flex-1">
+              {pac.pros.map((p) => (
+                <li class="flex items-start gap-2 text-sm">
+                  <Icon name="check" size={16} class="text-accent-600 mt-0.5 shrink-0" strokeWidth={3} />
+                  <span class="text-neutral-700">{p}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div class="mt-5 pt-5 border-t border-neutral-100">
+              <p class="text-xs text-neutral-500 font-semibold uppercase">{content.types.budgetLabel}</p>
+              <p class="mt-1 font-display font-bold text-accent-700">{pac.price}</p>
+              <p class="text-xs text-neutral-500 mt-1">
+                {"budgetNote" in pac ? pac.budgetNote : content.types.budgetNote}
+              </p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white" aria-labelledby="how-title">
+    <div class="container-page">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="badge bg-accent-100 text-accent-800">{content.howItWorks.badge}</span>
+          <h2 id="how-title" class="mt-3 font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
+            {content.howItWorks.title}
+          </h2>
+          <div class="prose-custom mt-5 text-neutral-700">
+            {content.howItWorks.paragraphs.map((p) => <p>{p}</p>)}
+            <ol class="mt-4 space-y-3 list-decimal pl-5">
+              {content.howItWorks.steps.map((step) => (
+                <li><strong>{step.strong}</strong>{step.text}</li>
+              ))}
+            </ol>
+            <p>
+              {content.howItWorks.closingBefore}<strong>{content.howItWorks.closingStrong}</strong>{content.howItWorks.closingEnd}
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <Picture
+            src="/assets/pompeAChaleur/pompeChaleur.JPG"
+            alt={content.howItWorks.imageAlt}
+            width={1280}
+            height={960}
+            class="rounded-3xl shadow-xl border border-neutral-100 w-full aspect-[4/3] object-cover"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-gradient-to-br from-accent-50 to-white" aria-labelledby="calc-pac-title">
+    <div class="container-page">
+      <div class="max-w-3xl mb-8">
+        <h2 id="calc-pac-title" class="font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
+          {content.calculator.title}
+        </h2>
+        <p class="mt-3 text-neutral-700">{content.calculator.intro}</p>
+      </div>
+      <SavingsCalculator locale={locale} client:visible />
+    </div>
+  </section>
+
+  <Gallery
+    id="realisations-pac"
+    title={content.gallery.title}
+    subtitle={content.gallery.subtitle}
+    items={realisationsPAC}
+  />
+
+  <CtaBanner locale={locale} title={content.cta.title} subtitle={content.cta.subtitle} />
+
+  <section class="section bg-white" aria-labelledby="zones-title">
+    <div class="container-page">
+      <div class="max-w-3xl">
+        <span class="badge bg-accent-100 text-accent-800">{content.zones.badge}</span>
+        <h2 id="zones-title" class="mt-3 font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
+          {content.zones.title}
+        </h2>
+        <p class="mt-3 text-neutral-700">{content.zones.intro}</p>
+      </div>
+
+      <ul class="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+        {seoCities.map((city) => (
+          <li class="flex items-center gap-2 p-3 rounded-xl bg-neutral-50 border border-neutral-200 text-sm">
+            <Icon name="map-pin" size={14} class="text-accent-600 shrink-0" />
+            <span class="text-neutral-700 font-medium">{content.zones.cityPrefix} {city}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <PartnersCertificationsSections locale={locale} />
+
+  <section class="section bg-neutral-50" aria-labelledby="faq-pac-title">
+    <div class="container-page">
+      <div class="max-w-3xl">
+        <span class="badge bg-accent-100 text-accent-800">{content.faq.badge}</span>
+        <h2 id="faq-pac-title" class="mt-3 font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
+          {content.faq.title}
+        </h2>
+        <p class="mt-3 text-neutral-700">{content.faq.intro}</p>
+      </div>
+
+      <div class="mt-8 max-w-4xl">
+        <Faq items={content.faq.items} idPrefix="pac-faq" locale={locale} client:visible />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,322 @@
+---
+import type { Locale } from "@i18n";
+import { getHomeContent, pathFor, type RouteId } from "@i18n";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import CtaBanner from "@components/CtaBanner.astro";
+import Icon from "@components/Icon.astro";
+import Picture from "@components/Picture.astro";
+import LogoCloud from "@components/LogoCloud.astro";
+import PartnersCertificationsSections from "@components/PartnersCertificationsSections.astro";
+import GoogleReviews from "@components/GoogleReviews.astro";
+import StructuredData from "@components/StructuredData.astro";
+import Faq from "@components/Faq.tsx";
+import { site } from "@data/site";
+import { heroes, clientsReferences } from "@data/assets";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const content = getHomeContent(locale);
+const canonicalPath = pathFor("home", locale);
+
+const SERVICE_SLUG_TO_ROUTE: Record<string, RouteId> = {
+  "pompe-a-chaleur": "heatPump",
+  "heat-pump": "heatPump",
+  climatisation: "airConditioning",
+  "air-conditioning": "airConditioning",
+  chauffage: "heating",
+  heating: "heating",
+  plomberie: "plumbing",
+  plumbing: "plumbing",
+};
+
+function serviceHref(slug: string) {
+  const routeId = SERVICE_SLUG_TO_ROUTE[slug];
+  return routeId ? pathFor(routeId, locale) : pathFor("home", locale);
+}
+---
+
+<BaseLayout
+  locale={locale}
+  title={content.seo.title}
+  description={content.seo.description}
+  keywords={[...content.seo.keywords]}
+  canonicalPath={canonicalPath}
+>
+  <StructuredData type="BreadcrumbList" breadcrumbs={content.breadcrumbs} slot="head" />
+  <StructuredData type="FAQPage" faqs={content.faq.items} slot="head" />
+
+  <section class="relative overflow-hidden bg-[#fafafa]">
+    <div class="container-page pb-0 lg:pb-0">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center">
+        <div class="order-2 lg:order-1 pt-2 md:pt-4 lg:pt-0 pb-10 md:pb-16 lg:pb-20">
+          <p class="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:text-sm font-semibold uppercase tracking-wider text-accent-700">
+            {content.hero.tagline.map((word, i) => (
+              <>
+                {i > 0 && <span class="text-accent-500" aria-hidden="true">•</span>}
+                <span>{word}</span>
+              </>
+            ))}
+          </p>
+          <h1 class="mt-4 font-display font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] leading-[1.1] text-neutral-900">
+            {content.hero.titleLine1}<br />{content.hero.titleLine2}<br />
+            <span class="text-accent-600">{content.hero.titleHighlight(site.stats.yearsExperience)}</span>
+          </h1>
+          <p class="mt-5 text-base md:text-lg text-neutral-700 leading-relaxed max-w-xl">
+            {content.hero.descriptionBefore(site.name)}<strong>{content.hero.descriptionStrong1}</strong>{content.hero.descriptionMiddle}<strong>{content.hero.descriptionStrong2}</strong>{content.hero.descriptionAnd}<strong>{content.hero.descriptionStrong3}</strong>{content.hero.descriptionEnd}
+          </p>
+
+          <div class="mt-7 flex flex-col sm:flex-row gap-3">
+            <a href={pathFor("contact", locale)} class="btn btn-accent hidden sm:inline-flex">
+              <Icon name="mail" size={18} />
+              {content.hero.ctaQuote}
+            </a>
+            <a href="#services" class="btn btn-outline-accent">
+              {content.hero.ctaServices}
+              <Icon name="arrow-right" size={18} />
+            </a>
+          </div>
+        </div>
+
+        <div class="order-1 lg:order-2">
+          <Picture
+            src={heroes.pac.src}
+            alt={heroes.pac.alt}
+            width={heroes.pac.width}
+            height={heroes.pac.height}
+            class="block w-full h-auto max-w-md mx-auto lg:max-w-none"
+            loading="eager"
+            fetchpriority="high"
+            decoding="sync"
+            sizes="(min-width: 1024px) 50vw, (min-width: 640px) 28rem, 100vw"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white border-b border-neutral-100" aria-labelledby="trust-title">
+    <div class="container-page py-8 md:py-10">
+      <h2 id="trust-title" class="sr-only">{content.trust.srTitle}</h2>
+      <ul class="grid grid-cols-2 lg:grid-cols-4 gap-y-6 gap-x-4 lg:gap-0 lg:divide-x lg:divide-neutral-200">
+        {content.trust.items.map((item) => (
+          <li class="flex items-center gap-3 lg:px-6 lg:justify-center">
+            <img
+              src={item.icon}
+              alt=""
+              width="64"
+              height="64"
+              class="w-14 h-14 sm:w-16 sm:h-16 shrink-0"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="leading-tight">
+              <span class="block font-semibold text-neutral-900 text-sm sm:text-base">
+                {typeof item.title === "function" ? item.title(site.stats.yearsExperience) : item.title}
+              </span>
+              <span class="block text-xs sm:text-sm text-neutral-600">{item.text}</span>
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="services" class="section bg-neutral-50 scroll-mt-24" aria-labelledby="services-title">
+    <div class="container-page">
+      <div class="max-w-3xl text-center mx-auto">
+        <p class="flex flex-wrap justify-center items-center gap-x-2 gap-y-1 text-xs sm:text-sm font-semibold uppercase tracking-wider text-accent-700">
+          {content.services.tagline.map((word, i) => (
+            <>
+              {i > 0 && <span class="text-accent-500" aria-hidden="true">•</span>}
+              <span>{word}</span>
+            </>
+          ))}
+        </p>
+        <h2 id="services-title" class="mt-3 font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-neutral-900">
+          {content.services.title}<span class="text-accent-600">{content.services.titleHighlight}</span>{content.services.titleEnd}
+        </h2>
+      </div>
+
+      <div class="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
+        {content.services.cards.map((service) => (
+          <a href={serviceHref(service.slug)} class="card group flex flex-col items-center text-center">
+            <img
+              src={service.iconUrl}
+              alt=""
+              width="96"
+              height="96"
+              class="w-20 h-20 sm:w-24 sm:h-24 mb-3"
+              loading="lazy"
+              decoding="async"
+            />
+            <h3 class="font-display font-bold text-base sm:text-lg text-neutral-900">
+              {service.title}
+            </h3>
+            <p class="mt-1 text-xs sm:text-sm text-neutral-600">{service.short}</p>
+          </a>
+        ))}
+      </div>
+
+      <ul class="mt-12 grid grid-cols-2 gap-3 sm:gap-6 max-w-4xl mx-auto">
+        {content.services.advantages.map((adv, index) => (
+          <li
+            class:list={[
+              "flex items-center gap-2.5 sm:gap-3 min-w-0",
+              index === 0 ? "justify-self-start" : "justify-self-end ml-auto sm:ml-0 sm:border-l sm:border-neutral-200 sm:pl-6",
+            ]}
+          >
+            <span class="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-accent-500 text-white shrink-0 shadow-sm">
+              <Icon name={adv.icon} size={20} />
+            </span>
+            <span class="leading-tight min-w-0">
+              <span class="block font-semibold text-neutral-900 text-xs sm:text-sm md:text-base">{adv.title}</span>
+              <span class="block text-[11px] sm:text-xs md:text-sm text-neutral-600">{adv.text}</span>
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section bg-neutral-900 text-white" aria-labelledby="why-title">
+    <div class="container-page">
+      <div class="max-w-3xl">
+        <span class="badge bg-white/10 text-accent-200">{content.whyUs.badge}</span>
+        <h2 id="why-title" class="mt-3 font-display text-3xl md:text-4xl font-extrabold text-white">
+          {content.whyUs.title}
+        </h2>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+        {content.whyUs.cards.map((card) => (
+          <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+            <div class="w-12 h-12 rounded-xl bg-accent-500/20 text-accent-300 flex items-center justify-center mb-4">
+              <Icon name={card.icon} size={24} />
+            </div>
+            <h3 class="font-display font-bold text-lg text-white">{card.title}</h3>
+            <p class="mt-2 text-sm text-neutral-300 leading-relaxed">{card.text}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {content.whyUs.certifications.map((c) => (
+          <div class="rounded-xl bg-white/5 border border-white/10 p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <Icon name="check" size={18} class="text-accent-300" strokeWidth={3} />
+              <p class="font-bold text-white text-sm">{c.name}</p>
+            </div>
+            <p class="text-xs text-neutral-400 leading-relaxed">{c.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-neutral-50" aria-labelledby="process-title">
+    <div class="container-page">
+      <div class="max-w-3xl">
+        <span class="badge bg-accent-100 text-accent-800">{content.process.badge}</span>
+        <h2 id="process-title" class="mt-3 font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
+          {content.process.title}
+        </h2>
+      </div>
+
+      <ol class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+        {content.process.steps.map((step) => (
+          <li class="card relative">
+            <div class="absolute -top-4 left-6 flex items-center justify-center w-10 h-10 rounded-full bg-accent-600 text-white font-display font-extrabold text-lg shadow-md">
+              {step.n}
+            </div>
+            <h3 class="mt-3 font-display font-bold text-lg">{step.title}</h3>
+            <p class="mt-2 text-sm text-neutral-600 leading-relaxed">{step.description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section bg-white" aria-labelledby="team-title">
+    <div class="container-page">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="badge bg-accent-100 text-accent-800">{content.team.badge}</span>
+          <h2 id="team-title" class="mt-3 font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
+            {content.team.title}
+          </h2>
+          <p class="mt-4 text-neutral-700 leading-relaxed">
+            {content.team.description(site.stats.yearsExperience)}
+          </p>
+          <ul class="mt-6 space-y-3">
+            {content.team.bullets.map((bullet) => {
+              const strongText =
+                typeof bullet.strong === "function"
+                  ? bullet.strong(
+                      bullet.rest.includes("installations")
+                        ? site.stats.installations
+                        : site.stats.clientsPerYear
+                    )
+                  : bullet.strong;
+              return (
+                <li class="flex items-start gap-3">
+                  <span class="flex items-center justify-center w-7 h-7 rounded-full bg-accent-100 text-accent-700 shrink-0">
+                    <Icon name="check" size={16} strokeWidth={3} />
+                  </span>
+                  <span class="text-neutral-700">
+                    <strong>{strongText}</strong>{bullet.rest}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+          <div class="mt-8 flex flex-col sm:flex-row gap-3">
+            <a href={pathFor("contact", locale)} class="btn btn-accent"><Icon name="mail" size={18} /> {content.team.ctaMeet}</a>
+            <a href={`tel:${site.phoneRaw}`} class="btn btn-outline-accent"><Icon name="phone" size={18} /> {site.phone}</a>
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <Picture
+            src={heroes.team.src}
+            alt={heroes.team.alt}
+            width={heroes.team.width}
+            height={heroes.team.height}
+            class="rounded-3xl shadow-xl border border-neutral-100 w-full h-auto max-w-md lg:max-w-none"
+            sizes="(min-width: 1024px) 50vw, (min-width: 640px) 28rem, 100vw"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner locale={locale} />
+
+  <PartnersCertificationsSections locale={locale} />
+
+  <LogoCloud
+    title={content.clients.title}
+    subtitle={content.clients.subtitle}
+    items={clientsReferences}
+    variant="clients"
+  />
+
+  <GoogleReviews locale={locale} />
+
+  <section class="section bg-white" aria-labelledby="faq-title">
+    <div class="container-page">
+      <div class="max-w-3xl">
+        <span class="badge bg-accent-100 text-accent-800">{content.faq.badge}</span>
+        <h2 id="faq-title" class="mt-3 font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
+          {content.faq.title}
+        </h2>
+        <p class="mt-3 text-neutral-700">{content.faq.intro}</p>
+      </div>
+
+      <div class="mt-8 max-w-4xl">
+        <Faq items={content.faq.items} locale={locale} client:visible />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

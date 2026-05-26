@@ -69,17 +69,17 @@
   }
 
   a {
-    color: var(--color-primary-700);
+    color: var(--color-accent-700);
     text-decoration: none;
     transition: color 0.2s ease;
   }
 
   a:hover {
-    color: var(--color-primary-900);
+    color: var(--color-accent-900);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-primary-600);
+    outline: 2px solid var(--color-accent-600);
     outline-offset: 2px;
     border-radius: 4px;
   }
@@ -133,6 +133,26 @@
     color: white;
   }
 
+  /* CTA avis Google — style plat type bouton Google */
+  .btn-google-review {
+    background-color: #1a73e8;
+    color: #fff;
+    border-radius: 0;
+    box-shadow: none;
+    font-weight: 500;
+    padding: 0.625rem 1.25rem;
+  }
+  .btn-google-review:hover {
+    background-color: #1557b0;
+    color: #fff;
+    transform: none;
+    box-shadow: none;
+  }
+  .btn-google-review:focus-visible {
+    outline: 2px solid #1a73e8;
+    outline-offset: 2px;
+  }
+
   .btn-accent {
     background: linear-gradient(135deg, var(--color-accent-500), var(--color-accent-700));
     color: white;
@@ -154,6 +174,17 @@
     background: var(--color-primary-50);
   }
 
+  .btn-outline-accent {
+    background: white;
+    color: var(--color-accent-700);
+    border: 2px solid var(--color-accent-300);
+  }
+  .btn-outline-accent:hover {
+    border-color: var(--color-accent-600);
+    background: var(--color-accent-50);
+    color: var(--color-accent-800);
+  }
+
   .card {
     background: white;
     border: 1px solid var(--color-neutral-200);
@@ -164,7 +195,7 @@
   .card:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-    border-color: var(--color-primary-200);
+    border-color: var(--color-accent-200);
   }
 
   .badge {
