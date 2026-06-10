@@ -18,7 +18,7 @@ const srcPath = join(root, "src", "data", "google-reviews.json");
 
 const TEXT_QUERY =
   process.env.GOOGLE_PLACE_TEXT_QUERY?.trim() ||
-  "HFE Énergie Hecker Frères 44 Rue Jean sans peur 59800 Lille";
+  "Hecker & Frères Énergie (HFE) 44 Rue Jean sans peur 59800 Lille";
 
 function loadEnv() {
   const envPath = join(root, ".env");

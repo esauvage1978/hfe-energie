@@ -4,7 +4,7 @@
     "internal": "contact-notification-mailjet.mjml",
     "visitor": "contact-confirmation-visiteur-mailjet.mjml"
   },
-  "googleReviewUrl": "https://g.page/r/CawB00LcHY7jEAE/review",
+  "googleReviewUrl": "https://www.google.com/maps?q=HFE+Pompe+%C3%A0+Chaleur+-+Climatisation,+71+Rue+du+G%C3%A9n%C3%A9ral+de+Gaulle,+59110+La+Madeleine&ftid=0x90e0797ea958d91:0x5f31aec968c997a5",
   "fields": {
     "client_type": {
       "formField": "client_type",
@@ -14,7 +14,7 @@
     },
     "client_type_label": {
       "formField": "client_type",
-      "label": "Profil client",
+      "label": "Vous êtes",
       "required": true,
       "labels": {
         "particulier": "Particulier",
@@ -41,7 +41,7 @@
       "formField": "phone",
       "label": "Téléphone (format tel: pour lien cliquable)",
       "required": false,
-      "transform": "E.164 ou chiffres uniquement (+33767341263)",
+      "transform": "E.164 ou chiffres uniquement (+33767341253)",
       "fallback": ""
     },
     "postal": {
@@ -80,7 +80,7 @@
     },
     "message": {
       "formField": "message",
-      "label": "Description du projet",
+      "label": "Votre projet",
       "required": true
     },
     "source": {

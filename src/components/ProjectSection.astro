@@ -1,0 +1,156 @@
+---
+import type { Locale } from "@i18n";
+import { getProjectsUi } from "@i18n/content/projects-shared";
+import type { Project } from "@i18n/content/projects-shared";
+import Icon from "./Icon.astro";
+import ProjectBeforeAfter from "./ProjectBeforeAfter.tsx";
+import ProjectGallery from "./ProjectGallery.tsx";
+import ProjectInstallCta from "./ProjectInstallCta.astro";
+
+interface Props {
+  locale: Locale;
+  project: Project;
+  index: number;
+  projectLabel: string;
+  eagerGallery?: boolean;
+  showInstallCta?: boolean;
+}
+
+const { locale, project, index, projectLabel, eagerGallery = false, showInstallCta = true } = Astro.props;
+const ui = getProjectsUi(locale);
+---
+
+<section
+  id={project.slug}
+  class="section-project bg-neutral-50"
+  aria-labelledby={`project-${index}-title`}
+>
+  <div class="container-page">
+    <div class="flex items-center gap-3 mb-8">
+      <span class="flex items-center justify-center w-10 h-10 rounded-full bg-accent-600 text-white font-display font-extrabold text-lg shadow-md">
+        {index + 1}
+      </span>
+      <span class="text-sm font-semibold uppercase tracking-wider text-accent-700">
+        {projectLabel} {index + 1}
+      </span>
+    </div>
+
+    <h2
+      id={`project-${index}-title`}
+      class="font-display font-extrabold text-2xl md:text-3xl text-neutral-900 leading-tight max-w-4xl"
+    >
+      {project.title}
+    </h2>
+    <p class="mt-2 text-base text-accent-700 font-medium max-w-3xl">{project.subtitle}</p>
+
+    <!-- Le chantier en chiffres -->
+    <div class="mt-10">
+      <h3 class="font-display font-extrabold text-sm uppercase tracking-wider text-accent-800 border-b-2 border-accent-200 pb-2 inline-block">
+        {ui.statsTitle}
+      </h3>
+      <div class="mt-5 grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {project.stats.map((stat) => (
+          <div class="rounded-xl bg-white border border-neutral-200 p-4 md:p-5 shadow-sm">
+            <div class="w-10 h-10 rounded-lg bg-accent-50 text-accent-600 flex items-center justify-center mb-3">
+              <Icon name={stat.icon} size={22} />
+            </div>
+            <p class="font-display font-extrabold text-2xl md:text-3xl text-neutral-900">{stat.value}</p>
+            <p class="mt-1 text-xs md:text-sm text-neutral-500 leading-snug">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Avant / Après + Le résultat -->
+    <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <ProjectBeforeAfter
+        client:visible
+        title={project.beforeAfter.before ? ui.beforeAfterTitle : ui.resultsTitle}
+        before={project.beforeAfter.before && {
+          caption: project.beforeAfter.before.caption,
+          badge: ui.beforeLabel,
+          image: project.beforeAfter.before.image,
+        }}
+        after={project.beforeAfter.after && {
+          caption: project.beforeAfter.after.caption,
+          badge: project.beforeAfter.before ? ui.afterLabel : "",
+          image: project.beforeAfter.after.image,
+        }}
+        afters={project.beforeAfter.afters?.map((side) => ({
+          caption: side.caption,
+          badge: ui.afterLabel,
+          image: side.image,
+        }))}
+        closeLabel={ui.lightboxClose}
+        prevLabel={ui.lightboxPrev}
+        nextLabel={ui.lightboxNext}
+      />
+
+      <div class="rounded-2xl bg-white border border-neutral-200 p-5 md:p-6 shadow-sm">
+        <h3 class="font-display font-extrabold text-sm uppercase tracking-wider text-accent-800 mb-4">
+          {ui.resultsTitle}
+        </h3>
+        <ul class="space-y-4">
+          {project.results.map((r) => (
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 rounded-full bg-accent-100 text-accent-600 flex items-center justify-center shrink-0 mt-0.5">
+                <Icon name="check" size={14} strokeWidth={3} />
+              </span>
+              <div>
+                <p class="font-semibold text-neutral-900 text-sm md:text-base">{r.title}</p>
+                <p class="mt-0.5 text-sm text-neutral-600 leading-relaxed">{r.description}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- À propos + galerie -->
+    <div class="mt-8 rounded-2xl bg-white border border-neutral-200 p-5 md:p-8 shadow-sm">
+      <h3 class="font-display font-extrabold text-sm uppercase tracking-wider text-accent-800 mb-5">
+        {ui.aboutTitle}
+      </h3>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+        <div>
+          <div class="space-y-4 text-neutral-700 leading-relaxed">
+            {project.description.map((p) => <p>{p}</p>)}
+          </div>
+
+          {project.brands && project.brands.length > 0 && (
+            <div class="mt-6 flex flex-col gap-3">
+              <div class="flex flex-wrap items-center gap-3">
+                {project.brands.map((brand) => (
+                  <div class="shrink-0 rounded-xl border border-neutral-200 bg-neutral-50 px-5 py-3">
+                    <img
+                      src={brand.logo}
+                      alt={brand.name}
+                      width={140}
+                      height={48}
+                      loading="lazy"
+                      class="h-10 w-auto object-contain"
+                    />
+                  </div>
+                ))}
+              </div>
+              <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+                {project.brands.flatMap((brand) => brand.warranties).map((warranty) => (
+                  <div class="shrink-0 rounded-xl border-2 border-accent-200 bg-accent-50 px-3 py-2.5 sm:px-4 sm:py-3">
+                    <p class="text-[10px] sm:text-xs font-bold uppercase tracking-wide text-accent-800 whitespace-nowrap">{warranty}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div>
+          <p class="text-sm font-semibold text-neutral-500 mb-3">{ui.galleryTitle}</p>
+          <ProjectGallery images={[...project.images]} eager={eagerGallery} client:visible />
+        </div>
+      </div>
+    </div>
+
+    {showInstallCta && <ProjectInstallCta locale={locale} />}
+  </div>
+</section>

@@ -1,4 +1,4 @@
-# HFE Énergie - Site vitrine
+# Hecker & Frères Énergie (HFE) - Site vitrine
 
 Site vitrine officiel de **Hecker & Frères Énergie (HFE)**, entreprise artisanale spécialisée dans les **énergies renouvelables à Lille et métropole** : pompes à chaleur, climatisation réversible, chauffage et plomberie.
 
@@ -136,7 +136,7 @@ npm run preview
 | **Widget tiers** | `src/data/google-reviews.config.ts` → `mode: "widget"` + URL iframe (SociableKIT, Elfsight…) |
 | **API Google** | `.env` + `npm run fetch-google-reviews` (crédit Cloud gratuit possible) |
 
-Modèle JSON : `src/data/google-reviews.example.json`. Le bouton **« Laisser un avis »** : `https://g.page/r/CawB00LcHY7jEAE/review`.
+Modèle JSON : `src/data/google-reviews.example.json`. Fiche Google Maps : `https://www.google.com/maps?q=HFE+Pompe+%C3%A0+Chaleur+-+Climatisation,+71+Rue+du+G%C3%A9n%C3%A9ral+de+Gaulle,+59110+La+Madeleine&ftid=0x90e0797ea958d91:0x5f31aec968c997a5`.
 
 ---
 

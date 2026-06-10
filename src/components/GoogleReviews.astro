@@ -4,7 +4,7 @@ import {
   googleReviews,
   formatReviewDate,
   getSortedReviews,
-  GOOGLE_REVIEW_URL,
+  GOOGLE_MAPS_URL,
 } from "@data/google";
 import { googleReviewsConfig } from "@data/google-reviews.config";
 import { getHomeContent } from "@i18n";
@@ -29,7 +29,7 @@ function renderStars(rating: number) {
 }
 
 const starsOutOf = locale === "en" ? "out of 5" : "sur 5";
-const mapsUri = googleReviews.googleMapsUri || GOOGLE_REVIEW_URL;
+const mapsUri = googleReviews.googleMapsUri || GOOGLE_MAPS_URL;
 ---
 
 <section
@@ -53,7 +53,6 @@ const mapsUri = googleReviews.googleMapsUri || GOOGLE_REVIEW_URL;
       <div class="flex flex-col items-start gap-3 sm:items-end lg:items-end shrink-0">
         <div
           class="inline-flex items-center gap-3 rounded-2xl bg-white px-5 py-4 shadow-sm border border-neutral-200"
-          aria-label={t.ratingAria(googleReviews.rating, googleReviews.userRatingCount)}
         >
           <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
             <path
@@ -150,6 +149,7 @@ const mapsUri = googleReviews.googleMapsUri || GOOGLE_REVIEW_URL;
                     </div>
                     <div
                       class="flex shrink-0 gap-0.5"
+                      role="img"
                       aria-label={`${review.rating} ${starsOutOf}`}
                     >
                       {stars.map((filled) => (

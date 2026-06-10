@@ -1,10 +1,10 @@
 /**
- * Configuration centrale du site HFE Énergie.
+ * Configuration centrale du site Hecker & Frères Énergie (HFE).
  * Toutes les informations métier réutilisées dans plusieurs pages
  * sont centralisées ici pour faciliter la maintenance.
  */
 export const site = {
-  name: "HFE Énergie",
+  name: "Hecker & Frères Énergie (HFE)",
   legalName: "Hecker & Frères Énergie",
   baseUrl: "https://hfe-energie.fr",
   defaultLocale: "fr-FR",
@@ -13,8 +13,8 @@ export const site = {
   longDescription:
     "Hecker & Frères Énergie (HFE) est une entreprise artisanale spécialisée dans les énergies renouvelables à Lille et son agglomération. Installation, maintenance et dépannage de pompes à chaleur air-eau, climatisation réversible, chaudières et plomberie. Certifiée RGE QualiPAC.",
   email: "contact@hfe-energie.fr",
-  phone: "07 67 34 12 63",
-  phoneRaw: "+33767341263",
+  phone: "07 67 34 12 53",
+  phoneRaw: "+33767341253",
   /** Ligne dédiée plomberie / dépannage sanitaire uniquement */
   plumbingPhone: "06 13 46 67 90",
   plumbingPhoneRaw: "+33613466790",
@@ -61,10 +61,14 @@ export const site = {
     clientsPerYear: 600,
     yearsExperience: 15,
   },
+  /** Rayon d'intervention (km) autour du siège — voir /zone-intervention */
+  serviceRadiusKm: 50,
   socials: {
     facebook: "https://www.facebook.com/hfeenergie",
-    instagram: "",
-    google: "https://g.page/r/CawB00LcHY7jEAE/review",
+    instagram: "https://instagram.com/hecker_freres_energie",
+    linkedin: "https://www.linkedin.com/in/hecker-fr%C3%A8res-%C3%A9nergie-a95356254/",
+    google:
+      "https://www.google.com/maps?q=HFE+Pompe+%C3%A0+Chaleur+-+Climatisation,+71+Rue+du+G%C3%A9n%C3%A9ral+de+Gaulle,+59110+La+Madeleine&ftid=0x90e0797ea958d91:0x5f31aec968c997a5",
   },
 } as const;
 
@@ -107,6 +111,11 @@ export const navigation: NavItem[] = [
     description: "Solutions résidentielles clé en main",
   },
   {
+    label: "Copropriété",
+    href: "/copropriete",
+    description: "Chauffage collectif et aides MaPrimeRénov' Copro",
+  },
+  {
     label: "Professionnels",
     href: "/professionnels",
     description: "Solutions tertiaires et industrielles",
@@ -114,7 +123,7 @@ export const navigation: NavItem[] = [
   {
     label: "Aides & Financements",
     href: "/aides-financement",
-    description: "MaPrimeRénov', CEE, ANaH",
+    description: "MaPrimeRénov', CEE, ANAH",
   },
   { label: "Contact", href: "/contact" },
 ];
@@ -143,7 +152,7 @@ export const services = [
     title: "Chauffage",
     short: "Toutes énergies",
     description:
-      "Remplacement de chaudières, installation de planchers chauffants, radiateurs et chauffe-eau thermodynamiques.",
+      "Remplacement de chaudières, planchers chauffants, radiateurs et têtes thermostatiques connectées.",
     icon: "radiator",
     iconUrl: "/assets/icons-services/chauffage.png",
   },
@@ -175,8 +184,9 @@ export const certifications = [
       "Garantie décennale et responsabilité civile professionnelle pour tous nos chantiers.",
   },
   {
-    name: "Partenaire Panasonic",
+    name: "Pro-partenaire Panasonic",
     description:
-      "Partenaire officiel des solutions Panasonic, gage de qualité et de fiabilité.",
+      "Partenaire ProClub Panasonic : garanties optimisées, boîtier cloud et télémaintenance Aquarea.",
+    partnerPage: true,
   },
 ] as const;

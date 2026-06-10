@@ -6,12 +6,21 @@ export type RouteId =
   | "home"
   | "heatPump"
   | "airConditioning"
+  | "climatisationMonoSplit"
   | "heating"
   | "plumbing"
   | "residential"
+  | "coOwnership"
   | "commercial"
+  | "projects"
+  | "projectsPacAirEau"
+  | "projectsClim"
+  | "projectsClimPro"
+  | "projectsPlancherChauffant"
   | "grants"
   | "contact"
+  | "serviceArea"
+  | "panasonicPartner"
   | "legalNotice"
   | "privacy"
   | "cookies"
@@ -24,12 +33,21 @@ export const routes: Record<RouteId, Record<Locale, string>> = {
   home: { fr: "/", en: "/en" },
   heatPump: { fr: "/pompe-a-chaleur", en: "/en/heat-pump" },
   airConditioning: { fr: "/climatisation", en: "/en/air-conditioning" },
+  climatisationMonoSplit: { fr: "/realisations/climatisation/mono-split", en: "/en/projects/air-conditioning/mono-split" },
   heating: { fr: "/chauffage", en: "/en/heating" },
   plumbing: { fr: "/plomberie", en: "/en/plumbing" },
   residential: { fr: "/particuliers", en: "/en/residential" },
+  coOwnership: { fr: "/copropriete", en: "/en/co-ownership" },
+  projects: { fr: "/realisations", en: "/en/projects" },
+  projectsPacAirEau: { fr: "/realisations/pompe-a-chaleur-air-eau", en: "/en/projects/air-to-water-heat-pump" },
+  projectsClim: { fr: "/realisations/climatisation/multi-split", en: "/en/projects/air-conditioning/multi-split" },
+  projectsClimPro: { fr: "/realisations/climatisation-professionnelle", en: "/en/projects/commercial-air-conditioning" },
+  projectsPlancherChauffant: { fr: "/realisations/plancher-chauffant", en: "/en/projects/underfloor-heating" },
   commercial: { fr: "/professionnels", en: "/en/commercial" },
   grants: { fr: "/aides-financement", en: "/en/grants-and-financing" },
   contact: { fr: "/contact", en: "/en/contact" },
+  serviceArea: { fr: "/zone-intervention", en: "/en/service-area" },
+  panasonicPartner: { fr: "/partenaire-panasonic", en: "/en/panasonic-partner" },
   legalNotice: { fr: "/mentions-legales", en: "/en/legal-notice" },
   privacy: { fr: "/politique-de-confidentialite", en: "/en/privacy-policy" },
   cookies: { fr: "/politique-des-cookies", en: "/en/cookie-policy" },

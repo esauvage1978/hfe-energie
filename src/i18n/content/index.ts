@@ -4,7 +4,12 @@ export { getAirConditioningContent, type AirConditioningContent } from "./air-co
 export { getHeatingContent, type HeatingContent } from "./heating";
 export { getPlumbingContent, type PlumbingContent } from "./plumbing";
 export { getResidentialContent, type ResidentialContent } from "./residential";
+export { getCoOwnershipContent, type CoOwnershipContent } from "./co-ownership";
+export { getProjectsPacAirEauContent, type ProjectsPacAirEauContent } from "./projects-pac-air-eau";
 export { getCommercialContent, type CommercialContent } from "./commercial";
 export { getGrantsContent, type GrantsContent } from "./grants";
 export { getContactContent, type ContactContent } from "./contact";
+export { getServiceAreaContent, type ServiceAreaContent } from "./service-area";
+export { getPanasonicPartnerContent, type PanasonicPartnerContent } from "./panasonic-partner";
+export { getPanasonicPartnerPromoContent, type PanasonicPartnerPromoVariant } from "./panasonic-partner-promo";
 export { getNotFoundContent, type NotFoundContent } from "./not-found";

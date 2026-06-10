@@ -1,0 +1,48 @@
+---
+export interface Props {
+  items: Array<{ question: string; answer: string }>;
+  idPrefix?: string;
+}
+
+const { items, idPrefix = "faq" } = Astro.props;
+---
+
+<div class="space-y-3">
+  {
+    items.map((item, idx) => {
+      const id = `${idPrefix}-${idx}`;
+      return (
+        <details
+          name={idPrefix}
+          open={idx === 0 || undefined}
+          class="group rounded-2xl border border-neutral-200 bg-white open:border-accent-200 open:shadow-md transition-colors"
+        >
+          <summary
+            id={`${id}-button`}
+            class="flex list-none cursor-pointer items-center justify-between gap-4 px-5 py-4 min-h-[60px] text-left font-display text-base font-semibold text-neutral-900 md:px-6 md:py-5 md:text-lg [&::-webkit-details-marker]:hidden"
+          >
+            <span>{item.question}</span>
+            <span
+              class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent-50 text-accent-700 transition-transform group-open:rotate-45"
+              aria-hidden="true"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+            </span>
+          </summary>
+          <div
+            id={`${id}-panel`}
+            role="region"
+            aria-labelledby={`${id}-button`}
+            class="px-5 pb-5 text-[15px] leading-relaxed text-neutral-700 md:px-6 md:pb-6"
+          >
+            {item.answer.split("\n").map((line, i) => (
+              <p class={i > 0 ? "mt-2" : undefined}>{line}</p>
+            ))}
+          </div>
+        </details>
+      );
+    })
+  }
+</div>

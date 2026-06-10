@@ -1,0 +1,235 @@
+---
+import type { Locale } from "@i18n";
+import { getPanasonicPartnerContent, pathFor } from "@i18n";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Breadcrumbs from "@components/Breadcrumbs.astro";
+import CtaBanner from "@components/CtaBanner.astro";
+import Faq from "@components/Faq.astro";
+import Icon from "@components/Icon.astro";
+import Picture from "@components/Picture.astro";
+import StructuredData from "@components/StructuredData.astro";
+import { site } from "@data/site";
+import { partenaires } from "@data/assets";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const content = getPanasonicPartnerContent(locale);
+const canonicalPath = pathFor("panasonicPartner", locale);
+const panasonicLogo = partenaires.find((p) => p.name === "Panasonic")!;
+---
+
+<BaseLayout
+  locale={locale}
+  title={content.seo.title}
+  description={content.seo.description}
+  keywords={[...content.seo.keywords]}
+  canonicalPath={canonicalPath}
+>
+  <StructuredData type="BreadcrumbList" breadcrumbs={content.breadcrumbs} slot="head" />
+  <StructuredData type="FAQPage" faqs={content.faq.items} slot="head" />
+
+  <div class="container-page">
+    <Breadcrumbs items={content.breadcrumbs} />
+  </div>
+
+  <section class="bg-gradient-to-br from-neutral-900 via-neutral-900 to-accent-950 text-white">
+    <div class="container-page py-10 md:py-16">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="badge bg-white/15 text-white border border-white/25">
+            {content.hero.badge}
+          </span>
+          <h1 class="mt-4 font-display font-extrabold text-3xl sm:text-4xl md:text-5xl leading-tight text-white">
+            {content.hero.titleBefore}<span class="text-accent-300">{content.hero.titleHighlight}</span>{content.hero.titleAfter}
+          </h1>
+          <p class="mt-5 text-lg text-neutral-300 leading-relaxed">{content.hero.description}</p>
+          <div class="mt-7 flex flex-col sm:flex-row gap-3">
+            <a href={pathFor("contact", locale)} class="btn btn-accent">
+              <Icon name="mail" size={18} />
+              {content.hero.ctaQuote}
+            </a>
+            <a
+              href={pathFor("heatPump", locale)}
+              class="btn border-2 border-white/40 bg-transparent text-white hover:bg-white/10 hover:border-white/60"
+            >
+              {content.hero.ctaPac}
+              <Icon name="arrow-right" size={18} />
+            </a>
+          </div>
+        </div>
+        <div class="flex justify-center lg:justify-end">
+          <div class="rounded-3xl bg-white p-8 md:p-10 shadow-2xl max-w-sm w-full">
+            <Picture
+              src={panasonicLogo.logo}
+              alt="Panasonic — partenaire Hecker & Frères Énergie (HFE)"
+              width={panasonicLogo.width}
+              height={panasonicLogo.height}
+              class="w-full h-auto max-h-20 object-contain mx-auto"
+              loading="eager"
+              fetchpriority="high"
+            />
+            <p class="mt-6 text-center text-sm font-bold uppercase tracking-wider text-accent-700">
+              ProClub
+            </p>
+            <p class="mt-2 text-center text-neutral-700 text-sm leading-relaxed">
+              {locale === "fr"
+                ? "Installateur agréé pompes à chaleur & climatisation Panasonic"
+                : "Approved Panasonic heat pump & air conditioning installer"}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white" aria-labelledby="intro-title">
+    <div class="container-page max-w-3xl">
+      <h2 id="intro-title" class="font-display text-2xl md:text-3xl font-extrabold text-neutral-900">
+        {content.intro.title}
+      </h2>
+      <div class="mt-5 space-y-4 text-neutral-700 leading-relaxed">
+        {content.intro.paragraphs.map((p) => <p>{p}</p>)}
+      </div>
+      <p class="mt-6">
+        <a
+          href={content.intro.externalUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1 text-sm font-semibold text-accent-700 hover:text-accent-800 underline-offset-2 hover:underline"
+        >
+          {content.intro.externalLabel}
+          <Icon name="arrow-right" size={14} />
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section bg-neutral-50" aria-labelledby="benefits-title">
+    <div class="container-page">
+      <div class="max-w-3xl">
+        <h2 id="benefits-title" class="font-display text-2xl md:text-3xl font-extrabold text-neutral-900">
+          {content.benefits.title}
+        </h2>
+        <p class="mt-3 text-neutral-700">{content.benefits.subtitle}</p>
+      </div>
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {content.benefits.items.map((item) => (
+          <article class="card h-full">
+            <div class="w-12 h-12 rounded-xl bg-accent-100 text-accent-700 flex items-center justify-center mb-4">
+              <Icon name={item.icon} size={24} />
+            </div>
+            <h3 class="font-display font-bold text-lg text-neutral-900">{item.title}</h3>
+            <p class="mt-2 text-sm text-neutral-600 leading-relaxed">{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white" aria-labelledby="cloud-title">
+    <div class="container-page">
+      <div class="max-w-3xl">
+        <span class="badge bg-accent-100 text-accent-800">{content.cloud.badge}</span>
+        <h2 id="cloud-title" class="mt-3 font-display text-2xl md:text-3xl font-extrabold text-neutral-900">
+          {content.cloud.title}
+        </h2>
+        <p class="mt-3 text-neutral-700">{content.cloud.intro}</p>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <article class="rounded-2xl border border-neutral-200 bg-neutral-50 p-6 md:p-8">
+          <h3 class="font-display font-bold text-xl text-neutral-900">{content.cloud.smart.title}</h3>
+          <ul class="mt-4 space-y-3">
+            {content.cloud.smart.points.map((point) => (
+              <li class="flex items-start gap-2 text-sm text-neutral-700">
+                <Icon name="check" size={16} class="text-accent-600 mt-0.5 shrink-0" strokeWidth={3} />
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+        </article>
+        <article class="rounded-2xl border border-accent-200 bg-accent-50/50 p-6 md:p-8">
+          <h3 class="font-display font-bold text-xl text-neutral-900">{content.cloud.service.title}</h3>
+          <ul class="mt-4 space-y-3">
+            {content.cloud.service.points.map((point) => (
+              <li class="flex items-start gap-2 text-sm text-neutral-700">
+                <Icon name="check" size={16} class="text-accent-600 mt-0.5 shrink-0" strokeWidth={3} />
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="mt-5">
+            <a
+              href={content.cloud.service.externalUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1 text-sm font-semibold text-accent-700 hover:text-accent-800 underline-offset-2 hover:underline"
+            >
+              {content.cloud.service.externalLabel}
+              <Icon name="arrow-right" size={14} />
+            </a>
+          </p>
+        </article>
+      </div>
+
+      <p class="mt-6 max-w-3xl text-sm text-neutral-600 leading-relaxed">{content.cloud.note}</p>
+    </div>
+  </section>
+
+  <section class="section bg-neutral-50" aria-labelledby="process-title">
+    <div class="container-page">
+      <h2 id="process-title" class="font-display text-2xl md:text-3xl font-extrabold text-neutral-900 max-w-3xl">
+        {content.process.title}
+      </h2>
+      <ol class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        {content.process.steps.map((step) => (
+          <li class="card relative">
+            <div class="absolute -top-4 left-6 flex items-center justify-center w-10 h-10 rounded-full bg-accent-600 text-white font-display font-extrabold text-lg shadow-md">
+              {step.n}
+            </div>
+            <h3 class="mt-3 font-display font-bold text-lg">{step.title}</h3>
+            <p class="mt-2 text-sm text-neutral-600 leading-relaxed">{step.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section bg-white" aria-labelledby="ranges-title">
+    <div class="container-page">
+      <div class="max-w-3xl">
+        <h2 id="ranges-title" class="font-display text-2xl md:text-3xl font-extrabold text-neutral-900">
+          {content.ranges.title}
+        </h2>
+        <p class="mt-3 text-neutral-700">{content.ranges.intro}</p>
+      </div>
+      <ul class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {content.ranges.items.map((item) => (
+          <li class="rounded-xl border border-neutral-200 bg-neutral-50 px-5 py-4">
+            <p class="font-display font-bold text-neutral-900">{item.name}</p>
+            <p class="mt-1 text-sm text-neutral-600">{item.desc}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section bg-neutral-50" aria-labelledby="faq-panasonic-title">
+    <div class="container-page">
+      <div class="max-w-3xl">
+        <h2 id="faq-panasonic-title" class="font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
+          {content.faq.title}
+        </h2>
+      </div>
+
+      <div class="mt-8 max-w-4xl">
+        <Faq items={content.faq.items} idPrefix="panasonic-faq" />
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner locale={locale} title={content.cta.title} subtitle={content.cta.subtitle} />
+</BaseLayout>

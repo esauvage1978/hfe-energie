@@ -1,0 +1,43 @@
+---
+import type { Locale } from "@i18n";
+import { pathFor } from "@i18n";
+import { getProjectsUi } from "@i18n/content/projects-shared";
+import { site } from "@data/site";
+import Icon from "./Icon.astro";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const ui = getProjectsUi(locale);
+---
+
+<div class="mt-8 rounded-2xl bg-gradient-to-br from-accent-800 via-accent-900 to-accent-950 p-6 md:p-8 text-white shadow-xl overflow-hidden relative">
+  <div class="absolute top-0 right-0 w-48 h-48 bg-accent-500/20 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl pointer-events-none" aria-hidden="true" />
+
+  <div class="relative flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+    <div class="flex items-start gap-4 max-w-xl">
+      <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
+        <Icon name="heat-pump" size={26} class="text-white" />
+      </div>
+      <div>
+        <p class="font-display font-extrabold text-lg md:text-xl text-white uppercase tracking-wide">
+          {ui.installCta.badge}
+        </p>
+        <p class="mt-1 text-sm md:text-base text-accent-100">{ui.installCta.subtitle}</p>
+      </div>
+    </div>
+
+    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
+      <a href={pathFor("contact", locale)} class="btn btn-accent shadow-md">
+        {ui.installCta.quote}
+        <Icon name="arrow-right" size={16} />
+      </a>
+      <a href={`tel:${site.phoneRaw}`} class="inline-flex items-center justify-center gap-2 text-white font-semibold text-sm hover:text-accent-100 transition-colors">
+        <Icon name="phone" size={16} />
+        {site.phone}
+      </a>
+    </div>
+  </div>
+</div>

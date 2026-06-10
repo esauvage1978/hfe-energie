@@ -3,11 +3,9 @@
  * <Picture> sert automatiquement la version optimale (AVIF > WebP > original)
  * en utilisant l'élément <picture> natif.
  *
- * Les fichiers .webp et .avif sont générés par scripts/optimize-images.mjs
- * et placés à côté de l'original.
- *
- * Usage :
- *   <Picture src="/assets/pompeAChaleur/pompeAChaleur.jpg" alt="..." width={800} height={600} />
+ * Variantes générées par scripts/optimize-images.mjs :
+ *   - format : equipe.jpg.webp / equipe.jpg.avif
+ *   - tailles : equipe.jpg-768w.avif (si prop `widths`)
  */
 export interface Props {
   src: string;
@@ -19,6 +17,8 @@ export interface Props {
   decoding?: "sync" | "async" | "auto";
   fetchpriority?: "high" | "low" | "auto";
   sizes?: string;
+  /** Largeurs responsives (px) pour srcset — ex. [480, 768, 1024] */
+  widths?: number[];
 }
 
 const {
@@ -31,22 +31,43 @@ const {
   decoding = "async",
   fetchpriority,
   sizes,
+  widths,
 } = Astro.props;
 
-// Convention : les variantes optimisées conservent l'extension d'origine
-// dans leur nom (ex. equipe.jpg → equipe.jpg.webp / equipe.jpg.avif).
-// Cela évite toute collision quand deux sources partagent le même nom
-// mais une extension différente (equipe.jpg vs equipe.jpeg, camion.jpg
-// vs camion.png, etc.). Voir scripts/optimize-images.mjs.
-const webp = `${src}.webp`;
-const avif = `${src}.avif`;
+function buildSrcSet(format: "webp" | "avif", list?: number[]) {
+  if (!list?.length) return `${src}.${format}`;
+
+  const entries: string[] = [];
+  let fullAdded = false;
+
+  for (const w of list) {
+    // La variante pleine taille est nommée src.ext, pas src-Nw.ext
+    if (width && w >= width) {
+      if (!fullAdded) {
+        entries.push(`${src}.${format} ${width}w`);
+        fullAdded = true;
+      }
+      continue;
+    }
+    entries.push(`${src}-${w}w.${format} ${w}w`);
+  }
+
+  if (!fullAdded && width && !list.includes(width)) {
+    entries.push(`${src}.${format} ${width}w`);
+  }
+
+  return entries.join(", ");
+}
+
+const avifSrcSet = buildSrcSet("avif", widths);
+const webpSrcSet = buildSrcSet("webp", widths);
 ---
 
 <picture>
-  <source type="image/avif" srcset={avif} sizes={sizes} />
-  <source type="image/webp" srcset={webp} sizes={sizes} />
+  <source type="image/avif" srcset={avifSrcSet} sizes={sizes} />
+  <source type="image/webp" srcset={webpSrcSet} sizes={sizes} />
   <img
-    src={src}
+    src={widths?.length ? `${src}.webp` : src}
     alt={alt}
     width={width}
     height={height}
@@ -54,5 +75,6 @@ const avif = `${src}.avif`;
     decoding={decoding}
     fetchpriority={fetchpriority}
     class={cls}
+    sizes={sizes}
   />
 </picture>

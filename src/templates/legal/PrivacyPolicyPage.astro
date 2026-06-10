@@ -13,11 +13,11 @@ const isEn = locale === "en";
 
 const title = isEn ? "Privacy policy" : "Politique de confidentialité";
 const description = isEn
-  ? "HFE Énergie privacy policy: personal data collected, purposes, legal basis, retention periods and exercising your GDPR rights."
-  : "Politique de confidentialité HFE Énergie : données personnelles collectées, finalités, base légale, durée de conservation et exercice de vos droits RGPD.";
+  ? "Hecker & Frères Énergie (HFE) privacy policy: personal data collected, purposes, legal basis, retention periods and exercising your GDPR rights."
+  : "Politique de confidentialité Hecker & Frères Énergie (HFE) : données personnelles collectées, finalités, base légale, durée de conservation et exercice de vos droits RGPD.";
 
 const cookiesPath = pathFor("cookies", locale);
-const updatedAt = isEn ? "May 16, 2026" : legal.updatedAt.confidentialite;
+const updatedAt = isEn ? "June 3, 2026" : legal.updatedAt.confidentialite;
 ---
 
 <LegalLayout
@@ -44,7 +44,7 @@ const updatedAt = isEn ? "May 16, 2026" : legal.updatedAt.confidentialite;
       <h2>1. Data controller</h2>
       <p>The controller of your personal data is:</p>
       <ul>
-        <li><strong>{legal.company.legalName}</strong></li>
+        <li><strong>{legal.company.name}</strong> ({legal.company.legalName})</li>
         <li>{legal.company.address}</li>
         <li>SIRET: {legal.company.siret}</li>
         <li>
@@ -253,7 +253,7 @@ const updatedAt = isEn ? "May 16, 2026" : legal.updatedAt.confidentialite;
       <h2>1. Responsable du traitement</h2>
       <p>Le responsable du traitement de vos données personnelles est :</p>
       <ul>
-        <li><strong>{legal.company.legalName}</strong></li>
+        <li><strong>{legal.company.name}</strong> ({legal.company.legalName})</li>
         <li>{legal.company.address}</li>
         <li>SIRET : {legal.company.siret}</li>
         <li>

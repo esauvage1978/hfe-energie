@@ -7,6 +7,8 @@ import CtaBanner from "@components/CtaBanner.astro";
 import Icon from "@components/Icon.astro";
 import Picture from "@components/Picture.astro";
 import StructuredData from "@components/StructuredData.astro";
+import Faq from "@components/Faq.astro";
+import PanasonicPartnerPromo from "@components/PanasonicPartnerPromo.astro";
 import { site } from "@data/site";
 import { servicesImages } from "@data/assets";
 
@@ -21,6 +23,7 @@ const canonicalPath = pathFor("residential", locale);
 
 <BaseLayout locale={locale} title={content.seo.title} description={content.seo.description} canonicalPath={canonicalPath}>
   <StructuredData type="BreadcrumbList" breadcrumbs={content.breadcrumbs} slot="head" />
+  {"faq" in content && <StructuredData type="FAQPage" faqs={content.faq.items} slot="head" />}
 
   <div class="container-page">
     <Breadcrumbs items={content.breadcrumbs} />
@@ -32,7 +35,7 @@ const canonicalPath = pathFor("residential", locale);
         <div>
           <span class="badge bg-accent-100 text-accent-800">{content.hero.badge}</span>
           <h1 class="mt-3 font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-neutral-900 leading-tight">
-            {content.hero.titleBefore}<span class="text-accent-700">{content.hero.titleHighlight}</span>
+            {content.hero.titleBefore}<span class="text-accent-700">{content.hero.titleHighlight}</span>{"titleAfter" in content.hero && content.hero.titleAfter}
           </h1>
           <p class="mt-4 text-lg text-neutral-700">{content.hero.description}</p>
           <div class="mt-6 flex flex-col sm:flex-row gap-3">
@@ -70,14 +73,56 @@ const canonicalPath = pathFor("residential", locale);
             </div>
             <h3 class="font-display font-bold text-lg text-neutral-900">{o.title}</h3>
             <p class="mt-2 text-sm text-neutral-600 leading-relaxed">{o.desc}</p>
+            {"details" in o && Array.isArray(o.details) && (
+              <ul class="mt-3 space-y-1.5 text-xs text-neutral-600 leading-relaxed">
+                {o.details.map((d) => (
+                  <li class="flex items-start gap-2">
+                    <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent-500 shrink-0" aria-hidden="true" />
+                    <span>{d}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
             <span class="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-accent-700 group-hover:gap-2 transition-all">
               {content.offers.discover} <Icon name="arrow-right" size={16} />
             </span>
           </a>
         ))}
       </div>
+
+      <div class="mt-8 flex flex-wrap gap-3 items-start">
+        <a href={pathFor("projectsClim", locale)} class="link-projects">
+          <Icon name="star" size={14} />
+          {locale === "fr" ? "Voir nos chantiers de climatisation en détail" : "See our air conditioning projects in detail"}
+          <Icon name="arrow-right" size={14} />
+        </a>
+        <a href={pathFor("projectsPacAirEau", locale)} class="link-projects">
+          <Icon name="star" size={14} />
+          {locale === "fr" ? "Voir nos chantiers PAC air-eau en détail" : "See our air-to-water heat pump projects in detail"}
+          <Icon name="arrow-right" size={14} />
+        </a>
+      </div>
     </div>
   </section>
+
+  <PanasonicPartnerPromo locale={locale} variant="residential" />
+
+  {"faq" in content && (
+    <section class="section bg-white" aria-labelledby="faq-res-title">
+      <div class="container-page">
+        <div class="max-w-3xl">
+          <span class="badge bg-accent-100 text-accent-800">{content.faq.badge}</span>
+          <h2 id="faq-res-title" class="mt-3 font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
+            {content.faq.title}
+          </h2>
+          <p class="mt-3 text-neutral-700">{content.faq.intro}</p>
+        </div>
+        <div class="mt-8 max-w-4xl">
+          <Faq items={content.faq.items} idPrefix="res-faq" />
+        </div>
+      </div>
+    </section>
+  )}
 
   <CtaBanner locale={locale} title={content.cta.title} subtitle={content.cta.subtitle} />
 </BaseLayout>

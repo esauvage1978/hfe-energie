@@ -24,28 +24,29 @@ const fr = {
   structuredData: {
     serviceName: "Installation de pompe à chaleur à Lille",
     serviceDescription:
-      "Installation et entretien de pompes à chaleur air-eau, air-air et chauffe-eau thermodynamiques par HFE Énergie, artisan RGE QualiPAC à Lille.",
+      "Installation et entretien de pompes à chaleur air-eau, air-air et chauffe-eau thermodynamiques par Hecker & Frères Énergie (HFE), artisan RGE QualiPAC à Lille.",
     slug: "pompe-a-chaleur",
   },
   hero: {
     badge: "Service RGE QualiPAC",
     titleBefore: "Installation de ",
     titleHighlight: "pompes à chaleur",
-    titleAfter: " à Lille",
+    titleAfter: " à Lille et sa métropole",
     description:
-      "HFE Énergie installe et entretient des pompes à chaleur air-eau et air-air performantes à Lille et dans toute la métropole lilloise. Devis gratuit, accompagnement des aides sur PAC air-eau et chauffe-eau thermodynamique, garantie décennale.",
+      "Hecker & Frères Énergie (HFE) installe et entretient des pompes à chaleur air-eau, eau-eau et air-air à Lille et dans toute la métropole lilloise. Devis gratuit, accompagnement des aides sur PAC air-eau et chauffe-eau thermodynamique, garantie décennale.",
     ctaQuote: "Devis gratuit en 72h",
     stats: [
       { label: "Économies", value: "75 %" },
-      { label: "Aides", value: "10 500 €" },
-      { label: "Garantie", value: "10 ans" },
+      { label: "Aides", value: "10 500 €*" },
+      { label: "Garantie", value: "3 ans minimum" },
     ],
-    imageAlt: "Installation d'une pompe à chaleur air-eau par HFE Énergie à Lille",
+    statsNote: "* Montant variable selon les revenus du foyer.",
+    imageAlt: "Installation d'une pompe à chaleur air-eau par Hecker & Frères Énergie (HFE) à Lille",
   },
   benefits: {
     title: "Pourquoi choisir une pompe à chaleur ?",
     intro:
-      "Système de chauffage le plus efficace du marché, la pompe à chaleur exploite une énergie renouvelable (l'air extérieur) pour chauffer votre logement avec un excellent rendement (SCOP de 3,5 à 4,5).",
+      "Système de chauffage le plus efficace du marché, la pompe à chaleur exploite une énergie renouvelable (l'air extérieur, l'eau ou le sol) pour chauffer votre logement avec un excellent rendement (SCOP de 3,5 à 7).",
     items: [
       { icon: "euro" as const, title: "Jusqu'à 75 % d'économies", text: "Une PAC moderne consomme 3 à 4 fois moins d'énergie qu'un chauffage électrique ou au fioul." },
       { icon: "leaf" as const, title: "Énergie renouvelable", text: "70 à 80 % de l'énergie produite provient de l'air extérieur, une source gratuite et inépuisable." },
@@ -55,16 +56,19 @@ const fr = {
   },
   types: {
     badge: "Nos installations",
-    title: "Les 3 types de pompes à chaleur que nous installons",
+    title: "Les types de pompes à chaleur que nous installons",
     budgetLabel: "Budget indicatif",
     budgetNote: "avant aides MaPrimeRénov' & CEE",
+    idealForLabel: "Pourquoi choisir ce système ?",
     scopLabel: "SCOP",
     items: [
       {
         name: "PAC air-eau",
         slug: "air-eau",
+        icon: "heat-pump" as const,
         description:
           "La pompe à chaleur air-eau capte les calories dans l'air extérieur pour les restituer à l'eau du circuit de chauffage central : radiateurs, plancher chauffant, et production d'eau chaude sanitaire.",
+        idealFor: "Idéale si vous avez des radiateurs ou un plancher chauffant et souhaitez remplacer votre chaudière fioul/gaz tout en produisant l'eau chaude sanitaire.",
         pros: [
           "Idéale en rénovation pour remplacer une chaudière fioul ou gaz",
           "Compatible avec radiateurs et plancher chauffant existants",
@@ -73,12 +77,16 @@ const fr = {
         ],
         scop: "3,8 à 4,5",
         price: "12 000 € à 18 000 €",
+        projectsLabel: "Nos réalisations PAC air-eau",
+        projectsRoute: "projectsPacAirEau" as const,
       },
       {
         name: "PAC air-air",
         slug: "air-air",
+        icon: "ac-unit" as const,
         description:
           "La pompe à chaleur air-air, aussi appelée climatisation réversible, diffuse l'air chaud (ou froid) directement dans vos pièces via des unités intérieures (split, gainable, cassette).",
+        idealFor: "Idéale si vous chauffez à l'électrique (convecteurs) ou souhaitez climatiser l'été — installation rapide, gain possible au DPE.",
         pros: [
           "Solution 2-en-1 : chauffage l'hiver et climatisation l'été",
           "Installation rapide, peu de travaux",
@@ -88,12 +96,33 @@ const fr = {
         scop: "3,5 à 4,2",
         price: "3 500 € à 9 000 €",
         budgetNote: "TTC posé — sans aide de l'État (non éligible MaPrimeRénov' ni CEE)",
+        projectsLabel: "Découvrir la climatisation réversible",
+        projectsRoute: "airConditioning" as const,
+      },
+      {
+        name: "PAC eau-eau",
+        slug: "eau-eau",
+        icon: "droplet" as const,
+        description:
+          "La pompe à chaleur eau-eau (géothermie sur nappe) puise les calories dans l'eau souterraine via un forage/puits, puis les restitue à votre circuit de chauffage. C'est la solution la plus stable et performante quand le site le permet.",
+        idealFor: "Idéale si votre terrain permet un forage — rendement exceptionnel, indépendant de la météo. La plus performante, mais investissement initial élevé.",
+        pros: [
+          "Rendements très élevés et réguliers (température de source stable)",
+          "Idéale pour plancher chauffant et chauffage central basse température",
+          "Confort constant, même par grand froid",
+          "Éligible aux aides (sous conditions, étude préalable indispensable)",
+        ],
+        scop: "4,5 à 7,0",
+        price: "18 000 € à 35 000 €",
+        budgetNote: "TTC posé — nécessite étude hydraulique et autorisations selon le terrain",
       },
       {
         name: "Chauffe-eau thermodynamique",
         slug: "chauffe-eau-thermodynamique",
+        icon: "flame" as const,
         description:
           "Le chauffe-eau thermodynamique combine un ballon d'eau chaude et une mini-pompe à chaleur pour produire votre eau chaude sanitaire jusqu'à 3 fois moins cher qu'un ballon électrique classique.",
+        idealFor: "Idéal pour remplacer un ballon électrique vieillissant — économies immédiates sur l'eau chaude, installation simple et éligible aux aides.",
         pros: [
           "Jusqu'à 70 % d'économies sur l'eau chaude sanitaire",
           "Éligible MaPrimeRénov' & CEE",
@@ -124,7 +153,7 @@ const fr = {
   },
   calculator: {
     title: "Estimez vos économies en 30 secondes",
-    intro: "Comparez le coût de votre chauffage actuel avec celui d'une pompe à chaleur HFE Énergie.",
+    intro: "Comparez le coût de votre chauffage actuel avec celui d'une pompe à chaleur Hecker & Frères Énergie (HFE).",
   },
   gallery: {
     title: "Nos dernières installations de pompe à chaleur",
@@ -139,8 +168,9 @@ const fr = {
     badge: "Zone d'intervention",
     title: "Installateur PAC à Lille et dans toute la métropole",
     intro:
-      "Basée à Lille, HFE Énergie intervient sur l'ensemble de la Métropole Européenne de Lille (MEL) dans un rayon d'environ 30 km. Nous installons des pompes à chaleur, climatisations et chauffe-eau thermodynamiques chez les particuliers comme dans les locaux professionnels.",
+      "Basée à Lille, Hecker & Frères Énergie (HFE) intervient dans un rayon de 50 km autour de son siège (MEL, Nord et Pas-de-Calais). Voici les principales villes — la liste complète est disponible sur notre page zone d'intervention.",
     cityPrefix: "Pompe à chaleur",
+    fullListLink: "Voir toutes les communes desservies (50 km)",
   },
   faq: {
     badge: "FAQ pompe à chaleur",
@@ -151,7 +181,7 @@ const fr = {
       {
         question: "Quel est le prix d'une pompe à chaleur installée à Lille en 2026 ?",
         answer:
-          "Le prix d'une pompe à chaleur air-eau installée à Lille est compris entre 12 000 € et 18 000 € TTC (hors aides), selon la puissance, la marque et la complexité de la pose. Avec MaPrimeRénov' (jusqu'à 5 000 €) et les CEE (jusqu'à 5 500 €), le reste à charge peut descendre à 2 000 € - 4 000 € pour les ménages modestes. Une PAC air-air (clim réversible) coûte entre 3 500 € et 9 000 € TTC posé : elle n'est pas éligible à MaPrimeRénov' ni aux CEE. HFE Énergie est certifiée RGE QualiPAC pour les installations éligibles aux aides.",
+          "Le prix d'une pompe à chaleur air-eau installée à Lille est compris entre 12 000 € et 18 000 € TTC (hors aides), selon la puissance, la marque et la complexité de la pose. Avec MaPrimeRénov' (jusqu'à 5 000 €) et les CEE (jusqu'à 5 500 €), le reste à charge peut descendre à 2 000 € - 4 000 € pour les ménages modestes. Une PAC air-air (clim réversible) coûte entre 3 500 € et 9 000 € TTC posé : elle n'est pas éligible à MaPrimeRénov' ni aux CEE. Hecker & Frères Énergie (HFE) est certifiée RGE QualiPAC pour les installations éligibles aux aides.",
       },
       {
         question: "Quelle pompe à chaleur choisir : air-eau ou air-air ?",
@@ -161,7 +191,7 @@ const fr = {
       {
         question: "Comment gagner des classes au DPE avec une pompe à chaleur ?",
         answer:
-          "Sur le terrain, nous constatons qu'une PAC air-air (climatisation réversible), bien dimensionnée, peut faire progresser la note énergétique d'un logement — jusqu'à trois classes dans certains cas, lorsque l'ancien chauffage était très consommateur (radiateurs électriques, appoint). Le gain dépend de votre DPE initial, de la surface réellement chauffée et de la qualité de la pose. La PAC air-eau reste souvent la plus efficace pour un saut important au DPE quand elle remplace une chaudière fioul ou gaz. HFE Énergie intègre ce point dans l'étude thermique avant devis : nous vous indiquons le potentiel réaliste sur votre bien.",
+          "Sur le terrain, nous constatons qu'une PAC air-air (climatisation réversible), bien dimensionnée, peut faire progresser la note énergétique d'un logement — jusqu'à trois classes dans certains cas, lorsque l'ancien chauffage était très consommateur (radiateurs électriques, appoint). Le gain dépend de votre DPE initial, de la surface réellement chauffée et de la qualité de la pose. La PAC air-eau reste souvent la plus efficace pour un saut important au DPE quand elle remplace une chaudière fioul ou gaz. Hecker & Frères Énergie (HFE) intègre ce point dans l'étude thermique avant devis : nous vous indiquons le potentiel réaliste sur votre bien.",
       },
       {
         question: "Est-ce qu'une pompe à chaleur fonctionne bien dans le Nord ?",
@@ -171,7 +201,7 @@ const fr = {
       {
         question: "Combien de temps prend l'installation d'une pompe à chaleur ?",
         answer:
-          "Pour une PAC air-eau en remplacement d'une chaudière : 2 à 3 jours d'intervention. Pour une PAC air-air mono-split : 1 journée. Pour un multi-split (3-4 unités intérieures) : 2 jours. HFE Énergie réalise au préalable une étude thermique et un dimensionnement précis pour garantir la performance de l'installation.",
+          "Pour une PAC air-eau en remplacement d'une chaudière : 2 à 3 jours d'intervention. Pour une PAC air-air mono-split : 1 journée. Pour un multi-split (3-4 unités intérieures) : 2 jours. Hecker & Frères Énergie (HFE) réalise au préalable une étude thermique et un dimensionnement précis pour garantir la performance de l'installation.",
       },
       {
         question: "Quelles sont les aides MaPrimeRénov' et CEE pour une PAC en 2026 ?",
@@ -181,17 +211,22 @@ const fr = {
       {
         question: "Faut-il entretenir sa pompe à chaleur ?",
         answer:
-          "Oui, l'entretien d'une pompe à chaleur est obligatoire depuis le décret du 30 juillet 2020 : tous les 2 ans pour les PAC < 12 kW, tous les ans pour les PAC ≥ 12 kW. HFE Énergie propose des contrats d'entretien dès 149 € TTC / an, incluant le contrôle d'étanchéité du circuit frigorifique, le nettoyage des filtres et la vérification des performances.",
+          "Oui, l'entretien d'une pompe à chaleur est obligatoire depuis le décret du 30 juillet 2020 : tous les 2 ans pour les PAC < 12 kW, tous les ans pour les PAC ≥ 12 kW. Hecker & Frères Énergie (HFE) propose des contrats d'entretien dès 149 € TTC / an, incluant le contrôle d'étanchéité du circuit frigorifique, le nettoyage des filtres et la vérification des performances.",
       },
       {
         question: "Quelle est la durée de vie d'une pompe à chaleur ?",
         answer:
-          "Une PAC bien entretenue dure entre 15 et 20 ans. La garantie constructeur est généralement de 2 à 5 ans, prolongeable à 7 ou 10 ans selon les marques (Panasonic, Daikin, Mitsubishi, Atlantic). HFE Énergie est partenaire Panasonic et offre la garantie décennale sur l'installation.",
+          "Une PAC bien entretenue dure entre 15 et 20 ans. La garantie constructeur est généralement de 2 à 5 ans, prolongeable à 7 ou 10 ans selon les marques (Panasonic, Daikin, Mitsubishi, Atlantic). Hecker & Frères Énergie (HFE) est partenaire Panasonic et offre la garantie décennale sur l'installation.",
       },
       {
         question: "La PAC fait-elle du bruit ?",
         answer:
           "Les pompes à chaleur récentes sont très silencieuses : entre 38 et 55 dB(A) à 1 mètre pour l'unité extérieure (équivalent d'un réfrigérateur). Notre équipe vous conseille sur l'emplacement optimal pour respecter la réglementation acoustique (arrêté du 5 décembre 2006) et préserver le confort de vos voisins.",
+      },
+      {
+        question: "Installez-vous des pompes à chaleur à Marcq-en-Barœul et dans la métropole lilloise ?",
+        answer:
+          "Oui. Installateur RGE QualiPAC basé à Lille, Hecker & Frères Énergie (HFE) installe des pompes à chaleur à Lille, La Madeleine, Marcq-en-Barœul, Lambersart, Villeneuve-d'Ascq, Roubaix, Tourcoing, Wasquehal et dans toute la zone d'intervention (50 km). Étude thermique et devis gratuits.",
       },
     ],
   },
@@ -221,7 +256,7 @@ const en = {
   structuredData: {
     serviceName: "Heat pump installation in Lille",
     serviceDescription:
-      "Installation and servicing of air-to-water, air-to-air heat pumps and thermodynamic water heaters by HFE Énergie, RGE QualiPAC certified contractor in Lille.",
+      "Installation and servicing of air-to-water, air-to-air heat pumps and thermodynamic water heaters by Hecker & Frères Énergie (HFE), RGE QualiPAC certified contractor in Lille.",
     slug: "heat-pump",
   },
   hero: {
@@ -230,14 +265,15 @@ const en = {
     titleHighlight: "Heat pump",
     titleAfter: " installation in Lille",
     description:
-      "HFE Énergie installs and services high-performance air-to-water and air-to-air heat pumps in Lille and across the metropolitan area. Free quote, grant support for eligible air-to-water and thermodynamic water heater projects, ten-year warranty.",
+      "Hecker & Frères Énergie (HFE) installs and services high-performance air-to-water and air-to-air heat pumps in Lille and across the metropolitan area. Free quote, grant support for eligible air-to-water and thermodynamic water heater projects, ten-year warranty.",
     ctaQuote: "Free quote within 72h",
     stats: [
       { label: "Savings", value: "75%" },
-      { label: "Grants", value: "€10,500" },
-      { label: "Warranty", value: "10 years" },
+      { label: "Grants", value: "€10,500*" },
+      { label: "Warranty", value: "3 years minimum" },
     ],
-    imageAlt: "Air-to-water heat pump installation by HFE Énergie in Lille",
+    statsNote: "* Amount varies depending on household income.",
+    imageAlt: "Air-to-water heat pump installation by Hecker & Frères Énergie (HFE) in Lille",
   },
   benefits: {
     title: "Why choose a heat pump?",
@@ -252,16 +288,19 @@ const en = {
   },
   types: {
     badge: "Our installations",
-    title: "The 3 types of heat pumps we install",
+    title: "The types of heat pumps we install",
     budgetLabel: "Indicative budget",
     budgetNote: "before MaPrimeRénov' & CEE grants",
+    idealForLabel: "Why choose this system?",
     scopLabel: "SCOP",
     items: [
       {
         name: "Air-to-water heat pump",
         slug: "air-eau",
+        icon: "heat-pump" as const,
         description:
           "The air-to-water heat pump captures heat from outdoor air and transfers it to the central heating water circuit: radiators, underfloor heating, and domestic hot water production.",
+        idealFor: "Best if you have radiators or underfloor heating and want to replace your oil/gas boiler while producing domestic hot water.",
         pros: [
           "Ideal for renovation to replace oil or gas boilers",
           "Compatible with existing radiators and underfloor heating",
@@ -270,12 +309,16 @@ const en = {
         ],
         scop: "3.8 to 4.5",
         price: "€12,000 to €18,000",
+        projectsLabel: "Our air-to-water projects",
+        projectsRoute: "projectsPacAirEau" as const,
       },
       {
         name: "Air-to-air heat pump",
         slug: "air-air",
+        icon: "ac-unit" as const,
         description:
           "The air-to-air heat pump, also known as reversible air conditioning, distributes warm (or cool) air directly into your rooms via indoor units (split, ducted, cassette).",
+        idealFor: "Best if you heat with electric convectors or want summer cooling — quick installation with potential EPC improvement.",
         pros: [
           "2-in-1 solution: heating in winter and cooling in summer",
           "Quick installation, minimal building work",
@@ -285,12 +328,33 @@ const en = {
         scop: "3.5 to 4.2",
         price: "€3,500 to €9,000",
         budgetNote: "incl. VAT, installed — not eligible for MaPrimeRénov' or CEE",
+        projectsLabel: "Discover reversible air conditioning",
+        projectsRoute: "airConditioning" as const,
+      },
+      {
+        name: "Water-to-water heat pump",
+        slug: "water-to-water",
+        icon: "droplet" as const,
+        description:
+          "A water-to-water heat pump (groundwater source) draws heat from groundwater via a borehole/well and transfers it to your central heating circuit. When feasible, it offers some of the most stable and efficient performance.",
+        idealFor: "Best if your site allows a borehole — outstanding efficiency regardless of weather. The highest-performing option, but higher upfront investment.",
+        pros: [
+          "Very high and steady efficiency (stable source temperature)",
+          "Great fit for underfloor heating and low-temperature hydronic systems",
+          "Consistent comfort even in cold weather",
+          "Eligible for grants (subject to site study and requirements)",
+        ],
+        scop: "4.5 to 7.0",
+        price: "€18,000 to €35,000",
+        budgetNote: "Installed price — requires feasibility study and local authorisations",
       },
       {
         name: "Thermodynamic water heater",
         slug: "chauffe-eau-thermodynamique",
+        icon: "flame" as const,
         description:
           "The thermodynamic water heater combines a hot water tank and a mini heat pump to produce domestic hot water at up to three times lower cost than a standard electric tank.",
+        idealFor: "Best for replacing an ageing electric tank — immediate hot water savings, simple installation and grant-eligible.",
         pros: [
           "Up to 70% savings on domestic hot water",
           "Eligible for MaPrimeRénov' & CEE",
@@ -321,7 +385,7 @@ const en = {
   },
   calculator: {
     title: "Estimate your savings in 30 seconds",
-    intro: "Compare the cost of your current heating with an HFE Énergie heat pump.",
+    intro: "Compare the cost of your current heating with a Hecker & Frères Énergie (HFE) heat pump.",
   },
   gallery: {
     title: "Our latest heat pump installations",
@@ -335,8 +399,9 @@ const en = {
     badge: "Service area",
     title: "Heat pump installer in Lille and across the metropolitan area",
     intro:
-      "Based in Lille, HFE Énergie covers the entire European Metropolis of Lille (MEL) within approximately 30 km. We install heat pumps, air conditioning and thermodynamic water heaters for homeowners and businesses alike.",
+      "Based in Lille, Hecker & Frères Énergie (HFE) covers a 50 km radius from HQ (MEL, Nord and Pas-de-Calais). Key cities below — see our service area page for the full list.",
     cityPrefix: "Heat pump",
+    fullListLink: "View all towns served (50 km)",
   },
   faq: {
     badge: "Heat pump FAQ",
@@ -347,7 +412,7 @@ const en = {
       {
         question: "How much does an installed heat pump cost in Lille in 2026?",
         answer:
-          "An installed air-to-water heat pump in Lille costs between €12,000 and €18,000 incl. VAT (before grants), depending on output, brand and installation complexity. With MaPrimeRénov' (up to €5,000) and CEE (up to €5,500), the out-of-pocket cost can drop to €2,000–4,000 for modest-income households. An air-to-air heat pump (reversible AC) costs between €3,500 and €9,000 incl. VAT installed: it is not eligible for MaPrimeRénov' or CEE. HFE Énergie is RGE QualiPAC certified for grant-eligible installations.",
+          "An installed air-to-water heat pump in Lille costs between €12,000 and €18,000 incl. VAT (before grants), depending on output, brand and installation complexity. With MaPrimeRénov' (up to €5,000) and CEE (up to €5,500), the out-of-pocket cost can drop to €2,000–4,000 for modest-income households. An air-to-air heat pump (reversible AC) costs between €3,500 and €9,000 incl. VAT installed: it is not eligible for MaPrimeRénov' or CEE. Hecker & Frères Énergie (HFE) is RGE QualiPAC certified for grant-eligible installations.",
       },
       {
         question: "Which heat pump should I choose: air-to-water or air-to-air?",
@@ -357,7 +422,7 @@ const en = {
       {
         question: "How can a heat pump improve my EPC rating?",
         answer:
-          "In our experience, a properly sized air-to-air heat pump (reversible air conditioning) can improve a property's energy performance certificate — by up to three bands in some cases, especially when replacing very inefficient heating (electric radiators, supplementary heaters). The gain depends on your starting rating, the heated floor area and installation quality. Air-to-water heat pumps often deliver the largest EPC jump when replacing oil or gas boilers. HFE Énergie factors this into your free thermal study and quote, with a realistic estimate for your home.",
+          "In our experience, a properly sized air-to-air heat pump (reversible air conditioning) can improve a property's energy performance certificate — by up to three bands in some cases, especially when replacing very inefficient heating (electric radiators, supplementary heaters). The gain depends on your starting rating, the heated floor area and installation quality. Air-to-water heat pumps often deliver the largest EPC jump when replacing oil or gas boilers. Hecker & Frères Énergie (HFE) factors this into your free thermal study and quote, with a realistic estimate for your home.",
       },
       {
         question: "Do heat pumps work well in northern France?",
@@ -367,7 +432,7 @@ const en = {
       {
         question: "How long does heat pump installation take?",
         answer:
-          "For an air-to-water heat pump replacing a boiler: 2 to 3 days. For a single-split air-to-air unit: 1 day. For a multi-split (3–4 indoor units): 2 days. HFE Énergie carries out a prior thermal study and precise sizing to ensure installation performance.",
+          "For an air-to-water heat pump replacing a boiler: 2 to 3 days. For a single-split air-to-air unit: 1 day. For a multi-split (3–4 indoor units): 2 days. Hecker & Frères Énergie (HFE) carries out a prior thermal study and precise sizing to ensure installation performance.",
       },
       {
         question: "What MaPrimeRénov' and CEE grants are available for a heat pump in 2026?",
@@ -377,17 +442,22 @@ const en = {
       {
         question: "Does a heat pump need servicing?",
         answer:
-          "Yes, heat pump servicing is mandatory since the decree of 30 July 2020: every 2 years for units under 12 kW, annually for units ≥ 12 kW. HFE Énergie offers maintenance contracts from €149 incl. VAT per year, including refrigerant circuit leak testing, filter cleaning and performance checks.",
+          "Yes, heat pump servicing is mandatory since the decree of 30 July 2020: every 2 years for units under 12 kW, annually for units ≥ 12 kW. Hecker & Frères Énergie (HFE) offers maintenance contracts from €149 incl. VAT per year, including refrigerant circuit leak testing, filter cleaning and performance checks.",
       },
       {
         question: "What is the lifespan of a heat pump?",
         answer:
-          "A well-maintained heat pump lasts 15 to 20 years. Manufacturer warranty is typically 2 to 5 years, extendable to 7 or 10 years depending on brand (Panasonic, Daikin, Mitsubishi, Atlantic). HFE Énergie is a Panasonic partner and provides a ten-year installation warranty.",
+          "A well-maintained heat pump lasts 15 to 20 years. Manufacturer warranty is typically 2 to 5 years, extendable to 7 or 10 years depending on brand (Panasonic, Daikin, Mitsubishi, Atlantic). Hecker & Frères Énergie (HFE) is a Panasonic partner and provides a ten-year installation warranty.",
       },
       {
         question: "Are heat pumps noisy?",
         answer:
           "Recent heat pumps are very quiet: 38 to 55 dB(A) at 1 metre for the outdoor unit (equivalent to a refrigerator). Our team advises on optimal placement to comply with noise regulations (decree of 5 December 2006) and preserve neighbour comfort.",
+      },
+      {
+        question: "Do you install heat pumps in Marcq-en-Barœul and the Lille metropolitan area?",
+        answer:
+          "Yes. As an RGE QualiPAC-certified installer based in Lille, Hecker & Frères Énergie (HFE) installs heat pumps in Lille, La Madeleine, Marcq-en-Barœul, Lambersart, Villeneuve-d'Ascq, Roubaix, Tourcoing, Wasquehal and across our full 50 km service area. Thermal study and quotes are free.",
       },
     ],
   },

@@ -8,11 +8,11 @@ import Gallery from "@components/Gallery.astro";
 import Icon from "@components/Icon.astro";
 import Picture from "@components/Picture.astro";
 import StructuredData from "@components/StructuredData.astro";
-import Faq from "@components/Faq.tsx";
+import Faq from "@components/Faq.astro";
 import PartnersCertificationsSections from "@components/PartnersCertificationsSections.astro";
 import SavingsCalculator from "@components/SavingsCalculator.tsx";
 import { site } from "@data/site";
-import { heroes, realisationsPAC } from "@data/assets";
+import { heroes, realisationsPAC, servicesImages } from "@data/assets";
 
 interface Props {
   locale: Locale;
@@ -79,14 +79,17 @@ const seoCities = site.serviceArea;
               </div>
             ))}
           </dl>
+          {"statsNote" in content.hero && (
+            <p class="mt-2 text-xs text-neutral-500 max-w-md">{content.hero.statsNote}</p>
+          )}
         </div>
 
         <div class="flex justify-center lg:justify-start">
           <Picture
-            src={heroes.pac.src}
+            src={servicesImages.pac.src}
             alt={content.hero.imageAlt}
-            width={heroes.pac.width}
-            height={heroes.pac.height}
+            width={servicesImages.pac.width}
+            height={servicesImages.pac.height}
             class="rounded-3xl shadow-2xl border border-neutral-100 w-full max-w-md lg:max-w-none h-auto"
             loading="eager"
             fetchpriority="high"
@@ -130,16 +133,38 @@ const seoCities = site.serviceArea;
         </h2>
       </div>
 
-      <div class="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {content.types.items.map((pac) => (
-          <article class="card flex flex-col h-full" id={pac.slug}>
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+        {content.types.items.map((pac) => {
+          const hasProjects = "projectsRoute" in pac && "projectsLabel" in pac;
+          return (
+          <article
+            class:list={["card flex flex-col h-full", hasProjects && "card-linkable"]}
+            id={pac.slug}
+          >
+            {hasProjects && (
+              <a
+                href={pathFor(pac.projectsRoute as any, locale)}
+                class="card-stretched-link"
+                aria-label={pac.projectsLabel}
+              />
+            )}
             <div class="flex items-start justify-between gap-3">
-              <h3 class="font-display font-extrabold text-xl text-neutral-900">{pac.name}</h3>
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-accent-100 text-accent-700 flex items-center justify-center shrink-0">
+                  <Icon name={pac.icon} size={22} />
+                </div>
+                <h3 class="font-display font-extrabold text-xl text-neutral-900">{pac.name}</h3>
+              </div>
               <span class="badge bg-accent-100 text-accent-800 shrink-0">
                 {content.types.scopLabel} {pac.scop}
               </span>
             </div>
             <p class="mt-3 text-sm text-neutral-700 leading-relaxed">{pac.description}</p>
+
+            <div class="mt-4 rounded-xl bg-accent-50/70 border border-accent-100 px-4 py-3">
+              <p class="text-xs font-semibold uppercase tracking-wide text-accent-800">{content.types.idealForLabel}</p>
+              <p class="mt-1 text-sm text-neutral-700 leading-relaxed">{pac.idealFor}</p>
+            </div>
 
             <ul class="mt-5 space-y-2 flex-1">
               {pac.pros.map((p) => (
@@ -157,9 +182,84 @@ const seoCities = site.serviceArea;
                 {"budgetNote" in pac ? pac.budgetNote : content.types.budgetNote}
               </p>
             </div>
+
+            {hasProjects && (
+              <span class="link-projects mt-5 self-start pointer-events-none" aria-hidden="true">
+                <Icon name="star" size={14} />
+                {pac.projectsLabel}
+                <Icon name="arrow-right" size={14} />
+              </span>
+            )}
           </article>
-        ))}
+          );
+        })}
       </div>
+    </div>
+  </section>
+
+  <PartnersCertificationsSections locale={locale} />
+
+  <section class="section bg-gradient-to-br from-accent-50 to-white" aria-labelledby="calc-pac-title">
+    <div class="container-page">
+      <div class="max-w-3xl mb-8">
+        <h2 id="calc-pac-title" class="font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
+          {content.calculator.title}
+        </h2>
+        <p class="mt-3 text-neutral-700">{content.calculator.intro}</p>
+      </div>
+      <SavingsCalculator locale={locale} client:visible />
+    </div>
+  </section>
+
+  <Gallery
+    id="realisations-pac"
+    title={content.gallery.title}
+    subtitle={content.gallery.subtitle}
+    items={realisationsPAC}
+  />
+
+  <div class="container-page pb-6 -mt-4 flex flex-wrap gap-3 items-start">
+    <a href={pathFor("projectsPacAirEau", locale)} class="link-projects">
+      <Icon name="star" size={14} />
+      {locale === "fr" ? "Voir nos chantiers PAC air-eau en détail" : "See our air-to-water heat pump projects in detail"}
+      <Icon name="arrow-right" size={14} />
+    </a>
+    <a href={pathFor("projectsClim", locale)} class="link-projects">
+      <Icon name="star" size={14} />
+      {locale === "fr" ? "Voir nos chantiers PAC air-air & climatisation en détail" : "See our air-to-air heat pump & air conditioning projects in detail"}
+      <Icon name="arrow-right" size={14} />
+    </a>
+  </div>
+
+  <CtaBanner locale={locale} title={content.cta.title} subtitle={content.cta.subtitle} />
+
+  <section class="section bg-white" aria-labelledby="zones-title">
+    <div class="container-page">
+      <div class="max-w-3xl">
+        <span class="badge bg-accent-100 text-accent-800">{content.zones.badge}</span>
+        <h2 id="zones-title" class="mt-3 font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
+          {content.zones.title}
+        </h2>
+        <p class="mt-3 text-neutral-700">{content.zones.intro}</p>
+      </div>
+
+      <ul class="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+        {seoCities.map((city) => (
+          <li class="flex items-center gap-2 p-3 rounded-xl bg-neutral-50 border border-neutral-200 text-sm">
+            <Icon name="map-pin" size={14} class="text-accent-600 shrink-0" />
+            <span class="text-neutral-700 font-medium">{content.zones.cityPrefix} {city}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="mt-6">
+        <a
+          href={pathFor("serviceArea", locale)}
+          class="inline-flex items-center gap-1 text-sm font-semibold text-accent-700 hover:text-accent-800 underline-offset-2 hover:underline"
+        >
+          {content.zones.fullListLink}
+          <Icon name="arrow-right" size={14} />
+        </a>
+      </p>
     </div>
   </section>
 
@@ -198,50 +298,6 @@ const seoCities = site.serviceArea;
     </div>
   </section>
 
-  <section class="section bg-gradient-to-br from-accent-50 to-white" aria-labelledby="calc-pac-title">
-    <div class="container-page">
-      <div class="max-w-3xl mb-8">
-        <h2 id="calc-pac-title" class="font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
-          {content.calculator.title}
-        </h2>
-        <p class="mt-3 text-neutral-700">{content.calculator.intro}</p>
-      </div>
-      <SavingsCalculator locale={locale} client:visible />
-    </div>
-  </section>
-
-  <Gallery
-    id="realisations-pac"
-    title={content.gallery.title}
-    subtitle={content.gallery.subtitle}
-    items={realisationsPAC}
-  />
-
-  <CtaBanner locale={locale} title={content.cta.title} subtitle={content.cta.subtitle} />
-
-  <section class="section bg-white" aria-labelledby="zones-title">
-    <div class="container-page">
-      <div class="max-w-3xl">
-        <span class="badge bg-accent-100 text-accent-800">{content.zones.badge}</span>
-        <h2 id="zones-title" class="mt-3 font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
-          {content.zones.title}
-        </h2>
-        <p class="mt-3 text-neutral-700">{content.zones.intro}</p>
-      </div>
-
-      <ul class="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-        {seoCities.map((city) => (
-          <li class="flex items-center gap-2 p-3 rounded-xl bg-neutral-50 border border-neutral-200 text-sm">
-            <Icon name="map-pin" size={14} class="text-accent-600 shrink-0" />
-            <span class="text-neutral-700 font-medium">{content.zones.cityPrefix} {city}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  <PartnersCertificationsSections locale={locale} />
-
   <section class="section bg-neutral-50" aria-labelledby="faq-pac-title">
     <div class="container-page">
       <div class="max-w-3xl">
@@ -253,7 +309,7 @@ const seoCities = site.serviceArea;
       </div>
 
       <div class="mt-8 max-w-4xl">
-        <Faq items={content.faq.items} idPrefix="pac-faq" locale={locale} client:visible />
+        <Faq items={content.faq.items} idPrefix="pac-faq" />
       </div>
     </div>
   </section>

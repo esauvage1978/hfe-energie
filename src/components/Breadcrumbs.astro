@@ -8,17 +8,17 @@ export interface Props {
 const { items } = Astro.props;
 ---
 
-<nav aria-label="Fil d'Ariane" class="text-sm text-neutral-600 py-3">
+<nav aria-label="Fil d'Ariane" class="text-sm py-3">
   <ol class="flex flex-wrap items-center gap-1.5">
     {items.map((item, idx) => (
       <li class="flex items-center gap-1.5">
-        {idx > 0 && <Icon name="chevron-right" size={14} class="text-neutral-400" />}
+        {idx > 0 && <Icon name="chevron-right" size={14} class="text-neutral-400 shrink-0" />}
         {idx === items.length - 1 ? (
           <span aria-current="page" class="font-semibold text-neutral-800">
             {item.name}
           </span>
         ) : (
-          <a href={item.url} class="hover:text-accent-700 transition-colors">
+          <a href={item.url} class="text-accent-700 hover:text-accent-800 transition-colors">
             {item.name}
           </a>
         )}

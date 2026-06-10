@@ -14,8 +14,8 @@ const isEn = locale === "en";
 
 const title = isEn ? "Terms of use" : "Conditions Générales d'Utilisation (CGU)";
 const description = isEn
-  ? "HFE Énergie website terms of use: rules of use, intellectual property, liability and limitations relating to hfe-energie.fr."
-  : "CGU du site HFE Énergie : règles d'utilisation, propriété intellectuelle, responsabilités et limitations relatives au site web hfe-energie.fr.";
+  ? "Hecker & Frères Énergie (HFE) website terms of use: rules of use, intellectual property, liability and limitations relating to hfe-energie.fr."
+  : "CGU du site Hecker & Frères Énergie (HFE) : règles d'utilisation, propriété intellectuelle, responsabilités et limitations relatives au site web hfe-energie.fr.";
 
 const termsOfSalePath = pathFor("termsOfSale", locale);
 const privacyPath = pathFor("privacy", locale);
@@ -157,6 +157,23 @@ const updatedAt = isEn ? "May 16, 2026" : legal.updatedAt.cgu;
         (MaPrimeRénov', CEE) and intervention deadlines mentioned on the Site are indicative. Only a personalised
         quote following a technical assessment constitutes a contractual commitment.
       </p>
+
+      <h3>8.1 Grant estimates and application support</h3>
+      <p>
+        {legal.company.name} may provide, free of charge and before any quote, an indicative estimate of
+        the grants and financing the User may be eligible for (MaPrimeRénov', CEE, reduced VAT, eco loan
+        at 0%, etc.). This estimate is for information purposes only: final amounts and eligibility are
+        determined by the paying bodies (Anah, CEE delegates, tax authorities) according to the User's
+        situation and the rules in force when the application is submitted. {legal.company.legalName} cannot
+        be held liable for any difference between this estimate and the final decision of those bodies.
+      </p>
+      <p>
+        Once the quote is signed, {legal.company.name} handles the preparation and submission of grant
+        applications to the relevant bodies free of charge, within the schemes applicable to the project.
+        {legal.company.legalName} cannot be held responsible for processing, review or payment delays by
+        those bodies, nor for a refusal or reduced grant beyond its control.
+      </p>
+
       <p>
         {legal.company.legalName} shall not be liable for direct or indirect damage resulting from use of the
         Site, except in the event of gross negligence or wilful misconduct.
@@ -330,6 +347,25 @@ const updatedAt = isEn ? "May 16, 2026" : legal.updatedAt.cgu;
         mentionnés sur le Site sont indicatifs. Seul un devis personnalisé établi à l'issue d'une étude
         technique constitue un engagement contractuel.
       </p>
+
+      <h3>8.1 Estimation des aides et montage de dossiers</h3>
+      <p>
+        {legal.company.name} peut proposer gratuitement, avant même l'établissement du devis, une
+        estimation indicative des aides et financements auxquels l'Utilisateur pourrait prétendre
+        (MaPrimeRénov', CEE, TVA réduite, éco-PTZ, etc.). Cette estimation est communiquée à titre
+        informatif : les montants et l'éligibilité définitifs sont fixés par les organismes payeurs
+        (ANAH, délégataires CEE, administration fiscale) selon la situation de l'Utilisateur et les
+        règles en vigueur au moment du dépôt du dossier. {legal.company.legalName} ne saurait être tenue
+        responsable de l'écart entre cette estimation et la décision finale de ces organismes.
+      </p>
+      <p>
+        Une fois le devis signé, {legal.company.name} prend en charge gratuitement le montage et le
+        dépôt des demandes d'aides auprès des organismes compétents, dans la limite des dispositifs
+        applicables au projet. {legal.company.legalName} ne saurait être tenue responsable des délais
+        de traitement, d'instruction ou de versement des aides par ces organismes, ni d'un refus ou
+        d'une réduction de prise en charge indépendante de sa volonté.
+      </p>
+
       <p>
         {legal.company.legalName} ne pourra être tenu responsable des dommages directs ou indirects
         résultant de l'utilisation du Site, sauf en cas de faute lourde ou intentionnelle.

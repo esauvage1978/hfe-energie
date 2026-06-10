@@ -72,8 +72,10 @@ const payload = {
   placeId: null,
   rating: avg,
   userRatingCount: reviews.length,
-  googleMapsUri: "https://g.page/r/CawB00LcHY7jEAE/review",
-  reviewUrl: "https://g.page/r/CawB00LcHY7jEAE/review",
+  googleMapsUri:
+    "https://www.google.com/maps?q=HFE+Pompe+%C3%A0+Chaleur+-+Climatisation,+71+Rue+du+G%C3%A9n%C3%A9ral+de+Gaulle,+59110+La+Madeleine&ftid=0x90e0797ea958d91:0x5f31aec968c997a5",
+  reviewUrl:
+    "https://www.google.com/maps?q=HFE+Pompe+%C3%A0+Chaleur+-+Climatisation,+71+Rue+du+G%C3%A9n%C3%A9ral+de+Gaulle,+59110+La+Madeleine&ftid=0x90e0797ea958d91:0x5f31aec968c997a5",
   reviews: reviews.map((r) => ({
     ...r,
     publishTime: `${r.publishTime}T12:00:00.000Z`,

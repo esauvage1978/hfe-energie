@@ -6,7 +6,7 @@ import Breadcrumbs from "@components/Breadcrumbs.astro";
 import CtaBanner from "@components/CtaBanner.astro";
 import Icon from "@components/Icon.astro";
 import StructuredData from "@components/StructuredData.astro";
-import Faq from "@components/Faq.tsx";
+import Faq from "@components/Faq.astro";
 import PartnersCertificationsSections from "@components/PartnersCertificationsSections.astro";
 import Picture from "@components/Picture.astro";
 import { site } from "@data/site";
@@ -81,18 +81,97 @@ const canonicalPath = pathFor("heating", locale);
         {content.offers.title}
       </h2>
       <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-5">
-        {content.offers.items.map((o) => (
-          <div class="card">
+        {content.offers.items.map((o) => {
+          const hasProjects = "projectsRoute" in o && "projectsLabel" in o;
+          return (
+          <div class:list={["card", hasProjects && "card-linkable"]}>
+            {hasProjects && (
+              <a
+                href={pathFor(o.projectsRoute as any, locale)}
+                class="card-stretched-link"
+                aria-label={o.projectsLabel}
+              />
+            )}
             <div class="w-12 h-12 rounded-xl bg-accent-100 text-accent-700 flex items-center justify-center mb-4">
-              <Icon name="flame" size={24} />
+              <Icon name={"icon" in o && o.icon ? o.icon : "flame"} size={24} />
             </div>
             <h3 class="font-display font-bold text-lg text-neutral-900">{o.title}</h3>
             <p class="mt-2 text-sm text-neutral-600 leading-relaxed">{o.desc}</p>
+            {hasProjects && (
+              <span class="link-projects mt-5 pointer-events-none" aria-hidden="true">
+                <Icon name="star" size={14} />
+                {o.projectsLabel}
+                <Icon name="arrow-right" size={14} />
+              </span>
+            )}
           </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   </section>
+
+  <section class="section bg-accent-50/50 border-y border-accent-100">
+    <div class="container-page">
+      <span class="badge bg-accent-100 text-accent-800">{content.thermostaticHeads.badge}</span>
+      <h2 class="mt-3 font-display text-3xl md:text-4xl font-extrabold text-neutral-900 max-w-3xl">
+        {content.thermostaticHeads.title}
+      </h2>
+      <p class="mt-4 text-neutral-700 max-w-3xl leading-relaxed">{content.thermostaticHeads.intro}</p>
+
+      <div class="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+        <article class="card border-accent-200 bg-white">
+          <div class="w-12 h-12 rounded-xl bg-accent-100 text-accent-700 flex items-center justify-center mb-4">
+            <Icon name="radiator" size={24} />
+          </div>
+          <h3 class="font-display font-bold text-xl text-neutral-900">{content.thermostaticHeads.standard.title}</h3>
+          <p class="mt-3 text-sm text-neutral-600 leading-relaxed">{content.thermostaticHeads.standard.description}</p>
+          <ul class="mt-4 space-y-2">
+            {content.thermostaticHeads.standard.benefits.map((b) => (
+              <li class="flex items-start gap-2 text-sm text-neutral-700">
+                <Icon name="check" size={18} class="text-accent-600 shrink-0 mt-0.5" strokeWidth={3} />
+                {b}
+              </li>
+            ))}
+          </ul>
+        </article>
+
+        <article class="card border-primary-200 bg-white ring-1 ring-primary-100">
+          <div class="w-12 h-12 rounded-xl bg-primary-100 text-primary-700 flex items-center justify-center mb-4">
+            <Icon name="radiator" size={24} />
+          </div>
+          <h3 class="font-display font-bold text-xl text-neutral-900">{content.thermostaticHeads.connected.title}</h3>
+          <p class="mt-3 text-sm text-neutral-600 leading-relaxed">{content.thermostaticHeads.connected.description}</p>
+          <ul class="mt-4 space-y-2">
+            {content.thermostaticHeads.connected.benefits.map((b) => (
+              <li class="flex items-start gap-2 text-sm text-neutral-700">
+                <Icon name="check" size={18} class="text-accent-600 shrink-0 mt-0.5" strokeWidth={3} />
+                {b}
+              </li>
+            ))}
+          </ul>
+          <p class="mt-4 text-xs text-neutral-500 leading-relaxed border-t border-neutral-100 pt-4">
+            {content.thermostaticHeads.connected.brandsNote}
+          </p>
+        </article>
+      </div>
+
+      <div class="mt-8">
+        <a href={pathFor("contact", locale)} class="btn btn-accent">
+          <Icon name="mail" size={18} />
+          {content.thermostaticHeads.cta}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container-page py-6">
+    <a href={pathFor("projectsPlancherChauffant", locale)} class="link-projects">
+      <Icon name="star" size={14} />
+      {locale === "fr" ? "Voir nos chantiers de plancher chauffant en détail" : "See our underfloor heating projects in detail"}
+      <Icon name="arrow-right" size={14} />
+    </a>
+  </div>
 
   <CtaBanner locale={locale} title={content.cta.title} subtitle={content.cta.subtitle} />
 
@@ -104,7 +183,7 @@ const canonicalPath = pathFor("heating", locale);
         {content.faq.title}
       </h2>
       <div class="mt-8 max-w-4xl">
-        <Faq items={content.faq.items} idPrefix="chauf-faq" locale={locale} client:visible />
+        <Faq items={content.faq.items} idPrefix="chauf-faq" />
       </div>
     </div>
   </section>

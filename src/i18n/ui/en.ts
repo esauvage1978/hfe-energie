@@ -34,9 +34,17 @@ export const uiEn = {
       label: "Plumbing",
       description: "Installation, renovation, emergency repairs",
     },
+    projects: {
+      label: "Our projects",
+      description: "Browse all our completed installations",
+    },
     residential: {
       label: "Residential",
       description: "Turnkey home comfort solutions",
+    },
+    coOwnership: {
+      label: "Co-ownership",
+      description: "Collective heating & MaPrimeRénov' Copro grants",
     },
     commercial: {
       label: "Commercial",
@@ -44,7 +52,7 @@ export const uiEn = {
     },
     grants: {
       label: "Grants & financing",
-      description: "MaPrimeRénov', CEE, ANaH",
+      description: "MaPrimeRénov', CEE, ANAH",
     },
     contact: { label: "Contact" },
     freeQuote: "Request a free quote",
@@ -62,7 +70,8 @@ export const uiEn = {
     hoursSat: "Saturday: 9:00 AM - 5:00 PM",
     hoursSun: "Sunday: closed",
     serviceAreaTitle: "Service area",
-    serviceArea: (areas: string) => `${areas} — and the Lille metropolitan area (MEL).`,
+    serviceArea: (areas: string, radius: number) =>
+      `${areas} — and the Lille metropolitan area (MEL), within a ${radius} km radius of Lille.`,
     legalNav: "Legal links",
     copyright: (year: number, legalName: string) => `© ${year} ${legalName}. All rights reserved.`,
     certifications: "RGE QualiPAC certified · Ten-year warranty & professional liability insurance",
@@ -137,11 +146,21 @@ export function getNavigationEn() {
           description: uiEn.nav.plumbing.description,
         },
       ],
+      projects: {
+        label: uiEn.nav.projects.label,
+        description: uiEn.nav.projects.description,
+        href: routes.projects.en,
+      },
     },
     {
       label: uiEn.nav.residential.label,
       href: routes.residential.en,
       description: uiEn.nav.residential.description,
+    },
+    {
+      label: uiEn.nav.coOwnership.label,
+      href: routes.coOwnership.en,
+      description: uiEn.nav.coOwnership.description,
     },
     {
       label: uiEn.nav.commercial.label,

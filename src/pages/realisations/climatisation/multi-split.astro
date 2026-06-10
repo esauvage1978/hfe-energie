@@ -1,0 +1,19 @@
+---
+import ProjectsPage from "../../../templates/ProjectsPage.astro";
+import { getProjectsClimContent } from "@i18n/content/projects-climatisation";
+import { pathFor } from "@i18n";
+
+const locale = "fr";
+const content = getProjectsClimContent(locale);
+---
+<ProjectsPage
+  locale={locale}
+  seo={content.seo}
+  breadcrumbs={[...content.breadcrumbs]}
+  canonicalPath={pathFor("projectsClim", locale)}
+  hero={content.hero}
+  intro={content.intro}
+  projectLabel={content.projectLabel}
+  projects={content.projects}
+  cta={content.cta}
+/>

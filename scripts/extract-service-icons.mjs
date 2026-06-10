@@ -31,8 +31,8 @@ const ICONS = [
 ];
 
 const PAD = 12;        // marge autour de chaque bbox
-const OUT_SIZE = 600;  // taille canvas final (carré, pour affichage homogène)
-const ICON_MAX = 500;  // dimension max du pictogramme dans le canvas (≈83%)
+const OUT_SIZE = 192;  // affichage max 96px × retina 2×
+const ICON_MAX = Math.round(OUT_SIZE * 0.85);
 
 async function whiteToAlpha(buf) {
   const { data, info } = await sharp(buf)

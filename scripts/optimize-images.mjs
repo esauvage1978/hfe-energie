@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Script d'optimisation des images du site HFE Énergie.
+ * Script d'optimisation des images du site Hecker & Frères Énergie (HFE).
  *
  * Pour chaque image source dans public/assets/**, génère :
  *   - une version WebP (qualité 80)
@@ -35,6 +35,19 @@ const MAX_WIDTH = 1920;
 
 const WEBP_QUALITY = 80;
 const AVIF_QUALITY = 55;
+
+/** Largeurs responsives générées pour les images > 640 px (hors pictos). */
+const RESPONSIVE_WIDTHS = [384, 640, 768, 1024, 1280, 1600];
+const SKIP_RESPONSIVE_DIRS = new Set([
+  "icons-services",
+  "icons-trust",
+  "icone",
+  "icons-trust",
+  "partenaires",
+  "clients",
+  "logo",
+  "logoReseauxSociaux",
+]);
 
 let stats = {
   scanned: 0,
@@ -79,6 +92,13 @@ async function processImage(filePath) {
     const a = await stat(avifPath);
     stats.webpBytes += w.size;
     stats.avifBytes += a.size;
+    try {
+      const pipeline = sharp(filePath, { failOn: "none" }).rotate();
+      const meta = await pipeline.metadata();
+      await generateResponsiveVariants(filePath, pipeline, meta);
+    } catch {
+      /* ignore */
+    }
     return;
   }
 
@@ -103,6 +123,8 @@ async function processImage(filePath) {
         .toFile(avifPath);
     }
 
+    await generateResponsiveVariants(filePath, pipeline, meta);
+
     const w = await stat(webpPath);
     const a = await stat(avifPath);
     stats.webpBytes += w.size;
@@ -123,6 +145,37 @@ function kb(n) {
   if (n < 1024) return `${n} B`;
   if (n < 1024 * 1024) return `${(n / 1024).toFixed(1)} KB`;
   return `${(n / (1024 * 1024)).toFixed(2)} MB`;
+}
+
+async function generateResponsiveVariants(filePath, pipeline, meta) {
+  const relDir = path.relative(SRC_DIR, path.dirname(filePath)).replaceAll("\\", "/");
+  const topDir = relDir.split("/")[0] ?? "";
+  if (SKIP_RESPONSIVE_DIRS.has(topDir)) return;
+
+  const originalWidth = meta.width ?? 0;
+  if (originalWidth <= 640) return;
+
+  const targets = RESPONSIVE_WIDTHS.filter((w) => w < originalWidth);
+  if (targets.length === 0) return;
+
+  for (const w of targets) {
+    const webpPath = `${filePath}-${w}w.webp`;
+    const avifPath = `${filePath}-${w}w.avif`;
+    const resized = pipeline.clone().resize({ width: w, withoutEnlargement: true });
+
+    if (!existsSync(webpPath)) {
+      await resized
+        .clone()
+        .webp({ quality: WEBP_QUALITY, effort: 5, smartSubsample: true })
+        .toFile(webpPath);
+    }
+    if (!existsSync(avifPath)) {
+      await resized
+        .clone()
+        .avif({ quality: AVIF_QUALITY, effort: 4 })
+        .toFile(avifPath);
+    }
+  }
 }
 
 async function main() {

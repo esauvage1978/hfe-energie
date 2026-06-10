@@ -15,10 +15,9 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
-  prefetch: {
-    prefetchAll: true,
-    defaultStrategy: 'viewport',
-  },
+  // Prefetch désactivé : évite le JS client (~2 Ko) et les requêtes anticipées
+  // vers les pages légales qui alourdissaient la chaîne critique Lighthouse.
+  prefetch: false,
   integrations: [
     react(),
     sitemap({
@@ -67,13 +66,15 @@ export default defineConfig({
         '/__contact-proxy': {
           target: 'https://webhooky.builders',
           changeOrigin: true,
-          rewrite: () => '/webhook/form/0b40160efaa335f00324-521b-4203-b686-3ffee6129a06',
+          rewrite: () => '/webhook/form/a03063bda3024ab41fc1-83ec-4dd9-9066-3d25f81d0c4e',
         },
       },
     },
   },
   build: {
-    inlineStylesheets: 'auto',
+    // Inline tout le CSS dans le <head> : supprime la requête CSS bloquante
+    // (chaîne critique HTML -> /_astro/*.css) qui retardait le FCP/LCP.
+    inlineStylesheets: 'always',
   },
   compressHTML: true,
 });

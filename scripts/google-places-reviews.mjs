@@ -4,7 +4,11 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 
-export const REVIEW_URL = "https://g.page/r/CawB00LcHY7jEAE/review";
+export const GOOGLE_MAPS_URL =
+  "https://www.google.com/maps?q=HFE+Pompe+%C3%A0+Chaleur+-+Climatisation,+71+Rue+du+G%C3%A9n%C3%A9ral+de+Gaulle,+59110+La+Madeleine&ftid=0x90e0797ea958d91:0x5f31aec968c997a5";
+
+/** @deprecated Alias — utiliser GOOGLE_MAPS_URL */
+export const REVIEW_URL = GOOGLE_MAPS_URL;
 
 export const REVIEW_FIELD_MASK = [
   "id",
@@ -111,10 +115,8 @@ export function buildPayload(place, placeId, previous = {}) {
     rating: Number(place.rating) || previous.rating || 4.9,
     userRatingCount:
       Number(place.userRatingCount) || previous.userRatingCount || 0,
-    googleMapsUri:
-      place.googleMapsUri ??
-      `https://www.google.com/maps/place/?q=place_id:${placeId}`,
-    reviewUrl: REVIEW_URL,
+    googleMapsUri: GOOGLE_MAPS_URL,
+    reviewUrl: GOOGLE_MAPS_URL,
     reviews,
   };
 }

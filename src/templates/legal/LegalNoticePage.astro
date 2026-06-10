@@ -14,12 +14,12 @@ const isEn = locale === "en";
 
 const title = isEn ? "Legal notice" : "Mentions légales";
 const description = isEn
-  ? "Legal notice for the HFE Énergie website: publisher, host, intellectual property, consumer mediation, insurance and certifications."
-  : "Mentions légales du site HFE Énergie : éditeur, hébergeur, propriété intellectuelle, médiateur de la consommation, assurances et certifications.";
+  ? "Legal notice for the Hecker & Frères Énergie (HFE) website: publisher, host, intellectual property, consumer mediation, insurance and certifications."
+  : "Mentions légales du site Hecker & Frères Énergie (HFE) : éditeur, hébergeur, propriété intellectuelle, médiateur de la consommation, assurances et certifications.";
 
 const privacyPath = pathFor("privacy", locale);
 const cookiesPath = pathFor("cookies", locale);
-const updatedAt = isEn ? "May 16, 2026" : legal.updatedAt.mentionsLegales;
+const updatedAt = isEn ? "June 3, 2026" : legal.updatedAt.mentionsLegales;
 ---
 
 <LegalLayout
@@ -46,10 +46,16 @@ const updatedAt = isEn ? "May 16, 2026" : legal.updatedAt.mentionsLegales;
         <li><strong>Legal form</strong>: {legal.company.legalForm}</li>
         {legal.company.capital && <li><strong>Share capital</strong>: {legal.company.capital}</li>}
         <li><strong>Registered office</strong>: {legal.company.address}</li>
-        <li><strong>SIRET</strong>: {legal.company.siret}</li>
+        <li><strong>SIREN</strong>: {legal.company.siren}</li>
+        <li><strong>SIRET (head office)</strong>: {legal.company.siret}</li>
         <li><strong>Trade register (RCS)</strong>: {legal.company.rcs}</li>
         <li><strong>NAF / APE code</strong>: {legal.company.naf}</li>
+        <li><strong>NAF 2025 code</strong>: {legal.company.naf2025}</li>
         <li><strong>EU VAT number</strong>: {legal.company.vat}</li>
+        <li><strong>Date of incorporation</strong>: {legal.company.createdAt}</li>
+        <li><strong>Workforce</strong>: {legal.company.workforce}</li>
+        <li><strong>Company category</strong>: {legal.company.companyCategory}</li>
+        <li><strong>Collective agreement</strong>: {legal.company.collectiveAgreement}</li>
         <li><strong>Phone</strong>: <a href={`tel:${legal.company.phoneRaw}`}>{legal.company.phone}</a></li>
         <li><strong>Email</strong>: <a href={`mailto:${legal.company.email}`}>{legal.company.email}</a></li>
       </ul>
@@ -73,10 +79,11 @@ const updatedAt = isEn ? "May 16, 2026" : legal.updatedAt.mentionsLegales;
 
       <h2>4. Regulated activity</h2>
       <p>
-        {legal.company.legalName} carries out installation, commissioning, maintenance and repair of heating and
-        air-conditioning equipment (heat pumps, air conditioning, boilers, plumbing) governed by the{" "}
-        <strong>French Construction and Housing Code</strong> and subject to the{" "}
-        <strong>ten-year liability guarantee</strong> under Articles 1792 et seq. of the French Civil Code.
+        {legal.company.legalName} carries out water and gas installation work in all types of premises, as well as
+        installation, commissioning, maintenance and repair of heating and air-conditioning equipment (heat pumps,
+        air conditioning, boilers, plumbing), governed by the <strong>French Construction and Housing Code</strong>{" "}
+        and subject to the <strong>ten-year liability guarantee</strong> under Articles 1792 et seq. of the French
+        Civil Code.
       </p>
 
       <h3>Professional certifications</h3>
@@ -192,15 +199,21 @@ const updatedAt = isEn ? "May 16, 2026" : legal.updatedAt.mentionsLegales;
         Le site <a href={site.baseUrl}>{site.baseUrl}</a> est édité par :
       </p>
       <ul>
-        <li><strong>Raison sociale</strong> : {legal.company.legalName}</li>
+        <li><strong>Dénomination / raison sociale</strong> : {legal.company.legalName}</li>
         <li><strong>Nom commercial</strong> : {legal.company.name}</li>
         <li><strong>Forme juridique</strong> : {legal.company.legalForm}</li>
         {legal.company.capital && <li><strong>Capital social</strong> : {legal.company.capital}</li>}
         <li><strong>Siège social</strong> : {legal.company.address}</li>
-        <li><strong>SIRET</strong> : {legal.company.siret}</li>
+        <li><strong>SIREN</strong> : {legal.company.siren}</li>
+        <li><strong>SIRET du siège social</strong> : {legal.company.siret}</li>
         <li><strong>RCS</strong> : {legal.company.rcs}</li>
-        <li><strong>Code APE / NAF</strong> : {legal.company.naf}</li>
+        <li><strong>Activité principale (NAF / APE)</strong> : {legal.company.naf}</li>
+        <li><strong>Activité principale (NAF 2025)</strong> : {legal.company.naf2025}</li>
         <li><strong>N° TVA intracommunautaire</strong> : {legal.company.vat}</li>
+        <li><strong>Date de création</strong> : {legal.company.createdAt}</li>
+        <li><strong>Effectif salarié</strong> : {legal.company.workforce}</li>
+        <li><strong>Catégorie d'entreprise</strong> : {legal.company.companyCategory}</li>
+        <li><strong>Convention(s) collective(s)</strong> : {legal.company.collectiveAgreement}</li>
         <li><strong>Téléphone</strong> : <a href={`tel:${legal.company.phoneRaw}`}>{legal.company.phone}</a></li>
         <li><strong>E-mail</strong> : <a href={`mailto:${legal.company.email}`}>{legal.company.email}</a></li>
       </ul>
@@ -224,10 +237,11 @@ const updatedAt = isEn ? "May 16, 2026" : legal.updatedAt.mentionsLegales;
 
       <h2>4. Activité réglementée</h2>
       <p>
-        {legal.company.legalName} exerce une activité d'installation, de mise en service, d'entretien et de
-        dépannage d'équipements thermiques et climatiques (pompes à chaleur, climatisation, chaudières,
-        plomberie sanitaire) régie par le <strong>Code de la construction et de l'habitation</strong> et
-        soumise à la <strong>garantie décennale</strong> au titre des articles 1792 et suivants du Code civil.
+        {legal.company.legalName} exerce des travaux d'installation d'eau et de gaz en tous locaux (code NAF
+        43.22A / 43.22G), ainsi qu'une activité d'installation, de mise en service, d'entretien et de dépannage
+        d'équipements thermiques et climatiques (pompes à chaleur, climatisation, chaudières, plomberie sanitaire),
+        régie par le <strong>Code de la construction et de l'habitation</strong> et soumise à la{" "}
+        <strong>garantie décennale</strong> au titre des articles 1792 et suivants du Code civil.
       </p>
 
       <h3>Certifications professionnelles</h3>

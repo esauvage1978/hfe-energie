@@ -8,6 +8,7 @@ import Icon from "@components/Icon.astro";
 import Picture from "@components/Picture.astro";
 import Gallery from "@components/Gallery.astro";
 import StructuredData from "@components/StructuredData.astro";
+import Faq from "@components/Faq.astro";
 import { site } from "@data/site";
 import { servicesImages, realisationsPlomberie } from "@data/assets";
 
@@ -37,6 +38,7 @@ const canonicalPath = pathFor("plumbing", locale);
     }}
     slot="head"
   />
+  <StructuredData type="FAQPage" faqs={content.faq.items} slot="head" />
 
   <div class="container-page">
     <Breadcrumbs items={content.breadcrumbs} />
@@ -87,8 +89,100 @@ const canonicalPath = pathFor("plumbing", locale);
             </div>
             <h3 class="font-display font-bold text-lg text-neutral-900">{o.title}</h3>
             <p class="mt-2 text-sm text-neutral-600 leading-relaxed">{o.desc}</p>
+            {"details" in o && Array.isArray(o.details) && (
+              <ul class="mt-3 space-y-1.5 text-xs text-neutral-600 leading-relaxed">
+                {o.details.map((d) => (
+                  <li class="flex items-start gap-2">
+                    <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent-500 shrink-0" aria-hidden="true" />
+                    <span>{d}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="solucalc" class="section bg-neutral-50 border-y border-neutral-100">
+    <div class="container-page">
+      <span class="badge bg-accent-100 text-accent-800">{content.solucalc.badge}</span>
+      <h2 class="mt-3 font-display text-3xl md:text-4xl font-extrabold text-neutral-900 max-w-3xl">
+        {content.solucalc.title}
+      </h2>
+      <p class="mt-4 text-neutral-700 max-w-3xl leading-relaxed">{content.solucalc.intro}</p>
+
+      <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-5">
+        {content.solucalc.benefits.map((item) => (
+          <article class="card bg-white">
+            <h3 class="font-display font-bold text-base text-neutral-900">{item.title}</h3>
+            <p class="mt-2 text-sm text-neutral-600 leading-relaxed">{item.text}</p>
+          </article>
+        ))}
+      </div>
+
+      <p class="mt-6 text-sm text-neutral-600 max-w-3xl leading-relaxed">{content.solucalc.note}</p>
+      <p class="mt-4">
+        <a
+          href={content.solucalc.externalUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1 text-sm font-semibold text-accent-700 hover:text-accent-800 underline-offset-2 hover:underline"
+        >
+          {content.solucalc.externalLabel}
+          <Icon name="arrow-right" size={14} />
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section bg-accent-50/50 border-y border-accent-100">
+    <div class="container-page">
+      <span class="badge bg-accent-100 text-accent-800">{content.emergencyRepair.badge}</span>
+      <h2 class="mt-3 font-display text-3xl md:text-4xl font-extrabold text-neutral-900 max-w-3xl">
+        {content.emergencyRepair.title}
+      </h2>
+      <p class="mt-4 text-neutral-700 max-w-3xl leading-relaxed">{content.emergencyRepair.intro}</p>
+
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {content.emergencyRepair.interventions.map((item) => (
+          <article class="card bg-white border-accent-100">
+            <h3 class="font-display font-bold text-base text-neutral-900">{item.title}</h3>
+            <p class="mt-2 text-sm text-neutral-600 leading-relaxed">{item.desc}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="card bg-white">
+          <h3 class="font-display font-bold text-lg text-neutral-900">{content.emergencyRepair.whenToCallTitle}</h3>
+          <ul class="mt-4 space-y-2">
+            {content.emergencyRepair.whenToCall.map((item) => (
+              <li class="flex items-start gap-2 text-sm text-neutral-700">
+                <Icon name="check" size={18} class="text-accent-600 shrink-0 mt-0.5" strokeWidth={3} />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="card bg-white">
+          <h3 class="font-display font-bold text-lg text-neutral-900">{content.emergencyRepair.commitmentTitle}</h3>
+          <p class="mt-3 text-sm text-neutral-600 leading-relaxed">{content.emergencyRepair.commitment}</p>
+          <p class="mt-4 text-xs font-semibold uppercase tracking-wide text-neutral-500">
+            {content.emergencyRepair.phoneLabel}
+          </p>
+          <div class="mt-4 flex flex-col sm:flex-row gap-2">
+            <a href={`tel:${site.plumbingPhoneRaw}`} class="btn btn-accent">
+              <Icon name="phone" size={18} />
+              {content.emergencyRepair.phoneCta}
+            </a>
+            <a href={pathFor("contact", locale)} class="btn btn-outline-accent">
+              <Icon name="mail" size={18} />
+              {content.emergencyRepair.contactCta}
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -107,4 +201,20 @@ const canonicalPath = pathFor("plumbing", locale);
     phone={site.plumbingPhone}
     phoneRaw={site.plumbingPhoneRaw}
   />
+
+  <section class="section bg-neutral-50" aria-labelledby="faq-plomberie-title">
+    <div class="container-page">
+      <div class="max-w-3xl">
+        <span class="badge bg-accent-100 text-accent-800">{content.faq.badge}</span>
+        <h2 id="faq-plomberie-title" class="mt-3 font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
+          {content.faq.title}
+        </h2>
+        <p class="mt-3 text-neutral-700">{content.faq.intro}</p>
+      </div>
+
+      <div class="mt-8 max-w-4xl">
+        <Faq items={content.faq.items} idPrefix="plomberie-faq" />
+      </div>
+    </div>
+  </section>
 </BaseLayout>

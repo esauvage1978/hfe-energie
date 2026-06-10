@@ -2,16 +2,15 @@
 import type { Locale } from "@i18n";
 import { getHomeContent, pathFor, type RouteId } from "@i18n";
 import BaseLayout from "@layouts/BaseLayout.astro";
-import CtaBanner from "@components/CtaBanner.astro";
 import Icon from "@components/Icon.astro";
 import Picture from "@components/Picture.astro";
 import LogoCloud from "@components/LogoCloud.astro";
-import PartnersCertificationsSections from "@components/PartnersCertificationsSections.astro";
 import GoogleReviews from "@components/GoogleReviews.astro";
+import Breadcrumbs from "@components/Breadcrumbs.astro";
 import StructuredData from "@components/StructuredData.astro";
-import Faq from "@components/Faq.tsx";
+import Faq from "@components/Faq.astro";
 import { site } from "@data/site";
-import { heroes, clientsReferences } from "@data/assets";
+import { heroes, clientsReferences, partenaires, certificationsLogos } from "@data/assets";
 
 interface Props {
   locale: Locale;
@@ -48,6 +47,21 @@ function serviceHref(slug: string) {
   <StructuredData type="BreadcrumbList" breadcrumbs={content.breadcrumbs} slot="head" />
   <StructuredData type="FAQPage" faqs={content.faq.items} slot="head" />
 
+  <link
+    rel="preload"
+    as="image"
+    type="image/avif"
+    href="/assets/back_main.png-640w.avif"
+    imagesrcset="/assets/back_main.png-384w.avif 384w, /assets/back_main.png-640w.avif 640w, /assets/back_main.png-768w.avif 768w, /assets/back_main.png.avif 1024w"
+    imagesizes="(min-width: 1024px) 50vw, (min-width: 640px) 28rem, 100vw"
+    fetchpriority="high"
+    slot="head"
+  />
+
+  <div class="container-page">
+    <Breadcrumbs items={content.breadcrumbs} />
+  </div>
+
   <section class="relative overflow-hidden bg-[#fafafa]">
     <div class="container-page pb-0 lg:pb-0">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center">
@@ -65,7 +79,11 @@ function serviceHref(slug: string) {
             <span class="text-accent-600">{content.hero.titleHighlight(site.stats.yearsExperience)}</span>
           </h1>
           <p class="mt-5 text-base md:text-lg text-neutral-700 leading-relaxed max-w-xl">
-            {content.hero.descriptionBefore(site.name)}<strong>{content.hero.descriptionStrong1}</strong>{content.hero.descriptionMiddle}<strong>{content.hero.descriptionStrong2}</strong>{content.hero.descriptionAnd}<strong>{content.hero.descriptionStrong3}</strong>{content.hero.descriptionEnd}
+            {content.hero.descriptionBefore(site.name)}<strong>{content.hero.descriptionStrong1}</strong>
+            {content.hero.descriptionMiddle}<strong>{content.hero.descriptionStrong2}</strong>
+            {content.hero.descriptionAnd1}<strong>{content.hero.descriptionStrong3}</strong>
+            {content.hero.descriptionAnd2}<strong>{content.hero.descriptionStrong4}</strong>
+            {content.hero.descriptionEnd}
           </p>
 
           <div class="mt-7 flex flex-col sm:flex-row gap-3">
@@ -80,12 +98,18 @@ function serviceHref(slug: string) {
           </div>
         </div>
 
-        <div class="order-1 lg:order-2">
+        <div class="order-1 lg:order-2 relative">
+          <!-- Dégradé pour fondre le fond du texte avec l'image (desktop) -->
+          <div
+            class="hidden lg:block pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#fafafa] to-transparent z-10"
+            aria-hidden="true"
+          />
           <Picture
             src={heroes.pac.src}
             alt={heroes.pac.alt}
             width={heroes.pac.width}
             height={heroes.pac.height}
+            widths={[384, 640, 768]}
             class="block w-full h-auto max-w-md mx-auto lg:max-w-none"
             loading="eager"
             fetchpriority="high"
@@ -103,12 +127,13 @@ function serviceHref(slug: string) {
       <ul class="grid grid-cols-2 lg:grid-cols-4 gap-y-6 gap-x-4 lg:gap-0 lg:divide-x lg:divide-neutral-200">
         {content.trust.items.map((item) => (
           <li class="flex items-center gap-3 lg:px-6 lg:justify-center">
-            <img
+            <Picture
               src={item.icon}
               alt=""
-              width="64"
-              height="64"
-              class="w-14 h-14 sm:w-16 sm:h-16 shrink-0"
+              width={256}
+              height={256}
+              class="w-14 h-14 sm:w-16 sm:h-16 shrink-0 object-contain"
+              sizes="(min-width: 640px) 4rem, 3.5rem"
               loading="lazy"
               decoding="async"
             />
@@ -142,13 +167,17 @@ function serviceHref(slug: string) {
 
       <div class="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
         {content.services.cards.map((service) => (
-          <a href={serviceHref(service.slug)} class="card group flex flex-col items-center text-center">
-            <img
+          <a
+            href={serviceHref(service.slug)}
+            class="card group flex flex-col items-center text-center active:scale-[0.99] sm:active:scale-100"
+          >
+            <Picture
               src={service.iconUrl}
               alt=""
-              width="96"
-              height="96"
+              width={192}
+              height={192}
               class="w-20 h-20 sm:w-24 sm:h-24 mb-3"
+              sizes="(min-width: 640px) 6rem, 5rem"
               loading="lazy"
               decoding="async"
             />
@@ -156,62 +185,104 @@ function serviceHref(slug: string) {
               {service.title}
             </h3>
             <p class="mt-1 text-xs sm:text-sm text-neutral-600">{service.short}</p>
+            <span class="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-accent-700 sm:hidden">
+              En savoir plus <Icon name="arrow-right" size={14} />
+            </span>
           </a>
         ))}
       </div>
 
-      <ul class="mt-12 grid grid-cols-2 gap-3 sm:gap-6 max-w-4xl mx-auto">
-        {content.services.advantages.map((adv, index) => (
-          <li
-            class:list={[
-              "flex items-center gap-2.5 sm:gap-3 min-w-0",
-              index === 0 ? "justify-self-start" : "justify-self-end ml-auto sm:ml-0 sm:border-l sm:border-neutral-200 sm:pl-6",
-            ]}
-          >
-            <span class="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-accent-500 text-white shrink-0 shadow-sm">
-              <Icon name={adv.icon} size={20} />
-            </span>
-            <span class="leading-tight min-w-0">
-              <span class="block font-semibold text-neutral-900 text-xs sm:text-sm md:text-base">{adv.title}</span>
-              <span class="block text-[11px] sm:text-xs md:text-sm text-neutral-600">{adv.text}</span>
-            </span>
-          </li>
-        ))}
+      <ul class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto">
+        {content.services.advantages.map((adv, index) => {
+          const itemClass = [
+            "flex items-center gap-2.5 sm:gap-3 min-w-0 rounded-xl transition-colors justify-center",
+            index > 0 ? "sm:border-l sm:border-neutral-200 sm:pl-6" : "",
+            "hrefRoute" in adv && adv.hrefRoute ? "sm:-m-3" : "",
+          ];
+          const inner = (
+            <>
+              <span class:list={[
+                "flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-accent-500 text-white shrink-0 shadow-sm",
+                "hrefRoute" in adv && adv.hrefRoute ? "group-hover:bg-accent-600 transition-colors" : "",
+              ]}>
+                <Icon name={adv.icon} size={20} />
+              </span>
+              <span class="leading-tight min-w-0">
+                <span class:list={[
+                  "block font-semibold text-neutral-900 text-xs sm:text-sm md:text-base",
+                  "hrefRoute" in adv && adv.hrefRoute ? "group-hover:text-accent-800 transition-colors" : "",
+                ]}>{adv.title}</span>
+                <span class:list={[
+                  "block text-[11px] sm:text-xs md:text-sm text-neutral-600",
+                  "hrefRoute" in adv && adv.hrefRoute ? "group-hover:text-accent-700 transition-colors" : "",
+                ]}>{adv.text}</span>
+              </span>
+            </>
+          );
+          return (
+            <li class:list={itemClass}>
+              {"hrefRoute" in adv && adv.hrefRoute ? (
+                <a
+                  href={pathFor(adv.hrefRoute, locale)}
+                  class="group flex items-center gap-2.5 sm:gap-3 min-w-0 w-full rounded-xl hover:bg-accent-50/80 -m-2 p-2 sm:-m-3 sm:p-3 transition-colors"
+                >
+                  {inner}
+                </a>
+              ) : (
+                <div class="flex items-center gap-2.5 sm:gap-3 min-w-0">{inner}</div>
+              )}
+            </li>
+          );
+        })}
       </ul>
     </div>
   </section>
 
-  <section class="section bg-neutral-900 text-white" aria-labelledby="why-title">
+  <section class="section bg-white" aria-labelledby="team-title">
     <div class="container-page">
-      <div class="max-w-3xl">
-        <span class="badge bg-white/10 text-accent-200">{content.whyUs.badge}</span>
-        <h2 id="why-title" class="mt-3 font-display text-3xl md:text-4xl font-extrabold text-white">
-          {content.whyUs.title}
-        </h2>
-      </div>
-
-      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
-        {content.whyUs.cards.map((card) => (
-          <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
-            <div class="w-12 h-12 rounded-xl bg-accent-500/20 text-accent-300 flex items-center justify-center mb-4">
-              <Icon name={card.icon} size={24} />
-            </div>
-            <h3 class="font-display font-bold text-lg text-white">{card.title}</h3>
-            <p class="mt-2 text-sm text-neutral-300 leading-relaxed">{card.text}</p>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="badge bg-accent-100 text-accent-800">{content.team.badge}</span>
+          <h2 id="team-title" class="mt-3 font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
+            {content.team.title}
+          </h2>
+          {content.team.description(site.stats.yearsExperience).map((paragraph) => (
+            <p class="mt-4 text-neutral-700 leading-relaxed">{paragraph}</p>
+          ))}
+          <ul class="mt-6 space-y-3">
+            {content.team.bullets.map((bullet, index) => {
+              const strongText =
+                typeof bullet.strong === "function"
+                  ? bullet.strong(index === 2 ? site.stats.installations : site.stats.clientsPerYear)
+                  : bullet.strong;
+              return (
+                <li class="flex items-start gap-3">
+                  <span class="flex items-center justify-center w-7 h-7 rounded-full bg-accent-100 text-accent-700 shrink-0">
+                    <Icon name="check" size={16} strokeWidth={3} />
+                  </span>
+                  <span class="text-neutral-700">
+                    <strong>{strongText}</strong>{bullet.rest}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+          <div class="mt-8 flex flex-col sm:flex-row gap-3">
+            <a href={pathFor("contact", locale)} class="btn btn-accent"><Icon name="mail" size={18} /> {content.team.ctaMeet}</a>
+            <a href={`tel:${site.phoneRaw}`} class="btn btn-outline-accent"><Icon name="phone" size={18} /> {site.phone}</a>
           </div>
-        ))}
-      </div>
-
-      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {content.whyUs.certifications.map((c) => (
-          <div class="rounded-xl bg-white/5 border border-white/10 p-4">
-            <div class="flex items-center gap-2 mb-2">
-              <Icon name="check" size={18} class="text-accent-300" strokeWidth={3} />
-              <p class="font-bold text-white text-sm">{c.name}</p>
-            </div>
-            <p class="text-xs text-neutral-400 leading-relaxed">{c.description}</p>
-          </div>
-        ))}
+        </div>
+        <div class="flex justify-center">
+          <Picture
+            src={heroes.team.src}
+            alt={heroes.team.alt}
+            width={heroes.team.width}
+            height={heroes.team.height}
+            widths={[384, 640, 768, 1024, 1280]}
+            class="rounded-3xl shadow-xl border border-neutral-100 w-full h-auto max-w-md lg:max-w-none"
+            sizes="(min-width: 1024px) 50vw, (min-width: 640px) 28rem, 100vw"
+          />
+        </div>
       </div>
     </div>
   </section>
@@ -239,67 +310,81 @@ function serviceHref(slug: string) {
     </div>
   </section>
 
-  <section class="section bg-white" aria-labelledby="team-title">
+  <section class="section bg-neutral-900 text-white" aria-labelledby="why-title">
     <div class="container-page">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-        <div>
-          <span class="badge bg-accent-100 text-accent-800">{content.team.badge}</span>
-          <h2 id="team-title" class="mt-3 font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
-            {content.team.title}
-          </h2>
-          <p class="mt-4 text-neutral-700 leading-relaxed">
-            {content.team.description(site.stats.yearsExperience)}
-          </p>
-          <ul class="mt-6 space-y-3">
-            {content.team.bullets.map((bullet) => {
-              const strongText =
-                typeof bullet.strong === "function"
-                  ? bullet.strong(
-                      bullet.rest.includes("installations")
-                        ? site.stats.installations
-                        : site.stats.clientsPerYear
-                    )
-                  : bullet.strong;
-              return (
-                <li class="flex items-start gap-3">
-                  <span class="flex items-center justify-center w-7 h-7 rounded-full bg-accent-100 text-accent-700 shrink-0">
-                    <Icon name="check" size={16} strokeWidth={3} />
-                  </span>
-                  <span class="text-neutral-700">
-                    <strong>{strongText}</strong>{bullet.rest}
-                  </span>
-                </li>
-              );
-            })}
-          </ul>
-          <div class="mt-8 flex flex-col sm:flex-row gap-3">
-            <a href={pathFor("contact", locale)} class="btn btn-accent"><Icon name="mail" size={18} /> {content.team.ctaMeet}</a>
-            <a href={`tel:${site.phoneRaw}`} class="btn btn-outline-accent"><Icon name="phone" size={18} /> {site.phone}</a>
+      <div class="max-w-3xl">
+        <span class="badge bg-white/10 text-accent-200">{content.whyUs.badge}</span>
+        <h2 id="why-title" class="mt-3 font-display text-3xl md:text-4xl font-extrabold text-white">
+          {content.whyUs.title}
+        </h2>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+        {content.whyUs.cards.map((card) => (
+          <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+            <div class="w-12 h-12 rounded-xl bg-accent-500/20 text-accent-300 flex items-center justify-center mb-4">
+              <Icon name={card.icon} size={24} />
+            </div>
+            <h3 class="font-display font-bold text-lg text-white">{card.title}</h3>
+            <p class="mt-2 text-sm text-neutral-300 leading-relaxed">{card.text}</p>
           </div>
-        </div>
-        <div class="flex justify-center">
-          <Picture
-            src={heroes.team.src}
-            alt={heroes.team.alt}
-            width={heroes.team.width}
-            height={heroes.team.height}
-            class="rounded-3xl shadow-xl border border-neutral-100 w-full h-auto max-w-md lg:max-w-none"
-            sizes="(min-width: 1024px) 50vw, (min-width: 640px) 28rem, 100vw"
-          />
-        </div>
+        ))}
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {content.whyUs.certifications.map((c) =>
+          "partnerPage" in c && c.partnerPage ? (
+            <a
+              href={pathFor("panasonicPartner", locale)}
+              class="group rounded-xl bg-white/5 border border-white/10 p-4 hover:bg-accent-500/10 hover:border-accent-400/50 transition-colors"
+            >
+              <div class="flex items-center gap-2 mb-2">
+                <Icon name="check" size={18} class="text-accent-300" strokeWidth={3} />
+                <p class="font-bold text-accent-300 text-sm underline underline-offset-2 decoration-accent-400/80 group-hover:text-accent-200 group-hover:decoration-accent-200">
+                  {c.name}
+                </p>
+                <Icon name="arrow-right" size={14} class="text-accent-400 group-hover:text-accent-200 shrink-0 ml-auto" />
+              </div>
+              <p class="text-xs text-neutral-400 group-hover:text-neutral-300 leading-relaxed">{c.description}</p>
+            </a>
+          ) : (
+            <div class="rounded-xl bg-white/5 border border-white/10 p-4">
+              <div class="flex items-center gap-2 mb-2">
+                <Icon name="check" size={18} class="text-accent-300" strokeWidth={3} />
+                <p class="font-bold text-white text-sm">{c.name}</p>
+              </div>
+              <p class="text-xs text-neutral-400 leading-relaxed">{c.description}</p>
+            </div>
+          )
+        )}
       </div>
     </div>
   </section>
 
-  <CtaBanner locale={locale} />
-
-  <PartnersCertificationsSections locale={locale} />
+  <LogoCloud
+    badge={content.certificationsSection.badge}
+    sectionClass="bg-neutral-50"
+    title={content.certificationsSection.title}
+    items={certificationsLogos}
+    variant="certifications"
+  >
+    <p slot="subtitle" class="mt-3 text-neutral-700">
+      {content.certificationsSection.description}<strong>{content.certificationsSection.descriptionStrong}</strong>{content.certificationsSection.descriptionEnd}
+    </p>
+  </LogoCloud>
 
   <LogoCloud
     title={content.clients.title}
     subtitle={content.clients.subtitle}
     items={clientsReferences}
     variant="clients"
+  />
+
+  <LogoCloud
+    title={content.partners.title}
+    subtitle={content.partners.subtitle}
+    items={partenaires}
+    variant="partners"
   />
 
   <GoogleReviews locale={locale} />
@@ -315,7 +400,7 @@ function serviceHref(slug: string) {
       </div>
 
       <div class="mt-8 max-w-4xl">
-        <Faq items={content.faq.items} locale={locale} client:visible />
+        <Faq items={content.faq.items} />
       </div>
     </div>
   </section>

@@ -1,42 +1,38 @@
 /**
  * Centralisation des informations légales du site.
- *
- * Les champs marqués TODO doivent être complétés par le client avec ses
- * informations officielles (extrait Kbis / déclaration d'activité).
+ * Données issues du registre du commerce (SIRENE / extrait Kbis).
  */
 
 export const legal = {
   /** Identité de l'éditeur du site */
   company: {
-    name: "HFE Énergie",
-    legalName: "Hecker & Frères Énergie",
-    // TODO: à compléter selon la forme juridique (EURL, SARL, SAS, EI)
-    legalForm: "SARL",
-    // TODO: capital social (laissez vide pour les Entreprises Individuelles)
-    capital: "10 000 €",
+    name: "Hecker & Frères Énergie (HFE)",
+    legalName: "HECKER & FRERES ENERGIE",
+    legalForm: "Société à responsabilité limitée (SARL)",
+    capital: "",
     address: "44 Rue Jean sans peur, 59800 Lille, France",
-    // TODO: SIRET officiel
-    siret: "XXX XXX XXX 00012",
-    // TODO: RCS officiel
-    rcs: "Lille Métropole - XXX XXX XXX",
-    // TODO: code APE - 4322B = Travaux d'installation d'équipements thermiques et de climatisation
-    naf: "4322B - Travaux d'installation d'équipements thermiques et de climatisation",
-    // TODO: numéro TVA intracommunautaire
-    vat: "FR XX XXX XXX XXX",
-    phone: "07 67 34 12 63",
-    phoneRaw: "+33767341263",
+    siren: "902 806 785",
+    siret: "902 806 785 00025",
+    rcs: "RCS Lille Métropole 902 806 785",
+    naf: "43.22A — Travaux d'installation d'eau et de gaz en tous locaux",
+    naf2025: "43.22G — Travaux d'installation d'eau et de gaz en tous locaux",
+    vat: "FR44 902 806 785",
+    eori: "",
+    createdAt: "23/08/2021",
+    workforce: "1 ou 2 salariés (2023)",
+    companyCategory: "Petite ou Moyenne Entreprise (PME), en 2023",
+    collectiveAgreement: "IDCC 1596",
+    phone: "07 67 34 12 53",
+    phoneRaw: "+33767341253",
     email: "contact@hfe-energie.fr",
-    // TODO: nom du dirigeant / directeur de la publication
-    publicationDirector: "Emmanuel Hecker",
-    // Assurances professionnelles
+    publicationDirector: "Kévin Hecker",
     insurance: {
-      // TODO: à compléter avec votre compagnie d'assurance
       company: "Compagnie d'assurance professionnelle",
       contract: "Numéro de contrat à compléter",
       coverage: "France métropolitaine",
     },
-    // Certifications RGE
     certifications: [
+      "RGE — Reconnu Garant de l'Environnement",
       "RGE QualiPAC Module Chauffage",
       "RGE QualiPAC Module Chauffe-eau thermodynamique",
     ],
@@ -80,8 +76,8 @@ export const legal = {
 
   /** Dates de dernière mise à jour des documents légaux */
   updatedAt: {
-    mentionsLegales: "16 mai 2026",
-    confidentialite: "16 mai 2026",
+    mentionsLegales: "3 juin 2026",
+    confidentialite: "3 juin 2026",
     cookies: "16 mai 2026",
     cgv: "16 mai 2026",
     cgu: "16 mai 2026",

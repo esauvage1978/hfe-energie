@@ -34,9 +34,17 @@ export const uiFr = {
       label: "Plomberie",
       description: "Installation, rénovation, dépannage sanitaire",
     },
+    projects: {
+      label: "Nos réalisations",
+      description: "Découvrez tous nos chantiers en photos",
+    },
     residential: {
       label: "Particuliers",
       description: "Solutions résidentielles clé en main",
+    },
+    coOwnership: {
+      label: "Copropriété",
+      description: "Chauffage collectif et aides MaPrimeRénov' Copro",
     },
     commercial: {
       label: "Professionnels",
@@ -44,7 +52,7 @@ export const uiFr = {
     },
     grants: {
       label: "Aides & Financements",
-      description: "MaPrimeRénov', CEE, ANaH",
+      description: "MaPrimeRénov', CEE, ANAH",
     },
     contact: { label: "Contact" },
     freeQuote: "Demander un devis gratuit",
@@ -62,8 +70,8 @@ export const uiFr = {
     hoursSat: "Samedi : 09h00 - 17h00",
     hoursSun: "Dimanche : fermé",
     serviceAreaTitle: "Zone d'intervention",
-    serviceArea: (areas: string) =>
-      `${areas} - et la métropole lilloise (MEL).`,
+    serviceArea: (areas: string, radius: number) =>
+      `${areas} — et la métropole lilloise (MEL), dans un rayon de ${radius} km autour de Lille.`,
     legalNav: "Liens légaux",
     copyright: (year: number, legalName: string) =>
       `© ${year} ${legalName}. Tous droits réservés.`,
@@ -139,11 +147,21 @@ export function getNavigationFr() {
           description: uiFr.nav.plumbing.description,
         },
       ],
+      projects: {
+        label: uiFr.nav.projects.label,
+        description: uiFr.nav.projects.description,
+        href: routes.projects.fr,
+      },
     },
     {
       label: uiFr.nav.residential.label,
       href: routes.residential.fr,
       description: uiFr.nav.residential.description,
+    },
+    {
+      label: uiFr.nav.coOwnership.label,
+      href: routes.coOwnership.fr,
+      description: uiFr.nav.coOwnership.description,
     },
     {
       label: uiFr.nav.commercial.label,

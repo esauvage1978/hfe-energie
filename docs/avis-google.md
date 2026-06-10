@@ -1,10 +1,10 @@
 # Avis Google sur le site (sans clé API)
 
-Google ne permet pas d’afficher les avis automatiquement sans **Places API** (payante après crédit gratuit) ou un **service tiers**. Voici les options pour HFE Énergie.
+Google ne permet pas d’afficher les avis automatiquement sans **Places API** (payante après crédit gratuit) ou un **service tiers**. Voici les options pour Hecker & Frères Énergie (HFE).
 
 ## Option 1 — Mise à jour manuelle (recommandée, gratuite)
 
-1. Ouvrez votre fiche : [Laisser / voir les avis](https://g.page/r/CawB00LcHY7jEAE/review) ou Google Maps → votre établissement → **Avis**.
+1. Ouvrez votre fiche : [HFE sur Google Maps](https://www.google.com/maps?q=HFE+Pompe+%C3%A0+Chaleur+-+Climatisation,+71+Rue+du+G%C3%A9n%C3%A9ral+de+Gaulle,+59110+La+Madeleine&ftid=0x90e0797ea958d91:0x5f31aec968c997a5) → **Avis**.
 2. Copiez les **5 avis les plus récents** (nom complet, texte, note, date affichée).
 3. Éditez `src/data/google-reviews.json` :
    - `rating` : note moyenne affichée sur Google (ex. `4.9`)

@@ -1,0 +1,61 @@
+---
+import type { Locale } from "@i18n";
+import { pathFor } from "@i18n";
+import {
+  getPanasonicPartnerPromoContent,
+  type PanasonicPartnerPromoVariant,
+} from "@i18n/content/panasonic-partner-promo";
+import Icon from "./Icon.astro";
+import Picture from "./Picture.astro";
+import { partenaires } from "@data/assets";
+
+interface Props {
+  locale: Locale;
+  variant: PanasonicPartnerPromoVariant;
+}
+
+const { locale, variant } = Astro.props;
+const content = getPanasonicPartnerPromoContent(locale, variant);
+const panasonicLogo = partenaires.find((p) => p.name === "Panasonic")!;
+---
+
+<section class="section bg-white" aria-labelledby={`panasonic-promo-${variant}-title`}>
+  <div class="container-page">
+    <div class="rounded-2xl border border-accent-200 bg-gradient-to-br from-white via-accent-50/40 to-white p-6 md:p-8 shadow-sm">
+      <div class="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-6 md:gap-8 items-center">
+        <div class="flex flex-col items-center md:items-start gap-3 md:min-w-[180px]">
+          <div class="rounded-xl bg-white border border-neutral-200 px-6 py-4 shadow-sm">
+            <Picture
+              src={panasonicLogo.logo}
+              alt="Panasonic"
+              width={panasonicLogo.width}
+              height={panasonicLogo.height}
+              class="h-10 w-auto object-contain"
+              loading="lazy"
+            />
+          </div>
+          <span class="badge bg-accent-100 text-accent-800">{content.badge}</span>
+        </div>
+
+        <div>
+          <h2
+            id={`panasonic-promo-${variant}-title`}
+            class="font-display font-extrabold text-xl md:text-2xl text-neutral-900"
+          >
+            {content.title}
+          </h2>
+          <p class="mt-3 text-sm md:text-base text-neutral-700 leading-relaxed max-w-3xl">
+            {content.description}
+          </p>
+          <a
+            href={pathFor("panasonicPartner", locale)}
+            class="mt-5 inline-flex items-center gap-2 text-sm md:text-base font-semibold text-accent-700 underline underline-offset-2 decoration-accent-400/70 hover:text-accent-800 hover:decoration-accent-600 transition-colors"
+          >
+            {content.linkLabel}
+            <Icon name="arrow-right" size={16} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

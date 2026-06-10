@@ -1,139 +1,278 @@
 <!--
+
   Template MJML — Notification interne (équipe HFE) — nouveau message formulaire contact
+
   PAS l'accusé de réception visiteur : utiliser contact-confirmation-visiteur-mailjet.mjml pour l'émetteur.
+
+
 
   À compiler : npx mjml emails/contact-notification-mailjet.mjml -o emails/contact-notification-mailjet.html
 
-  Champs : public/contact-zapier.php — contact-zapier-payload-keys.json
+
+
+  Champs : src/components/ContactForm.tsx — public/contact-zapier.php — contact-zapier-payload-keys.json
+
   Variables : {{var:name}}, {{var:email}}, …
+
 -->
+
 <mjml>
+
   <mj-head>
-    <mj-title>Nouveau message — Contact HFE Énergie</mj-title>
+
+    <mj-title>Nouveau message — Contact Hecker &amp; Frères Énergie (HFE)</mj-title>
+
     <mj-preview>Un visiteur a envoyé une demande depuis le formulaire de contact du site hfe-energie.fr.</mj-preview>
+
     <mj-attributes>
+
       <mj-all font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" />
+
       <mj-text color="#1e293b" font-size="16px" line-height="24px" />
+
       <mj-button
+
         background-color="#00B040"
+
         color="#ffffff"
+
         font-size="16px"
+
         font-weight="600"
+
         border-radius="12px"
+
         inner-padding="14px 28px"
+
       />
+
     </mj-attributes>
+
   </mj-head>
+
   <mj-body background-color="#f8fafc" width="600px">
+
     <mj-section background-color="#0f172a" padding="28px 40px 20px">
+
       <mj-column width="100%">
+
         <mj-image
+
           src="https://hfe-energie.fr/assets/logo/hfe-sansFond.png"
-          alt="HFE Énergie — Hecker &amp; Frères Énergie"
+
+          alt="Hecker &amp; Frères Énergie (HFE)"
+
           width="130px"
+
           padding="14px 24px"
+
           container-background-color="#ffffff"
+
           border-radius="12px"
+
           href="https://hfe-energie.fr/"
+
         />
+
         <mj-text
+
           align="center"
+
           font-size="13px"
+
           font-weight="700"
+
           letter-spacing="0.06em"
+
           text-transform="uppercase"
+
           color="#99e1ab"
+
           padding="12px 0 0"
+
           line-height="20px"
+
         >
+
           Chauffagiste · Climaticien · RGE QualiPAC
+
         </mj-text>
+
       </mj-column>
+
     </mj-section>
+
+
 
     <mj-section padding="0" background-color="#0f172a">
+
       <mj-column width="100%">
+
         <mj-divider border-width="3px" border-color="#00B040" padding="0" />
+
       </mj-column>
+
     </mj-section>
+
+
 
     <mj-section background-color="#ffffff" padding="32px 40px 16px">
+
       <mj-column width="100%">
+
         <mj-text font-size="20px" font-weight="700" color="#0080C0" padding-bottom="8px">
+
           Nouvelle demande depuis le site
+
         </mj-text>
+
         <mj-text font-size="14px" color="#475569" padding-bottom="0">
-          Formulaire de contact — pompe à chaleur, climatisation, chauffage ou plomberie.
-          Répondre au contact ci-dessous sous 72 h ouvrées.
+
+          Formulaire de contact — pompe à chaleur, climatisation, chauffage, chauffe-eau thermodynamique,
+
+          plomberie ou dépannage. Répondre au contact ci-dessous sous 72 h ouvrées.
+
         </mj-text>
+
       </mj-column>
+
     </mj-section>
+
+
 
     <mj-section background-color="#ffffff" padding="0 40px 8px">
+
       <mj-column width="100%">
+
         <mj-text font-size="15px" font-weight="700" color="#0080C0" padding-bottom="12px">
-          Synthèse
+
+          Contenu du formulaire
+
         </mj-text>
+
         <mj-text padding-bottom="12px">
-          <strong style="color: #0080C0">Profil</strong><br />
+
+          <strong style="color: #0080C0">Vous êtes</strong><br />
+
           {{var:client_type_label}}
-          <span style="color: #64748b; font-size: 13px;"> (code : {{var:client_type}})</span>
+
+          <span style="color: #64748b; font-size: 13px;"> ({{var:client_type}})</span>
+
         </mj-text>
+
         <mj-text padding-bottom="12px">
-          <strong style="color: #0080C0">Type de projet</strong><br />
-          {{var:service_label}}
-          <span style="color: #64748b; font-size: 13px;"> (code : {{var:service}})</span>
+
+          <strong style="color: #0080C0">Nom &amp; prénom</strong><br />
+
+          {{var:name}}
+
         </mj-text>
+
         <mj-text padding-bottom="12px">
+
+          <strong style="color: #0080C0">E-mail</strong><br />
+
+          <a href="mailto:{{var:email}}" style="color: #009638; font-weight: 600;">{{var:email}}</a>
+
+        </mj-text>
+
+        <mj-text padding-bottom="12px">
+
+          <strong style="color: #0080C0">Téléphone</strong><br />
+
+          <a href="tel:{{var:phone_raw}}" style="color: #009638; font-weight: 600;">{{var:phone}}</a>
+
+        </mj-text>
+
+        <mj-text padding-bottom="12px">
+
           <strong style="color: #0080C0">Code postal</strong><br />
+
           {{var:postal}}
+
         </mj-text>
+
+        <mj-text padding-bottom="12px">
+
+          <strong style="color: #0080C0">Type de projet</strong><br />
+
+          {{var:service_label}}
+
+          <span style="color: #64748b; font-size: 13px;"> ({{var:service}})</span>
+
+        </mj-text>
+
       </mj-column>
+
     </mj-section>
+
+
 
     <mj-section background-color="#ffffff" padding="0 40px 24px">
+
       <mj-column width="100%">
-        <mj-text padding-bottom="12px">
-          <strong style="color: #0080C0">Nom &amp; prénom</strong><br />
-          {{var:name}}
-        </mj-text>
-        <mj-text padding-bottom="12px">
-          <strong style="color: #0080C0">E-mail</strong><br />
-          <a href="mailto:{{var:email}}" style="color: #009638; font-weight: 600;">{{var:email}}</a>
-        </mj-text>
-        <mj-text padding-bottom="12px">
-          <strong style="color: #0080C0">Téléphone</strong><br />
-          <a href="tel:{{var:phone_raw}}" style="color: #009638; font-weight: 600;">{{var:phone}}</a>
-        </mj-text>
+
         <mj-text padding-bottom="8px">
-          <strong style="color: #0080C0">Projet</strong>
+
+          <strong style="color: #0080C0">Votre projet</strong>
+
         </mj-text>
+
         <mj-text padding="12px 16px" container-background-color="#f8fafc" color="#1e293b">
+
           {{var:message}}
+
         </mj-text>
+
         <mj-text font-size="12px" color="#64748b" padding-top="14px" padding-bottom="0">
+
           Source : {{var:source}} — Page d'envoi : {{var:page}}
+
         </mj-text>
+
       </mj-column>
+
     </mj-section>
+
+
 
     <mj-section background-color="#ffffff" padding="0 40px 32px">
+
       <mj-column width="100%">
+
         <mj-button href="mailto:{{var:email}}" align="left">Répondre par e-mail</mj-button>
+
       </mj-column>
+
     </mj-section>
 
+
+
     <mj-section background-color="#e6f4fb" padding="24px 40px">
+
       <mj-column width="100%">
+
         <mj-text font-size="12px" color="#475569" align="center" padding="0">
-          E-mail automatique — notification interne HFE Énergie (Hecker &amp; Frères Énergie).<br />
+
+          E-mail automatique — notification interne Hecker &amp; Frères Énergie (HFE).<br />
+
           Installateur RGE QualiPAC · Lille et métropole lilloise.<br /><br />
+
           <span style="color: #64748b;">
-            Consentement RGPD (horodatage) : {{var:privacy_policy_accepted_at}}<br />
+
+            Consentement formulaire (horodatage) : {{var:privacy_policy_accepted_at}}<br />
+
             Reçu le : {{var:submitted_at}}
+
           </span>
+
         </mj-text>
+
       </mj-column>
+
     </mj-section>
+
   </mj-body>
+
 </mjml>
+

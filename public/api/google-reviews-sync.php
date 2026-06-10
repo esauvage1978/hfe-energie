@@ -11,8 +11,8 @@ declare(strict_types=1);
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: public, max-age=3600');
 
-const REVIEW_URL = 'https://g.page/r/CawB00LcHY7jEAE/review';
-const TEXT_QUERY = 'HFE Énergie Hecker Frères 44 Rue Jean sans peur 59800 Lille';
+const GOOGLE_MAPS_URL = 'https://www.google.com/maps?q=HFE+Pompe+%C3%A0+Chaleur+-+Climatisation,+71+Rue+du+G%C3%A9n%C3%A9ral+de+Gaulle,+59110+La+Madeleine&ftid=0x90e0797ea958d91:0x5f31aec968c997a5';
+const TEXT_QUERY = 'Hecker & Frères Énergie (HFE) 44 Rue Jean sans peur 59800 Lille';
 const CACHE_MAX_AGE = 7 * 24 * 3600;
 
 $root = dirname(__DIR__, 2);
@@ -100,8 +100,8 @@ function syncGoogleReviews(string $apiKey, string $textQuery, string $placeIdPre
         'placeId' => $placeId,
         'rating' => (float) ($place['rating'] ?? $previous['rating'] ?? 4.9),
         'userRatingCount' => (int) ($place['userRatingCount'] ?? $previous['userRatingCount'] ?? 0),
-        'googleMapsUri' => $place['googleMapsUri'] ?? ('https://www.google.com/maps/place/?q=place_id:' . $placeId),
-        'reviewUrl' => REVIEW_URL,
+        'googleMapsUri' => GOOGLE_MAPS_URL,
+        'reviewUrl' => GOOGLE_MAPS_URL,
         'reviews' => $reviews,
     ];
 

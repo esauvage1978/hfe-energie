@@ -16,13 +16,13 @@ export interface ImageAsset {
 export const logos = {
   full: {
     src: "/assets/logo/hfe-sansFond.png",
-    alt: "Logo HFE Énergie - Hecker & Frères Énergie",
+    alt: "Logo Hecker & Frères Énergie (HFE)",
     width: 352,
     height: 287,
   },
   icon: {
     src: "/assets/logo/hfe-sansFond-sans-ecriture.png",
-    alt: "Logo HFE Énergie",
+    alt: "Logo Hecker & Frères Énergie (HFE)",
     width: 326,
     height: 256,
   },
@@ -36,10 +36,10 @@ export const logos = {
 
 export const heroes = {
   pac: {
-    src: "/assets/pompeAChaleur/pac-hero.jpg",
-    alt: "Pompe à chaleur air-eau installée par HFE Énergie sur un mur extérieur de maison",
-    width: 664,
-    height: 850,
+    src: "/assets/back_main.png",
+    alt: "Pompe à chaleur air-eau installée par Hecker & Frères Énergie (HFE) — unité extérieure avec logo HFE",
+    width: 1024,
+    height: 1024,
   },
   background: {
     src: "/assets/fondImage/imageFond.png",
@@ -49,19 +49,19 @@ export const heroes = {
   },
   team: {
     src: "/assets/equipe/equipe.jpg",
-    alt: "Équipe HFE Énergie - chauffagistes et climaticiens à Lille",
+    alt: "Équipe Hecker & Frères Énergie (HFE) - chauffagistes et climaticiens à Lille",
     width: 1738,
     height: 2048,
   },
   truck: {
     src: "/assets/camion/camion.jpg",
-    alt: "Camion HFE Énergie en intervention dans la métropole lilloise",
+    alt: "Camion Hecker & Frères Énergie (HFE) en intervention dans la métropole lilloise",
     width: 1535,
     height: 1189,
   },
   contactTruck: {
     src: "/assets/camion/maquetteCamion.png",
-    alt: "Camion HFE Énergie — intervention rapide sur Lille et métropole",
+    alt: "Camion Hecker & Frères Énergie (HFE) — plomberie, salle de bain, dépannage, chauffage, pompe à chaleur et climatisation à Lille",
     width: 715,
     height: 349,
   },
@@ -76,19 +76,19 @@ export const servicesImages = {
   },
   climatisation: {
     src: "/assets/climatisation/climatisation.jpg",
-    alt: "Climatisation réversible installée par HFE Énergie",
+    alt: "Climatisation réversible installée par Hecker & Frères Énergie (HFE)",
     width: 1920,
     height: 1152,
   },
   chauffage: {
     src: "/assets/chauffage/chauffage1.jpg",
-    alt: "Installation de chauffage moderne par HFE Énergie",
+    alt: "Installation de chauffage moderne par Hecker & Frères Énergie (HFE)",
     width: 1855,
     height: 1437,
   },
   plomberie: {
     src: "/assets/plomberie/plomberie.jpg",
-    alt: "Travaux de plomberie réalisés par HFE Énergie",
+    alt: "Travaux de plomberie réalisés par Hecker & Frères Énergie (HFE)",
     width: 835,
     height: 593,
   },
@@ -107,33 +107,33 @@ export const servicesImages = {
 } as const;
 
 export const realisationsPAC: ImageAsset[] = [
-  { src: "/assets/realisationPompeAChaleur/pompeAChaleur1.JPG", alt: "Installation pompe à chaleur n°1 - HFE Énergie", width: 1920, height: 1440 },
-  { src: "/assets/realisationPompeAChaleur/pompeAChaleur2.JPG", alt: "Installation pompe à chaleur n°2 - HFE Énergie", width: 1920, height: 1440 },
-  { src: "/assets/realisationPompeAChaleur/pompeAChaleur3.JPG", alt: "Installation pompe à chaleur n°3 - HFE Énergie", width: 1920, height: 1440 },
-  { src: "/assets/realisationPompeAChaleur/pompeAChaleur4.JPG", alt: "Installation pompe à chaleur n°4 - HFE Énergie", width: 1920, height: 1440 },
-  { src: "/assets/realisationPompeAChaleur/pompeAChaleur5.JPG", alt: "Installation pompe à chaleur n°5 - HFE Énergie", width: 1920, height: 1440 },
-  { src: "/assets/realisationPompeAChaleur/pompeAChaleur7.JPG", alt: "Installation pompe à chaleur n°7 - HFE Énergie", width: 1920, height: 1440 },
-  { src: "/assets/realisationPompeAChaleur/pompeAChaleur8.JPG", alt: "Installation pompe à chaleur n°8 - HFE Énergie", width: 1920, height: 1440 },
+  { src: "/assets/realisationPompeAChaleur/pompeAChaleur1.JPG", alt: "Installation pompe à chaleur n°1 - Hecker & Frères Énergie (HFE)", width: 1920, height: 1440 },
+  { src: "/assets/realisationPompeAChaleur/pompeAChaleur2.JPG", alt: "Installation pompe à chaleur n°2 - Hecker & Frères Énergie (HFE)", width: 1920, height: 1440 },
+  { src: "/assets/realisationPompeAChaleur/pompeAChaleur3.JPG", alt: "Installation pompe à chaleur n°3 - Hecker & Frères Énergie (HFE)", width: 1920, height: 1440 },
+  { src: "/assets/realisationPompeAChaleur/pompeAChaleur4.JPG", alt: "Installation pompe à chaleur n°4 - Hecker & Frères Énergie (HFE)", width: 1920, height: 1440 },
+  { src: "/assets/realisationPompeAChaleur/pompeAChaleur5.JPG", alt: "Installation pompe à chaleur n°5 - Hecker & Frères Énergie (HFE)", width: 1920, height: 1440 },
+  { src: "/assets/realisationPompeAChaleur/pompeAChaleur7.JPG", alt: "Installation pompe à chaleur n°7 - Hecker & Frères Énergie (HFE)", width: 1920, height: 1440 },
+  { src: "/assets/realisationPompeAChaleur/pompeAChaleur8.JPG", alt: "Installation pompe à chaleur n°8 - Hecker & Frères Énergie (HFE)", width: 1920, height: 1440 },
 ];
 
 export const realisationsClim: ImageAsset[] = [
-  { src: "/assets/realisationClimatisation/climatisation1.jpg", alt: "Climatisation réversible installée par HFE Énergie n°1", width: 1920, height: 1280 },
-  { src: "/assets/realisationClimatisation/climatisation2.jpg", alt: "Climatisation réversible installée par HFE Énergie n°2", width: 1920, height: 1280 },
-  { src: "/assets/realisationClimatisation/climatisation3.jpg", alt: "Climatisation réversible installée par HFE Énergie n°3", width: 1920, height: 1280 },
-  { src: "/assets/realisationClimatisation/climatisation4.jpg", alt: "Climatisation réversible installée par HFE Énergie n°4", width: 1920, height: 1280 },
+  { src: "/assets/realisationClimatisation/climatisation1.jpg", alt: "Climatisation réversible installée par Hecker & Frères Énergie (HFE) n°1", width: 1920, height: 1280 },
+  { src: "/assets/realisationClimatisation/climatisation2.jpg", alt: "Climatisation réversible installée par Hecker & Frères Énergie (HFE) n°2", width: 1920, height: 1280 },
+  { src: "/assets/realisationClimatisation/climatisation3.jpg", alt: "Climatisation réversible installée par Hecker & Frères Énergie (HFE) n°3", width: 1920, height: 1280 },
+  { src: "/assets/realisationClimatisation/climatisation4.jpg", alt: "Climatisation réversible installée par Hecker & Frères Énergie (HFE) n°4", width: 1920, height: 1280 },
 ];
 
 export const realisationsPlomberie: ImageAsset[] = [
-  { src: "/assets/realisationPlomberie/plomberie1.JPG", alt: "Travaux de plomberie HFE Énergie n°1", width: 1920, height: 1440 },
-  { src: "/assets/realisationPlomberie/plomberie2.JPG", alt: "Travaux de plomberie HFE Énergie n°2", width: 1920, height: 1440 },
-  { src: "/assets/realisationPlomberie/plomberie3.JPG", alt: "Travaux de plomberie HFE Énergie n°3", width: 1920, height: 1440 },
-  { src: "/assets/realisationPlomberie/plomberie8.JPG", alt: "Travaux de plomberie HFE Énergie n°4", width: 1920, height: 1440 },
+  { src: "/assets/realisationPlomberie/plomberie1.JPG", alt: "Travaux de plomberie Hecker & Frères Énergie (HFE) n°1", width: 1920, height: 1440 },
+  { src: "/assets/realisationPlomberie/plomberie2.JPG", alt: "Travaux de plomberie Hecker & Frères Énergie (HFE) n°2", width: 1920, height: 1440 },
+  { src: "/assets/realisationPlomberie/plomberie3.JPG", alt: "Travaux de plomberie Hecker & Frères Énergie (HFE) n°3", width: 1920, height: 1440 },
+  { src: "/assets/realisationPlomberie/plomberie8.JPG", alt: "Travaux de plomberie Hecker & Frères Énergie (HFE) n°4", width: 1920, height: 1440 },
 ];
 
 export const partenaires = [
   { name: "Panasonic", logo: "/assets/partenaires/panasonic.png", width: 240, height: 80 },
   { name: "Daikin", logo: "/assets/partenaires/daikin.png", width: 240, height: 80 },
-  { name: "Mitsubishi Electric", logo: "/assets/partenaires/mitsubishi.png", width: 240, height: 80 },
+  { name: "Mitsubishi Electric", logo: "/assets/partenaires/mitsubishi.png", width: 524, height: 240 },
   { name: "Atlantic", logo: "/assets/partenaires/atlantic.png", width: 240, height: 80 },
   { name: "Toshiba", logo: "/assets/partenaires/Toshiba.png", width: 240, height: 80 },
   { name: "Samsung", logo: "/assets/partenaires/samsung.png", width: 240, height: 80 },
@@ -174,9 +174,8 @@ export const clientsReferences = [
 ] as const;
 
 export const certificationsLogos = [
-  { name: "RGE QualiPAC", logo: "/assets/certifications/qualiPAC.png" },
+  { name: "RGE QualiPAC", logo: "/assets/certifications/Logo-QualiPAC.jpg", width: 1200, height: 420 },
   { name: "Qualit'EnR", logo: "/assets/certifications/qualienr.jpg" },
-  { name: "RGE Chauffage", logo: "/assets/certifications/chauffage.png" },
   { name: "Artisan", logo: "/assets/certifications/artisan.jpg" },
   { name: "CAPEB", logo: "/assets/certifications/capeb.jpeg" },
   { name: "Manipulation Fluides", logo: "/assets/certifications/fluides1.jpg" },

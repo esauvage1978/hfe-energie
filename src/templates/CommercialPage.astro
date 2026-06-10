@@ -8,6 +8,8 @@ import Icon from "@components/Icon.astro";
 import Picture from "@components/Picture.astro";
 import StructuredData from "@components/StructuredData.astro";
 import LogoCloud from "@components/LogoCloud.astro";
+import Faq from "@components/Faq.astro";
+import PanasonicPartnerPromo from "@components/PanasonicPartnerPromo.astro";
 import { site } from "@data/site";
 import { servicesImages, clientsReferences } from "@data/assets";
 
@@ -22,6 +24,7 @@ const canonicalPath = pathFor("commercial", locale);
 
 <BaseLayout locale={locale} title={content.seo.title} description={content.seo.description} canonicalPath={canonicalPath}>
   <StructuredData type="BreadcrumbList" breadcrumbs={content.breadcrumbs} slot="head" />
+  <StructuredData type="FAQPage" faqs={content.faq.items} slot="head" />
 
   <div class="container-page">
     <Breadcrumbs items={content.breadcrumbs} />
@@ -64,15 +67,32 @@ const canonicalPath = pathFor("commercial", locale);
         {content.offers.title}
       </h2>
       <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {content.offers.items.map((o) => (
-          <div class="card">
+        {content.offers.items.map((o) => {
+          const hasProjects = "projectsRoute" in o && "projectsLabel" in o;
+          return (
+          <div class:list={["card", hasProjects && "card-linkable"]}>
+            {hasProjects && (
+              <a
+                href={pathFor(o.projectsRoute as any, locale)}
+                class="card-stretched-link"
+                aria-label={o.projectsLabel}
+              />
+            )}
             <div class="w-12 h-12 rounded-xl bg-accent-100 text-accent-700 flex items-center justify-center mb-4">
               <Icon name="shield" size={24} />
             </div>
             <h3 class="font-display font-bold text-lg text-neutral-900">{o.title}</h3>
             <p class="mt-2 text-sm text-neutral-600 leading-relaxed">{o.desc}</p>
+            {hasProjects && (
+              <span class="link-projects mt-5 pointer-events-none" aria-hidden="true">
+                <Icon name="star" size={14} />
+                {o.projectsLabel}
+                <Icon name="arrow-right" size={14} />
+              </span>
+            )}
           </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   </section>
@@ -83,6 +103,32 @@ const canonicalPath = pathFor("commercial", locale);
     items={clientsReferences}
     variant="clients"
   />
+
+  <div class="container-page pb-6 -mt-4">
+    <a href={pathFor("projectsClimPro", locale)} class="link-projects">
+      <Icon name="star" size={14} />
+      {locale === "fr" ? "Voir nos chantiers de climatisation professionnelle en détail" : "See our commercial air conditioning projects in detail"}
+      <Icon name="arrow-right" size={14} />
+    </a>
+  </div>
+
+  <PanasonicPartnerPromo locale={locale} variant="commercial" />
+
+  <section class="section bg-white" aria-labelledby="faq-b2b-title">
+    <div class="container-page">
+      <div class="max-w-3xl">
+        <span class="badge bg-accent-100 text-accent-800">{content.faq.badge}</span>
+        <h2 id="faq-b2b-title" class="mt-3 font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
+          {content.faq.title}
+        </h2>
+        <p class="mt-3 text-neutral-700">{content.faq.intro}</p>
+      </div>
+
+      <div class="mt-8 max-w-4xl">
+        <Faq items={content.faq.items} idPrefix="b2b-faq" />
+      </div>
+    </div>
+  </section>
 
   <CtaBanner locale={locale} title={content.cta.title} subtitle={content.cta.subtitle} />
 </BaseLayout>

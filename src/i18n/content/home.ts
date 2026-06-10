@@ -4,7 +4,7 @@ const fr = {
   seo: {
     title: "Pompe à chaleur Lille - Installateur RGE QualiPAC",
     description:
-      "HFE Énergie - Installation de pompe à chaleur à Lille et métropole. Artisan RGE QualiPAC, devis gratuit, MaPrimeRénov'. 15 ans d'expérience, 1500+ installations.",
+      "Hecker & Frères Énergie (HFE) - Installation de pompe à chaleur à Lille et métropole. Artisan RGE QualiPAC, devis gratuit, MaPrimeRénov'. 15 ans d'expérience, 1500+ installations.",
     keywords: [
       "pompe à chaleur Lille",
       "PAC air-eau Lille",
@@ -12,8 +12,8 @@ const fr = {
       "climatisation Lille",
       "chauffagiste Lille",
       "MaPrimeRénov pompe à chaleur",
-      "HFE Énergie",
-      "Hecker Frères Énergie",
+      "Hecker & Frères Énergie",
+      "Hecker & Frères Énergie (HFE)",
     ],
   },
   breadcrumbs: [{ name: "Accueil", url: "/" }],
@@ -27,8 +27,10 @@ const fr = {
     descriptionStrong1: "Lille et métropole",
     descriptionMiddle: ", spécialiste de l'installation de ",
     descriptionStrong2: "pompes à chaleur",
-    descriptionAnd: " et ",
+    descriptionAnd1: " , ",
     descriptionStrong3: "climatisation",
+    descriptionAnd2: " et ",
+    descriptionStrong4: "travaux de plomberie",
     descriptionEnd: ".",
     ctaQuote: "Demander un devis gratuit",
     ctaServices: "Nos services",
@@ -42,6 +44,20 @@ const fr = {
       { icon: "/assets/icons-trust/map-pin.png", title: "Intervention", text: "Lille & métropole" },
     ],
   },
+  team: {
+    badge: "L'équipe HFE",
+    title: "Une équipe d'artisan formée aux Compagnons du Devoir",
+    description: (years: number) => [
+      `Depuis ${years} ans, Hecker & Frères Énergie (HFE) met son expertise au service des particuliers et professionnels de Lille et de la métropole.`,
+      `Spécialisés dans les énergies renouvelables et les travaux de plomberie, nous allions compétence technique, écoute client et fort engagement environnemental.`,
+    ],
+    bullets: [
+      { strong: "Formation Compagnons du Devoir", rest: " - excellence technique" },
+      { strong: (n: number) => `+${n} clients par an`, rest: "" },
+      { strong: (n: number) => `+${n} réalisations`, rest: "" },
+    ],
+    ctaMeet: "Rencontrer l'équipe",
+  },  
   services: {
     tagline: ["Plomberie", "Chauffage", "Climatisation"],
     title: "Des solutions performantes pour votre ",
@@ -54,8 +70,9 @@ const fr = {
       { slug: "plomberie", title: "Plomberie", short: "Installation & Rénovation", iconUrl: "/assets/icons-services/plomberie.png" },
     ],
     advantages: [
-      { icon: "file-text" as const, title: "Étude personnalisée", text: "et devis gratuit" },
-      { icon: "shield" as const, title: "Aides MaPrimeRénov'", text: "et CEE" },
+      { icon: "file-text" as const, title: "Étude personnalisée", text: "et devis gratuit", hrefRoute: "contact" as const },
+      { icon: "star" as const, title: "Nos réalisations", text: "photos de chantiers", hrefRoute: "projects" as const },
+      { icon: "shield" as const, title: "Aides MaPrimeRénov'", text: "et CEE", hrefRoute: "grants" as const },
     ],
   },
   whyUs: {
@@ -82,7 +99,7 @@ const fr = {
       { name: "RGE QualiPAC Chauffage", description: "Reconnu Garant de l'Environnement pour l'installation de pompes à chaleur dédiées au chauffage." },
       { name: "RGE QualiPAC Chauffe-eau thermodynamique", description: "Certification pour l'installation de chauffe-eau thermodynamiques éligibles aux aides de l'État." },
       { name: "Assurance décennale & RC pro", description: "Garantie décennale et responsabilité civile professionnelle pour tous nos chantiers." },
-      { name: "Partenaire Panasonic", description: "Partenaire officiel des solutions Panasonic, gage de qualité et de fiabilité." },
+      { name: "Pro-partenaire Panasonic", description: "Partenaire ProClub Panasonic : garanties optimisées, boîtier cloud et télémaintenance Aquarea.", partnerPage: true },
     ],
   },
   process: {
@@ -95,18 +112,7 @@ const fr = {
       { n: 4, title: "Mise en service & SAV", description: "Mise en service, formation à l'utilisation, contrat d'entretien et suivi sur la durée." },
     ],
   },
-  team: {
-    badge: "L'équipe HFE",
-    title: "Une équipe artisanale formée aux Compagnons du Devoir",
-    description: (years: number) =>
-      `Depuis ${years} ans, HFE accompagne particuliers et professionnels de Lille et de la métropole dans leurs projets d'énergie renouvelable. Compétence technique, écoute client et engagement environnemental sont au cœur de notre métier.`,
-    bullets: [
-      { strong: "Formation Compagnons du Devoir", rest: " - excellence technique" },
-      { strong: (n: number) => `${n}+ installations`, rest: " réalisées avec succès" },
-      { strong: (n: number) => `${n} clients par an`, rest: " nous font confiance" },
-    ],
-    ctaMeet: "Rencontrer l'équipe",
-  },
+
   partners: {
     title: "Nos partenaires constructeurs",
     subtitle: "Nous installons les meilleures marques du marché, gage de fiabilité et de performance sur la durée.",
@@ -114,7 +120,7 @@ const fr = {
   certificationsSection: {
     badge: "Certifications",
     title: "Un savoir-faire certifié",
-    description: "HFE Énergie est certifiée ",
+    description: "Hecker & Frères Énergie (HFE) est certifiée ",
     descriptionStrong: "RGE QualiPAC",
     descriptionEnd: " et dispose de toutes les qualifications nécessaires pour vous garantir un travail conforme et l'accès aux aides de l'État.",
     logoAlt: (name: string) => `Certification ${name}`,
@@ -155,12 +161,12 @@ const fr = {
       {
         question: "Quelles sont les aides disponibles pour une PAC en 2026 ?",
         answer:
-          "Trois dispositifs principaux sont cumulables : MaPrimeRénov' (jusqu'à 5 000 € pour une PAC air-eau selon vos revenus), les Certificats d'Économie d'Énergie (CEE, dits « Coup de pouce chauffage », jusqu'à 5 500 €) et le taux de TVA réduit à 5,5 % sur la fourniture et la pose. HFE Énergie est certifiée RGE QualiPAC : votre projet est donc éligible à l'ensemble de ces aides. Nous vous accompagnons dans le montage de votre dossier.",
+          "Trois dispositifs principaux sont cumulables : MaPrimeRénov' (jusqu'à 5 000 € pour une PAC air-eau selon vos revenus), les Certificats d'Économie d'Énergie (CEE, dits « Coup de pouce chauffage », jusqu'à 5 500 €) et le taux de TVA réduit à 5,5 % sur la fourniture et la pose. Hecker & Frères Énergie (HFE) est certifiée RGE QualiPAC : votre projet est donc éligible à l'ensemble de ces aides. Nous vous accompagnons dans le montage de votre dossier.",
       },
       {
         question: "Quelle est votre zone d'intervention ?",
         answer:
-          "Nous intervenons sur tout Lille et la Métropole Européenne de Lille (MEL) dans un rayon d'environ 30 km : La Madeleine, Marcq-en-Barœul, Villeneuve-d'Ascq, Roubaix, Tourcoing, Wasquehal, Lambersart, Lomme, Hellemmes, Wambrechies, Saint-André-lez-Lille et les communes alentours.",
+          "Nous intervenons dans un rayon de 50 km autour de Lille (44 rue Jean sans peur) : Métropole Européenne de Lille, Nord, Pas-de-Calais et communes limitrophes. Consultez la carte complète sur notre page zone d'intervention.",
       },
       {
         question: "Combien de temps dure l'installation d'une pompe à chaleur ?",
@@ -175,7 +181,7 @@ const fr = {
       {
         question: "Quelle est la durée de vie d'une pompe à chaleur ?",
         answer:
-          "Une PAC bien entretenue dure 15 à 20 ans. Un entretien annuel obligatoire (depuis le décret du 30 juillet 2020) est indispensable pour garantir performance et longévité. HFE Énergie propose des contrats d'entretien à partir de 149 € TTC / an incluant le contrôle d'étanchéité du circuit frigorifique.",
+          "Une PAC bien entretenue dure 15 à 20 ans. Un entretien annuel obligatoire (depuis le décret du 30 juillet 2020) est indispensable pour garantir performance et longévité. Hecker & Frères Énergie (HFE) propose des contrats d'entretien à partir de 149 € TTC / an incluant le contrôle d'étanchéité du circuit frigorifique.",
       },
     ],
   },
@@ -185,7 +191,7 @@ const en = {
   seo: {
     title: "Heat pump Lille - RGE QualiPAC installer",
     description:
-      "HFE Énergie - Heat pump installation in Lille and the metropolitan area. RGE QualiPAC certified contractor, free quote, MaPrimeRénov'. 15 years of experience, 1,500+ installations.",
+      "Hecker & Frères Énergie (HFE) - Heat pump installation in Lille and the metropolitan area. RGE QualiPAC certified contractor, free quote, MaPrimeRénov'. 15 years of experience, 1,500+ installations.",
     keywords: [
       "heat pump Lille",
       "air-to-water heat pump Lille",
@@ -193,7 +199,7 @@ const en = {
       "air conditioning Lille",
       "heating engineer Lille",
       "MaPrimeRénov heat pump",
-      "HFE Énergie",
+      "Hecker & Frères Énergie (HFE)",
       "Hecker Frères Énergie",
     ],
   },
@@ -235,8 +241,9 @@ const en = {
       { slug: "plumbing", title: "Plumbing", short: "Installation & renovation", iconUrl: "/assets/icons-services/plomberie.png" },
     ],
     advantages: [
-      { icon: "file-text" as const, title: "Personalised survey", text: "and free quote" },
-      { icon: "shield" as const, title: "MaPrimeRénov' grants", text: "and CEE incentives" },
+      { icon: "file-text" as const, title: "Personalised survey", text: "and free quote", hrefRoute: "contact" as const },
+      { icon: "star" as const, title: "Our projects", text: "site photos", hrefRoute: "projects" as const },
+      { icon: "shield" as const, title: "MaPrimeRénov' grants", text: "and CEE incentives", hrefRoute: "grants" as const },
     ],
   },
   whyUs: {
@@ -263,7 +270,7 @@ const en = {
       { name: "RGE QualiPAC Heating", description: "Recognised Environmental Guarantor for heat pump installations dedicated to space heating." },
       { name: "RGE QualiPAC thermodynamic water heater", description: "Certification for thermodynamic water heater installations eligible for government grants." },
       { name: "Ten-year warranty & public liability", description: "Ten-year warranty and professional liability insurance on all our projects." },
-      { name: "Panasonic partner", description: "Official Panasonic partner — a guarantee of quality and reliability." },
+      { name: "Panasonic pro-partner", description: "Panasonic ProClub partner: optimised warranties, cloud module and Aquarea remote monitoring.", partnerPage: true },
     ],
   },
   process: {
@@ -279,12 +286,14 @@ const en = {
   team: {
     badge: "The HFE team",
     title: "An artisan team trained with the Compagnons du Devoir",
-    description: (years: number) =>
-      `For ${years} years, HFE has been supporting homeowners and businesses across Lille and the metropolitan area with renewable energy projects. Technical expertise, customer care and environmental commitment are at the heart of what we do.`,
+    description: (years: number) => [
+      `For ${years} years, Hecker & Frères Énergie (HFE) has been putting its expertise at the service of homeowners and businesses in Lille and the metropolitan area.`,
+      `Specialising in renewable energy and plumbing work, we combine technical know-how, customer care and a strong environmental commitment.`,
+    ],
     bullets: [
       { strong: "Compagnons du Devoir training", rest: " — technical excellence" },
-      { strong: (n: number) => `${n}+ successful installations`, rest: "" },
-      { strong: (n: number) => `${n} clients per year`, rest: " trust us" },
+      { strong: (n: number) => `+${n} projects completed`, rest: "" },
+      { strong: (n: number) => `+${n} clients per year`, rest: " trust us" },
     ],
     ctaMeet: "Meet the team",
   },
@@ -295,7 +304,7 @@ const en = {
   certificationsSection: {
     badge: "Certifications",
     title: "Certified expertise",
-    description: "HFE Énergie is ",
+    description: "Hecker & Frères Énergie (HFE) is ",
     descriptionStrong: "RGE QualiPAC",
     descriptionEnd: " certified and holds all qualifications required to deliver compliant work and access to government grants.",
     logoAlt: (name: string) => `${name} certification`,
@@ -336,12 +345,12 @@ const en = {
       {
         question: "What grants are available for a heat pump in 2026?",
         answer:
-          "Three main schemes can be combined: MaPrimeRénov' (up to €5,000 for an air-to-water heat pump depending on household income), Energy Savings Certificates (CEE, also known as the heating boost scheme, up to €5,500) and a reduced VAT rate of 5.5% on supply and installation. HFE Énergie is RGE QualiPAC certified: your project is therefore eligible for all these grants. We support you through the application process.",
+          "Three main schemes can be combined: MaPrimeRénov' (up to €5,000 for an air-to-water heat pump depending on household income), Energy Savings Certificates (CEE, also known as the heating boost scheme, up to €5,500) and a reduced VAT rate of 5.5% on supply and installation. Hecker & Frères Énergie (HFE) is RGE QualiPAC certified: your project is therefore eligible for all these grants. We support you through the application process.",
       },
       {
         question: "What is your service area?",
         answer:
-          "We cover all of Lille and the European Metropolis of Lille (MEL) within approximately 30 km: La Madeleine, Marcq-en-Barœul, Villeneuve-d'Ascq, Roubaix, Tourcoing, Wasquehal, Lambersart, Lomme, Hellemmes, Wambrechies, Saint-André-lez-Lille and surrounding towns.",
+          "We cover a 50 km radius around Lille (44 rue Jean sans peur): European Metropolis of Lille, Nord, Pas-de-Calais and neighbouring towns. See our full service area map for details.",
       },
       {
         question: "How long does heat pump installation take?",
@@ -356,7 +365,7 @@ const en = {
       {
         question: "What is the lifespan of a heat pump?",
         answer:
-          "A well-maintained heat pump lasts 15 to 20 years. Annual servicing is mandatory (since the decree of 30 July 2020) to ensure performance and longevity. HFE Énergie offers maintenance contracts from €149 incl. VAT per year, including refrigerant circuit leak testing.",
+          "A well-maintained heat pump lasts 15 to 20 years. Annual servicing is mandatory (since the decree of 30 July 2020) to ensure performance and longevity. Hecker & Frères Énergie (HFE) offers maintenance contracts from €149 incl. VAT per year, including refrigerant circuit leak testing.",
       },
     ],
   },

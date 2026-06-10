@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Compose une image Open Graph (1200x630) à partir des photos réelles HFE Énergie.
+ * Compose une image Open Graph (1200x630) à partir des photos réelles Hecker & Frères Énergie (HFE).
  * Sortie : public/og-image.jpg
  */
 
@@ -40,7 +40,8 @@ async function main() {
       </linearGradient>
     </defs>
     <rect width="${W}" height="${H}" fill="url(#fade)"/>
-    <text x="60" y="320" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="62" fill="#ffffff">HFE Énergie</text>
+    <text x="60" y="305" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="54" fill="#ffffff">Hecker &amp; Frères</text>
+    <text x="60" y="360" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="54" fill="#ffffff">Énergie (HFE)</text>
     <text x="60" y="385" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="38" fill="#c9e6f6">Pompes à chaleur · Climatisation · Chauffage</text>
     <text x="60" y="440" font-family="Arial, Helvetica, sans-serif" font-weight="500" font-size="26" fill="#e6f4fb">Installateur RGE QualiPAC à Lille &amp; métropole</text>
     <rect x="60" y="490" width="260" height="62" rx="31" fill="#00b040"/>

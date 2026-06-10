@@ -16,26 +16,58 @@ const canonicalPath = pathFor("notFound", locale);
 ---
 
 <BaseLayout locale={locale} title={content.seo.title} description={content.seo.description} noIndex canonicalPath={canonicalPath}>
-  <section class="section bg-gradient-to-br from-accent-50 to-white">
+  <section class="section bg-gradient-to-br from-accent-50 to-white" aria-labelledby="not-found-title">
     <div class="container-page max-w-3xl text-center">
       <Picture
         src="/assets/pageIntrouvable/404-error.jpg"
         alt={content.imageAlt}
         width={400}
         height={300}
-        class="mx-auto max-w-xs sm:max-w-sm w-full rounded-2xl"
+        widths={[384, 640, 768]}
+        sizes="(max-width: 640px) 80vw, 400px"
+        class="mx-auto max-w-xs sm:max-w-sm w-full rounded-2xl shadow-md"
         loading="eager"
+        fetchpriority="high"
       />
-      <p class="mt-6 font-display font-extrabold text-5xl md:text-7xl text-accent-700">{content.code}</p>
-      <h1 class="mt-2 font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
+      <p class="mt-6 font-display font-extrabold text-5xl md:text-7xl text-accent-700" aria-hidden="true">
+        {content.code}
+      </p>
+      <h1 id="not-found-title" class="mt-2 font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
         {content.title}
       </h1>
-      <p class="mt-3 text-neutral-700">{content.description}</p>
-      <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-        <a href={pathFor("home", locale)} class="btn btn-accent"><Icon name="arrow-right" size={18} /> {content.ctaHome}</a>
-        <a href={pathFor("heatPump", locale)} class="btn btn-outline-accent">{content.ctaHeatPump}</a>
-        <a href={`tel:${site.phoneRaw}`} class="btn btn-outline-accent"><Icon name="phone" size={18} /> {site.phone}</a>
+      <p class="mt-3 text-neutral-700 text-lg">{content.description}</p>
+      <div class="mt-8 flex flex-col sm:flex-row flex-wrap gap-3 justify-center">
+        <a href={pathFor("home", locale)} class="btn btn-accent">
+          <Icon name="arrow-right" size={18} /> {content.ctaHome}
+        </a>
+        <a href={pathFor("contact", locale)} class="btn btn-outline-accent">
+          <Icon name="mail" size={18} /> {content.ctaContact}
+        </a>
+        <a href={`tel:${site.phoneRaw}`} class="btn btn-outline-accent">
+          <Icon name="phone" size={18} /> {site.phone}
+        </a>
       </div>
+    </div>
+  </section>
+
+  <section class="section bg-white" aria-labelledby="not-found-suggestions">
+    <div class="container-page max-w-4xl">
+      <h2 id="not-found-suggestions" class="text-center font-display text-2xl font-extrabold text-neutral-900">
+        {content.suggestionsTitle}
+      </h2>
+      <ul class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {content.suggestions.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="flex items-center justify-between gap-3 p-4 rounded-xl border border-neutral-200 bg-neutral-50 hover:border-accent-300 hover:bg-accent-50 transition-colors group"
+            >
+              <span class="font-semibold text-neutral-800 group-hover:text-accent-800">{link.label}</span>
+              <Icon name="arrow-right" size={16} class="text-accent-600 shrink-0" />
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 </BaseLayout>

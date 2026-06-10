@@ -29,43 +29,71 @@ const fr = {
     titleBefore: "Climatisation réversible à ",
     titleHighlight: "Lille",
     description:
-      "HFE Énergie installe des climatisations réversibles haute performance à Lille et dans toute la métropole : mono-split, multi-split, gainable, cassette. Profitez d'un confort optimal hiver comme été avec une consommation énergétique réduite.",
+      "Hecker & Frères Énergie (HFE) installe des climatisations réversibles haute performance à Lille et dans toute la métropole : mono-split, multi-split, gainable, cassette. Profitez d'un confort optimal hiver comme été avec une consommation énergétique réduite.",
     ctaQuote: "Devis gratuit",
   },
   types: {
     title: "Quel type de climatisation pour vous ?",
     intro:
       "Nous adaptons la solution à votre logement, votre budget et votre besoin de confort. Étude technique systématique avant chaque chiffrage.",
+    idealForLabel: "Idéal pour",
+    advantagesLabel: "Les avantages",
     items: [
       {
         name: "Mono-split",
         description:
-          "Une unité extérieure connectée à une seule unité intérieure. Idéale pour climatiser une pièce de vie ou une chambre.",
+          "Une unité extérieure reliée à une seule unité intérieure murale. La solution la plus simple pour climatiser une pièce de vie ou une chambre.",
         use: "Pièce unique (15 à 45 m²)",
+        advantages: [
+          "Installation rapide, souvent réalisée en une journée.",
+          "Réversible : rafraîchit l'été, chauffe l'hiver.",
+          "Unité murale discrète et peu encombrante.",
+          "Consommation réduite par rapport au chauffage électrique direct.",
+        ],
+        detailRoute: "climatisationMonoSplit" as const,
+        detailLabel: "Découvrir le mono-split",
       },
       {
         name: "Multi-split",
         description:
-          "Une unité extérieure pour 2 à 5 unités intérieures. Solution complète pour climatiser plusieurs pièces avec une régulation indépendante.",
-        use: "Appartement, maison étage",
+          "Une unité extérieure alimente 2 à 5 unités intérieures. Chaque pièce bénéficie de sa propre régulation pour un confort sur mesure.",
+        use: "Appartement, maison à étage",
+        advantages: [
+          "Plusieurs pièces climatisées avec une seule unité extérieure.",
+          "Régulation indépendante pièce par pièce.",
+          "Unités murales, console basse ou cassette selon les lieux.",
+          "Alternative économique au chauffage électrique d'appoint.",
+        ],
+        detailRoute: "projectsClim" as const,
+        detailLabel: "Voir nos réalisations multi-split",
       },
       {
         name: "Gainable",
         description:
-          "Le climatiseur est dissimulé dans les combles ou le faux-plafond. Air diffusé via des bouches discrètes : confort et esthétique maximum.",
+          "Le climatiseur est dissimulé dans les combles ou le faux-plafond. L'air est diffusé via des bouches discrètes pour un confort invisible.",
         use: "Maison neuve ou rénovation lourde",
+        advantages: [
+          "Aucune unité murale visible dans les pièces.",
+          "Température homogène dans tout le logement.",
+          "Bouches discrètes intégrées au plafond ou au sol.",
+          "Esthétique préservée, idéal en construction neuve.",
+        ],
       },
       {
-        name: "Cassette",
+        name: "Tertiaire",
         description:
-          "Unité intégrée au plafond, diffusion homogène sur 4 directions. Solution privilégiée pour bureaux, commerces et grandes pièces.",
-        use: "Tertiaire & grandes pièces",
+          "Le système DRV (Débit Réfrigérant Variable) assure chauffage et rafraîchissement performants pour les locaux professionnels.",
+        use: "Immeubles de bureaux",
+        advantages: [
+          "Gestion multi-zones adaptée à chaque espace de travail.",
+          "Haute performance énergétique sur grands volumes.",
+          "Confort été comme hiver pour les occupants.",
+          "Solution évolutive pour bureaux et locaux tertiaires.",
+        ],
+        detailRoute: "projectsClimPro" as const,
+        detailLabel: "Voir nos réalisations tertiaires",
       },
     ],
-  },
-  gallery: {
-    title: "Nos installations de climatisation",
-    subtitle: "Chantiers récents : mono-split, multi-split, gainable - particuliers et tertiaires.",
   },
   cta: {
     title: "Envie d'un été frais et d'un hiver doux ?",
@@ -87,7 +115,7 @@ const fr = {
       {
         question: "La climatisation réversible est-elle éligible aux aides ?",
         answer:
-          "Non. La climatisation réversible (PAC air-air) n'est pas éligible à MaPrimeRénov' ni au dispositif CEE « Coup de pouche chauffage ». Les budgets affichés sur notre site correspondent au prix TTC posé, sans aide de l'État.",
+          "Non. La climatisation réversible (PAC air-air) n'est pas éligible à MaPrimeRénov' ni au dispositif CEE « Coup de pouce chauffage ». Les budgets affichés sur notre site correspondent au prix TTC posé, sans aide de l'État.",
       },
       {
         question: "Comment gagner des classes au DPE avec une climatisation réversible ?",
@@ -97,7 +125,12 @@ const fr = {
       {
         question: "Quelles marques installez-vous ?",
         answer:
-          "HFE Énergie est partenaire officiel Panasonic. Nous installons également Daikin, Mitsubishi Electric, Atlantic, LG et Toshiba. Toutes ces marques offrent une garantie constructeur de 3 à 5 ans, prolongeable jusqu'à 10 ans selon les modèles.",
+          "Hecker & Frères Énergie (HFE) est partenaire officiel Panasonic. Nous installons également Daikin, Mitsubishi Electric, Airwell, Atlantic, LG et Toshiba. Toutes ces marques offrent une garantie constructeur de 3 à 5 ans, prolongeable jusqu'à 10 ans selon les modèles.",
+      },
+      {
+        question: "Installez-vous la climatisation à La Madeleine et dans la métropole lilloise ?",
+        answer:
+          "Oui. Nous installons la climatisation réversible à Lille, La Madeleine, Marcq-en-Barœul, Lambersart, Villeneuve-d'Ascq, Roubaix, Tourcoing, Wasquehal et dans toute notre zone d'intervention (50 km). Étude de dimensionnement et devis gratuits.",
       },
     ],
   },
@@ -132,43 +165,71 @@ const en = {
     titleBefore: "Reversible air conditioning in ",
     titleHighlight: "Lille",
     description:
-      "HFE Énergie installs high-performance reversible air conditioning in Lille and across the metropolitan area: single-split, multi-split, ducted and cassette systems. Enjoy optimal comfort winter and summer with lower energy consumption.",
+      "Hecker & Frères Énergie (HFE) installs high-performance reversible air conditioning in Lille and across the metropolitan area: single-split, multi-split, ducted and cassette systems. Enjoy optimal comfort winter and summer with lower energy consumption.",
     ctaQuote: "Free quote",
   },
   types: {
     title: "Which air conditioning system is right for you?",
     intro:
       "We tailor the solution to your property, budget and comfort requirements. A technical survey is carried out before every quote.",
+    idealForLabel: "Ideal for",
+    advantagesLabel: "Benefits",
     items: [
       {
         name: "Single-split",
         description:
-          "One outdoor unit connected to a single indoor unit. Ideal for cooling a living room or bedroom.",
+          "One outdoor unit connected to a single wall-mounted indoor unit. The simplest solution to cool a living room or bedroom.",
         use: "Single room (15 to 45 m²)",
+        advantages: [
+          "Quick installation, often completed in one day.",
+          "Reversible: cools in summer, heats in winter.",
+          "Discreet, compact wall-mounted unit.",
+          "Lower consumption than direct electric heating.",
+        ],
+        detailRoute: "climatisationMonoSplit" as const,
+        detailLabel: "Discover single-split",
       },
       {
         name: "Multi-split",
         description:
-          "One outdoor unit for 2 to 5 indoor units. A complete solution to cool several rooms with independent control.",
+          "One outdoor unit powers 2 to 5 indoor units. Each room has its own control for tailored comfort.",
         use: "Flat, multi-storey home",
+        advantages: [
+          "Several rooms cooled with a single outdoor unit.",
+          "Independent control room by room.",
+          "Wall-mounted, floor console or cassette units as needed.",
+          "Economical alternative to supplementary electric heating.",
+        ],
+        detailRoute: "projectsClim" as const,
+        detailLabel: "See our multi-split projects",
       },
       {
         name: "Ducted",
         description:
-          "The unit is concealed in the loft or false ceiling. Air distributed through discreet vents — maximum comfort and aesthetics.",
+          "The unit is concealed in the loft or false ceiling. Air is distributed through discreet vents for invisible comfort.",
         use: "New build or major renovation",
+        advantages: [
+          "No visible wall units in the rooms.",
+          "Even temperature throughout the home.",
+          "Discreet ceiling or floor vents.",
+          "Preserves aesthetics — ideal for new builds.",
+        ],
       },
       {
-        name: "Cassette",
+        name: "Commercial",
         description:
-          "Ceiling-mounted unit with four-way airflow. Preferred solution for offices, retail and large spaces.",
-        use: "Commercial & large rooms",
+          "Variable refrigerant flow (VRF/DRV) systems deliver high-performance heating and cooling for commercial premises.",
+        use: "Office buildings",
+        advantages: [
+          "Multi-zone control tailored to each workspace.",
+          "High energy efficiency for large floor areas.",
+          "Year-round comfort for occupants.",
+          "Scalable solution for offices and commercial buildings.",
+        ],
+        detailRoute: "projectsClimPro" as const,
+        detailLabel: "See our commercial projects",
       },
     ],
-  },
-  gallery: {
-    title: "Our air conditioning installations",
-    subtitle: "Recent projects: single-split, multi-split, ducted — residential and commercial.",
   },
   cta: {
     title: "Want a cool summer and a warm winter?",
@@ -200,7 +261,12 @@ const en = {
       {
         question: "Which brands do you install?",
         answer:
-          "HFE Énergie is an official Panasonic partner. We also install Daikin, Mitsubishi Electric, Atlantic, LG and Toshiba. All these brands offer a 3 to 5-year manufacturer warranty, extendable up to 10 years depending on the model.",
+          "Hecker & Frères Énergie (HFE) is an official Panasonic partner. We also install Daikin, Mitsubishi Electric, Airwell, Atlantic, LG and Toshiba. All these brands offer a 3 to 5-year manufacturer warranty, extendable up to 10 years depending on the model.",
+      },
+      {
+        question: "Do you install air conditioning in La Madeleine and the Lille metropolitan area?",
+        answer:
+          "Yes. We install reversible air conditioning in Lille, La Madeleine, Marcq-en-Barœul, Lambersart, Villeneuve-d'Ascq, Roubaix, Tourcoing, Wasquehal and across our full 50 km service area. Sizing study and quotes are free.",
       },
     ],
   },
