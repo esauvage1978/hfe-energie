@@ -2,9 +2,9 @@ import type { Locale } from "../config";
 
 const fr = {
   seo: {
-    title: "Pompe à chaleur Lille - Installateur RGE QualiPAC",
+    title: "Pompe à chaleur & chauffagiste à Lille – HFE",
     description:
-      "Hecker & Frères Énergie (HFE) - Installation de pompe à chaleur à Lille et métropole. Artisan RGE QualiPAC, devis gratuit, MaPrimeRénov'. 15 ans d'expérience, 1500+ installations.",
+      "Hecker & Frères Énergie, installateur RGE QualiPAC à Lille : pompe à chaleur, climatisation, chauffage, plomberie. Devis gratuit sous 72 h, aides MaPrimeRénov'.",
     keywords: [
       "pompe à chaleur Lille",
       "PAC air-eau Lille",

@@ -1,6 +1,18 @@
 #!/usr/bin/env node
 /**
- * Génère les RedirectMatch (slash final) dans public/.htaccess à partir de dist/*.html
+ * Génère, dans public/.htaccess, les redirections 301 des variantes d'URL de
+ * chaque page Astro (dist/*.html) vers son URL canonique :
+ *   /page/   /page.html   /page.html/   (et www.*)  →  https://hfe-energie.fr/page
+ *
+ * Les règles sont des RewriteRule (mod_rewrite) à cible ABSOLUE :
+ *  - une seule redirection, même depuis www (pas de chaîne www → apex → sans slash) ;
+ *  - pas de « :443 » dans l'en-tête Location (Apache ne recompose pas l'URL) ;
+ *  - ordre maîtrisé (mod_alias RedirectMatch s'exécutait en dehors de l'ordre
+ *    des RewriteRule, d'où des chaînes du type www/page/ → page.html/ → 404).
+ *
+ * Le bloc est inséré entre les marqueurs BEGIN/END, à l'intérieur du bloc
+ * <IfModule mod_rewrite.c> de public/.htaccess.
+ *
  * Usage : node scripts/generate-slash-redirects.mjs
  */
 
@@ -13,8 +25,14 @@ const ROOT = path.resolve(__dirname, "..");
 const DIST = path.join(ROOT, "dist");
 const HTACCESS = path.join(ROOT, "public", ".htaccess");
 
+/** Origine canonique (sans slash final). */
+const ORIGIN = "https://hfe-energie.fr";
+
 const BEGIN = "# BEGIN AUTO-SLASH-REDIRECTS";
 const END = "# END AUTO-SLASH-REDIRECTS";
+
+/** Pages servies uniquement comme ErrorDocument : pas de redirection. */
+const EXCLUDED = new Set(["/404", "/en/404"]);
 
 async function walkHtmlFiles(dir, base = "") {
   const entries = await readdir(dir, { withFileTypes: true });
@@ -42,38 +60,46 @@ function escapeRegex(segment) {
 
 async function main() {
   const htmlFiles = await walkHtmlFiles(DIST);
-  const redirects = htmlFiles
+  const urls = htmlFiles
     .map(toUrlPath)
-    .filter((url) => url !== "/")
-    .sort()
-    .map((url) => {
-      const pattern = `^${escapeRegex(url)}/$`;
-      return `  RedirectMatch 301 ${pattern} ${url}`;
-    });
+    .filter((url) => url !== "/" && !EXCLUDED.has(url))
+    .sort();
+
+  const rules = [
+    // Accueil : /index, /index.html, /index.html/ → /
+    `  RewriteRule ^index(?:\\.html)?/*$ ${ORIGIN}/ [R=301,L]`,
+    // Chaque page : /page/ , /page.html , /page.html/ → /page (une seule redirection)
+    ...urls.map((url) => {
+      const p = escapeRegex(url.slice(1));
+      return `  RewriteRule ^${p}(?:\\.html/*|/+)$ ${ORIGIN}${url} [R=301,L]`;
+    }),
+  ];
+
+  let htaccess = await readFile(HTACCESS, "utf8");
+  const eol = htaccess.includes("\r\n") ? "\r\n" : "\n";
 
   const block = [
     BEGIN,
-    "# Généré par scripts/generate-slash-redirects.mjs — ne pas éditer à la main",
-    "<IfModule mod_alias.c>",
-    ...redirects,
-    "</IfModule>",
-    END,
+    "  # Généré par scripts/generate-slash-redirects.mjs — ne pas éditer à la main",
+    "  # /page/ , /page.html , /page.html/ (www ou non) → https://hfe-energie.fr/page",
+    ...rules,
+    `  ${END}`,
     "",
-  ].join("\n");
+  ].join(eol);
 
-  let htaccess = await readFile(HTACCESS, "utf8");
-  const re = new RegExp(`${BEGIN}[\\s\\S]*?${END}\\r?\\n?`, "m");
-  if (!re.test(htaccess)) {
-    htaccess = htaccess.replace(
-      /(<IfModule mod_dir\.c>[\s\S]*?<\/IfModule>\r?\n)/,
-      `$1\r\n${block}`,
-    );
+  const re = new RegExp(`[ \\t]*${BEGIN}[\\s\\S]*?${END}[ \\t]*\\r?\\n?`, "m");
+  if (re.test(htaccess)) {
+    htaccess = htaccess.replace(re, () => `  ${block}`);
+  } else if (htaccess.includes("# @AUTO-SLASH-REDIRECTS@")) {
+    htaccess = htaccess.replace(/[ \t]*# @AUTO-SLASH-REDIRECTS@[ \t]*\r?\n/, () => `  ${block}`);
   } else {
-    htaccess = htaccess.replace(re, block);
+    throw new Error(
+      `Marqueurs ${BEGIN} / ${END} introuvables dans public/.htaccess (à placer dans le bloc mod_rewrite).`,
+    );
   }
 
   await writeFile(HTACCESS, htaccess);
-  console.log(`✓ ${redirects.length} RedirectMatch injectés dans public/.htaccess`);
+  console.log(`✓ ${rules.length} RewriteRule (variantes /page/, .html) injectées dans public/.htaccess`);
 }
 
 main().catch((err) => {

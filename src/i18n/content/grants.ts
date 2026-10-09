@@ -2,9 +2,9 @@ import type { Locale } from "../config";
 
 const fr = {
   seo: {
-    title: "MaPrimeRénov' & CEE 2026 : aides pour pompe à chaleur à Lille",
+    title: "Aides pompe à chaleur 2026 : MaPrimeRénov', CEE – Lille",
     description:
-      "Toutes les aides pour votre pompe à chaleur en 2026 : MaPrimeRénov' (jusqu'à 5 000 €), CEE Coup de pouce (jusqu'à 5 500 €), TVA 5,5 %, éco-PTZ. Hecker & Frères Énergie (HFE) RGE QualiPAC.",
+      "MaPrimeRénov' (jusqu'à 5 000 €), CEE Coup de pouce (jusqu'à 5 500 €), TVA à 5,5 %, éco-PTZ : les aides 2026 pour votre PAC à Lille, avec un installateur RGE.",
     keywords: [
       "MaPrimeRénov pompe à chaleur 2026",
       "CEE pompe à chaleur Lille",

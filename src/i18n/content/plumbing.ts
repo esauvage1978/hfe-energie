@@ -2,9 +2,9 @@ import type { Locale } from "../config";
 
 const fr = {
   seo: {
-    title: "Plomberie Lille : dépannage, adoucisseur, sanitaire",
+    title: "Plombier à Lille : dépannage, salle de bain – HFE",
     description:
-      "Plombier à Lille : dépannage plomberie, installation d'adoucisseur d'eau, ballon d'eau chaude électrique, sanitaire. Intervention rapide, devis gratuit. Hecker & Frères Énergie (HFE).",
+      "Plombier à Lille et métropole : dépannage, rénovation de salle de bain, adoucisseur d'eau et chauffe-eau. Intervention rapide, devis gratuit.",
     keywords: [
       "plombier Lille",
       "dépannage plomberie Lille",

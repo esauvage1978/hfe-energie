@@ -3,7 +3,7 @@ import { pageI18n } from "../utils";
 
 const fr = {
   seo: {
-    title: "Partenaire Panasonic ProClub à Lille | Installateur certifié HFE",
+    title: "Partenaire Panasonic ProClub à Lille – installateur HFE",
     description:
       "Hecker & Frères Énergie (HFE), installateur partenaire Panasonic ProClub à Lille : pompes à chaleur Panasonic, garantie constructeur optimisée, boîtier cloud CZ-TAW1 et télémaintenance Service Cloud.",
     keywords: [

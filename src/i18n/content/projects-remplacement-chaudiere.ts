@@ -17,7 +17,7 @@ const heroImageEn: ProjectImage = {
 
 const fr = {
   seo: {
-    title: "Remplacement de chaudière à Lille | PAC, hybride, condensation — HFE",
+    title: "Remplacement de chaudière à Lille : PAC, hybride – HFE",
     description:
       "Remplacement de chaudière à Lille et métropole par HFE : pompe à chaleur air-eau, PAC hybride ou chaudière gaz à condensation. Étude personnalisée, aides MaPrimeRénov' et CEE.",
     keywords: [
@@ -90,7 +90,7 @@ const fr = {
 
 const en = {
   seo: {
-    title: "Boiler replacement in Lille | Heat pump, hybrid, condensing — HFE",
+    title: "Boiler replacement in Lille: heat pump, hybrid – HFE",
     description:
       "Boiler replacement in Lille and the metropolitan area by HFE: air-to-water heat pump, hybrid heat pump or condensing gas boiler. Personalised assessment, MaPrimeRénov' and CEE grant support.",
     keywords: [

@@ -2,7 +2,7 @@ import type { Locale } from "../config";
 
 const fr = {
   seo: {
-    title: "Particuliers - Pompe à chaleur, climatisation, chauffage à Lille",
+    title: "Particuliers : pompe à chaleur, clim, chauffage à Lille",
     description:
       "Hecker & Frères Énergie (HFE) accompagne les particuliers de Lille et métropole : pompe à chaleur, climatisation, remplacement de chaudière, plomberie. Devis gratuit, aides MaPrimeRénov'.",
   },

@@ -2,9 +2,9 @@ import type { Locale } from "../config";
 
 const fr = {
   seo: {
-    title: "Contact - Devis gratuit pompe à chaleur Lille",
+    title: "Contact et devis gratuit à Lille – HFE",
     description:
-      "Contactez Hecker & Frères Énergie (HFE) à Lille pour un devis gratuit : pompe à chaleur, climatisation, chauffage, plomberie. Réponse sous 72h, intervention dans un rayon de 50 km.",
+      "Demandez un devis gratuit pour votre pompe à chaleur, climatisation, chauffage ou plomberie à Lille. Réponse sous 72 h, au 07 67 34 12 53.",
   },
   breadcrumbs: [
     { name: "Accueil", url: "/" },

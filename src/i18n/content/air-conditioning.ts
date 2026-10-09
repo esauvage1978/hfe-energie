@@ -2,9 +2,9 @@ import type { Locale } from "../config";
 
 const fr = {
   seo: {
-    title: "Climatisation réversible Lille : installation multi-split & gainable",
+    title: "Climatisation réversible à Lille : installation & devis",
     description:
-      "Installateur de climatisation réversible à Lille. Mono-split, multi-split, gainable, cassette. Marques Panasonic, Daikin, Mitsubishi. Devis gratuit, garantie décennale.",
+      "Installateur de climatisation réversible à Lille : mono-split, multi-split, gainable. Panasonic, Daikin, Mitsubishi. TVA à 5,5 % sous conditions, devis gratuit.",
     keywords: [
       "climatisation Lille",
       "climatisation réversible Lille",
@@ -208,7 +208,7 @@ const fr = {
 
 const en = {
   seo: {
-    title: "Reversible air conditioning Lille: multi-split & ducted installation",
+    title: "Reversible air conditioning in Lille: installation & quote",
     description:
       "Reversible air conditioning installer in Lille. Single-split, multi-split, ducted, cassette. Panasonic, Daikin, Mitsubishi brands. Free quote, ten-year warranty.",
     keywords: [

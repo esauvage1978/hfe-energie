@@ -13,7 +13,13 @@ interface Props {
 
 const { locale } = Astro.props;
 const { strings: t, navigation, homePath } = getUi(locale);
-const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+// build.format "file" : Astro.url.pathname vaut "/page.html" au build → on retire
+// l'extension (et /index) pour retrouver l'URL publique "/page".
+const currentPath =
+  Astro.url.pathname
+    .replace(/\.html$/, "")
+    .replace(/\/index$/, "/")
+    .replace(/\/$/, "") || "/";
 
 type MobileServiceTone = "accent" | "primary";
 

@@ -47,7 +47,7 @@ const chantier2ImagesEn: ProjectImage[] = [
 
 const fr = {
   seo: {
-    title: "PAC collective air-eau copropriété à Lille — réalisations | HFE",
+    title: "PAC collective air-eau en copropriété à Lille – HFE",
     description:
       "Découvrez deux chantiers de PAC collective air-eau en copropriété réalisés par HFE : remplacement de chaudières fioul par des cascades Panasonic, régulation sur mesure et économies d'énergie.",
     keywords: [
@@ -140,7 +140,7 @@ const fr = {
 
 const en = {
   seo: {
-    title: "Collective air-to-water heat pump co-ownership projects in Lille | HFE",
+    title: "Co-ownership air-to-water heat pump in Lille – HFE",
     description:
       "Discover two collective air-to-water heat pump projects by HFE in co-ownership buildings: oil boiler replacement with Panasonic cascade heat pumps, bespoke controls and significant energy savings.",
     keywords: [

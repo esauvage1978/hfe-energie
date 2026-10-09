@@ -2,9 +2,9 @@ import type { Locale } from "../config";
 
 const fr = {
   seo: {
-    title: "Pompe à chaleur Lille : installation PAC air-eau & air-air RGE",
+    title: "Pompe à chaleur Lille : installateur RGE air-eau & air-air",
     description:
-      "Installateur RGE QualiPAC à Lille : pompe à chaleur air-eau, air-air, chauffe-eau thermodynamique. Devis gratuit, MaPrimeRénov' & CEE. 15 ans d'expérience.",
+      "Installation de pompe à chaleur air-eau et air-air à Lille et métropole par un artisan RGE QualiPAC. Prix indicatifs, aides MaPrimeRénov' et CEE, devis gratuit.",
     keywords: [
       "pompe à chaleur Lille",
       "PAC air-eau Lille",

@@ -163,7 +163,7 @@ const chantier8ImagesEn: ProjectImage[] = [
 
 const fr = {
   seo: {
-    title: "Rénovation salle de bain à Lille | Sanitaire clé en main — HFE",
+    title: "Rénovation de salle de bain clé en main à Lille – HFE",
     description:
       "Rénovation de salle de bain à Lille et métropole par Hecker & Frères Énergie (HFE) : douche à l'italienne, baignoire, plomberie et sanitaires. Projet coordonné avec partenaires carrelage et finitions.",
     keywords: [

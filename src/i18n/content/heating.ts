@@ -2,9 +2,9 @@ import type { Locale } from "../config";
 
 const fr = {
   seo: {
-    title: "Chauffage à Lille : remplacement chaudière, plancher chauffant",
+    title: "Chauffagiste à Lille : remplacement de chaudière – HFE",
     description:
-      "Chauffagiste à Lille : remplacement de chaudière, plancher chauffant, radiateurs et têtes thermostatiques connectées. Hecker & Frères Énergie (HFE), certifié RGE.",
+      "Remplacement de chaudière fioul ou gaz, PAC hybride, plancher chauffant et radiateurs à Lille. Chauffagiste RGE, étude et devis gratuits, aides incluses.",
     keywords: [
       "chauffagiste Lille",
       "remplacement chaudière Lille",

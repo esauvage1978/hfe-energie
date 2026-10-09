@@ -2,9 +2,9 @@ import type { Locale } from "../config";
 
 const fr = {
   seo: {
-    title: "Recrutement — Plombier chauffagiste & installateur PAC à Lille | HFE",
+    title: "Recrutement plombier-chauffagiste à Lille – HFE",
     description:
-      "Hecker & Frères Énergie (HFE) recrute à Lille : installateur de pompe à chaleur (CDI, septembre 2026) et alternant expérimenté en plomberie, chauffage & climatisation. Rejoignez une équipe RGE QualiPAC.",
+      "HFE recrute à Lille : installateur de pompes à chaleur et alternant en plomberie, chauffage et climatisation. Équipe RGE QualiPAC, chantiers variés.",
     keywords: [
       "recrutement chauffagiste Lille",
       "emploi plombier chauffagiste Lille",
@@ -116,7 +116,7 @@ const fr = {
 
 const en = {
   seo: {
-    title: "Careers — Plumber heating engineer & heat pump installer in Lille | HFE",
+    title: "Careers: plumber & heating engineer jobs in Lille – HFE",
     description:
       "Hecker & Frères Énergie (HFE) is hiring in Lille: heat pump installer (permanent, September 2026) and experienced plumbing, heating & AC apprentice. Join an RGE QualiPAC certified team.",
     keywords: [

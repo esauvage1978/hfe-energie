@@ -25,7 +25,8 @@ const primaryLabel =
   content.cta.primaryLabel ?? (locale === "en" ? "Free quote" : "Devis gratuit");
 
 function resolvePaths(html: string): string {
-  return html.replace(/\{\{path:([a-zA-Z]+)\}\}/g, (_, id: string) =>
+  // Les RouteId peuvent contenir des chiffres (ex. blogReportageTf1Pac).
+  return html.replace(/\{\{path:([a-zA-Z][a-zA-Z0-9]*)\}\}/g, (_, id: string) =>
     pathFor(id as RouteId, locale),
   );
 }

@@ -1,5 +1,5 @@
 # =============================================================================
-# HFE Énergie — compression & cache (Apache / .htaccess)
+# HFE Énergie — redirections, compression & cache (Apache / .htaccess)
 # Compatible hébergement mutualisé (pas de directives Location/LocationMatch).
 # =============================================================================
 
@@ -8,164 +8,182 @@
   DirectorySlash Off
 </IfModule>
 
-# BEGIN AUTO-SLASH-REDIRECTS
-# Généré par scripts/generate-slash-redirects.mjs — ne pas éditer à la main
-<IfModule mod_alias.c>
-  RedirectMatch 301 ^/404/$ /404
-  RedirectMatch 301 ^/aides-financement/$ /aides-financement
-  RedirectMatch 301 ^/blog/$ /blog
-  RedirectMatch 301 ^/blog/reportage-bfm-pompes-a-chaleur-hfe/$ /blog/reportage-bfm-pompes-a-chaleur-hfe
-  RedirectMatch 301 ^/blog/reportage-recrutement-plomberie-chauffage-hfe/$ /blog/reportage-recrutement-plomberie-chauffage-hfe
-  RedirectMatch 301 ^/blog/reportage-tf1-climatisation-panasonic-lille/$ /blog/reportage-tf1-climatisation-panasonic-lille
-  RedirectMatch 301 ^/blog/reportage-tf1-pompe-a-chaleur-climatisation-hfe/$ /blog/reportage-tf1-pompe-a-chaleur-climatisation-hfe
-  RedirectMatch 301 ^/blog/tva-5-5-climatisation-reversible-ce-qui-change/$ /blog/tva-5-5-climatisation-reversible-ce-qui-change
-  RedirectMatch 301 ^/cgu/$ /cgu
-  RedirectMatch 301 ^/cgv/$ /cgv
-  RedirectMatch 301 ^/chauffage/$ /chauffage
-  RedirectMatch 301 ^/chauffage/tetes-thermostatiques/$ /chauffage/tetes-thermostatiques
-  RedirectMatch 301 ^/climatisation/$ /climatisation
-  RedirectMatch 301 ^/contact/$ /contact
-  RedirectMatch 301 ^/copropriete/$ /copropriete
-  RedirectMatch 301 ^/en/$ /en
-  RedirectMatch 301 ^/en/404/$ /en/404
-  RedirectMatch 301 ^/en/air-conditioning/$ /en/air-conditioning
-  RedirectMatch 301 ^/en/blog/$ /en/blog
-  RedirectMatch 301 ^/en/blog/bfm-heat-pump-report-hfe/$ /en/blog/bfm-heat-pump-report-hfe
-  RedirectMatch 301 ^/en/blog/recruitment-report-plumbing-heating-hfe/$ /en/blog/recruitment-report-plumbing-heating-hfe
-  RedirectMatch 301 ^/en/blog/reduced-vat-reversible-air-conditioning/$ /en/blog/reduced-vat-reversible-air-conditioning
-  RedirectMatch 301 ^/en/blog/tf1-heat-pump-air-conditioning-report-hfe/$ /en/blog/tf1-heat-pump-air-conditioning-report-hfe
-  RedirectMatch 301 ^/en/blog/tf1-panasonic-air-conditioning-lille-report/$ /en/blog/tf1-panasonic-air-conditioning-lille-report
-  RedirectMatch 301 ^/en/careers/$ /en/careers
-  RedirectMatch 301 ^/en/co-ownership/$ /en/co-ownership
-  RedirectMatch 301 ^/en/commercial/$ /en/commercial
-  RedirectMatch 301 ^/en/contact/$ /en/contact
-  RedirectMatch 301 ^/en/cookie-policy/$ /en/cookie-policy
-  RedirectMatch 301 ^/en/grants-and-financing/$ /en/grants-and-financing
-  RedirectMatch 301 ^/en/heat-pump/$ /en/heat-pump
-  RedirectMatch 301 ^/en/heating/$ /en/heating
-  RedirectMatch 301 ^/en/heating/thermostatic-radiator-valves/$ /en/heating/thermostatic-radiator-valves
-  RedirectMatch 301 ^/en/legal-notice/$ /en/legal-notice
-  RedirectMatch 301 ^/en/panasonic-partner/$ /en/panasonic-partner
-  RedirectMatch 301 ^/en/plumbing/$ /en/plumbing
-  RedirectMatch 301 ^/en/plumbing/water-softener/$ /en/plumbing/water-softener
-  RedirectMatch 301 ^/en/privacy-policy/$ /en/privacy-policy
-  RedirectMatch 301 ^/en/projects/$ /en/projects
-  RedirectMatch 301 ^/en/projects/air-conditioning/ducted/$ /en/projects/air-conditioning/ducted
-  RedirectMatch 301 ^/en/projects/air-conditioning/mono-split/$ /en/projects/air-conditioning/mono-split
-  RedirectMatch 301 ^/en/projects/air-conditioning/multi-split/$ /en/projects/air-conditioning/multi-split
-  RedirectMatch 301 ^/en/projects/air-to-water-heat-pump/$ /en/projects/air-to-water-heat-pump
-  RedirectMatch 301 ^/en/projects/bathroom-renovation/$ /en/projects/bathroom-renovation
-  RedirectMatch 301 ^/en/projects/boiler-replacement/$ /en/projects/boiler-replacement
-  RedirectMatch 301 ^/en/projects/co-ownership-air-to-water-heat-pump/$ /en/projects/co-ownership-air-to-water-heat-pump
-  RedirectMatch 301 ^/en/projects/co2-water-softener/$ /en/projects/co2-water-softener
-  RedirectMatch 301 ^/en/projects/commercial-vrf-system/$ /en/projects/commercial-vrf-system
-  RedirectMatch 301 ^/en/projects/drago-water-treatment/$ /en/projects/drago-water-treatment
-  RedirectMatch 301 ^/en/projects/next-generation-radiators/$ /en/projects/next-generation-radiators
-  RedirectMatch 301 ^/en/projects/plumbing-repair/$ /en/projects/plumbing-repair
-  RedirectMatch 301 ^/en/projects/salt-water-softener/$ /en/projects/salt-water-softener
-  RedirectMatch 301 ^/en/projects/small-commercial-air-conditioning/$ /en/projects/small-commercial-air-conditioning
-  RedirectMatch 301 ^/en/projects/smart-thermostatic-radiator-valves/$ /en/projects/smart-thermostatic-radiator-valves
-  RedirectMatch 301 ^/en/projects/thermodynamic-water-heater/$ /en/projects/thermodynamic-water-heater
-  RedirectMatch 301 ^/en/projects/thermostatic-radiator-valves/$ /en/projects/thermostatic-radiator-valves
-  RedirectMatch 301 ^/en/projects/underfloor-heating/$ /en/projects/underfloor-heating
-  RedirectMatch 301 ^/en/residential/$ /en/residential
-  RedirectMatch 301 ^/en/service-area/$ /en/service-area
-  RedirectMatch 301 ^/en/terms-of-sale/$ /en/terms-of-sale
-  RedirectMatch 301 ^/en/terms-of-use/$ /en/terms-of-use
-  RedirectMatch 301 ^/mentions-legales/$ /mentions-legales
-  RedirectMatch 301 ^/partenaire-panasonic/$ /partenaire-panasonic
-  RedirectMatch 301 ^/particuliers/$ /particuliers
-  RedirectMatch 301 ^/plomberie/$ /plomberie
-  RedirectMatch 301 ^/plomberie/adoucisseur-eau/$ /plomberie/adoucisseur-eau
-  RedirectMatch 301 ^/politique-de-confidentialite/$ /politique-de-confidentialite
-  RedirectMatch 301 ^/politique-des-cookies/$ /politique-des-cookies
-  RedirectMatch 301 ^/pompe-a-chaleur/$ /pompe-a-chaleur
-  RedirectMatch 301 ^/professionnels/$ /professionnels
-  RedirectMatch 301 ^/realisations/$ /realisations
-  RedirectMatch 301 ^/realisations/adoucisseur-au-sel/$ /realisations/adoucisseur-au-sel
-  RedirectMatch 301 ^/realisations/adoucisseur-co2/$ /realisations/adoucisseur-co2
-  RedirectMatch 301 ^/realisations/ballon-thermodynamique/$ /realisations/ballon-thermodynamique
-  RedirectMatch 301 ^/realisations/climatisation/gainable/$ /realisations/climatisation/gainable
-  RedirectMatch 301 ^/realisations/climatisation/mono-split/$ /realisations/climatisation/mono-split
-  RedirectMatch 301 ^/realisations/climatisation/multi-split/$ /realisations/climatisation/multi-split
-  RedirectMatch 301 ^/realisations/depannage-plomberie/$ /realisations/depannage-plomberie
-  RedirectMatch 301 ^/realisations/pac-collective-copropriete/$ /realisations/pac-collective-copropriete
-  RedirectMatch 301 ^/realisations/petit-tertiaire/$ /realisations/petit-tertiaire
-  RedirectMatch 301 ^/realisations/plancher-chauffant/$ /realisations/plancher-chauffant
-  RedirectMatch 301 ^/realisations/pompe-a-chaleur-air-eau/$ /realisations/pompe-a-chaleur-air-eau
-  RedirectMatch 301 ^/realisations/radiateurs-nouvelle-generation/$ /realisations/radiateurs-nouvelle-generation
-  RedirectMatch 301 ^/realisations/remplacement-chaudiere/$ /realisations/remplacement-chaudiere
-  RedirectMatch 301 ^/realisations/salle-de-bain/$ /realisations/salle-de-bain
-  RedirectMatch 301 ^/realisations/systeme-drago/$ /realisations/systeme-drago
-  RedirectMatch 301 ^/realisations/systeme-drv-tertiaire/$ /realisations/systeme-drv-tertiaire
-  RedirectMatch 301 ^/realisations/tetes-thermostatiques/$ /realisations/tetes-thermostatiques
-  RedirectMatch 301 ^/realisations/tetes-thermostatiques-connectees/$ /realisations/tetes-thermostatiques-connectees
-  RedirectMatch 301 ^/recrutement/$ /recrutement
-  RedirectMatch 301 ^/zone-intervention/$ /zone-intervention
-</IfModule>
-# END AUTO-SLASH-REDIRECTS
-
 # -----------------------------------------------------------------------------
-# Redirections 301 — www & anciennes URLs
+# Redirections 301 — tout en mod_rewrite, cibles ABSOLUES, une seule redirection
+#
+# Ordre :
+#   0. requêtes internes (réécriture page → page.html, ErrorDocument) : on ne
+#      redirige jamais une sous-requête interne (évite boucles et 404 en 301) ;
+#   1. anciennes URLs → pages actuelles ;
+#   2. variantes /page/ , /page.html , /page.html/ → /page (bloc généré) ;
+#   3. slash final générique (dossier ancien sur le FTP) ;
+#   4. www → apex pour tout le reste (port éventuel ignoré) ;
+#   5. réécriture interne /page → page.html (pas de 301 visible).
+# Chaque cible commence par https://hfe-energie.fr : depuis www.* ou depuis une
+# variante, on arrive en un seul saut sur l'URL canonique, sans « :443 ».
 # -----------------------------------------------------------------------------
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
 
-  # www → apex (priorité maximale)
-  RewriteCond %{HTTP_HOST} ^www\.hfe-energie\.fr$ [NC]
-  RewriteRule ^ https://hfe-energie.fr%{REQUEST_URI} [R=301,L]
+  # 0. Ne pas rejouer les règles sur une requête interne (REDIRECT_STATUS posé
+  #    par Apache après une réécriture interne ou un ErrorDocument).
+  RewriteCond %{ENV:REDIRECT_STATUS} .
+  RewriteRule ^ - [L]
 
-  # Slash final → sans slash (THE_REQUEST : fonctionne même si un ancien dossier /page/ existe sur le FTP)
-  RewriteCond %{THE_REQUEST} \s/+(.+?)/+[\s?]
-  RewriteCond %{DOCUMENT_ROOT}/%1.html -f
-  RewriteRule ^ /%1 [R=301,L]
-
-  # Anciennes URLs (PascalCase) → pages actuelles.
+  # 1. Anciennes URLs (PascalCase) → pages actuelles.
   # IMPORTANT : pas de flag [NC] ici. La casse doit être respectée, sinon une
   # règle comme ^Climatisation matcherait aussi sa cible /climatisation et
   # provoquerait une boucle de redirection (ERR_TOO_MANY_REDIRECTS).
-  RewriteRule ^Accueil/?$ https://hfe-energie.fr/ [R=301,L]
-  RewriteRule ^Plomberie/?$ https://hfe-energie.fr/plomberie [R=301,L]
-  RewriteRule ^Climatisation/?$ https://hfe-energie.fr/climatisation [R=301,L]
-  RewriteRule ^Chauffage/?$ https://hfe-energie.fr/chauffage [R=301,L]
-  RewriteRule ^Particulier/?$ https://hfe-energie.fr/particuliers [R=301,L]
-  RewriteRule ^Professionnel/?$ https://hfe-energie.fr/professionnels [R=301,L]
-  RewriteRule ^PompeAChaleur/?$ https://hfe-energie.fr/pompe-a-chaleur [R=301,L]
-  RewriteRule ^NosRealisations/?$ https://hfe-energie.fr/realisations [R=301,L]
-  RewriteRule ^NosClients/?$ https://hfe-energie.fr/ [R=301,L]
-  RewriteRule ^NosSolutions/?$ https://hfe-energie.fr/ [R=301,L]
-  RewriteRule ^Actualites/?$ https://hfe-energie.fr/ [R=301,L]
-  RewriteRule ^Contact/?$ https://hfe-energie.fr/contact [R=301,L]
-  RewriteRule ^AidesFinancement/?$ https://hfe-energie.fr/aides-financement [R=301,L]
+  RewriteRule ^Accueil(?:\.html)?/*$ https://hfe-energie.fr/ [R=301,L]
+  RewriteRule ^Plomberie(?:\.html)?/*$ https://hfe-energie.fr/plomberie [R=301,L]
+  RewriteRule ^Climatisation(?:\.html)?/*$ https://hfe-energie.fr/climatisation [R=301,L]
+  RewriteRule ^Chauffage(?:\.html)?/*$ https://hfe-energie.fr/chauffage [R=301,L]
+  RewriteRule ^Particulier(?:\.html)?/*$ https://hfe-energie.fr/particuliers [R=301,L]
+  RewriteRule ^Professionnel(?:\.html)?/*$ https://hfe-energie.fr/professionnels [R=301,L]
+  RewriteRule ^PompeAChaleur(?:\.html)?/*$ https://hfe-energie.fr/pompe-a-chaleur [R=301,L]
+  RewriteRule ^NosRealisations(?:\.html)?/*$ https://hfe-energie.fr/realisations [R=301,L]
+  RewriteRule ^NosClients(?:\.html)?/*$ https://hfe-energie.fr/ [R=301,L]
+  RewriteRule ^NosSolutions(?:\.html)?/*$ https://hfe-energie.fr/ [R=301,L]
+  RewriteRule ^Actualites(?:\.html)?/*$ https://hfe-energie.fr/ [R=301,L]
+  RewriteRule ^Contact(?:\.html)?/*$ https://hfe-energie.fr/contact [R=301,L]
+  RewriteRule ^AidesFinancement(?:\.html)?/*$ https://hfe-energie.fr/aides-financement [R=301,L]
 
   # Page réalisations PAC air-air fusionnée dans réalisations multi-split
-  RewriteRule ^realisations/pompe-a-chaleur-air-air/?$ https://hfe-energie.fr/realisations/climatisation/multi-split [R=301,L]
-  RewriteRule ^en/projects/air-to-air-heat-pump/?$ https://hfe-energie.fr/en/projects/air-conditioning/multi-split [R=301,L]
+  RewriteRule ^realisations/pompe-a-chaleur-air-air(?:\.html)?/*$ https://hfe-energie.fr/realisations/climatisation/multi-split [R=301,L]
+  RewriteRule ^en/projects/air-to-air-heat-pump(?:\.html)?/*$ https://hfe-energie.fr/en/projects/air-conditioning/multi-split [R=301,L]
 
-  # Multi-split et PAC air-air fusionnés sous /realisations/climatisation/multi-split/
-  RewriteRule ^realisations/climatisation/?$ https://hfe-energie.fr/realisations/climatisation/multi-split [R=301,L]
-  RewriteRule ^realisations/climatisation/pac-air-air/?$ https://hfe-energie.fr/realisations/climatisation/multi-split [R=301,L]
-  RewriteRule ^en/projects/air-conditioning/?$ https://hfe-energie.fr/en/projects/air-conditioning/multi-split [R=301,L]
-  RewriteRule ^en/projects/air-conditioning/pac-air-air/?$ https://hfe-energie.fr/en/projects/air-conditioning/multi-split [R=301,L]
+  # Multi-split et PAC air-air fusionnés sous /realisations/climatisation/multi-split
+  RewriteRule ^realisations/climatisation(?:\.html)?/*$ https://hfe-energie.fr/realisations/climatisation/multi-split [R=301,L]
+  RewriteRule ^realisations/climatisation/pac-air-air(?:\.html)?/*$ https://hfe-energie.fr/realisations/climatisation/multi-split [R=301,L]
+  RewriteRule ^en/projects/air-conditioning(?:\.html)?/*$ https://hfe-energie.fr/en/projects/air-conditioning/multi-split [R=301,L]
+  RewriteRule ^en/projects/air-conditioning/pac-air-air(?:\.html)?/*$ https://hfe-energie.fr/en/projects/air-conditioning/multi-split [R=301,L]
 
   # Mono-split déplacé sous /realisations/climatisation/
-  RewriteRule ^climatisation/mono-split/?$ https://hfe-energie.fr/realisations/climatisation/mono-split [R=301,L]
-  RewriteRule ^en/air-conditioning/mono-split/?$ https://hfe-energie.fr/en/projects/air-conditioning/mono-split [R=301,L]
+  RewriteRule ^climatisation/mono-split(?:\.html)?/*$ https://hfe-energie.fr/realisations/climatisation/mono-split [R=301,L]
+  RewriteRule ^en/air-conditioning/mono-split(?:\.html)?/*$ https://hfe-energie.fr/en/projects/air-conditioning/mono-split [R=301,L]
 
   # Climatisation professionnelle fusionnée dans système DRV tertiaire
-  RewriteRule ^realisations/climatisation-professionnelle/?$ https://hfe-energie.fr/realisations/systeme-drv-tertiaire [R=301,L]
-  RewriteRule ^en/projects/commercial-air-conditioning/?$ https://hfe-energie.fr/en/projects/commercial-vrf-system [R=301,L]
+  RewriteRule ^realisations/climatisation-professionnelle(?:\.html)?/*$ https://hfe-energie.fr/realisations/systeme-drv-tertiaire [R=301,L]
+  RewriteRule ^en/projects/commercial-air-conditioning(?:\.html)?/*$ https://hfe-energie.fr/en/projects/commercial-vrf-system [R=301,L]
 
   # Chaufferie copropriété renommée PAC collective copropriété
-  RewriteRule ^realisations/chaufferie-copropriete/?$ https://hfe-energie.fr/realisations/pac-collective-copropriete [R=301,L]
-  RewriteRule ^en/projects/co-ownership-heating/?$ https://hfe-energie.fr/en/projects/co-ownership-air-to-water-heat-pump [R=301,L]
+  RewriteRule ^realisations/chaufferie-copropriete(?:\.html)?/*$ https://hfe-energie.fr/realisations/pac-collective-copropriete [R=301,L]
+  RewriteRule ^en/projects/co-ownership-heating(?:\.html)?/*$ https://hfe-energie.fr/en/projects/co-ownership-air-to-water-heat-pump [R=301,L]
 
-  # Pages Astro (format file : page.html) — réécriture interne sans 301 visible
+  # 2. Variantes des pages Astro (généré à chaque build)
+  # BEGIN AUTO-SLASH-REDIRECTS
+  # Généré par scripts/generate-slash-redirects.mjs — ne pas éditer à la main
+  # /page/ , /page.html , /page.html/ (www ou non) → https://hfe-energie.fr/page
+  RewriteRule ^index(?:\.html)?/*$ https://hfe-energie.fr/ [R=301,L]
+  RewriteRule ^aides-financement(?:\.html/*|/+)$ https://hfe-energie.fr/aides-financement [R=301,L]
+  RewriteRule ^blog(?:\.html/*|/+)$ https://hfe-energie.fr/blog [R=301,L]
+  RewriteRule ^blog/reportage-bfm-pompes-a-chaleur-hfe(?:\.html/*|/+)$ https://hfe-energie.fr/blog/reportage-bfm-pompes-a-chaleur-hfe [R=301,L]
+  RewriteRule ^blog/reportage-recrutement-plomberie-chauffage-hfe(?:\.html/*|/+)$ https://hfe-energie.fr/blog/reportage-recrutement-plomberie-chauffage-hfe [R=301,L]
+  RewriteRule ^blog/reportage-tf1-climatisation-panasonic-lille(?:\.html/*|/+)$ https://hfe-energie.fr/blog/reportage-tf1-climatisation-panasonic-lille [R=301,L]
+  RewriteRule ^blog/reportage-tf1-pompe-a-chaleur-climatisation-hfe(?:\.html/*|/+)$ https://hfe-energie.fr/blog/reportage-tf1-pompe-a-chaleur-climatisation-hfe [R=301,L]
+  RewriteRule ^blog/tva-5-5-climatisation-reversible-ce-qui-change(?:\.html/*|/+)$ https://hfe-energie.fr/blog/tva-5-5-climatisation-reversible-ce-qui-change [R=301,L]
+  RewriteRule ^cgu(?:\.html/*|/+)$ https://hfe-energie.fr/cgu [R=301,L]
+  RewriteRule ^cgv(?:\.html/*|/+)$ https://hfe-energie.fr/cgv [R=301,L]
+  RewriteRule ^chauffage(?:\.html/*|/+)$ https://hfe-energie.fr/chauffage [R=301,L]
+  RewriteRule ^chauffage/tetes-thermostatiques(?:\.html/*|/+)$ https://hfe-energie.fr/chauffage/tetes-thermostatiques [R=301,L]
+  RewriteRule ^climatisation(?:\.html/*|/+)$ https://hfe-energie.fr/climatisation [R=301,L]
+  RewriteRule ^contact(?:\.html/*|/+)$ https://hfe-energie.fr/contact [R=301,L]
+  RewriteRule ^copropriete(?:\.html/*|/+)$ https://hfe-energie.fr/copropriete [R=301,L]
+  RewriteRule ^en(?:\.html/*|/+)$ https://hfe-energie.fr/en [R=301,L]
+  RewriteRule ^en/air-conditioning(?:\.html/*|/+)$ https://hfe-energie.fr/en/air-conditioning [R=301,L]
+  RewriteRule ^en/blog(?:\.html/*|/+)$ https://hfe-energie.fr/en/blog [R=301,L]
+  RewriteRule ^en/blog/bfm-heat-pump-report-hfe(?:\.html/*|/+)$ https://hfe-energie.fr/en/blog/bfm-heat-pump-report-hfe [R=301,L]
+  RewriteRule ^en/blog/recruitment-report-plumbing-heating-hfe(?:\.html/*|/+)$ https://hfe-energie.fr/en/blog/recruitment-report-plumbing-heating-hfe [R=301,L]
+  RewriteRule ^en/blog/reduced-vat-reversible-air-conditioning(?:\.html/*|/+)$ https://hfe-energie.fr/en/blog/reduced-vat-reversible-air-conditioning [R=301,L]
+  RewriteRule ^en/blog/tf1-heat-pump-air-conditioning-report-hfe(?:\.html/*|/+)$ https://hfe-energie.fr/en/blog/tf1-heat-pump-air-conditioning-report-hfe [R=301,L]
+  RewriteRule ^en/blog/tf1-panasonic-air-conditioning-lille-report(?:\.html/*|/+)$ https://hfe-energie.fr/en/blog/tf1-panasonic-air-conditioning-lille-report [R=301,L]
+  RewriteRule ^en/careers(?:\.html/*|/+)$ https://hfe-energie.fr/en/careers [R=301,L]
+  RewriteRule ^en/co-ownership(?:\.html/*|/+)$ https://hfe-energie.fr/en/co-ownership [R=301,L]
+  RewriteRule ^en/commercial(?:\.html/*|/+)$ https://hfe-energie.fr/en/commercial [R=301,L]
+  RewriteRule ^en/contact(?:\.html/*|/+)$ https://hfe-energie.fr/en/contact [R=301,L]
+  RewriteRule ^en/cookie-policy(?:\.html/*|/+)$ https://hfe-energie.fr/en/cookie-policy [R=301,L]
+  RewriteRule ^en/grants-and-financing(?:\.html/*|/+)$ https://hfe-energie.fr/en/grants-and-financing [R=301,L]
+  RewriteRule ^en/heat-pump(?:\.html/*|/+)$ https://hfe-energie.fr/en/heat-pump [R=301,L]
+  RewriteRule ^en/heating(?:\.html/*|/+)$ https://hfe-energie.fr/en/heating [R=301,L]
+  RewriteRule ^en/heating/thermostatic-radiator-valves(?:\.html/*|/+)$ https://hfe-energie.fr/en/heating/thermostatic-radiator-valves [R=301,L]
+  RewriteRule ^en/legal-notice(?:\.html/*|/+)$ https://hfe-energie.fr/en/legal-notice [R=301,L]
+  RewriteRule ^en/panasonic-partner(?:\.html/*|/+)$ https://hfe-energie.fr/en/panasonic-partner [R=301,L]
+  RewriteRule ^en/plumbing(?:\.html/*|/+)$ https://hfe-energie.fr/en/plumbing [R=301,L]
+  RewriteRule ^en/plumbing/water-softener(?:\.html/*|/+)$ https://hfe-energie.fr/en/plumbing/water-softener [R=301,L]
+  RewriteRule ^en/privacy-policy(?:\.html/*|/+)$ https://hfe-energie.fr/en/privacy-policy [R=301,L]
+  RewriteRule ^en/projects(?:\.html/*|/+)$ https://hfe-energie.fr/en/projects [R=301,L]
+  RewriteRule ^en/projects/air-conditioning/ducted(?:\.html/*|/+)$ https://hfe-energie.fr/en/projects/air-conditioning/ducted [R=301,L]
+  RewriteRule ^en/projects/air-conditioning/mono-split(?:\.html/*|/+)$ https://hfe-energie.fr/en/projects/air-conditioning/mono-split [R=301,L]
+  RewriteRule ^en/projects/air-conditioning/multi-split(?:\.html/*|/+)$ https://hfe-energie.fr/en/projects/air-conditioning/multi-split [R=301,L]
+  RewriteRule ^en/projects/air-to-water-heat-pump(?:\.html/*|/+)$ https://hfe-energie.fr/en/projects/air-to-water-heat-pump [R=301,L]
+  RewriteRule ^en/projects/bathroom-renovation(?:\.html/*|/+)$ https://hfe-energie.fr/en/projects/bathroom-renovation [R=301,L]
+  RewriteRule ^en/projects/boiler-replacement(?:\.html/*|/+)$ https://hfe-energie.fr/en/projects/boiler-replacement [R=301,L]
+  RewriteRule ^en/projects/co-ownership-air-to-water-heat-pump(?:\.html/*|/+)$ https://hfe-energie.fr/en/projects/co-ownership-air-to-water-heat-pump [R=301,L]
+  RewriteRule ^en/projects/co2-water-softener(?:\.html/*|/+)$ https://hfe-energie.fr/en/projects/co2-water-softener [R=301,L]
+  RewriteRule ^en/projects/commercial-vrf-system(?:\.html/*|/+)$ https://hfe-energie.fr/en/projects/commercial-vrf-system [R=301,L]
+  RewriteRule ^en/projects/drago-water-treatment(?:\.html/*|/+)$ https://hfe-energie.fr/en/projects/drago-water-treatment [R=301,L]
+  RewriteRule ^en/projects/next-generation-radiators(?:\.html/*|/+)$ https://hfe-energie.fr/en/projects/next-generation-radiators [R=301,L]
+  RewriteRule ^en/projects/plumbing-repair(?:\.html/*|/+)$ https://hfe-energie.fr/en/projects/plumbing-repair [R=301,L]
+  RewriteRule ^en/projects/salt-water-softener(?:\.html/*|/+)$ https://hfe-energie.fr/en/projects/salt-water-softener [R=301,L]
+  RewriteRule ^en/projects/small-commercial-air-conditioning(?:\.html/*|/+)$ https://hfe-energie.fr/en/projects/small-commercial-air-conditioning [R=301,L]
+  RewriteRule ^en/projects/smart-thermostatic-radiator-valves(?:\.html/*|/+)$ https://hfe-energie.fr/en/projects/smart-thermostatic-radiator-valves [R=301,L]
+  RewriteRule ^en/projects/thermodynamic-water-heater(?:\.html/*|/+)$ https://hfe-energie.fr/en/projects/thermodynamic-water-heater [R=301,L]
+  RewriteRule ^en/projects/thermostatic-radiator-valves(?:\.html/*|/+)$ https://hfe-energie.fr/en/projects/thermostatic-radiator-valves [R=301,L]
+  RewriteRule ^en/projects/underfloor-heating(?:\.html/*|/+)$ https://hfe-energie.fr/en/projects/underfloor-heating [R=301,L]
+  RewriteRule ^en/residential(?:\.html/*|/+)$ https://hfe-energie.fr/en/residential [R=301,L]
+  RewriteRule ^en/service-area(?:\.html/*|/+)$ https://hfe-energie.fr/en/service-area [R=301,L]
+  RewriteRule ^en/terms-of-sale(?:\.html/*|/+)$ https://hfe-energie.fr/en/terms-of-sale [R=301,L]
+  RewriteRule ^en/terms-of-use(?:\.html/*|/+)$ https://hfe-energie.fr/en/terms-of-use [R=301,L]
+  RewriteRule ^mentions-legales(?:\.html/*|/+)$ https://hfe-energie.fr/mentions-legales [R=301,L]
+  RewriteRule ^partenaire-panasonic(?:\.html/*|/+)$ https://hfe-energie.fr/partenaire-panasonic [R=301,L]
+  RewriteRule ^particuliers(?:\.html/*|/+)$ https://hfe-energie.fr/particuliers [R=301,L]
+  RewriteRule ^plomberie(?:\.html/*|/+)$ https://hfe-energie.fr/plomberie [R=301,L]
+  RewriteRule ^plomberie/adoucisseur-eau(?:\.html/*|/+)$ https://hfe-energie.fr/plomberie/adoucisseur-eau [R=301,L]
+  RewriteRule ^politique-de-confidentialite(?:\.html/*|/+)$ https://hfe-energie.fr/politique-de-confidentialite [R=301,L]
+  RewriteRule ^politique-des-cookies(?:\.html/*|/+)$ https://hfe-energie.fr/politique-des-cookies [R=301,L]
+  RewriteRule ^pompe-a-chaleur(?:\.html/*|/+)$ https://hfe-energie.fr/pompe-a-chaleur [R=301,L]
+  RewriteRule ^professionnels(?:\.html/*|/+)$ https://hfe-energie.fr/professionnels [R=301,L]
+  RewriteRule ^realisations(?:\.html/*|/+)$ https://hfe-energie.fr/realisations [R=301,L]
+  RewriteRule ^realisations/adoucisseur-au-sel(?:\.html/*|/+)$ https://hfe-energie.fr/realisations/adoucisseur-au-sel [R=301,L]
+  RewriteRule ^realisations/adoucisseur-co2(?:\.html/*|/+)$ https://hfe-energie.fr/realisations/adoucisseur-co2 [R=301,L]
+  RewriteRule ^realisations/ballon-thermodynamique(?:\.html/*|/+)$ https://hfe-energie.fr/realisations/ballon-thermodynamique [R=301,L]
+  RewriteRule ^realisations/climatisation/gainable(?:\.html/*|/+)$ https://hfe-energie.fr/realisations/climatisation/gainable [R=301,L]
+  RewriteRule ^realisations/climatisation/mono-split(?:\.html/*|/+)$ https://hfe-energie.fr/realisations/climatisation/mono-split [R=301,L]
+  RewriteRule ^realisations/climatisation/multi-split(?:\.html/*|/+)$ https://hfe-energie.fr/realisations/climatisation/multi-split [R=301,L]
+  RewriteRule ^realisations/depannage-plomberie(?:\.html/*|/+)$ https://hfe-energie.fr/realisations/depannage-plomberie [R=301,L]
+  RewriteRule ^realisations/pac-collective-copropriete(?:\.html/*|/+)$ https://hfe-energie.fr/realisations/pac-collective-copropriete [R=301,L]
+  RewriteRule ^realisations/petit-tertiaire(?:\.html/*|/+)$ https://hfe-energie.fr/realisations/petit-tertiaire [R=301,L]
+  RewriteRule ^realisations/plancher-chauffant(?:\.html/*|/+)$ https://hfe-energie.fr/realisations/plancher-chauffant [R=301,L]
+  RewriteRule ^realisations/pompe-a-chaleur-air-eau(?:\.html/*|/+)$ https://hfe-energie.fr/realisations/pompe-a-chaleur-air-eau [R=301,L]
+  RewriteRule ^realisations/radiateurs-nouvelle-generation(?:\.html/*|/+)$ https://hfe-energie.fr/realisations/radiateurs-nouvelle-generation [R=301,L]
+  RewriteRule ^realisations/remplacement-chaudiere(?:\.html/*|/+)$ https://hfe-energie.fr/realisations/remplacement-chaudiere [R=301,L]
+  RewriteRule ^realisations/salle-de-bain(?:\.html/*|/+)$ https://hfe-energie.fr/realisations/salle-de-bain [R=301,L]
+  RewriteRule ^realisations/systeme-drago(?:\.html/*|/+)$ https://hfe-energie.fr/realisations/systeme-drago [R=301,L]
+  RewriteRule ^realisations/systeme-drv-tertiaire(?:\.html/*|/+)$ https://hfe-energie.fr/realisations/systeme-drv-tertiaire [R=301,L]
+  RewriteRule ^realisations/tetes-thermostatiques(?:\.html/*|/+)$ https://hfe-energie.fr/realisations/tetes-thermostatiques [R=301,L]
+  RewriteRule ^realisations/tetes-thermostatiques-connectees(?:\.html/*|/+)$ https://hfe-energie.fr/realisations/tetes-thermostatiques-connectees [R=301,L]
+  RewriteRule ^recrutement(?:\.html/*|/+)$ https://hfe-energie.fr/recrutement [R=301,L]
+  RewriteRule ^zone-intervention(?:\.html/*|/+)$ https://hfe-energie.fr/zone-intervention [R=301,L]
+  # END AUTO-SLASH-REDIRECTS
+
+  # 3. Slash final générique → sans slash, si page.html existe
+  #    (THE_REQUEST : fonctionne même si un ancien dossier /page/ existe sur le FTP)
+  RewriteCond %{THE_REQUEST} \s/+(.+?)/+[\s?]
+  RewriteCond %{DOCUMENT_ROOT}/%1.html -f
+  RewriteRule ^ https://hfe-energie.fr/%1 [R=301,L]
+
+  # 4. www → apex pour toutes les autres URLs (port éventuel toléré).
+  #    On repart du chemin demandé ($1), sans .html ni slash final : même si
+  #    l'hébergeur a déjà réécrit l'URL en page.html, la cible reste propre.
+  RewriteCond %{HTTP_HOST} ^www\.hfe-energie\.fr(?::\d+)?\.?$ [NC]
+  RewriteRule ^(.*?)(?:\.html)?/*$ https://hfe-energie.fr/$1 [R=301,L]
+
+  # 5. Pages Astro (format file : page.html) — réécriture interne sans 301 visible
   RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}.html -f
-  RewriteRule ^(.+?)/?$ $1.html [L]
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+)$ $1.html [L]
 
   # Assets Astro fingerprintés : /_astro/*
   RewriteRule ^_astro/ - [E=ASTRO_ASSET:1]

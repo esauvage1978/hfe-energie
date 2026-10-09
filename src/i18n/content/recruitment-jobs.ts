@@ -208,3 +208,20 @@ export function getRecruitmentJobs(locale: Locale): readonly RecruitmentJob[] {
 export function getJobDescriptionHtml(job: RecruitmentJob, locale: Locale): string {
   return locale === "en" ? toDescriptionHtmlEn(job) : toDescriptionHtml(job);
 }
+
+/**
+ * Offre encore valide à la date du build ? Une offre dont validThrough est
+ * dépassé reste affichée sur la page, mais ne doit plus être publiée en
+ * données structurées JobPosting (Google Jobs : offre expirée = signal négatif).
+ * Site statique : la vérification se fait au build → reconstruire le site
+ * après avoir prolongé validThrough ou ajouté une offre.
+ */
+export function isJobPostingActive(job: RecruitmentJob, now: Date = new Date()): boolean {
+  const end = Date.parse(job.validThrough);
+  return Number.isNaN(end) || end >= now.getTime();
+}
+
+/** Offres à publier en JobPosting (non expirées au moment du build). */
+export function getActiveJobPostings(locale: Locale, now: Date = new Date()): RecruitmentJob[] {
+  return getRecruitmentJobs(locale).filter((job) => isJobPostingActive(job, now));
+}

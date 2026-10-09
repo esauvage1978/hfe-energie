@@ -17,7 +17,7 @@ const heroImageEn: ProjectImage = {
 
 const fr = {
   seo: {
-    title: "Climatisation gainable à Lille | Installation chauffage & clim — HFE",
+    title: "Climatisation gainable à Lille : nos réalisations – HFE",
     description:
       "Installation de système gainable à Lille et métropole par Hecker & Frères Énergie (HFE). Diffusion homogène de l'air, confort discret, économies d'énergie et amélioration du DPE.",
     keywords: [

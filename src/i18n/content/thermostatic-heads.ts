@@ -3,7 +3,7 @@ import type { RouteId } from "../routes";
 
 const fr = {
   seo: {
-    title: "Têtes thermostatiques et connectées à Lille | Chauffage — HFE",
+    title: "Têtes thermostatiques et connectées à Lille – HFE",
     description:
       "Installation de têtes thermostatiques et têtes connectées à Lille et métropole par Hecker & Frères Énergie (HFE). Régulation pièce par pièce, pilotage smartphone et économies de chauffage.",
     keywords: [
@@ -78,7 +78,7 @@ const fr = {
 
 const en = {
   seo: {
-    title: "Thermostatic and smart radiator valves in Lille | Heating — HFE",
+    title: "Thermostatic & smart radiator valves in Lille – HFE",
     description:
       "Thermostatic and smart connected radiator valve installation in Lille and the metropolitan area by Hecker & Frères Énergie (HFE). Room-by-room control, smartphone management and heating savings.",
     keywords: [

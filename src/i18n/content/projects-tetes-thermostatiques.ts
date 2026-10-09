@@ -72,7 +72,7 @@ const fr = {
 
 const en = {
   seo: {
-    title: "Thermostatic radiator valve installation in Lille | Heating — HFE",
+    title: "Thermostatic radiator valve installation in Lille – HFE",
     description:
       "Thermostatic radiator valve installation and replacement in Lille and the metropolitan area by Hecker & Frères Énergie (HFE). Room-by-room comfort, lower consumption and quick installation without major work.",
     keywords: [

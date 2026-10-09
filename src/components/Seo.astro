@@ -29,7 +29,13 @@ const {
 
 const canonical = new URL(canonicalPath, site.baseUrl).toString();
 const ogImage = new URL(image, site.baseUrl).toString();
-const fullTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
+// Suffixe de marque court, ajouté seulement si la marque n'est pas déjà dans le
+// title et si le total reste dans la limite d'affichage Google (~60 caractères).
+const TITLE_MAX = 60;
+const BRAND_SUFFIX = " | HFE Énergie";
+const hasBrand = /\bHFE\b|Hecker/i.test(title);
+const fullTitle =
+  hasBrand || title.length + BRAND_SUFFIX.length > TITLE_MAX ? title : `${title}${BRAND_SUFFIX}`;
 const alternateFr = new URL(alternates.fr, site.baseUrl).toString();
 const alternateEn = new URL(alternates.en, site.baseUrl).toString();
 ---

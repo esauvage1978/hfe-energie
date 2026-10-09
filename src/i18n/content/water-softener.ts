@@ -2,7 +2,7 @@ import type { Locale } from "../config";
 
 const fr = {
   seo: {
-    title: "Adoucisseur d'eau à Lille : sel, CO₂ SoluCalc® ou DRAGO — HFE",
+    title: "Adoucisseur d'eau Lille : sel, CO₂ SoluCalc® ou DRAGO – HFE",
     description:
       "Installation d'adoucisseur d'eau à Lille et métropole par Hecker & Frères Énergie (HFE) : sel, CO₂ SoluCalc® ou système DRAGO. Étude sur place, devis gratuit.",
     keywords: [

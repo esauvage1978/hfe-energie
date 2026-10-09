@@ -311,9 +311,9 @@ function buildItems(locale: Locale): ProjectsIndexItem[] {
 
 const fr = {
   seo: {
-    title: "Nos réalisations à Lille | Chantiers PAC, climatisation, chauffage — HFE",
+    title: "Nos réalisations à Lille : PAC, clim, chauffage – HFE",
     description:
-      "Découvrez tous les chantiers réalisés par Hecker & Frères Énergie (HFE) à Lille et métropole : PAC, climatisation, chauffage, plomberie et adoucisseurs d'eau.",
+      "Photos de nos chantiers à Lille et métropole : pompes à chaleur, climatisation, chaufferies de copropriété, salles de bain et adoucisseurs d'eau.",
     keywords: [
       "réalisations HFE Lille",
       "chantiers pompe à chaleur Lille",
@@ -343,7 +343,7 @@ const fr = {
 
 const en = {
   seo: {
-    title: "Our projects in Lille | Heat pumps, air conditioning, heating — HFE",
+    title: "Our projects in Lille: heat pumps, AC, heating – HFE",
     description:
       "Discover all the installations completed by Hecker & Frères Énergie (HFE) in Lille: heat pumps, air conditioning, heating, plumbing and water softeners.",
     keywords: [

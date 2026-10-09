@@ -23,7 +23,7 @@ const chantier1ImagesEn: ProjectImage[] = [
 
 const fr = {
   seo: {
-    title: "Installation adoucisseur au sel à Lille | Anti-calcaire — HFE",
+    title: "Installation d'adoucisseur au sel à Lille – HFE",
     description:
       "Installation d'adoucisseur d'eau au sel à Lille et métropole par Hecker & Frères Énergie (HFE). Lutte efficace contre le calcaire, protection du chauffe-eau et des équipements sanitaires.",
     keywords: [
@@ -83,7 +83,7 @@ const fr = {
 
 const en = {
   seo: {
-    title: "Salt water softener installation in Lille | Anti-limescale — HFE",
+    title: "Salt water softener installation in Lille – HFE",
     description:
       "Salt water softener installation in Lille and the metropolitan area by Hecker & Frères Énergie (HFE). Effective limescale control, protection for water heaters and sanitary equipment.",
     keywords: [

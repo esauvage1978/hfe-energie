@@ -70,7 +70,7 @@ export const legal = {
   /** Conception, développement et réalisation du site */
   developer: {
     name: "Emmanuel SAUVAGE",
-    url: "https://emmanuel.sauvage.fr",
+    url: "https://emmanuelsauvage.fr/",
     role: "Conception, développement & réalisation",
   },
 

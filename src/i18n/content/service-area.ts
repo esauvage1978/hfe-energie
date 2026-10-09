@@ -3,9 +3,9 @@ import { pageI18n } from "../utils";
 
 const fr = {
   seo: {
-    title: "Zone d'intervention — Lille et 50 km | Hecker & Frères Énergie",
+    title: "Zone d'intervention : Lille et 50 km autour – HFE",
     description:
-      "Hecker & Frères Énergie (HFE) intervient dans un rayon de 50 km autour de Lille : pompe à chaleur, climatisation, chauffage et plomberie. Plus de 600 communes desservies en Nord et Pas-de-Calais.",
+      "Hecker & Frères Énergie intervient à Lille, dans le Nord et le Pas-de-Calais (plus de 600 communes) : pompe à chaleur, climatisation, chauffage, plomberie.",
     keywords: [
       "zone intervention chauffagiste Lille",
       "installateur PAC métropole lilloise",
@@ -100,7 +100,7 @@ const fr = {
 
 const en = {
   seo: {
-    title: "Service area — Lille and 50 km radius | Hecker & Frères Énergie",
+    title: "Service area: Lille and 50 km around – HFE",
     description:
       "Hecker & Frères Énergie (HFE) serves a 50 km radius around Lille: heat pumps, air conditioning, heating and plumbing. Over 600 towns covered across Nord and Pas-de-Calais.",
     keywords: [

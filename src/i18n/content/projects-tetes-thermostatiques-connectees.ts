@@ -17,7 +17,7 @@ const heroImageEn: ProjectImage = {
 
 const fr = {
   seo: {
-    title: "Installation têtes thermostatiques connectées à Lille | Chauffage — HFE",
+    title: "Pose de têtes thermostatiques connectées à Lille – HFE",
     description:
       "Installation de têtes thermostatiques connectées à Lille et métropole par Hecker & Frères Énergie (HFE). Pilotage smartphone, programmation horaire et économies de chauffage.",
     keywords: [
@@ -72,7 +72,7 @@ const fr = {
 
 const en = {
   seo: {
-    title: "Smart thermostatic radiator valve installation in Lille | Heating — HFE",
+    title: "Smart thermostatic radiator valves fitted in Lille – HFE",
     description:
       "Smart connected radiator valve installation in Lille and the metropolitan area by Hecker & Frères Énergie (HFE). Smartphone control, schedules and heating savings.",
     keywords: [

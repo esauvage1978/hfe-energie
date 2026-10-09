@@ -29,7 +29,7 @@ const chantier1ImagesEn: ProjectImage[] = [
 
 const fr = {
   seo: {
-    title: "Climatisation mono-split à Lille | Installation réversible — HFE",
+    title: "Climatisation mono-split réversible à Lille – HFE",
     description:
       "Installation de climatisation mono-split réversible à Lille par Hecker & Frères Énergie (HFE). Une unité intérieure et une unité extérieure pour climatiser une pièce de 15 à 45 m². Devis gratuit.",
     keywords: [
@@ -90,7 +90,7 @@ const fr = {
 
 const en = {
   seo: {
-    title: "Single-split air conditioning in Lille | Reversible installation — HFE",
+    title: "Reversible single-split air conditioning in Lille – HFE",
     description:
       "Single-split reversible air conditioning installation in Lille by Hecker & Frères Énergie (HFE). One indoor and one outdoor unit to cool a room from 15 to 45 m². Free quote.",
     keywords: [

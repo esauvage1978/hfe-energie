@@ -73,7 +73,7 @@ const pacAirAirChantier1ImagesEn: ProjectImage[] = [
 
 const fr = {
   seo: {
-    title: "Réalisations climatisation multi-split à Lille | Installation réversible — HFE",
+    title: "Climatisation multi-split à Lille : nos réalisations – HFE",
     description:
       "Découvrez nos chantiers de climatisation multi-split réalisés par Hecker & Frères Énergie (HFE) à Lille et métropole : tri-split Panasonic TZ68, PAC air-air TZ42 et Panasonic 3Z68 avec unités murales, console basse et cassette.",
     keywords: [
@@ -159,7 +159,7 @@ const fr = {
 
 const en = {
   seo: {
-    title: "Multi-split air conditioning projects in Lille | Reversible installation — HFE",
+    title: "Multi-split air conditioning in Lille: our projects – HFE",
     description:
       "Discover our multi-split air conditioning projects by Hecker & Frères Énergie (HFE) in Lille: Panasonic TZ68 tri-split, TZ42 air-to-air and Panasonic 3Z68 with wall-mounted units, floor console and ceiling cassette.",
     keywords: [

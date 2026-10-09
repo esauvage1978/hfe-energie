@@ -35,9 +35,9 @@ const chantier2ImagesEn: ProjectImage[] = [
 
 const fr = {
   seo: {
-    title: "Chauffe-eau Atlantic & ballon thermodynamique à Lille — HFE",
+    title: "Ballon thermodynamique à Lille : installation RGE",
     description:
-      "Remplacement et installation de chauffe-eau électriques Atlantic et ballon thermodynamique à Lille par HFE : compacts, verticaux, extra-plats et CET. Devis gratuit, installation sécurisée.",
+      "Pose de ballon thermodynamique et de chauffe-eau Atlantic à Lille : jusqu'à 70 % d'économies sur l'eau chaude, aides MaPrimeRénov' et CEE. Devis gratuit.",
     keywords: [
       "chauffe-eau Atlantic Lille",
       "ballon thermodynamique Lille",

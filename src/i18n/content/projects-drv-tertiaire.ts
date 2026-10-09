@@ -19,7 +19,7 @@ const drvHeroEn: ProjectImage = {
 
 const fr = {
   seo: {
-    title: "Réalisation DRV Hôtel Ibis Grand-Place — Système DRV tertiaire | HFE",
+    title: "Système DRV tertiaire : Hôtel Ibis Grand-Place Lille – HFE",
     description:
       "Remplacement des systèmes DRV Mitsubishi à l'Hôtel Ibis Grand-Place par Hecker & Frères Énergie (HFE) : 69 unités intérieures, 6 groupes en toiture, rénovation énergétique bi-tube.",
     keywords: [
@@ -70,7 +70,7 @@ const fr = {
 
 const en = {
   seo: {
-    title: "Ibis Grand-Place VRF replacement — Commercial VRF system | HFE",
+    title: "Commercial VRF system: Ibis Grand-Place Lille – HFE",
     description:
       "Mitsubishi VRF system replacement at the Ibis Grand-Place hotel by Hecker & Frères Énergie (HFE): 69 indoor units, 6 rooftop groups, two-pipe energy renovation.",
     keywords: [

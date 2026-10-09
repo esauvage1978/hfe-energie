@@ -1,7 +1,11 @@
 ---
 import type { Locale } from "@i18n";
 import { getRecruitmentContent, pathFor } from "@i18n";
-import { getJobDescriptionHtml, getRecruitmentJobs } from "@i18n/content/recruitment-jobs";
+import {
+  getActiveJobPostings,
+  getJobDescriptionHtml,
+  getRecruitmentJobs,
+} from "@i18n/content/recruitment-jobs";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Breadcrumbs from "@components/Breadcrumbs.astro";
 import Icon from "@components/Icon.astro";
@@ -21,8 +25,10 @@ const jobs = getRecruitmentJobs(locale);
 const canonicalPath = pathFor("recruitment", locale);
 const pageUrl = new URL(canonicalPath, site.baseUrl).toString();
 const applyFormUrl = `${pathFor("contact", locale)}?service=recrutement#contact-form`;
+// JobPosting uniquement pour les offres non expirées (validThrough >= date du build)
+const activeJobs = getActiveJobPostings(locale);
 const jobPostingsLd = buildJobPostingsGraph(
-  jobs.map((job) => ({
+  activeJobs.map((job) => ({
     id: job.id,
     title: job.title,
     descriptionHtml: getJobDescriptionHtml(job, locale),
@@ -44,7 +50,9 @@ const jobPostingsLd = buildJobPostingsGraph(
   canonicalPath={canonicalPath}
 >
   <StructuredData type="BreadcrumbList" breadcrumbs={content.breadcrumbs} slot="head" />
-  <script type="application/ld+json" set:html={JSON.stringify(jobPostingsLd)} slot="head" is:inline />
+  {activeJobs.length > 0 && (
+    <script type="application/ld+json" set:html={JSON.stringify(jobPostingsLd)} slot="head" is:inline />
+  )}
 
   <div class="container-page">
     <Breadcrumbs locale={locale} items={content.breadcrumbs} />
