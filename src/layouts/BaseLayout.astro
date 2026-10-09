@@ -1,5 +1,7 @@
 ---
 import "@styles/global.css";
+import bodyFontsUrl from "@styles/fonts-body.css?url";
+import displayFontsUrl from "@styles/fonts-display.css?url";
 import type { Locale } from "@i18n";
 import { getAlternatePaths, htmlLang } from "@i18n";
 import Seo from "@components/Seo.astro";
@@ -7,6 +9,7 @@ import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import MobileBottomBar from "@components/MobileBottomBar.astro";
 import StructuredData from "@components/StructuredData.astro";
+import { site } from "@data/site";
 
 export interface Props {
   locale: Locale;
@@ -22,6 +25,8 @@ export interface Props {
 const { locale, title, description, canonicalPath, image, ogType, noIndex, keywords } = Astro.props;
 const cleanPath = (canonicalPath ?? Astro.url.pathname).replace(/\/$/, "") || "/";
 const alternates = getAlternatePaths(cleanPath);
+const gtmId = site.gtmId;
+const gaId = site.gaId;
 ---
 
 <!doctype html>
@@ -29,7 +34,36 @@ const alternates = getAlternatePaths(cleanPath);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="generator" content={Astro.generator} />
+    <!-- Google Tag Manager -->
+    <script is:inline define:vars={{ gtmId }}>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", gtmId);
+    </script>
+    <!-- End Google Tag Manager -->
+    <!-- Google tag (gtag.js) -->
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+    <script is:inline define:vars={{ gaId }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", gaId);
+    </script>
+    <!-- End Google tag (gtag.js) -->
+    <slot name="head-preload" />
+    <link rel="stylesheet" href={bodyFontsUrl} media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href={bodyFontsUrl} /></noscript>
+    <link rel="stylesheet" href={displayFontsUrl} media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href={displayFontsUrl} /></noscript>
 
     <Seo
       locale={locale}
@@ -48,6 +82,17 @@ const alternates = getAlternatePaths(cleanPath);
     <slot name="head" />
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe
+        src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+        title="Google Tag Manager"
+      ></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <Header locale={locale} />
 
     <main

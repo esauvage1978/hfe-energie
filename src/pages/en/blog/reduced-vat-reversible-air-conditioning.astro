@@ -1,0 +1,13 @@
+---
+import BlogArticlePage from "../../../templates/BlogArticlePage.astro";
+import { getBlogTvaClimContent } from "@i18n";
+
+const locale = "en" as const;
+---
+
+<BlogArticlePage
+  locale={locale}
+  content={getBlogTvaClimContent(locale)}
+  routeId="blogTvaClimReversible"
+  faqIdPrefix="blog-tva-clim-faq"
+/>

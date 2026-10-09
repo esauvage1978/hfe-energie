@@ -74,7 +74,7 @@ const fr = {
       {
         name: "TVA à 5,5 %",
         amount: "Économie immédiate",
-        desc: "Taux de TVA réduit sur la fourniture et la pose d'équipements énergétiques performants dans un logement de plus de 2 ans.",
+        desc: "Taux de TVA réduit sur la fourniture et la pose d'équipements énergétiques performants dans un logement de plus de 2 ans. Depuis le 18 juillet 2026, certaines climatisations réversibles (PAC air/air) peuvent aussi y prétendre sous conditions techniques.",
         conditions: [
           "Logement de plus de 2 ans",
           "Pose par un professionnel",
@@ -213,7 +213,7 @@ const en = {
       {
         name: "5.5% VAT",
         amount: "Immediate saving",
-        desc: "Reduced VAT rate on supply and installation of high-performance energy equipment in properties over 2 years old.",
+        desc: "Reduced VAT rate on supply and installation of high-performance energy equipment in properties over 2 years old. Since 18 July 2026, certain reversible air-conditioning systems (air-to-air heat pumps) may also qualify under technical conditions.",
         conditions: [
           "Property over 2 years old",
           "Installation by a professional",

@@ -13,6 +13,7 @@ export interface Props {
   width?: number;
   height?: number;
   class?: string;
+  style?: string;
   loading?: "eager" | "lazy";
   decoding?: "sync" | "async" | "auto";
   fetchpriority?: "high" | "low" | "auto";
@@ -27,6 +28,7 @@ const {
   width,
   height,
   class: cls,
+  style,
   loading = "lazy",
   decoding = "async",
   fetchpriority,
@@ -63,7 +65,7 @@ const avifSrcSet = buildSrcSet("avif", widths);
 const webpSrcSet = buildSrcSet("webp", widths);
 ---
 
-<picture>
+<picture style={style}>
   <source type="image/avif" srcset={avifSrcSet} sizes={sizes} />
   <source type="image/webp" srcset={webpSrcSet} sizes={sizes} />
   <img

@@ -32,7 +32,7 @@ const canonicalPath = pathFor("coOwnership", locale);
   <StructuredData type="FAQPage" faqs={content.faq.items} slot="head" />
 
   <div class="container-page">
-    <Breadcrumbs items={content.breadcrumbs} />
+    <Breadcrumbs locale={locale} items={content.breadcrumbs} />
   </div>
 
   <section class="bg-gradient-to-br from-accent-50 to-white">
@@ -51,10 +51,10 @@ const canonicalPath = pathFor("coOwnership", locale);
         </div>
         <div>
           <Picture
-            src={servicesImages.chauffage.src}
-            alt={servicesImages.chauffage.alt}
-            width={servicesImages.chauffage.width}
-            height={servicesImages.chauffage.height}
+            src={servicesImages.copropriete.src}
+            alt={servicesImages.copropriete.alt}
+            width={servicesImages.copropriete.width}
+            height={servicesImages.copropriete.height}
             class="rounded-3xl shadow-xl border border-neutral-100 w-full aspect-[4/3] object-cover"
             loading="eager"
             fetchpriority="high"
@@ -83,15 +83,39 @@ const canonicalPath = pathFor("coOwnership", locale);
         {content.services.title}
       </h2>
       <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {content.services.items.map((o) => (
-          <div class="card">
-            <div class="w-12 h-12 rounded-xl bg-accent-100 text-accent-700 flex items-center justify-center mb-4">
-              <Icon name={o.icon} size={24} />
+        {content.services.items.map((o) => {
+          const hasProjects = "projectsRoute" in o && "projectsLabel" in o;
+          return (
+            <div class:list={["card", hasProjects && "card-linkable"]}>
+              {hasProjects && (
+                <a
+                  href={pathFor(o.projectsRoute as any, locale)}
+                  class="card-stretched-link"
+                  aria-label={o.projectsLabel}
+                />
+              )}
+              <div class="w-12 h-12 rounded-xl bg-accent-100 text-accent-700 flex items-center justify-center mb-4">
+                <Icon name={o.icon} size={24} />
+              </div>
+              <h3 class="font-display font-bold text-lg text-neutral-900">{o.title}</h3>
+              <p class="mt-2 text-sm text-neutral-600 leading-relaxed">{o.desc}</p>
+              {hasProjects && (
+                <span class="link-projects mt-5 pointer-events-none" aria-hidden="true">
+                  <Icon name="star" size={14} />
+                  {o.projectsLabel}
+                  <Icon name="arrow-right" size={14} />
+                </span>
+              )}
             </div>
-            <h3 class="font-display font-bold text-lg text-neutral-900">{o.title}</h3>
-            <p class="mt-2 text-sm text-neutral-600 leading-relaxed">{o.desc}</p>
-          </div>
-        ))}
+          );
+        })}
+      </div>
+      <div class="mt-8">
+        <a href={pathFor("projectsCopropriete", locale)} class="link-projects">
+          <Icon name="star" size={14} />
+          {content.realisations.label}
+          <Icon name="arrow-right" size={14} />
+        </a>
       </div>
     </div>
   </section>

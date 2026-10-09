@@ -8,17 +8,39 @@ export type RouteId =
   | "airConditioning"
   | "climatisationMonoSplit"
   | "heating"
+  | "thermostaticHeads"
   | "plumbing"
+  | "waterSoftener"
   | "residential"
   | "coOwnership"
   | "commercial"
   | "projects"
   | "projectsPacAirEau"
   | "projectsClim"
-  | "projectsClimPro"
+  | "projectsGainable"
+  | "projectsPetitTertiaire"
+  | "projectsDrvTertiaire"
   | "projectsPlancherChauffant"
+  | "projectsRemplacementChaudiere"
+  | "projectsCopropriete"
+  | "projectsBallonThermodynamique"
+  | "projectsDepannagePlomberie"
+  | "projectsSalleDeBain"
+  | "projectsAdoucisseurSel"
+  | "projectsAdoucisseurCo2"
+  | "projectsDrago"
+  | "projectsRadiateursNouvelleGeneration"
+  | "projectsTetesThermostatiques"
+  | "projectsTetesThermostatiquesConnectees"
   | "grants"
+  | "blog"
+  | "blogTvaClimReversible"
+  | "blogReportageRecrutement"
+  | "blogReportageBfmPac"
+  | "blogReportageTf1Pac"
+  | "blogReportageTf1Clim"
   | "contact"
+  | "recruitment"
   | "serviceArea"
   | "panasonicPartner"
   | "legalNotice"
@@ -35,17 +57,57 @@ export const routes: Record<RouteId, Record<Locale, string>> = {
   airConditioning: { fr: "/climatisation", en: "/en/air-conditioning" },
   climatisationMonoSplit: { fr: "/realisations/climatisation/mono-split", en: "/en/projects/air-conditioning/mono-split" },
   heating: { fr: "/chauffage", en: "/en/heating" },
+  thermostaticHeads: { fr: "/chauffage/tetes-thermostatiques", en: "/en/heating/thermostatic-radiator-valves" },
   plumbing: { fr: "/plomberie", en: "/en/plumbing" },
+  waterSoftener: { fr: "/plomberie/adoucisseur-eau", en: "/en/plumbing/water-softener" },
   residential: { fr: "/particuliers", en: "/en/residential" },
   coOwnership: { fr: "/copropriete", en: "/en/co-ownership" },
   projects: { fr: "/realisations", en: "/en/projects" },
   projectsPacAirEau: { fr: "/realisations/pompe-a-chaleur-air-eau", en: "/en/projects/air-to-water-heat-pump" },
   projectsClim: { fr: "/realisations/climatisation/multi-split", en: "/en/projects/air-conditioning/multi-split" },
-  projectsClimPro: { fr: "/realisations/climatisation-professionnelle", en: "/en/projects/commercial-air-conditioning" },
+  projectsGainable: { fr: "/realisations/climatisation/gainable", en: "/en/projects/air-conditioning/ducted" },
+  projectsPetitTertiaire: { fr: "/realisations/petit-tertiaire", en: "/en/projects/small-commercial-air-conditioning" },
+  projectsDrvTertiaire: { fr: "/realisations/systeme-drv-tertiaire", en: "/en/projects/commercial-vrf-system" },
   projectsPlancherChauffant: { fr: "/realisations/plancher-chauffant", en: "/en/projects/underfloor-heating" },
+  projectsRemplacementChaudiere: { fr: "/realisations/remplacement-chaudiere", en: "/en/projects/boiler-replacement" },
+  projectsCopropriete: { fr: "/realisations/pac-collective-copropriete", en: "/en/projects/co-ownership-air-to-water-heat-pump" },
+  projectsBallonThermodynamique: { fr: "/realisations/ballon-thermodynamique", en: "/en/projects/thermodynamic-water-heater" },
+  projectsDepannagePlomberie: { fr: "/realisations/depannage-plomberie", en: "/en/projects/plumbing-repair" },
+  projectsSalleDeBain: { fr: "/realisations/salle-de-bain", en: "/en/projects/bathroom-renovation" },
+  projectsAdoucisseurSel: { fr: "/realisations/adoucisseur-au-sel", en: "/en/projects/salt-water-softener" },
+  projectsAdoucisseurCo2: { fr: "/realisations/adoucisseur-co2", en: "/en/projects/co2-water-softener" },
+  projectsDrago: { fr: "/realisations/systeme-drago", en: "/en/projects/drago-water-treatment" },
+  projectsRadiateursNouvelleGeneration: { fr: "/realisations/radiateurs-nouvelle-generation", en: "/en/projects/next-generation-radiators" },
+  projectsTetesThermostatiques: { fr: "/realisations/tetes-thermostatiques", en: "/en/projects/thermostatic-radiator-valves" },
+  projectsTetesThermostatiquesConnectees: {
+    fr: "/realisations/tetes-thermostatiques-connectees",
+    en: "/en/projects/smart-thermostatic-radiator-valves",
+  },
   commercial: { fr: "/professionnels", en: "/en/commercial" },
   grants: { fr: "/aides-financement", en: "/en/grants-and-financing" },
+  blog: { fr: "/blog", en: "/en/blog" },
+  blogTvaClimReversible: {
+    fr: "/blog/tva-5-5-climatisation-reversible-ce-qui-change",
+    en: "/en/blog/reduced-vat-reversible-air-conditioning",
+  },
+  blogReportageRecrutement: {
+    fr: "/blog/reportage-recrutement-plomberie-chauffage-hfe",
+    en: "/en/blog/recruitment-report-plumbing-heating-hfe",
+  },
+  blogReportageBfmPac: {
+    fr: "/blog/reportage-bfm-pompes-a-chaleur-hfe",
+    en: "/en/blog/bfm-heat-pump-report-hfe",
+  },
+  blogReportageTf1Pac: {
+    fr: "/blog/reportage-tf1-pompe-a-chaleur-climatisation-hfe",
+    en: "/en/blog/tf1-heat-pump-air-conditioning-report-hfe",
+  },
+  blogReportageTf1Clim: {
+    fr: "/blog/reportage-tf1-climatisation-panasonic-lille",
+    en: "/en/blog/tf1-panasonic-air-conditioning-lille-report",
+  },
   contact: { fr: "/contact", en: "/en/contact" },
+  recruitment: { fr: "/recrutement", en: "/en/careers" },
   serviceArea: { fr: "/zone-intervention", en: "/en/service-area" },
   panasonicPartner: { fr: "/partenaire-panasonic", en: "/en/panasonic-partner" },
   legalNotice: { fr: "/mentions-legales", en: "/en/legal-notice" },

@@ -6,7 +6,7 @@
  * Source : geo.api.gouv.fr (API publique, sans clé)
  * Usage : node scripts/build-service-area.mjs
  */
-import { writeFileSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -40,31 +40,67 @@ function haversineKm(lat1, lon1, lat2, lon2) {
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
+async function fetchJsonWithRetry(url, { retries = 3, delayMs = 800 } = {}) {
+  let lastError;
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const res = await fetch(url, {
+        headers: { Accept: "application/json" },
+        signal: AbortSignal.timeout(30_000),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return await res.json();
+    } catch (err) {
+      lastError = err;
+      if (attempt < retries) {
+        await new Promise((resolve) => setTimeout(resolve, delayMs * attempt));
+      }
+    }
+  }
+  throw lastError;
+}
+
+function useCachedFile(reason) {
+  if (!existsSync(OUT)) {
+    throw new Error(
+      `${reason} — impossible de contacter geo.api.gouv.fr et aucun fichier cache (${path.relative(ROOT, OUT)}).`,
+    );
+  }
+  const cached = JSON.parse(readFileSync(OUT, "utf8"));
+  process.stderr.write(
+    `⚠ ${reason} — utilisation du fichier existant (${cached.totalCount ?? "?"} communes, généré le ${cached.generatedAt ?? "inconnu"}).\n`,
+  );
+}
+
 const communes = [];
 
-for (const dept of DEPARTMENTS) {
-  const url = new URL("https://geo.api.gouv.fr/communes");
-  url.searchParams.set("codeDepartement", dept);
-  url.searchParams.set("fields", "nom,code,codesPostaux,centre,codeDepartement");
-  url.searchParams.set("format", "json");
-  url.searchParams.set("geometry", "centre");
+try {
+  for (const dept of DEPARTMENTS) {
+    const url = new URL("https://geo.api.gouv.fr/communes");
+    url.searchParams.set("codeDepartement", dept);
+    url.searchParams.set("fields", "nom,code,codesPostaux,centre,codeDepartement");
+    url.searchParams.set("format", "json");
+    url.searchParams.set("geometry", "centre");
 
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`geo.api.gouv.fr ${dept}: ${res.status}`);
-  const rows = await res.json();
+    const rows = await fetchJsonWithRetry(url);
 
-  for (const row of rows) {
-    const [lon, lat] = row.centre.coordinates;
-    const distanceKm = haversineKm(CENTER.lat, CENTER.lng, lat, lon);
-    if (distanceKm > RADIUS_KM) continue;
-    communes.push({
-      name: row.nom,
-      code: row.code,
-      postalCodes: row.codesPostaux ?? [],
-      department: row.codeDepartement,
-      distanceKm: Math.round(distanceKm * 10) / 10,
-    });
+    for (const row of rows) {
+      const [lon, lat] = row.centre.coordinates;
+      const distanceKm = haversineKm(CENTER.lat, CENTER.lng, lat, lon);
+      if (distanceKm > RADIUS_KM) continue;
+      communes.push({
+        name: row.nom,
+        code: row.code,
+        postalCodes: row.codesPostaux ?? [],
+        department: row.codeDepartement,
+        distanceKm: Math.round(distanceKm * 10) / 10,
+      });
+    }
   }
+} catch (err) {
+  const message = err instanceof Error ? err.message : String(err);
+  useCachedFile(`geo.api.gouv.fr indisponible (${message})`);
+  process.exit(0);
 }
 
 communes.sort((a, b) => a.name.localeCompare(b.name, "fr"));

@@ -16,20 +16,22 @@ const fr = {
     titleHighlight: "professionnels",
     description:
       "Bureaux, commerces, restaurants, locaux industriels : Hecker & Frères Énergie (HFE) conçoit, installe et maintient vos équipements de chauffage et de climatisation à Lille et dans toute la métropole.",
-    ctaAudit: "Demander un audit",
+    ctaAudit: "Demander un devis",
   },
   offers: {
     title: "Nos services dédiés aux professionnels",
     items: [
       {
-        title: "Climatisation tertiaire",
-        desc: "Bureaux, commerces, restaurants, cabinets médicaux : climatisation cassette, gainable, multi-split.",
-        projectsLabel: "Nos réalisations climatisation professionnelle",
-        projectsRoute: "projectsClimPro" as const,
+        title: "Petit tertiaire",
+        desc: "Commerce, cabinet ou petit bureau : multi-split réversible pour climatiser plusieurs espaces avec une seule unité extérieure.",
+        projectsLabel: "Voir nos réalisations petit tertiaire",
+        projectsRoute: "projectsPetitTertiaire" as const,
       },
       {
-        title: "PAC industrielle",
-        desc: "Pompes à chaleur de forte puissance pour entrepôts, ateliers, locaux industriels.",
+        title: "Système DRV tertiaire",
+        desc: "Climatisation réversible DRV (VRF) : confort zone par zone, économies d'énergie et fonctionnement silencieux pour bureaux et commerces.",
+        projectsLabel: "Voir nos réalisations DRV tertiaire",
+        projectsRoute: "projectsDrvTertiaire" as const,
       },
       {
         title: "Maintenance préventive",
@@ -40,8 +42,8 @@ const fr = {
         desc: "Intervention rapide pour limiter votre arrêt d'activité - secteur Lille métropole.",
       },
       {
-        title: "Audit énergétique",
-        desc: "Diagnostic et préconisations pour optimiser votre consommation et votre confort.",
+        title: "Accompagnement et évaluation thermique",
+        desc: "Évaluation thermique de vos locaux, préconisations de travaux et dimensionnement de vos équipements de chauffage et climatisation.",
       },
       {
         title: "Décret tertiaire",
@@ -56,7 +58,7 @@ const fr = {
   faq: {
     badge: "FAQ",
     title: "Questions fréquentes (professionnels)",
-    intro: "Réponses rapides sur nos prestations B2B : climatisation tertiaire, maintenance, dépannage et audit.",
+    intro: "Réponses rapides sur nos prestations B2B : climatisation tertiaire, maintenance, dépannage et accompagnement.",
     items: [
       {
         question: "Intervenez-vous sur Lille uniquement ?",
@@ -79,9 +81,9 @@ const fr = {
           "Oui, selon disponibilité et niveau de criticité. Nous mettons en place des procédures adaptées (priorisation, astreinte ponctuelle, pièces courantes) pour réduire au maximum l’impact sur votre activité.",
       },
       {
-        question: "Pouvez-vous fournir un audit énergétique avant travaux ?",
+        question: "Proposez-vous un accompagnement et une évaluation thermique avant travaux ?",
         answer:
-          "Oui. Nous réalisons une visite technique et une analyse de vos besoins (usage, occupation, puissance, contraintes). Nous vous remettons ensuite une proposition claire : solutions, dimensionnement, budget et planning.",
+          "Oui. Nous réalisons une visite technique et une évaluation de vos besoins (usage, occupation, puissance, contraintes). Nous vous remettons ensuite une proposition claire : solutions, dimensionnement, budget et planning.",
       },
     ],
   },
@@ -107,20 +109,22 @@ const en = {
     titleHighlight: "businesses",
     description:
       "Offices, retail, restaurants, industrial premises: Hecker & Frères Énergie (HFE) designs, installs and maintains your heating and air conditioning equipment in Lille and across the metropolitan area.",
-    ctaAudit: "Request an audit",
+    ctaAudit: "Request a quote",
   },
   offers: {
     title: "Services for business customers",
     items: [
       {
-        title: "Commercial air conditioning",
-        desc: "Offices, retail, restaurants, medical practices: cassette, ducted and multi-split air conditioning.",
-        projectsLabel: "Our commercial air conditioning projects",
-        projectsRoute: "projectsClimPro" as const,
+        title: "Small commercial",
+        desc: "Retail unit, consulting room or small office: reversible multi-split to air-condition several spaces from a single outdoor unit.",
+        projectsLabel: "See our small commercial projects",
+        projectsRoute: "projectsPetitTertiaire" as const,
       },
       {
-        title: "Industrial heat pumps",
-        desc: "High-capacity heat pumps for warehouses, workshops and industrial premises.",
+        title: "Commercial VRF system",
+        desc: "Reversible VRF (DRV) air conditioning: zone-by-zone comfort, energy savings and quiet operation for offices and retail.",
+        projectsLabel: "See our commercial VRF projects",
+        projectsRoute: "projectsDrvTertiaire" as const,
       },
       {
         title: "Preventive maintenance",
@@ -131,8 +135,8 @@ const en = {
         desc: "Fast response to minimise downtime — Lille metropolitan area.",
       },
       {
-        title: "Energy audit",
-        desc: "Assessment and recommendations to optimise consumption and comfort.",
+        title: "Support and thermal evaluation",
+        desc: "Thermal evaluation of your premises, work recommendations and sizing of your heating and air conditioning equipment.",
       },
       {
         title: "Tertiary sector decree",
@@ -147,7 +151,7 @@ const en = {
   faq: {
     badge: "FAQ",
     title: "Frequently asked questions (business)",
-    intro: "Quick answers about our B2B services: commercial AC, maintenance, repairs and audits.",
+    intro: "Quick answers about our B2B services: commercial AC, maintenance, repairs and support.",
     items: [
       {
         question: "Do you only operate in Lille?",
@@ -170,9 +174,9 @@ const en = {
           "Yes, depending on availability and criticality. We can set up an approach tailored to your needs (prioritisation, occasional on-call coverage, common spare parts) to minimise downtime.",
       },
       {
-        question: "Can you perform an energy audit before work starts?",
+        question: "Do you offer support and thermal evaluation before work starts?",
         answer:
-          "Yes. We carry out a site visit and assess your needs (usage, occupancy, capacity, constraints). We then provide a clear proposal including solutions, sizing, budget and timeline.",
+          "Yes. We carry out a site visit and evaluate your needs (usage, occupancy, capacity, constraints). We then provide a clear proposal including solutions, sizing, budget and timeline.",
       },
     ],
   },

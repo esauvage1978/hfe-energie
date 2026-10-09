@@ -29,6 +29,11 @@ const fr = {
     emergencyHeatingCta: "Chauffage / PAC / clim",
     emergencyPlumbingCta: "Plomberie / dépannage",
     socialLabel: "Réseaux sociaux",
+    recruitmentTitle: "Recrutement",
+    recruitmentText:
+      "Plombier chauffagiste, alternant ou installateur PAC ? HFE recrute à Lille et métropole pour renforcer ses équipes de chantier.",
+    recruitmentPageCta: "Voir la page recrutement",
+    recruitmentApplyCta: "Candidater via le formulaire",
   },
   map: {
     title: "Nous trouver à Lille",
@@ -66,6 +71,11 @@ const en = {
     emergencyHeatingCta: "Heating / heat pump / AC",
     emergencyPlumbingCta: "Plumbing / emergency",
     socialLabel: "Social media",
+    recruitmentTitle: "Careers",
+    recruitmentText:
+      "Plumber heating engineer, apprentice or heat pump installer? HFE is hiring in Lille and the metropolitan area to strengthen our installation teams.",
+    recruitmentPageCta: "View careers page",
+    recruitmentApplyCta: "Apply via the form",
   },
   map: {
     title: "Find us in Lille",

@@ -39,3 +39,4 @@ Thumbs.db
 public/assets/video/
 *.mp4
 *.mov
+!public/assets/blog/*.mp4

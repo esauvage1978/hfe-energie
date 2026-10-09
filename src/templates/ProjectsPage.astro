@@ -1,34 +1,61 @@
 ---
 import type { Locale } from "@i18n";
-import { pathFor } from "@i18n";
+import { getRouteId, getPageThemeClasses, getProjectColorScheme, pathFor } from "@i18n";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Breadcrumbs from "@components/Breadcrumbs.astro";
 import CtaBanner from "@components/CtaBanner.astro";
 import Icon from "@components/Icon.astro";
+import Picture from "@components/Picture.astro";
+import DecoclimCacheSection from "@components/DecoclimCacheSection.astro";
 import ProjectSection from "@components/ProjectSection.astro";
 import StructuredData from "@components/StructuredData.astro";
 import { site } from "@data/site";
-import type { Project } from "@i18n/content/projects-shared";
+import type { Project, ProjectImage } from "@i18n/content/projects-shared";
 
 interface Props {
   locale: Locale;
   seo: { title: string; description: string; keywords: string[] };
   breadcrumbs: { name: string; url: string }[];
   canonicalPath: string;
-  hero: { badge: string; title: string; description: string; ctaQuote: string };
+  hero: { badge: string; title: string; description: string; ctaQuote: string; image?: ProjectImage };
+  phone?: string;
+  phoneRaw?: string;
   intro?: {
     title: string;
     paragraphs: readonly string[];
     advantagesTitle: string;
     advantages: readonly string[];
+    image?: ProjectImage;
+    sections?: readonly {
+      title: string;
+      paragraphs?: readonly string[];
+      items?: readonly string[];
+      afterItems?: readonly string[];
+    }[];
+    turnkey?: {
+      title: string;
+      intro: string;
+      items: readonly string[];
+      outro: string;
+    };
+    closing?: {
+      title: string;
+      text: string;
+    };
   };
   projectLabel: string;
   projects: readonly Project[];
   cta: { title: string; subtitle: string };
   showInstallCta?: boolean;
+  showDecoclimCache?: boolean;
 }
 
-const { locale, seo, breadcrumbs, canonicalPath, hero, intro, projectLabel, projects, cta, showInstallCta = true } = Astro.props;
+const { locale, seo, breadcrumbs, canonicalPath, hero, intro, projectLabel, projects, cta, showInstallCta = true, showDecoclimCache = false, phone = site.phone, phoneRaw = site.phoneRaw } = Astro.props;
+const heroImage = hero.image;
+const routeId = getRouteId(canonicalPath);
+const colorScheme = routeId ? getProjectColorScheme(routeId) : "accent";
+const theme = getPageThemeClasses(colorScheme);
+const ctaColorScheme = colorScheme === "accent" ? undefined : colorScheme;
 ---
 
 <BaseLayout
@@ -40,68 +67,177 @@ const { locale, seo, breadcrumbs, canonicalPath, hero, intro, projectLabel, proj
 >
   <StructuredData type="BreadcrumbList" breadcrumbs={breadcrumbs} slot="head" />
 
-  <div class="container-page">
-    <Breadcrumbs items={breadcrumbs} />
-  </div>
-
-  <section class="bg-gradient-to-br from-accent-50 via-white to-accent-50/20">
-    <div class="container-page py-10 md:py-16 max-w-4xl">
-      <span class="badge bg-accent-100 text-accent-800">{hero.badge}</span>
-      <h1 class="mt-3 font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-neutral-900 leading-tight">
-        {hero.title}
-      </h1>
-      <p class="mt-4 text-lg text-neutral-700">{hero.description}</p>
-      <div class="mt-6 flex flex-col sm:flex-row gap-3">
-        <a href={pathFor("contact", locale)} class="btn btn-accent"><Icon name="mail" size={18} /> {hero.ctaQuote}</a>
-        <a href={`tel:${site.phoneRaw}`} class="btn btn-outline-accent"><Icon name="phone" size={18} /> {site.phone}</a>
-      </div>
+  <div class={theme.pageTheme}>
+    <div class="container-page">
+      <Breadcrumbs locale={locale} items={breadcrumbs} />
     </div>
-  </section>
 
-  {intro && (
-    <section class="section bg-white" aria-labelledby="projects-intro-title">
-      <div class="container-page">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-          <div class="max-w-2xl">
-            <h2
-              id="projects-intro-title"
-              class="font-display font-extrabold text-2xl md:text-3xl text-neutral-900 leading-tight"
-            >
-              {intro.title}
-            </h2>
-            <div class="mt-5 space-y-4 text-neutral-700 leading-relaxed">
-              {intro.paragraphs.map((p) => <p>{p}</p>)}
+    <section class:list={["bg-gradient-to-br", theme.heroGradient]}>
+      <div class:list={["container-page py-10 md:py-16", !heroImage && "max-w-4xl"]}>
+        <div class:list={[heroImage && "grid grid-cols-1 lg:grid-cols-2 gap-10 items-center"]}>
+          <div>
+            <span class:list={["badge", theme.badge]}>{hero.badge}</span>
+            <h1 class="mt-3 font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-neutral-900 leading-tight">
+              {hero.title}
+            </h1>
+            <p class="mt-4 text-lg text-neutral-700">{hero.description}</p>
+            <div class="mt-6 flex flex-col sm:flex-row gap-3">
+              <a href={pathFor("contact", locale)} class={theme.btnPrimary}><Icon name="mail" size={18} /> {hero.ctaQuote}</a>
+              <a href={`tel:${phoneRaw}`} class={theme.btnOutline}><Icon name="phone" size={18} /> {phone}</a>
             </div>
           </div>
-
-          <div class="rounded-2xl bg-gradient-to-br from-accent-50 via-accent-50/60 to-white border border-accent-100 p-6 md:p-8">
-            <h3 class="font-display font-bold text-lg md:text-xl text-accent-800">
-              {intro.advantagesTitle}
-            </h3>
-            <ul class="mt-5 space-y-3">
-              {intro.advantages.map((a) => (
-                <li class="flex items-start gap-2.5 text-sm md:text-base text-neutral-700">
-                  <Icon name="check" size={18} class="text-accent-600 mt-0.5 shrink-0" strokeWidth={3} />
-                  <span>{a}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {heroImage && (
+            <div class="flex justify-center lg:justify-end">
+              <Picture
+                src={heroImage.src}
+                alt={heroImage.alt}
+                width={heroImage.width}
+                height={heroImage.height}
+                style={`aspect-ratio: ${heroImage.width} / ${heroImage.height}`}
+                class="rounded-3xl shadow-xl border border-neutral-100 w-full max-w-lg lg:max-w-none object-cover"
+                loading="eager"
+                fetchpriority="high"
+                decoding="sync"
+                sizes="(min-width: 1024px) 50vw, 100vw"
+              />
+            </div>
+          )}
         </div>
       </div>
     </section>
-  )}
 
-  {projects.map((project, idx) => (
-    <ProjectSection
+    {intro && (
+      <section class="section bg-white" aria-labelledby="projects-intro-title">
+        <div class="container-page">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+            <div class="max-w-2xl">
+              <h2
+                id="projects-intro-title"
+                class="font-display font-extrabold text-2xl md:text-3xl text-neutral-900 leading-tight"
+              >
+                {intro.title}
+              </h2>
+              <div class="mt-5 space-y-4 text-neutral-700 leading-relaxed">
+                {intro.paragraphs.map((p) => <p>{p}</p>)}
+              </div>
+            </div>
+
+            <div>
+              <div class:list={["rounded-2xl bg-gradient-to-br border p-6 md:p-8", theme.advantagesBox]}>
+                <h3 class:list={["font-display font-bold text-lg md:text-xl", theme.advantagesTitle]}>
+                  {intro.advantagesTitle}
+                </h3>
+                <ul class="mt-5 space-y-3">
+                  {intro.advantages.map((a) => (
+                    <li class="flex items-start gap-2.5 text-sm md:text-base text-neutral-700">
+                      <Icon name="check" size={18} class:list={["mt-0.5 shrink-0", theme.checkIcon]} strokeWidth={3} />
+                      <span>{a}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {intro.image && (
+                <figure class="mt-6">
+                  <Picture
+                    src={intro.image.src}
+                    alt={intro.image.alt}
+                    width={intro.image.width}
+                    height={intro.image.height}
+                    class="rounded-2xl shadow-lg border border-neutral-100 w-full object-cover"
+                    loading="lazy"
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                  />
+                </figure>
+              )}
+            </div>
+          </div>
+
+          {intro.sections && intro.sections.length > 0 && (
+            <div class="mt-12 lg:mt-16 space-y-10">
+              {intro.sections.map((section) => (
+                <article class="max-w-3xl">
+                  <h3 class="font-display font-bold text-xl md:text-2xl text-neutral-900">{section.title}</h3>
+                  {section.paragraphs && (
+                    <div class="mt-3 space-y-3 text-neutral-700 leading-relaxed">
+                      {section.paragraphs.map((p) => <p>{p}</p>)}
+                    </div>
+                  )}
+                  {section.items && (
+                    <ul class="mt-4 space-y-2">
+                      {section.items.map((item) => (
+                        <li class="flex items-start gap-2.5 text-sm md:text-base text-neutral-700">
+                          <span class:list={["mt-2 w-1.5 h-1.5 rounded-full shrink-0", theme.bullet]} aria-hidden="true" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  {section.afterItems && (
+                    <div class="mt-3 space-y-3 text-neutral-700 leading-relaxed">
+                      {section.afterItems.map((p) => <p>{p}</p>)}
+                    </div>
+                  )}
+                </article>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    )}
+
+    {intro?.turnkey && (
+      <section class="section bg-neutral-50 border-y border-neutral-100" aria-labelledby="projects-turnkey-title">
+        <div class="container-page max-w-4xl">
+          <h2 id="projects-turnkey-title" class="font-display font-extrabold text-2xl md:text-3xl text-neutral-900">
+            {intro.turnkey.title}
+          </h2>
+          <p class="mt-4 text-neutral-700 leading-relaxed">{intro.turnkey.intro}</p>
+          <ul class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {intro.turnkey.items.map((item) => (
+              <li class="flex items-start gap-2.5 rounded-xl bg-white border border-neutral-200 px-4 py-3 text-sm text-neutral-700">
+                <Icon name="check" size={16} class:list={["mt-0.5 shrink-0", theme.checkIcon]} strokeWidth={3} />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="mt-6 text-neutral-700 leading-relaxed">{intro.turnkey.outro}</p>
+        </div>
+      </section>
+    )}
+
+    {intro?.closing && (
+      <section class="section bg-white" aria-labelledby="projects-closing-title">
+        <div class="container-page max-w-3xl">
+          <h2 id="projects-closing-title" class="font-display font-extrabold text-2xl md:text-3xl text-neutral-900">
+            {intro.closing.title}
+          </h2>
+          <p class="mt-4 text-neutral-700 leading-relaxed">{intro.closing.text}</p>
+        </div>
+      </section>
+    )}
+
+    {showDecoclimCache && <DecoclimCacheSection locale={locale} colorScheme={colorScheme} />}
+
+    {projects.map((project, idx) => (
+      <ProjectSection
+        locale={locale}
+        project={project}
+        index={idx}
+        projectLabel={projectLabel}
+        eagerGallery={idx === 0}
+        showInstallCta={showInstallCta && idx < projects.length - 1}
+        colorScheme={colorScheme}
+      />
+    ))}
+
+    <CtaBanner
       locale={locale}
-      project={project}
-      index={idx}
-      projectLabel={projectLabel}
-      eagerGallery={idx === 0}
-      showInstallCta={showInstallCta}
+      title={cta.title}
+      subtitle={cta.subtitle}
+      phone={phone}
+      phoneRaw={phoneRaw}
+      colorScheme={ctaColorScheme}
     />
-  ))}
-
-  <CtaBanner locale={locale} title={cta.title} subtitle={cta.subtitle} />
+  </div>
 </BaseLayout>

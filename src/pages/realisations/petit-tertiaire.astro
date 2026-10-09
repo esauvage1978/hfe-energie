@@ -1,0 +1,19 @@
+---
+import ProjectsPage from "../../templates/ProjectsPage.astro";
+import { getProjectsPetitTertiaireContent } from "@i18n/content/projects-petit-tertiaire";
+import { pathFor } from "@i18n";
+
+const locale = "fr";
+const content = getProjectsPetitTertiaireContent(locale);
+---
+<ProjectsPage
+  locale={locale}
+  seo={content.seo}
+  breadcrumbs={[...content.breadcrumbs]}
+  canonicalPath={pathFor("projectsPetitTertiaire", locale)}
+  hero={content.hero}
+  projectLabel={content.projectLabel}
+  projects={content.projects}
+  cta={content.cta}
+  showDecoclimCache
+/>

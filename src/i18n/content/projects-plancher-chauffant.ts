@@ -3,8 +3,22 @@ import type { ProjectBase, ProjectImage } from "./projects-shared";
 import { buildProjects } from "./projects-shared";
 import { getProjectEnrichment } from "./projects-enrichment";
 
+const heroImageFr: ProjectImage = {
+  src: "/projet/plancher_chauffant/hero.jpg",
+  alt: "Plancher chauffant basse température — boucles posées sur isolant avant coulage de la chape par HFE à Lille",
+  width: 1024,
+  height: 768,
+};
+
+const heroImageEn: ProjectImage = {
+  src: "/projet/plancher_chauffant/hero.jpg",
+  alt: "Low-temperature underfloor heating — loops laid on insulation before screed pour by HFE in Lille",
+  width: 1024,
+  height: 768,
+};
+
 const chantier1ImagesFr: ProjectImage[] = [
-  { src: "/projet/plancher_chauffant/projet1/3.jpg", alt: "Plancher chauffant basse température — boucles posées avant coulage de la chape", width: 1206, height: 1603 },
+  { src: "/projet/plancher_chauffant/projet1/6.jpg", alt: "Plancher chauffant basse température — boucles posées sur isolant TMS avant coulage de la chape", width: 957, height: 580 },
   { src: "/projet/plancher_chauffant/projet1/5.jpg", alt: "Vue d'ensemble des boucles du plancher chauffant dans la pièce de vie", width: 1206, height: 1599 },
   { src: "/projet/plancher_chauffant/projet1/1.jpg", alt: "Collecteur du plancher chauffant — départs et retours des boucles raccordés", width: 904, height: 1421 },
   { src: "/projet/plancher_chauffant/projet1/2.jpg", alt: "Collecteur intégré dans la gaine technique pour une finition discrète", width: 1206, height: 1521 },
@@ -12,7 +26,7 @@ const chantier1ImagesFr: ProjectImage[] = [
 ];
 
 const chantier1ImagesEn: ProjectImage[] = [
-  { src: "/projet/plancher_chauffant/projet1/3.jpg", alt: "Low-temperature underfloor heating — loops laid before the screed is poured", width: 1206, height: 1603 },
+  { src: "/projet/plancher_chauffant/projet1/6.jpg", alt: "Low-temperature underfloor heating — loops laid on TMS insulation before the screed is poured", width: 957, height: 580 },
   { src: "/projet/plancher_chauffant/projet1/5.jpg", alt: "Overview of the underfloor heating loops in the living area", width: 1206, height: 1599 },
   { src: "/projet/plancher_chauffant/projet1/1.jpg", alt: "Underfloor heating manifold — loop flow and return connections", width: 904, height: 1421 },
   { src: "/projet/plancher_chauffant/projet1/2.jpg", alt: "Manifold integrated into the service duct for a discreet finish", width: 1206, height: 1521 },
@@ -43,6 +57,7 @@ const fr = {
     description:
       "Chaque installation est différente. Découvrez un chantier de plancher chauffant basse température réalisé par Hecker & Frères Énergie (HFE) à Lille et dans la métropole lilloise — couplé à une pompe à chaleur air-eau pour un confort optimal.",
     ctaQuote: "Demander un devis",
+    image: heroImageFr,
   },
   intro: {
     title: "Installation de plancher chauffant basse température",
@@ -107,6 +122,7 @@ const en = {
     description:
       "Every installation is different. Discover a low-temperature underfloor heating project completed by Hecker & Frères Énergie (HFE) in Lille and the metropolitan area — paired with an air-to-water heat pump for optimal comfort.",
     ctaQuote: "Request a quote",
+    image: heroImageEn,
   },
   intro: {
     title: "Low-temperature underfloor heating installation",

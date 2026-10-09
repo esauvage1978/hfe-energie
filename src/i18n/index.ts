@@ -15,6 +15,12 @@ export {
   normalizePath,
 } from "./routes";
 export type { RouteId } from "./routes";
+export {
+  getPageThemeClasses,
+  getProjectColorScheme,
+  type PageColorScheme,
+  type PageThemeClasses,
+} from "./page-theme";
 export { getUi, getFormStrings, getCalculatorStrings } from "./ui";
 export { pageI18n } from "./utils";
 export * from "./content";

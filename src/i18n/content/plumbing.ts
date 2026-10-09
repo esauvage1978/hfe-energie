@@ -39,6 +39,13 @@ const fr = {
       {
         title: "Sanitaire & rénovation",
         desc: "Installation complète de salles de bain, WC, douches à l'italienne, robinetterie.",
+        details: [
+          "Rénovation clé en main avec partenaires carrelage et finitions",
+          "Douche à l'italienne, baignoire îlot ou classique",
+          "Meubles vasques, WC suspendus et robinetterie",
+        ],
+        projectsLabel: "Voir nos réalisations salle de bain",
+        projectsRoute: "projectsSalleDeBain" as const,
       },
       {
         title: "Dépannage plomberie",
@@ -49,19 +56,25 @@ const fr = {
           "Débouchage de canalisations et éviers",
           "Réparation ou remplacement de robinetterie",
         ],
+        projectsLabel: "Voir nos réalisations dépannage",
+        projectsRoute: "projectsDepannagePlomberie" as const,
       },
       {
         title: "Adoucisseur d'eau",
-        desc: "Installation de solutions anti-calcaire pour protéger vos canalisations et électroménagers.",
+        desc: "Sel, CO₂ SoluCalc® ou système DRAGO : nous dimensionnons la solution anti-calcaire adaptée à votre eau et à votre logement.",
         details: [
-          "Adoucisseur à sel : efficacité maximale contre le calcaire, protection durable du réseau.",
-          "Adoucisseur au CO₂ SoluCalc® : sans sel, sans rejet d'eau salée, minéraux préservés — solution que nous installons en priorité.",
-          "Drago : traitement physique/électronique, sans sel, sans rejet, discret.",
+          "Adoucisseur au sel — échange d'ions, très efficace",
+          "Adoucisseur au CO₂ SoluCalc® — notre solution écologique en priorité",
+          "Système DRAGO — traitement physique sans sel ni électricité",
         ],
+        projectsLabel: "Découvrir nos solutions adoucisseur",
+        projectsRoute: "waterSoftener" as const,
       },
       {
         title: "Ballon eau chaude",
         desc: "Remplacement de ballons électriques par des modèles à haute performance, thermodynamiques ou extra-plats.",
+        projectsLabel: "Voir nos réalisations ballon thermodynamique",
+        projectsRoute: "projectsBallonThermodynamique" as const,
       },
     ],
   },
@@ -107,33 +120,6 @@ const fr = {
     phoneCta: "06 13 46 67 90",
     contactCta: "Demande en ligne",
   },
-  solucalc: {
-    badge: "Adoucisseur CO₂",
-    title: "SoluCalc® : notre solution anti-calcaire écologique",
-    intro:
-      "Pour le traitement au CO₂, Hecker & Frères Énergie (HFE) travaille essentiellement avec SoluCalc®, adoucisseur d'eau écologique sans sel. La technologie transforme le calcaire en bicarbonate soluble qui ne s'incruste plus dans les canalisations, robinets et appareils — sans sodium, sans eaux de régénération et avec une maintenance réduite (recharge CO₂ environ une fois par an).",
-    benefits: [
-      {
-        title: "Sans sel, sans rejet polluant",
-        text: "Alternative aux adoucisseurs au sel : pas de sacs à transporter, pas d'eau salée rejetée à l'égout.",
-      },
-      {
-        title: "Minéraux préservés",
-        text: "Le calcium et le magnésium restent dans l'eau pour le goût et l'équilibre minéral.",
-      },
-      {
-        title: "Installation compacte",
-        text: "Système discret après le compteur d'eau, adapté aux maisons et appartements de la métropole lilloise.",
-      },
-      {
-        title: "Protection durable",
-        text: "Moins de tartre sur chaudière, lave-linge, lave-vaisselle et réseau sanitaire — économies d'énergie et de produits d'entretien.",
-      },
-    ],
-    externalLabel: "En savoir plus sur SoluCalc",
-    externalUrl: "https://solucalc.fr/fr-FR",
-    note: "Nous dimensionnons et installons SoluCalc après analyse de votre eau et de votre installation. Sel ou Drago restent possibles si votre situation l'exige — nous vous orientons lors de l'étude sur place.",
-  },
   faq: {
     badge: "FAQ",
     title: "Questions plomberie & adoucisseur",
@@ -165,10 +151,6 @@ const fr = {
           "Oui. Pour toute urgence sanitaire (fuite, débordement, panne d'eau chaude), appelez notre ligne dédiée au 06 13 46 67 90. Nous intervenons sur Lille et la métropole selon disponibilité. En cas de fuite importante, coupez l'alimentation d'eau au plus près du problème (vanne sous évier, WC ou générale) en attendant notre arrivée.",
       },
     ],
-  },
-  gallery: {
-    title: "Nos réalisations en plomberie",
-    subtitle: "Salles de bain, sanitaires, adoucisseurs : quelques chantiers récents.",
   },
   cta: {
     title: "Une fuite, une panne, un projet sanitaire ?",
@@ -215,6 +197,13 @@ const en = {
       {
         title: "Bathroom & renovation",
         desc: "Full bathroom installation: toilets, walk-in showers, taps and fittings.",
+        details: [
+          "Turnkey renovation with tiling and finishing partners",
+          "Walk-in showers, freestanding or standard baths",
+          "Vanity units, wall-hung toilets and tap fittings",
+        ],
+        projectsLabel: "See our bathroom renovation projects",
+        projectsRoute: "projectsSalleDeBain" as const,
       },
       {
         title: "Plumbing repairs",
@@ -225,19 +214,25 @@ const en = {
           "Blocked pipes, sinks and drains",
           "Tap and valve repair or replacement",
         ],
+        projectsLabel: "See our plumbing repair projects",
+        projectsRoute: "projectsDepannagePlomberie" as const,
       },
       {
         title: "Water softener",
-        desc: "Anti-limescale solutions to protect your pipework and appliances.",
+        desc: "Salt, SoluCalc® CO₂ or DRAGO system: we size the right anti-limescale solution for your water and your home.",
         details: [
-          "Salt-based softener: maximum effectiveness against limescale, long-term protection.",
-          "SoluCalc® CO₂ softener: no salt, no brine discharge, minerals preserved — our preferred solution.",
-          "Drago: physical/electronic treatment, no salt, no discharge, discreet.",
+          "Salt water softener — ion exchange, highly effective",
+          "SoluCalc® CO₂ softener — our preferred eco-friendly solution",
+          "DRAGO system — physical treatment with no salt or electricity",
         ],
+        projectsLabel: "Discover our water softener solutions",
+        projectsRoute: "waterSoftener" as const,
       },
       {
         title: "Hot water tank",
         desc: "Replacement of electric tanks with high-efficiency, thermodynamic or slim (flat) models.",
+        projectsLabel: "See our thermodynamic water heater projects",
+        projectsRoute: "projectsBallonThermodynamique" as const,
       },
     ],
   },
@@ -283,33 +278,6 @@ const en = {
     phoneCta: "06 13 46 67 90",
     contactCta: "Online request",
   },
-  solucalc: {
-    badge: "CO₂ water softener",
-    title: "SoluCalc®: our eco-friendly anti-limescale solution",
-    intro:
-      "For CO₂ treatment, Hecker & Frères Énergie (HFE) mainly works with SoluCalc®, an ecological salt-free water softener. The technology converts limescale into soluble bicarbonate that no longer builds up in pipework, taps and appliances — no sodium, no regeneration wastewater and low maintenance (CO₂ refill roughly once a year).",
-    benefits: [
-      {
-        title: "No salt, no polluting discharge",
-        text: "An alternative to salt softeners: no heavy salt bags and no salty wastewater into the drain.",
-      },
-      {
-        title: "Minerals preserved",
-        text: "Calcium and magnesium remain in the water for taste and mineral balance.",
-      },
-      {
-        title: "Compact installation",
-        text: "Discreet system after the water meter, suitable for homes across the Lille metropolitan area.",
-      },
-      {
-        title: "Lasting protection",
-        text: "Less scale on boilers, washing machines, dishwashers and sanitary pipework — energy and cleaning product savings.",
-      },
-    ],
-    externalLabel: "Learn more about SoluCalc",
-    externalUrl: "https://solucalc.fr/fr-FR",
-    note: "We size and install SoluCalc after analysing your water and installation. Salt or Drago remain options when your situation requires them — we advise you during the on-site survey.",
-  },
   faq: {
     badge: "FAQ",
     title: "Plumbing & water softener questions",
@@ -341,10 +309,6 @@ const en = {
           "Yes. For any sanitary emergency (leak, overflow, no hot water), call our dedicated line on 06 13 46 67 90. We cover Lille and the metropolitan area subject to availability. For a major leak, shut off the water supply as close to the problem as possible (under-sink valve, toilet valve or main stopcock) while waiting for us.",
       },
     ],
-  },
-  gallery: {
-    title: "Our plumbing projects",
-    subtitle: "Bathrooms, sanitary fittings, water softeners: recent projects.",
   },
   cta: {
     title: "A leak, a breakdown or a bathroom project?",

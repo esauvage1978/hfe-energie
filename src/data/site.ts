@@ -70,6 +70,10 @@ export const site = {
     google:
       "https://www.google.com/maps?q=HFE+Pompe+%C3%A0+Chaleur+-+Climatisation,+71+Rue+du+G%C3%A9n%C3%A9ral+de+Gaulle,+59110+La+Madeleine&ftid=0x90e0797ea958d91:0x5f31aec968c997a5",
   },
+  /** Conteneur Google Tag Manager (balises head + noscript body) */
+  gtmId: "GTM-NB9N5J6M",
+  /** Google Analytics 4 (gtag.js) */
+  gaId: "G-T9DNWCFVDE",
 } as const;
 
 export type NavItem = {
@@ -124,6 +128,11 @@ export const navigation: NavItem[] = [
     label: "Aides & Financements",
     href: "/aides-financement",
     description: "MaPrimeRénov', CEE, ANAH",
+  },
+  {
+    label: "Blog",
+    href: "/blog",
+    description: "Conseils énergie, aides et actualités réglementaires",
   },
   { label: "Contact", href: "/contact" },
 ];

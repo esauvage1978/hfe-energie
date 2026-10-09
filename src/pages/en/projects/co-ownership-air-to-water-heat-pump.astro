@@ -1,0 +1,38 @@
+---
+
+import ProjectsPage from "../../../templates/ProjectsPage.astro";
+
+import { getProjectsCoproprieteContent } from "@i18n/content/projects-copropriete";
+
+import { pathFor } from "@i18n";
+
+
+
+const locale = "en";
+
+const content = getProjectsCoproprieteContent(locale);
+
+---
+
+<ProjectsPage
+
+  locale={locale}
+
+  seo={content.seo}
+
+  breadcrumbs={[...content.breadcrumbs]}
+
+  canonicalPath={pathFor("projectsCopropriete", locale)}
+
+  hero={content.hero}
+
+  intro={content.intro}
+
+  projectLabel={content.projectLabel}
+
+  projects={content.projects}
+
+  cta={content.cta}
+
+/>
+

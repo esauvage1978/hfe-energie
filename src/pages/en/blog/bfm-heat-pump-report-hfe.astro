@@ -1,0 +1,13 @@
+---
+import BlogArticlePage from "../../../templates/BlogArticlePage.astro";
+import { getBlogReportageBfmPacContent } from "@i18n";
+
+const locale = "en" as const;
+---
+
+<BlogArticlePage
+  locale={locale}
+  content={getBlogReportageBfmPacContent(locale)}
+  routeId="blogReportageBfmPac"
+  faqIdPrefix="blog-reportage-bfm-pac-faq"
+/>

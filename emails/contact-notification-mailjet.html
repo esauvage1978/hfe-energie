@@ -203,8 +203,13 @@
                           <span style="color: #64748b; font-size: 13px;"> ({{var:client_type}})</span>
                         </div>
                       </td>
-                    </tr>
-                    <tr>
+                    </tr> {% if var:client_type == "professionnel" %} <tr>
+                      <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:12px;word-break:break-word;">
+                        <div style="font-family:Inter, 'Segoe UI', Helvetica, Arial, sans-serif;font-size:16px;line-height:24px;text-align:left;color:#1e293b;"><strong style="color: #0080C0">SIREN</strong><br />
+                          {{var:siren}}
+                        </div>
+                      </td>
+                    </tr> {% endif %} <tr>
                       <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:12px;word-break:break-word;">
                         <div style="font-family:Inter, 'Segoe UI', Helvetica, Arial, sans-serif;font-size:16px;line-height:24px;text-align:left;color:#1e293b;"><strong style="color: #0080C0">Nom &amp; prénom</strong><br />
                           {{var:name}}

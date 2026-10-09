@@ -1,0 +1,362 @@
+---
+
+import type { Locale } from "@i18n";
+
+import { getWaterSoftenerContent, pathFor } from "@i18n";
+
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+import Breadcrumbs from "@components/Breadcrumbs.astro";
+
+import CtaBanner from "@components/CtaBanner.astro";
+
+import Icon from "@components/Icon.astro";
+
+import Picture from "@components/Picture.astro";
+
+import StructuredData from "@components/StructuredData.astro";
+
+import { site } from "@data/site";
+
+
+
+interface Props {
+
+  locale: Locale;
+
+}
+
+
+
+const { locale } = Astro.props;
+
+const content = getWaterSoftenerContent(locale);
+
+const canonicalPath = pathFor("waterSoftener", locale);
+
+
+
+const heroImage = {
+
+  src: "/projet/adoucisseur_eau/hero.jpg",
+
+  alt:
+
+    locale === "fr"
+
+      ? "Adoucisseur d'eau et réseau de distribution en cuivre avec compteurs — installation par Hecker & Frères Énergie (HFE) à Lille"
+
+      : "Water softener and copper distribution network with meters — installation by Hecker & Frères Énergie (HFE) in Lille",
+
+  width: 1024,
+
+  height: 768,
+
+};
+
+---
+
+
+
+<BaseLayout
+
+  locale={locale}
+
+  title={content.seo.title}
+
+  description={content.seo.description}
+
+  keywords={[...content.seo.keywords]}
+
+  canonicalPath={canonicalPath}
+
+>
+
+  <StructuredData type="BreadcrumbList" breadcrumbs={content.breadcrumbs} slot="head" />
+
+  <StructuredData
+
+    type="Service"
+
+    service={{
+
+      name: content.structuredData.serviceName,
+
+      description: content.structuredData.serviceDescription,
+
+      path: canonicalPath,
+
+    }}
+
+    slot="head"
+
+  />
+
+
+
+  <div class="page-theme-primary">
+
+    <div class="container-page">
+
+      <Breadcrumbs locale={locale} items={content.breadcrumbs} />
+
+    </div>
+
+
+
+    <section class="bg-gradient-to-br from-primary-50 to-white">
+
+      <div class="container-page py-10 md:py-16">
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+
+          <div>
+
+            <span class="badge bg-primary-100 text-primary-800">
+
+              <Icon name="droplet" size={12} />
+
+              {content.hero.badge}
+
+            </span>
+
+            <h1 class="mt-4 font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-neutral-900">
+
+              {content.hero.title}
+
+            </h1>
+
+            <p class="mt-4 text-lg text-neutral-700 leading-relaxed">{content.hero.description}</p>
+
+            <div class="mt-6 flex flex-col sm:flex-row gap-3">
+
+              <a href={pathFor("contact", locale)} class="btn btn-primary">
+
+                <Icon name="mail" size={18} />
+
+                {content.hero.ctaQuote}
+
+              </a>
+
+              <a href={`tel:${site.plumbingPhoneRaw}`} class="btn btn-outline">
+
+                <Icon name="phone" size={18} />
+
+                {site.plumbingPhone}
+
+              </a>
+
+            </div>
+
+          </div>
+
+          <div>
+
+            <Picture
+
+              src={heroImage.src}
+
+              alt={heroImage.alt}
+
+              width={heroImage.width}
+
+              height={heroImage.height}
+
+              class="rounded-3xl shadow-xl border border-primary-100 w-full h-auto object-cover"
+
+              loading="eager"
+
+              fetchpriority="high"
+
+              decoding="sync"
+
+              sizes="(min-width: 1024px) 50vw, 100vw"
+
+            />
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <section class="section bg-white" aria-labelledby="types-adoucisseur-title">
+
+      <div class="container-page">
+
+        <div class="max-w-3xl">
+
+          <h2 id="types-adoucisseur-title" class="font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
+
+            {content.types.title}
+
+          </h2>
+
+          <p class="mt-3 text-neutral-700 leading-relaxed">{content.types.intro}</p>
+
+        </div>
+
+
+
+        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+          {content.types.items.map((item) => (
+
+            <article class="card card-linkable flex flex-col h-full">
+
+              <a
+
+                href={pathFor(item.projectsRoute, locale)}
+
+                class="card-stretched-link"
+
+                aria-label={item.projectsLabel}
+
+              />
+
+              <div class="w-12 h-12 rounded-xl bg-primary-100 text-primary-700 flex items-center justify-center mb-4">
+
+                <Icon name="droplet" size={24} />
+
+              </div>
+
+              <h3 class="font-display font-bold text-lg text-neutral-900">{item.title}</h3>
+
+              <p class="mt-2 text-sm text-neutral-600 leading-relaxed">{item.desc}</p>
+
+              <ul class="mt-3 space-y-1.5 text-xs text-neutral-600 leading-relaxed flex-1">
+
+                {item.details.map((d) => (
+
+                  <li class="flex items-start gap-2">
+
+                    <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-500 shrink-0" aria-hidden="true" />
+
+                    <span>{d}</span>
+
+                  </li>
+
+                ))}
+
+              </ul>
+
+              <span class="link-projects mt-5 self-start pointer-events-none" aria-hidden="true">
+
+                <Icon name="star" size={14} />
+
+                {item.projectsLabel}
+
+                <Icon name="arrow-right" size={14} />
+
+              </span>
+
+            </article>
+
+          ))}
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="solucalc" class="section bg-primary-50/50 border-y border-primary-100">
+
+      <div class="container-page">
+
+        <span class="badge bg-primary-100 text-primary-800">{content.solucalc.badge}</span>
+
+        <h2 class="mt-3 font-display text-3xl md:text-4xl font-extrabold text-neutral-900 max-w-3xl">
+
+          {content.solucalc.title}
+
+        </h2>
+
+        <p class="mt-4 text-neutral-700 max-w-3xl leading-relaxed">{content.solucalc.intro}</p>
+
+
+
+        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+          {content.solucalc.benefits.map((item) => (
+
+            <article class="card bg-white border-primary-100">
+
+              <h3 class="font-display font-bold text-base text-neutral-900">{item.title}</h3>
+
+              <p class="mt-2 text-sm text-neutral-600 leading-relaxed">{item.text}</p>
+
+            </article>
+
+          ))}
+
+        </div>
+
+
+
+        <p class="mt-6 text-sm text-neutral-600 max-w-3xl leading-relaxed">{content.solucalc.note}</p>
+
+        <div class="mt-4 flex flex-wrap gap-4 items-center">
+
+          <a
+
+            href={content.solucalc.externalUrl}
+
+            target="_blank"
+
+            rel="noopener noreferrer"
+
+            class="inline-flex items-center gap-1 text-sm font-semibold text-primary-700 hover:text-primary-800 underline-offset-2 hover:underline"
+
+          >
+
+            {content.solucalc.externalLabel}
+
+            <Icon name="arrow-right" size={14} />
+
+          </a>
+
+          <a href={pathFor("projectsAdoucisseurCo2", locale)} class="link-projects text-sm">
+
+            <Icon name="star" size={14} />
+
+            {content.solucalc.projectsLabel}
+
+            <Icon name="arrow-right" size={14} />
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <CtaBanner
+
+      locale={locale}
+
+      title={content.cta.title}
+
+      subtitle={content.cta.subtitle}
+
+      phone={site.plumbingPhone}
+
+      phoneRaw={site.plumbingPhoneRaw}
+
+      colorScheme="primary"
+
+    />
+
+  </div>
+
+</BaseLayout>
+

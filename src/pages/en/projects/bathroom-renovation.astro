@@ -1,0 +1,23 @@
+---
+import ProjectsPage from "../../../templates/ProjectsPage.astro";
+import { getProjectsSalleDeBainContent } from "@i18n/content/projects-salle-de-bain";
+import { pathFor } from "@i18n";
+import { site } from "@data/site";
+
+const locale = "en";
+const content = getProjectsSalleDeBainContent(locale);
+---
+<ProjectsPage
+  locale={locale}
+  seo={content.seo}
+  breadcrumbs={[...content.breadcrumbs]}
+  canonicalPath={pathFor("projectsSalleDeBain", locale)}
+  hero={content.hero}
+  intro={content.intro}
+  projectLabel={content.projectLabel}
+  projects={content.projects}
+  cta={content.cta}
+  phone={site.plumbingPhone}
+  phoneRaw={site.plumbingPhoneRaw}
+  showInstallCta={false}
+/>

@@ -34,6 +34,9 @@ const fr = {
       "Un système centralisé bien dimensionné permet à chaque lot de bénéficier d'un confort homogène tout en mutualisant l'investissement et les coûts de maintenance. Avec les aides 2026, c'est le moment idéal pour moderniser l'installation de votre copropriété.",
     ],
   },
+  realisations: {
+    label: "Voir nos réalisations PAC collective copropriété",
+  },
   services: {
     title: "Nos interventions en copropriété",
     items: [
@@ -41,11 +44,8 @@ const fr = {
         icon: "heat-pump" as const,
         title: "PAC collective air-eau",
         desc: "Remplacement de chaudière fioul/gaz par une pompe à chaleur centralisée pour le chauffage et l'ECS de l'immeuble.",
-      },
-      {
-        icon: "flame" as const,
-        title: "Chaudière collective haute performance",
-        desc: "Installation ou remplacement par une chaudière à condensation dernière génération, conforme aux normes RE2020.",
+        projectsLabel: "Voir nos réalisations",
+        projectsRoute: "projectsCopropriete" as const,
       },
       {
         icon: "droplet" as const,
@@ -64,8 +64,8 @@ const fr = {
       },
       {
         icon: "leaf" as const,
-        title: "Audit énergétique & accompagnement",
-        desc: "Étude thermique de l'immeuble, préconisations de travaux et accompagnement du syndic dans le montage des aides.",
+        title: "Accompagnement et évaluation thermique",
+        desc: "Évaluation thermique de l'immeuble, préconisations de travaux et accompagnement du syndic dans le montage des aides.",
       },
     ],
   },
@@ -210,6 +210,9 @@ const en = {
       "A well-sized centralised system gives every unit consistent comfort while sharing the investment and maintenance costs. With 2026 grants, now is the ideal time to upgrade your building's installation.",
     ],
   },
+  realisations: {
+    label: "See our collective air-to-water heat pump projects",
+  },
   services: {
     title: "Our co-ownership services",
     items: [
@@ -217,11 +220,8 @@ const en = {
         icon: "heat-pump" as const,
         title: "Collective air-to-water heat pump",
         desc: "Replace an oil/gas boiler with a centralised heat pump for the building's heating and hot water.",
-      },
-      {
-        icon: "flame" as const,
-        title: "High-performance collective boiler",
-        desc: "Installation or replacement with a latest-generation condensing boiler, RE2020 compliant.",
+        projectsLabel: "See our projects",
+        projectsRoute: "projectsCopropriete" as const,
       },
       {
         icon: "droplet" as const,
@@ -240,8 +240,8 @@ const en = {
       },
       {
         icon: "leaf" as const,
-        title: "Energy audit & support",
-        desc: "Building thermal study, work recommendations and support for the property manager with grant applications.",
+        title: "Support and thermal evaluation",
+        desc: "Thermal evaluation of the building, work recommendations and support for the property manager with grant applications.",
       },
     ],
   },

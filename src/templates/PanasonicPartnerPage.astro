@@ -32,7 +32,7 @@ const panasonicLogo = partenaires.find((p) => p.name === "Panasonic")!;
   <StructuredData type="FAQPage" faqs={content.faq.items} slot="head" />
 
   <div class="container-page">
-    <Breadcrumbs items={content.breadcrumbs} />
+    <Breadcrumbs locale={locale} items={content.breadcrumbs} />
   </div>
 
   <section class="bg-gradient-to-br from-neutral-900 via-neutral-900 to-accent-950 text-white">

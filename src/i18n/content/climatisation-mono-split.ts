@@ -3,6 +3,20 @@ import type { ProjectBase, ProjectImage } from "./projects-shared";
 import { buildProjects } from "./projects-shared";
 import { getProjectEnrichment } from "./projects-enrichment";
 
+const heroImageFr: ProjectImage = {
+  src: "/projet/climatisation/mono_split/hero.jpg",
+  alt: "Unité intérieure de climatisation mono-split Panasonic blanche, installée dans un bureau moderne",
+  width: 1024,
+  height: 555,
+};
+
+const heroImageEn: ProjectImage = {
+  src: "/projet/climatisation/mono_split/hero.jpg",
+  alt: "White Panasonic single-split wall-mounted indoor unit installed in a modern home office",
+  width: 1024,
+  height: 555,
+};
+
 const chantier1ImagesFr: ProjectImage[] = [
   { src: "/projet/climatisation/chantier1/1.jpg", alt: "Climatisation monosplit Panasonic 2,5 kW — unité murale installée dans le salon", width: 1206, height: 1590 },
   { src: "/projet/climatisation/chantier1/2.jpg", alt: "Unité extérieure Panasonic R32 posée sur plots sur la terrasse", width: 1206, height: 1599 },
@@ -37,6 +51,7 @@ const fr = {
     description:
       "Une unité extérieure connectée à une seule unité intérieure : la solution idéale pour climatiser une pièce de vie ou une chambre. Installation rapide, discrète et réversible été comme hiver.",
     ctaQuote: "Demander un devis",
+    image: heroImageFr,
   },
   intro: {
     title: "Qu'est-ce qu'une climatisation mono-split ?",
@@ -97,6 +112,7 @@ const en = {
     description:
       "One outdoor unit connected to a single indoor unit: the ideal solution to cool a living room or bedroom. Quick, discreet installation that works summer and winter.",
     ctaQuote: "Request a quote",
+    image: heroImageEn,
   },
   intro: {
     title: "What is single-split air conditioning?",

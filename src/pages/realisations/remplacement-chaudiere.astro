@@ -1,0 +1,20 @@
+---
+import ProjectsPage from "../../templates/ProjectsPage.astro";
+import { getProjectsRemplacementChaudiereContent } from "@i18n/content/projects-remplacement-chaudiere";
+import { pathFor } from "@i18n";
+
+const locale = "fr";
+const content = getProjectsRemplacementChaudiereContent(locale);
+---
+<ProjectsPage
+  locale={locale}
+  seo={content.seo}
+  breadcrumbs={[...content.breadcrumbs]}
+  canonicalPath={pathFor("projectsRemplacementChaudiere", locale)}
+  hero={content.hero}
+  intro={content.intro}
+  projectLabel=""
+  projects={[]}
+  cta={content.cta}
+  showInstallCta={false}
+/>

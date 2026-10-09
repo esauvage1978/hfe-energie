@@ -48,8 +48,8 @@ const socialLinks = [
             Hecker &amp; Frères <span class="text-accent-300">Énergie</span>
           </span>
         </div>
-        <p class="text-sm leading-relaxed text-neutral-400">{t.footer.about}</p>
-        <p class="mt-4 text-xs text-neutral-500">
+        <p class="text-sm leading-relaxed text-neutral-300">{t.footer.about}</p>
+        <p class="mt-4 text-xs text-neutral-400">
           {t.footer.stats(site.stats.installations, site.stats.yearsExperience)}
         </p>
 
@@ -90,14 +90,19 @@ const socialLinks = [
         <ul class="space-y-2 text-sm">
           {serviceLinks.map((s) => (
             <li>
-              <a href={s.href} class="text-neutral-400 hover:text-accent-300 transition-colors">
+              <a href={s.href} class="text-neutral-300 hover:text-accent-300 transition-colors">
                 {s.label}
               </a>
             </li>
           ))}
           <li>
-            <a href={pathFor("grants", locale)} class="text-neutral-400 hover:text-accent-300 transition-colors">
+            <a href={pathFor("grants", locale)} class="text-neutral-300 hover:text-accent-300 transition-colors">
               {t.footer.grantsLink}
+            </a>
+          </li>
+          <li>
+            <a href={pathFor("blog", locale)} class="text-neutral-300 hover:text-accent-300 transition-colors">
+              {t.footer.blogLink}
             </a>
           </li>
         </ul>
@@ -112,11 +117,16 @@ const socialLinks = [
             .filter((item) => !!item.href)
             .map((item) => (
               <li>
-                <a href={item.href} class="text-neutral-400 hover:text-accent-300 transition-colors">
+                <a href={item.href} class="text-neutral-300 hover:text-accent-300 transition-colors">
                   {item.label}
                 </a>
               </li>
             ))}
+          <li>
+            <a href={pathFor("recruitment", locale)} class="text-neutral-300 hover:text-accent-300 transition-colors">
+              {t.footer.recruitmentLink}
+            </a>
+          </li>
         </ul>
       </div>
 
@@ -127,7 +137,7 @@ const socialLinks = [
         <ul class="space-y-3 text-sm">
           <li class="flex items-start gap-2">
             <Icon name="map-pin" size={18} class="text-accent-400 mt-0.5 shrink-0" />
-            <address class="not-italic text-neutral-400 leading-relaxed">
+            <address class="not-italic text-neutral-300 leading-relaxed">
               {site.address.street}<br />
               {site.address.postalCode} {site.address.city}<br />
               {site.address.country}
@@ -147,7 +157,7 @@ const socialLinks = [
           </li>
           <li class="flex items-start gap-2">
             <Icon name="clock" size={18} class="text-accent-400 mt-0.5 shrink-0" />
-            <div class="text-neutral-400 text-xs leading-relaxed">
+            <div class="text-neutral-300 text-xs leading-relaxed">
               {t.footer.hoursShort}<br />
               {t.footer.hoursSat}<br />
               {t.footer.hoursSun}
@@ -159,8 +169,8 @@ const socialLinks = [
 
     <div class="mt-10 pt-8 border-t border-neutral-800">
       <h2 class="sr-only">{t.footer.serviceAreaTitle}</h2>
-      <p class="text-xs text-neutral-500 leading-relaxed">
-        <strong class="text-neutral-400">{t.footer.serviceAreaTitle}:</strong>{" "}
+      <p class="text-xs text-neutral-400 leading-relaxed">
+        <strong class="text-neutral-300">{t.footer.serviceAreaTitle}:</strong>{" "}
         {t.footer.serviceArea(site.serviceArea.join(" · "), site.serviceRadiusKm)}{" "}
         <a
           href={pathFor("serviceArea", locale)}
@@ -174,27 +184,27 @@ const socialLinks = [
     </div>
 
     <nav class="mt-8 pt-6 border-t border-neutral-800" aria-label={t.footer.legalNav}>
-      <ul class="flex flex-wrap gap-x-5 gap-y-2 text-xs text-neutral-400">
+      <ul class="flex flex-wrap gap-x-5 gap-y-2 text-xs text-neutral-300">
         {legalLinks.map((l) => (
           <li>
-            <a href={l.href} class="hover:text-accent-300 transition-colors">{l.label}</a>
+            <a href={l.href} class="text-neutral-300 hover:text-accent-300 transition-colors">{l.label}</a>
           </li>
         ))}
       </ul>
     </nav>
 
-    <div class="mt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-xs text-neutral-500">
+    <div class="mt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-xs text-neutral-400">
       <p>{t.footer.copyright(year, site.legalName)}</p>
       <p>{t.footer.certifications}</p>
     </div>
 
-    <p class="mt-4 text-center text-xs text-neutral-600">
+    <p class="mt-4 text-center text-xs text-neutral-400">
       {t.footer.builtBy}{" "}
       <a
         href={legal.developer.url}
         target="_blank"
         rel="noopener noreferrer"
-        class="text-neutral-400 hover:text-accent-300 font-semibold transition-colors"
+        class="text-neutral-300 hover:text-accent-300 font-semibold transition-colors"
       >
         {legal.developer.name}
       </a>

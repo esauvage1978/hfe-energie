@@ -1,0 +1,23 @@
+---
+import ProjectsPage from "../../templates/ProjectsPage.astro";
+import { getProjectsDragoContent } from "@i18n/content/projects-drago";
+import { pathFor } from "@i18n";
+import { site } from "@data/site";
+
+const locale = "fr";
+const content = getProjectsDragoContent(locale);
+---
+<ProjectsPage
+  locale={locale}
+  seo={content.seo}
+  breadcrumbs={[...content.breadcrumbs]}
+  canonicalPath={pathFor("projectsDrago", locale)}
+  hero={content.hero}
+  intro={content.intro}
+  projectLabel=""
+  projects={[]}
+  cta={content.cta}
+  phone={site.plumbingPhone}
+  phoneRaw={site.plumbingPhoneRaw}
+  showInstallCta={false}
+/>

@@ -1,10 +1,11 @@
 ---
 import type { Locale } from "@i18n";
-import { pathFor } from "@i18n";
+import { getProjectColorScheme, getPageThemeClasses, pathFor } from "@i18n";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Breadcrumbs from "@components/Breadcrumbs.astro";
 import CtaBanner from "@components/CtaBanner.astro";
 import Icon from "@components/Icon.astro";
+import Picture from "@components/Picture.astro";
 import StructuredData from "@components/StructuredData.astro";
 import { site } from "@data/site";
 import { getProjectsIndexContent } from "@i18n/content/projects-index";
@@ -28,7 +29,7 @@ const canonicalPath = pathFor("projects", locale);
   <StructuredData type="BreadcrumbList" breadcrumbs={[...content.breadcrumbs]} slot="head" />
 
   <div class="container-page">
-    <Breadcrumbs items={[...content.breadcrumbs]} />
+    <Breadcrumbs locale={locale} items={[...content.breadcrumbs]} />
   </div>
 
   <section class="bg-gradient-to-br from-accent-50 via-white to-accent-50/20">
@@ -48,16 +49,21 @@ const canonicalPath = pathFor("projects", locale);
   <section class="section bg-white">
     <div class="container-page">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
-        {content.items.map((item) => (
-          <a
-            href={pathFor(item.route, locale)}
-            class="group rounded-2xl bg-white border border-neutral-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-accent-300 hover:-translate-y-0.5 transition-all duration-200"
-          >
-            <div class="relative aspect-[16/10] overflow-hidden bg-neutral-100">
-              <picture>
-                <source srcset={`${item.cover.src}.avif`} type="image/avif" />
-                <source srcset={`${item.cover.src}.webp`} type="image/webp" />
-                <img
+        {content.items.map((item) => {
+          const colorScheme = getProjectColorScheme(item.route);
+          const theme = getPageThemeClasses(colorScheme);
+          return (
+            <a
+              href={pathFor(item.route, locale)}
+              class:list={[
+                "group rounded-2xl bg-white border overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200",
+                theme.indexCardBorder,
+                theme.indexCardTopAccent,
+                theme.indexCardHover,
+              ]}
+            >
+              <div class="relative aspect-[16/10] overflow-hidden bg-neutral-100">
+                <Picture
                   src={item.cover.src}
                   alt={item.cover.alt}
                   width={item.cover.width}
@@ -65,23 +71,29 @@ const canonicalPath = pathFor("projects", locale);
                   loading="lazy"
                   class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-300"
                 />
-              </picture>
-              <span class="absolute top-3 left-3 badge bg-white/95 text-accent-800 shadow-md backdrop-blur-sm">
-                <Icon name="star" size={13} class="text-accent-600" />
-                {content.countLabel(item.count)}
-              </span>
-            </div>
-            <div class="p-5 md:p-6">
-              <h2 class="font-display font-extrabold text-xl md:text-2xl text-neutral-900 group-hover:text-accent-700 transition-colors">
-                {item.title}
-              </h2>
-              <p class="mt-2 text-sm text-neutral-600 leading-relaxed">{item.description}</p>
-              <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-accent-700 group-hover:gap-2 transition-all">
-                {content.seeProjects} <Icon name="arrow-right" size={16} />
-              </span>
-            </div>
-          </a>
-        ))}
+                <span class:list={["absolute top-3 left-3 badge shadow-md backdrop-blur-sm", theme.indexCoverBadge]}>
+                  <Icon name="star" size={13} class={theme.indexCoverBadgeIcon} />
+                  {content.countLabel(item.count)}
+                </span>
+              </div>
+              <div class="p-5 md:p-6">
+                <h2 class:list={[
+                  "font-display font-extrabold text-xl md:text-2xl text-neutral-900 transition-colors",
+                  theme.indexTitleHover,
+                ]}>
+                  {item.title}
+                </h2>
+                <p class="mt-2 text-sm text-neutral-600 leading-relaxed">{item.description}</p>
+                <span class:list={[
+                  "mt-4 inline-flex items-center gap-1 text-sm font-semibold group-hover:gap-2 transition-all",
+                  theme.indexLink,
+                ]}>
+                  {content.seeProjects} <Icon name="arrow-right" size={16} />
+                </span>
+              </div>
+            </a>
+          );
+        })}
       </div>
     </div>
   </section>

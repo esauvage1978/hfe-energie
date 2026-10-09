@@ -78,22 +78,87 @@ const fr = {
           "Bouches discrètes intégrées au plafond ou au sol.",
           "Esthétique préservée, idéal en construction neuve.",
         ],
+        detailRoute: "projectsGainable" as const,
+        detailLabel: "Voir nos réalisations gainables",
       },
       {
-        name: "Tertiaire",
+        name: "Petit tertiaire",
         description:
-          "Le système DRV (Débit Réfrigérant Variable) assure chauffage et rafraîchissement performants pour les locaux professionnels.",
-        use: "Immeubles de bureaux",
+          "Un multi-split réversible alimente plusieurs unités intérieures pour climatiser un commerce, un cabinet ou un petit bureau avec une seule unité extérieure.",
+        use: "Commerce, cabinet, petit bureau (50 à 150 m²)",
         advantages: [
-          "Gestion multi-zones adaptée à chaque espace de travail.",
+          "Confort été comme hiver dans chaque espace de travail.",
+          "Régulation indépendante pièce par pièce.",
+          "Unités murales discrètes, intégration en faux plafond possible.",
+          "Solution économique par rapport à un système DRV pour les petites surfaces.",
+        ],
+        detailRoute: "projectsPetitTertiaire" as const,
+        detailLabel: "Voir nos réalisations petit tertiaire",
+      },
+      {
+        name: "DRV tertiaire",
+        description:
+          "Le système DRV (Débit de Réfrigérant Variable) assure chauffage et rafraîchissement performants pour les bâtiments tertiaires de grande superficie, avec une régulation fine zone par zone.",
+        use: "Bureaux, hôtels, commerces étendus",
+        advantages: [
+          "Gestion multi-zones adaptée à chaque espace.",
           "Haute performance énergétique sur grands volumes.",
           "Confort été comme hiver pour les occupants.",
-          "Solution évolutive pour bureaux et locaux tertiaires.",
+          "Solution évolutive pour bâtiments tertiaires.",
         ],
-        detailRoute: "projectsClimPro" as const,
-        detailLabel: "Voir nos réalisations tertiaires",
+        detailRoute: "projectsDrvTertiaire" as const,
+        detailLabel: "Voir nos réalisations DRV tertiaire",
       },
     ],
+  },
+  comfortCloud: {
+    badge: "Pilotage connecté Panasonic",
+    title: "Votre climatisation pilotable avec l'application Comfort Cloud",
+    intro:
+      "Les climatisations réversibles Panasonic compatibles se pilotent à distance via l'application gratuite Comfort Cloud. Depuis votre smartphone, réglez la température, programmez vos plages de confort et suivez votre consommation — où que vous soyez.",
+    image: {
+      src: "/assets/climatisation/comfort-cloud-app.jpg",
+      alt: "Application Comfort Cloud Panasonic sur smartphone — pilotage de la climatisation réversible depuis le salon",
+      width: 959,
+      height: 645,
+    },
+    highlights: [
+      { value: "24/7", label: "Contrôle à distance" },
+      { value: "6", label: "Créneaux programmables par jour" },
+      { value: "20", label: "Unités gérables par groupe" },
+    ],
+    features: [
+      {
+        icon: "phone" as const,
+        title: "Pilotage depuis votre smartphone",
+        text: "Allumez, éteignez et réglez chaque unité à distance : température, mode chauffage/refroidissement, vitesse et direction de l'air.",
+      },
+      {
+        icon: "clock" as const,
+        title: "Programmation hebdomadaire",
+        text: "Définissez jusqu'à six créneaux par jour pour adapter automatiquement le confort à votre rythme de vie.",
+      },
+      {
+        icon: "leaf" as const,
+        title: "Suivi énergétique",
+        text: "Consultez les graphiques de consommation et estimez vos coûts pour mieux maîtriser votre facture d'électricité.",
+      },
+      {
+        icon: "snowflake" as const,
+        title: "Confort avant votre retour",
+        text: "Pré-refroidissez ou pré-chauffez votre logement avant d'arriver : la pièce est à la bonne température dès votre entrée.",
+      },
+    ],
+    extras: [
+      "Activation de la technologie nanoe™ X sur les modèles compatibles pour une meilleure qualité de l'air intérieur.",
+      "Compatibilité avec les principaux assistants vocaux pour un pilotage mains libres.",
+      "Connexion Wi-Fi intégrée ou via l'adaptateur optionnel CZ-TACG1 selon le modèle installé.",
+    ],
+    note: "En tant que partenaire Panasonic ProClub, HFE installe, met en service et configure l'application Comfort Cloud lors de la livraison de votre climatisation.",
+    partnerCta: "Découvrir notre partenariat Panasonic",
+    externalLabel: "En savoir plus sur Comfort Cloud",
+    externalUrl: "https://www.aircon.panasonic.eu/FR_fr/happening/panasonic-comfort-cloud-app-21/",
+    cta: "Demander une installation connectée",
   },
   cta: {
     title: "Envie d'un été frais et d'un hiver doux ?",
@@ -115,7 +180,7 @@ const fr = {
       {
         question: "La climatisation réversible est-elle éligible aux aides ?",
         answer:
-          "Non. La climatisation réversible (PAC air-air) n'est pas éligible à MaPrimeRénov' ni au dispositif CEE « Coup de pouce chauffage ». Les budgets affichés sur notre site correspondent au prix TTC posé, sans aide de l'État.",
+          "MaPrimeRénov' et le Coup de pouce CEE ne couvrent en principe pas la PAC air-air (climatisation réversible). En revanche, depuis le 18 juillet 2026, certaines PAC air/air performantes peuvent bénéficier du taux de TVA réduit à 5,5 % sous conditions (logement de plus de 2 ans, classes énergétiques, fluide, connectivité). Nous détaillons la mesure dans notre article dédié et appliquons le bon taux sur devis après étude.",
       },
       {
         question: "Comment gagner des classes au DPE avec une climatisation réversible ?",
@@ -131,6 +196,11 @@ const fr = {
         question: "Installez-vous la climatisation à La Madeleine et dans la métropole lilloise ?",
         answer:
           "Oui. Nous installons la climatisation réversible à Lille, La Madeleine, Marcq-en-Barœul, Lambersart, Villeneuve-d'Ascq, Roubaix, Tourcoing, Wasquehal et dans toute notre zone d'intervention (50 km). Étude de dimensionnement et devis gratuits.",
+      },
+      {
+        question: "Qu'est-ce que l'application Panasonic Comfort Cloud ?",
+        answer:
+          "Comfort Cloud est l'application gratuite Panasonic (iOS et Android) qui permet de piloter à distance vos climatisations réversibles compatibles : réglage de la température, modes, programmation hebdomadaire, suivi de consommation et, sur certains modèles, activation de nanoe™ X. La connexion s'effectue via Wi-Fi intégré ou adaptateur CZ-TACG1. HFE configure l'application lors de la mise en service.",
       },
     ],
   },
@@ -214,22 +284,87 @@ const en = {
           "Discreet ceiling or floor vents.",
           "Preserves aesthetics — ideal for new builds.",
         ],
+        detailRoute: "projectsGainable" as const,
+        detailLabel: "See our ducted projects",
       },
       {
-        name: "Commercial",
+        name: "Small commercial",
         description:
-          "Variable refrigerant flow (VRF/DRV) systems deliver high-performance heating and cooling for commercial premises.",
-        use: "Office buildings",
+          "A reversible multi-split system powers several indoor units to air-condition a retail unit, consulting room or small office from a single outdoor unit.",
+        use: "Retail, consulting room, small office (50–150 m²)",
         advantages: [
-          "Multi-zone control tailored to each workspace.",
+          "Year-round comfort in each workspace.",
+          "Independent room-by-room control.",
+          "Discreet wall units, suspended-ceiling integration possible.",
+          "Cost-effective alternative to VRF for smaller floor areas.",
+        ],
+        detailRoute: "projectsPetitTertiaire" as const,
+        detailLabel: "See our small commercial projects",
+      },
+      {
+        name: "Commercial VRF",
+        description:
+          "Variable refrigerant flow (VRF/DRV) systems deliver high-performance heating and cooling for large commercial buildings with fine zone-by-zone control.",
+        use: "Offices, hotels, large retail premises",
+        advantages: [
+          "Multi-zone control tailored to each space.",
           "High energy efficiency for large floor areas.",
           "Year-round comfort for occupants.",
-          "Scalable solution for offices and commercial buildings.",
+          "Scalable solution for commercial buildings.",
         ],
-        detailRoute: "projectsClimPro" as const,
-        detailLabel: "See our commercial projects",
+        detailRoute: "projectsDrvTertiaire" as const,
+        detailLabel: "See our commercial VRF projects",
       },
     ],
+  },
+  comfortCloud: {
+    badge: "Panasonic connected control",
+    title: "Control your air conditioning with the Comfort Cloud app",
+    intro:
+      "Compatible Panasonic reversible air conditioners can be controlled remotely via the free Comfort Cloud app. From your smartphone, adjust temperature, set comfort schedules and monitor consumption — wherever you are.",
+    image: {
+      src: "/assets/climatisation/comfort-cloud-app.jpg",
+      alt: "Panasonic Comfort Cloud app on a smartphone — remote control of reversible air conditioning from the living room",
+      width: 959,
+      height: 645,
+    },
+    highlights: [
+      { value: "24/7", label: "Remote control" },
+      { value: "6", label: "Schedulable slots per day" },
+      { value: "20", label: "Units per group" },
+    ],
+    features: [
+      {
+        icon: "phone" as const,
+        title: "Control from your smartphone",
+        text: "Switch units on and off remotely and adjust temperature, heating/cooling mode, fan speed and airflow direction.",
+      },
+      {
+        icon: "clock" as const,
+        title: "Weekly scheduling",
+        text: "Set up to six time slots per day to automatically match comfort to your daily routine.",
+      },
+      {
+        icon: "leaf" as const,
+        title: "Energy monitoring",
+        text: "View consumption graphs and cost estimates to keep your electricity bills under control.",
+      },
+      {
+        icon: "snowflake" as const,
+        title: "Comfort before you arrive",
+        text: "Pre-cool or pre-heat your home before you get back — the room is at the right temperature when you walk in.",
+      },
+    ],
+    extras: [
+      "nanoe™ X technology activation on compatible models for better indoor air quality.",
+      "Compatible with major voice assistants for hands-free control.",
+      "Built-in Wi-Fi or optional CZ-TACG1 adapter depending on the installed model.",
+    ],
+    note: "As a Panasonic ProClub partner, HFE installs, commissions and configures the Comfort Cloud app when your air conditioning is delivered.",
+    partnerCta: "Discover our Panasonic partnership",
+    externalLabel: "Learn more about Comfort Cloud",
+    externalUrl: "https://www.aircon.panasonic.eu/FR_fr/happening/panasonic-comfort-cloud-app-21/",
+    cta: "Request a connected installation",
   },
   cta: {
     title: "Want a cool summer and a warm winter?",
@@ -251,7 +386,7 @@ const en = {
       {
         question: "Is reversible air conditioning eligible for grants?",
         answer:
-          "No. Reversible air conditioning (air-to-air heat pumps) is not eligible for MaPrimeRénov' or the CEE heating boost scheme. Budgets shown on our website are fully installed prices incl. VAT, with no government grants.",
+          "MaPrimeRénov' and the CEE heating boost generally do not cover air-to-air heat pumps (reversible AC). However, since 18 July 2026, certain high-performance air-to-air units can qualify for the reduced 5.5% VAT rate under conditions (home over 2 years old, energy classes, refrigerant, connectivity). We detail the measure in our dedicated article and apply the correct rate on quotes after the study.",
       },
       {
         question: "How can reversible air conditioning improve my EPC rating?",
@@ -267,6 +402,11 @@ const en = {
         question: "Do you install air conditioning in La Madeleine and the Lille metropolitan area?",
         answer:
           "Yes. We install reversible air conditioning in Lille, La Madeleine, Marcq-en-Barœul, Lambersart, Villeneuve-d'Ascq, Roubaix, Tourcoing, Wasquehal and across our full 50 km service area. Sizing study and quotes are free.",
+      },
+      {
+        question: "What is the Panasonic Comfort Cloud app?",
+        answer:
+          "Comfort Cloud is Panasonic's free app (iOS and Android) for remote control of compatible reversible air conditioners: temperature, modes, weekly scheduling, consumption monitoring and, on selected models, nanoe™ X activation. Connection uses built-in Wi-Fi or the CZ-TACG1 adapter. HFE sets up the app during commissioning.",
       },
     ],
   },

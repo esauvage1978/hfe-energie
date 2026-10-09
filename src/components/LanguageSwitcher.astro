@@ -1,6 +1,6 @@
 ---
 import type { Locale } from "@i18n";
-import { localeLabels, switchLocalePath } from "@i18n";
+import { getUi, localeLabels, switchLocalePath } from "@i18n";
 
 interface Props {
   locale: Locale;
@@ -8,12 +8,12 @@ interface Props {
 }
 
 const { locale, currentPath } = Astro.props;
+const { strings: t } = getUi(locale);
 const frHref = locale === "fr" ? currentPath : switchLocalePath(currentPath, "fr");
 const enHref = locale === "en" ? currentPath : switchLocalePath(currentPath, "en");
-const ariaLabel = locale === "fr" ? "English version" : "Version française";
 ---
 
-<div class="flex items-center rounded-lg border border-neutral-200 bg-neutral-50 p-0.5 text-xs font-semibold" role="group" aria-label="Language">
+<div class="flex items-center rounded-lg border border-neutral-200 bg-neutral-50 p-0.5 text-xs font-semibold" role="group" aria-label={t.meta.language}>
   <a
     href={frHref}
     class:list={[
@@ -22,6 +22,7 @@ const ariaLabel = locale === "fr" ? "English version" : "Version française";
     ]}
     hreflang="fr"
     lang="fr"
+    aria-label={t.meta.switchToFr}
     aria-current={locale === "fr" ? "page" : undefined}
   >
     {localeLabels.fr}
@@ -34,7 +35,7 @@ const ariaLabel = locale === "fr" ? "English version" : "Version française";
     ]}
     hreflang="en"
     lang="en"
-    aria-label={ariaLabel}
+    aria-label={t.meta.switchToEn}
     aria-current={locale === "en" ? "page" : undefined}
   >
     {localeLabels.en}

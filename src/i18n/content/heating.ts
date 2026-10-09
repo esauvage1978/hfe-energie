@@ -39,6 +39,8 @@ const fr = {
       {
         title: "Remplacement de chaudière",
         desc: "Remplacement de votre chaudière fioul ou gaz par une chaudière à condensation, une PAC ou une chaudière hybride.",
+        projectsLabel: "Voir nos réalisations remplacement de chaudière",
+        projectsRoute: "projectsRemplacementChaudiere" as const,
       },
       {
         title: "Plancher chauffant",
@@ -49,46 +51,17 @@ const fr = {
       {
         title: "Radiateurs nouvelle génération",
         desc: "Pose de radiateurs basse température, sèche-serviettes et radiateurs à inertie pilotables.",
+        projectsLabel: "Voir nos réalisations radiateurs",
+        projectsRoute: "projectsRadiateursNouvelleGeneration" as const,
       },
       {
         title: "Têtes thermostatiques",
-        desc: "Régulation pièce par pièce sur vos radiateurs : plus de confort et jusqu'à 25 % d'économies sur votre facture de chauffage.",
+        desc: "Régulation pièce par pièce, confort amélioré et économies de chauffage : installation rapide sur vos radiateurs existants.",
         icon: "radiator" as const,
+        projectsLabel: "Têtes thermostatiques & connectées",
+        projectsRoute: "thermostaticHeads" as const,
       },
     ],
-  },
-  thermostaticHeads: {
-    badge: "Régulation & économies",
-    title: "Têtes thermostatiques et têtes connectées",
-    intro:
-      "Sur un circuit de radiateurs existant, le remplacement des anciennes têtes par des modèles thermostatiques — ou connectés — est un investissement rapide, peu invasif et très efficace pour mieux maîtriser votre consommation.",
-    standard: {
-      title: "Têtes thermostatiques",
-      description:
-        "Elles modulent automatiquement le débit d'eau chaude en fonction de la température ambiante de chaque pièce. Fini les pièces surchauffées ou sous-chauffées : chaque radiateur travaille au bon niveau.",
-      benefits: [
-        "Pose sur radiateurs existants, sans gros travaux",
-        "Régulation locale pièce par pièce",
-        "Jusqu'à 25 % d'économies sur la facture de chauffage",
-        "Compatible chaudière gaz, fioul (avant remplacement) ou PAC air-eau",
-      ],
-    },
-    connected: {
-      title: "Têtes thermostatiques connectées",
-      description:
-        "Les têtes connectées ajoutent le pilotage à distance et l'automatisation : programmation horaire, modes absence, détection d'aération anormale et suivi de consommation depuis votre smartphone.",
-      benefits: [
-        "Pilotage via application (iOS / Android) depuis n'importe où",
-        "Programmation horaire et modes confort / éco / absence",
-        "Alertes en cas de fenêtre ouverte ou baisse de température inhabituelle",
-        "Historique et suivi pour optimiser votre chauffage dans le temps",
-        "Intégration possible avec assistants vocaux ou box domotique (selon marque)",
-        "Idéal en maison multi-pièces ou pour anticiper un retour de vacances",
-      ],
-      brandsNote:
-        "Nous dimensionnons et installons des solutions fiables (Danfoss, Honeywell, Netatmo, Eqiva, etc.) selon votre installation, le nombre de radiateurs et votre niveau de connectivité souhaité.",
-    },
-    cta: "Demander une étude gratuite",
   },
   cta: {
     title: "Remplacez votre chaudière en toute sérénité",
@@ -165,6 +138,8 @@ const en = {
       {
         title: "Boiler replacement",
         desc: "Replace your oil or gas boiler with a condensing boiler, heat pump or hybrid boiler.",
+        projectsLabel: "See our boiler replacement projects",
+        projectsRoute: "projectsRemplacementChaudiere" as const,
       },
       {
         title: "Underfloor heating",
@@ -175,46 +150,17 @@ const en = {
       {
         title: "Next-generation radiators",
         desc: "Installation of low-temperature radiators, towel rails and smart inertia radiators.",
+        projectsLabel: "See our radiator projects",
+        projectsRoute: "projectsRadiateursNouvelleGeneration" as const,
       },
       {
         title: "Thermostatic radiator valves",
-        desc: "Room-by-room control on your radiators: improved comfort and up to 25% savings on your heating bill.",
+        desc: "Room-by-room control, improved comfort and heating savings: quick installation on your existing radiators.",
         icon: "radiator" as const,
+        projectsLabel: "Thermostatic & smart valves",
+        projectsRoute: "thermostaticHeads" as const,
       },
     ],
-  },
-  thermostaticHeads: {
-    badge: "Control & savings",
-    title: "Thermostatic and smart radiator valves",
-    intro:
-      "On an existing radiator circuit, upgrading old valves to thermostatic — or smart — models is a quick, low-disruption investment that helps you control consumption more effectively.",
-    standard: {
-      title: "Thermostatic radiator valves (TRV)",
-      description:
-        "They automatically modulate hot water flow based on each room's temperature. No more overheated or underheated rooms: every radiator works at the right level.",
-      benefits: [
-        "Fits existing radiators with minimal disruption",
-        "Local room-by-room regulation",
-        "Up to 25% savings on your heating bill",
-        "Compatible with gas or oil boilers (before replacement) and air-to-water heat pumps",
-      ],
-    },
-    connected: {
-      title: "Smart connected TRVs",
-      description:
-        "Smart valves add remote control and automation: schedules, away modes, abnormal ventilation alerts and consumption monitoring from your smartphone.",
-      benefits: [
-        "Control via app (iOS / Android) from anywhere",
-        "Time schedules and comfort / eco / away modes",
-        "Alerts for open windows or unusual temperature drops",
-        "History and tracking to optimise heating over time",
-        "Possible integration with voice assistants or smart home hubs (depending on brand)",
-        "Ideal for multi-room homes or pre-heating before you return from holiday",
-      ],
-      brandsNote:
-        "We specify and install reliable solutions (Danfoss, Honeywell, Netatmo, Eqiva, etc.) based on your system, number of radiators and desired level of connectivity.",
-    },
-    cta: "Request a free assessment",
   },
   cta: {
     title: "Replace your boiler with confidence",

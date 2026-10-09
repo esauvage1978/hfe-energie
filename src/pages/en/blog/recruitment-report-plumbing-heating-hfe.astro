@@ -1,0 +1,13 @@
+---
+import BlogArticlePage from "../../../templates/BlogArticlePage.astro";
+import { getBlogReportageRecrutementContent } from "@i18n";
+
+const locale = "en" as const;
+---
+
+<BlogArticlePage
+  locale={locale}
+  content={getBlogReportageRecrutementContent(locale)}
+  routeId="blogReportageRecrutement"
+  faqIdPrefix="blog-reportage-recrutement-faq"
+/>

@@ -5,7 +5,7 @@ import { getFormStrings, pathFor } from "@i18n";
 type Status = "idle" | "submitting" | "success" | "error";
 
 type FieldErrors = Partial<
-  Record<"client_type" | "name" | "email" | "phone" | "service" | "message" | "rgpd", string>
+  Record<"client_type" | "name" | "email" | "siren" | "phone" | "service" | "message" | "rgpd", string>
 >;
 
 const CONTACT_ENDPOINT = import.meta.env.DEV ? "/__contact-proxy" : "/contact-zapier.php";
@@ -18,13 +18,27 @@ function normalizePhoneRaw(phone: string): string {
   return digits.startsWith("+") ? phone.replace(/\s/g, "") : `+${digits}`;
 }
 
-interface ContactFormProps {
-  locale: Locale;
+function normalizeSiren(siren: string): string {
+  return siren.replace(/\D/g, "");
 }
 
-export default function ContactForm({ locale }: ContactFormProps) {
+function isValidSiren(siren: string): boolean {
+  const digits = normalizeSiren(siren);
+  return digits.length === 9 && /^\d{9}$/.test(digits);
+}
+
+interface ContactFormProps {
+  locale: Locale;
+  defaultService?: string;
+}
+
+export default function ContactForm({ locale, defaultService }: ContactFormProps) {
   const t = getFormStrings(locale);
   const privacyHref = pathFor("legalNotice", locale);
+  const initialService =
+    defaultService && defaultService in t.serviceLabels ? defaultService : "";
+  const messagePlaceholder =
+    initialService === "recrutement" ? t.recruitmentMessagePlaceholder : t.messagePlaceholder;
 
   const buildPayload = (data: FormData) => {
     const now = new Date().toISOString();
@@ -34,12 +48,14 @@ export default function ContactForm({ locale }: ContactFormProps) {
       t.clientTypeLabels[clientType as keyof typeof t.clientTypeLabels] ?? clientType;
     const service = (data.get("service") || "").toString();
     const serviceLabel = t.serviceLabels[service as keyof typeof t.serviceLabels] ?? service;
+    const sirenRaw = (data.get("siren") || "").toString().trim();
 
     return {
       client_type: clientType,
       client_type_label: clientTypeLabel,
       name: (data.get("name") || "").toString().trim(),
       email: (data.get("email") || "").toString().trim(),
+      siren: clientType === "professionnel" ? normalizeSiren(sirenRaw) : "—",
       phone: phone || "—",
       phone_raw: normalizePhoneRaw(phone),
       postal: (data.get("postal") || "").toString().trim() || "—",
@@ -57,22 +73,25 @@ export default function ContactForm({ locale }: ContactFormProps) {
 
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<FieldErrors>({});
+  const [clientType, setClientType] = useState("");
 
   const validate = (formData: FormData): FieldErrors => {
     const e: FieldErrors = {};
     const name = (formData.get("name") || "").toString().trim();
     const email = (formData.get("email") || "").toString().trim();
     const phone = (formData.get("phone") || "").toString().trim();
-    const clientType = (formData.get("client_type") || "").toString();
+    const clientTypeValue = (formData.get("client_type") || "").toString();
+    const siren = (formData.get("siren") || "").toString().trim();
     const service = (formData.get("service") || "").toString();
     const message = (formData.get("message") || "").toString().trim();
     const rgpd = formData.get("rgpd");
 
-    if (!clientType || !(clientType in t.clientTypeLabels)) {
+    if (!clientTypeValue || !(clientTypeValue in t.clientTypeLabels)) {
       e.client_type = t.errors.client_type;
     }
     if (name.length < 2) e.name = t.errors.name;
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) e.email = t.errors.email;
+    if (clientTypeValue === "professionnel" && !isValidSiren(siren)) e.siren = t.errors.siren;
     if (phone && !/^[0-9\s+().-]{8,}$/.test(phone)) e.phone = t.errors.phone;
     if (!service) e.service = t.errors.service;
     if (message.length < 10) e.message = t.errors.message;
@@ -120,7 +139,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
         role="status"
         className="rounded-2xl border border-accent-200 bg-accent-50 p-6 text-accent-900"
       >
-        <h3 className="font-display font-bold text-lg">{t.successTitle}</h3>
+        <h2 className="font-display font-bold text-lg">{t.successTitle}</h2>
         <p className="mt-2 text-sm">{t.successText}</p>
       </div>
     );
@@ -137,7 +156,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
         {t.help.includes("*") ? (
           <>
             {t.help.split("*")[0]}
-            <span className="text-accent-600 font-semibold">{t.requiredMark}</span>
+            <span className="text-red-700 font-semibold">{t.requiredMark}</span>
             {t.help.split("*")[1]}
           </>
         ) : (
@@ -146,12 +165,13 @@ export default function ContactForm({ locale }: ContactFormProps) {
       </p>
 
       <fieldset>
-        <legend className="block text-sm font-semibold text-neutral-800 mb-2">
-          {t.youAre} <span className="text-accent-600">{t.requiredMark}</span>
+        <legend id="client-type-legend" className="block text-sm font-semibold text-neutral-800 mb-2">
+          {t.youAre} <span className="text-red-700">{t.requiredMark}</span>
         </legend>
         <div
           className="grid grid-cols-2 gap-2 sm:gap-3"
           role="radiogroup"
+          aria-labelledby="client-type-legend"
           aria-invalid={!!errors.client_type}
           aria-describedby={errors.client_type ? "client-type-error" : undefined}
         >
@@ -166,6 +186,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
                 value={type.value}
                 required
                 className="sr-only"
+                onChange={() => setClientType(type.value)}
               />
               {type.label}
             </label>
@@ -177,6 +198,18 @@ export default function ContactForm({ locale }: ContactFormProps) {
           </p>
         )}
       </fieldset>
+
+      {clientType === "professionnel" && (
+        <Field
+          id="siren"
+          label={t.siren}
+          required
+          error={errors.siren}
+          inputMode="numeric"
+          placeholder={t.sirenPlaceholder}
+          t={t}
+        />
+      )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Field id="name" label={t.name} required error={errors.name} autoComplete="name" t={t} />
@@ -215,7 +248,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
 
       <div>
         <label htmlFor="service" className="block text-sm font-semibold text-neutral-800 mb-1.5">
-          {t.projectType} <span className="text-accent-600">{t.requiredMark}</span>
+          {t.projectType} <span className="text-red-700">{t.requiredMark}</span>
         </label>
         <select
           id="service"
@@ -226,7 +259,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
           }`}
           aria-invalid={!!errors.service}
           aria-describedby={errors.service ? "service-error" : undefined}
-          defaultValue=""
+          defaultValue={initialService}
         >
           <option value="" disabled>
             {t.chooseService}
@@ -246,14 +279,14 @@ export default function ContactForm({ locale }: ContactFormProps) {
 
       <div>
         <label htmlFor="message" className="block text-sm font-semibold text-neutral-800 mb-1.5">
-          {t.project} <span className="text-accent-600">{t.requiredMark}</span>
+          {t.project} <span className="text-red-700">{t.requiredMark}</span>
         </label>
         <textarea
           id="message"
           name="message"
           rows={5}
           required
-          placeholder={t.messagePlaceholder}
+          placeholder={messagePlaceholder}
           className={`block w-full rounded-xl border bg-white px-4 py-3 text-base shadow-sm transition-colors focus:border-accent-600 focus:outline-none focus:ring-2 focus:ring-accent-200 ${
             errors.message ? "border-red-400" : "border-neutral-300"
           }`}
@@ -333,7 +366,7 @@ function Field({
   return (
     <div>
       <label htmlFor={id} className="block text-sm font-semibold text-neutral-800 mb-1.5">
-        {label} {required && <span className="text-accent-600">{t.requiredMark}</span>}
+        {label} {required && <span className="text-red-700">{t.requiredMark}</span>}
       </label>
       <input
         id={id}

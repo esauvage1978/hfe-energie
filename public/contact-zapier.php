@@ -42,6 +42,7 @@ $serviceLabels = [
     'chauffe-eau' => 'Chauffe-eau thermodynamique',
     'plomberie' => 'Plomberie / sanitaire',
     'depannage' => 'Dépannage urgent',
+    'recrutement' => 'Recrutement',
     'autre' => 'Autre projet',
 ];
 
@@ -49,6 +50,7 @@ $name = trim((string) ($data['name'] ?? ''));
 $email = trim((string) ($data['email'] ?? ''));
 $phone = trim((string) ($data['phone'] ?? ''));
 $postal = trim((string) ($data['postal'] ?? ''));
+$siren = preg_replace('/\D/', '', trim((string) ($data['siren'] ?? ''))) ?? '';
 $clientType = trim((string) ($data['client_type'] ?? ''));
 $service = trim((string) ($data['service'] ?? ''));
 $message = trim((string) ($data['message'] ?? ''));
@@ -74,6 +76,12 @@ if ($phone !== '' && !preg_match('/^[0-9\s+().-]{8,}$/', $phone)) {
 if ($clientType === '' || !isset($clientTypeLabels[$clientType])) {
     http_response_code(422);
     echo json_encode(['ok' => false, 'message' => 'Profil client invalide.']);
+    exit;
+}
+
+if ($clientType === 'professionnel' && !preg_match('/^\d{9}$/', $siren)) {
+    http_response_code(422);
+    echo json_encode(['ok' => false, 'message' => 'SIREN invalide.']);
     exit;
 }
 
@@ -114,6 +122,7 @@ $payload = [
     'phone' => $phone !== '' ? $phone : '—',
     'phone_raw' => normalizePhoneRaw($phone),
     'postal' => $postal !== '' ? $postal : '—',
+    'siren' => $clientType === 'professionnel' ? $siren : '—',
     'service' => $service,
     'service_label' => $serviceLabels[$service],
     'message' => $message,

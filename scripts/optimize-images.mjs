@@ -26,7 +26,10 @@ import sharp from "sharp";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
-const SRC_DIR = path.join(ROOT, "public", "assets");
+const SRC_DIRS = [
+  path.join(ROOT, "public", "assets"),
+  path.join(ROOT, "public", "projet"),
+];
 
 const VALID_EXT = new Set([".jpg", ".jpeg", ".png"]);
 const SKIP_DIRS = new Set(["typographie", "video", "documentCertification"]);
@@ -131,7 +134,7 @@ async function processImage(filePath) {
     stats.avifBytes += a.size;
     stats.generated += 1;
 
-    const rel = path.relative(SRC_DIR, filePath).replaceAll("\\", "/");
+    const rel = path.relative(ROOT, filePath).replaceAll("\\", "/");
     process.stdout.write(
       `  ✓ ${rel.padEnd(60)} ${kb(original.size)} → webp ${kb(w.size)} · avif ${kb(a.size)}\n`,
     );
@@ -148,7 +151,7 @@ function kb(n) {
 }
 
 async function generateResponsiveVariants(filePath, pipeline, meta) {
-  const relDir = path.relative(SRC_DIR, path.dirname(filePath)).replaceAll("\\", "/");
+  const relDir = path.relative(ROOT, path.dirname(filePath)).replaceAll("\\", "/");
   const topDir = relDir.split("/")[0] ?? "";
   if (SKIP_RESPONSIVE_DIRS.has(topDir)) return;
 
@@ -179,13 +182,16 @@ async function generateResponsiveVariants(filePath, pipeline, meta) {
 }
 
 async function main() {
-  if (!existsSync(SRC_DIR)) {
-    process.stderr.write(`Source directory not found: ${SRC_DIR}\n`);
+  const dirs = SRC_DIRS.filter((dir) => existsSync(dir));
+  if (dirs.length === 0) {
+    process.stderr.write(`No source directories found: ${SRC_DIRS.join(", ")}\n`);
     process.exit(1);
   }
 
-  process.stdout.write(`Optimisation des images dans ${SRC_DIR}\n\n`);
-  await walk(SRC_DIR);
+  process.stdout.write(`Optimisation des images dans ${dirs.join(", ")}\n\n`);
+  for (const dir of dirs) {
+    await walk(dir);
+  }
 
   process.stdout.write(`\n────────────────────────────────────────\n`);
   process.stdout.write(`  Images scannées : ${stats.scanned}\n`);

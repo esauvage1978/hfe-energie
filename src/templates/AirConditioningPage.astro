@@ -10,7 +10,9 @@ import Faq from "@components/Faq.astro";
 import PartnersCertificationsSections from "@components/PartnersCertificationsSections.astro";
 import Picture from "@components/Picture.astro";
 import { site } from "@data/site";
-import { servicesImages } from "@data/assets";
+import { partenaires, servicesImages } from "@data/assets";
+
+const panasonicLogo = partenaires.find((p) => p.name === "Panasonic")!;
 
 interface Props {
   locale: Locale;
@@ -34,14 +36,14 @@ const canonicalPath = pathFor("airConditioning", locale);
     service={{
       name: content.structuredData.serviceName,
       description: content.structuredData.serviceDescription,
-      slug: content.structuredData.slug,
+      path: canonicalPath,
     }}
     slot="head"
   />
   <StructuredData type="FAQPage" faqs={content.faq.items} slot="head" />
 
   <div class="container-page">
-    <Breadcrumbs items={content.breadcrumbs} />
+    <Breadcrumbs locale={locale} items={content.breadcrumbs} />
   </div>
 
   <section class="bg-gradient-to-br from-accent-50 via-white to-accent-100/40">
@@ -94,7 +96,7 @@ const canonicalPath = pathFor("airConditioning", locale);
           <article class:list={["card flex flex-col h-full", hasDetail && "card-linkable"]}>
             {hasDetail && (
               <a
-                href={pathFor(t.detailRoute, locale)}
+                href={`${pathFor(t.detailRoute, locale)}${"detailHash" in t && t.detailHash ? t.detailHash : ""}`}
                 class="card-stretched-link"
                 aria-label={t.detailLabel}
               />
@@ -135,7 +137,117 @@ const canonicalPath = pathFor("airConditioning", locale);
     </div>
   </section>
 
-  <CtaBanner locale={locale} title={content.cta.title} subtitle={content.cta.subtitle} />
+  <section class="section bg-gradient-to-br from-neutral-900 via-neutral-900 to-accent-950 text-white" aria-labelledby="comfort-cloud-title">
+    <div class="container-page">
+      <div class="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-[auto_auto] gap-10 lg:gap-x-14 lg:gap-y-6 items-start">
+        <div class="lg:row-span-2">
+          <span class="badge bg-accent-500/20 text-accent-200 border border-accent-400/30">
+            <Icon name="phone" size={12} />
+            {content.comfortCloud.badge}
+          </span>
+          <h2 id="comfort-cloud-title" class="mt-4 font-display text-3xl md:text-4xl font-extrabold leading-tight text-white">
+            {content.comfortCloud.title}
+          </h2>
+          <p class="mt-4 text-neutral-300 leading-relaxed">{content.comfortCloud.intro}</p>
+
+          <div class="mt-8 grid grid-cols-3 gap-3">
+            {content.comfortCloud.highlights.map((h) => (
+              <div class="rounded-xl bg-white/5 border border-white/10 px-3 py-4 text-center">
+                <p class="font-display font-extrabold text-2xl text-accent-300">{h.value}</p>
+                <p class="mt-1 text-xs text-neutral-400 leading-snug">{h.label}</p>
+              </div>
+            ))}
+          </div>
+
+          <ul class="mt-6 space-y-2">
+            {content.comfortCloud.extras.map((extra) => (
+              <li class="flex items-start gap-2 text-sm text-neutral-300">
+                <Icon name="check" size={16} class="text-accent-400 mt-0.5 shrink-0" strokeWidth={3} />
+                <span>{extra}</span>
+              </li>
+            ))}
+          </ul>
+
+          <p class="mt-6 text-sm text-neutral-400 leading-relaxed border-t border-white/10 pt-5">
+            {content.comfortCloud.note}
+          </p>
+
+          <div class="mt-6 flex flex-col sm:flex-row flex-wrap gap-3">
+            <a href={pathFor("contact", locale)} class="btn btn-accent">
+              <Icon name="mail" size={18} />
+              {content.comfortCloud.cta}
+            </a>
+            <a
+              href={pathFor("panasonicPartner", locale)}
+              class="btn border-2 border-white/30 bg-transparent text-white hover:bg-white/10 hover:border-white/50"
+            >
+              {content.comfortCloud.partnerCta}
+              <Icon name="arrow-right" size={16} />
+            </a>
+          </div>
+        </div>
+
+        <div class="relative lg:row-start-1 lg:col-start-2">
+          <div class="pointer-events-none absolute -inset-4 bg-accent-400/20 blur-3xl rounded-full" aria-hidden="true" />
+          <Picture
+            src={content.comfortCloud.image.src}
+            alt={content.comfortCloud.image.alt}
+            width={content.comfortCloud.image.width}
+            height={content.comfortCloud.image.height}
+            class="relative rounded-2xl shadow-2xl shadow-black/50 ring-1 ring-white/15 w-full object-cover"
+            loading="lazy"
+            sizes="(min-width: 1024px) 42vw, 100vw"
+          />
+        </div>
+
+        <div class="space-y-5 lg:row-start-2 lg:col-start-2">
+          <div class="rounded-3xl bg-white/5 border border-white/10 p-6 md:p-8 backdrop-blur-sm">
+            <div class="flex items-center justify-between gap-4">
+              <div class="rounded-lg bg-white px-3 py-2 shrink-0">
+                <Picture
+                  src={panasonicLogo.logo}
+                  alt="Panasonic"
+                  width={panasonicLogo.width}
+                  height={panasonicLogo.height}
+                  class="h-8 w-auto object-contain"
+                  loading="lazy"
+                />
+              </div>
+              <span class="text-xs font-bold uppercase tracking-wider text-accent-300">Comfort Cloud</span>
+            </div>
+            <p class="mt-4 text-sm text-neutral-300">
+              {locale === "fr"
+                ? "Application gratuite iOS & Android"
+                : "Free iOS & Android app"}
+            </p>
+            <div class="mt-6 grid grid-cols-2 gap-3">
+              {content.comfortCloud.features.map((f) => (
+                <div class="rounded-xl bg-white/5 border border-white/10 p-4">
+                  <div class="w-9 h-9 rounded-lg bg-accent-500/20 text-accent-300 flex items-center justify-center">
+                    <Icon name={f.icon} size={18} />
+                  </div>
+                  <h3 class="mt-3 font-display font-bold text-sm text-white">{f.title}</h3>
+                  <p class="mt-2 text-xs text-neutral-400 leading-relaxed">{f.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <a
+            href={content.comfortCloud.externalUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1 text-sm font-semibold text-accent-300 hover:text-accent-200 underline-offset-2 hover:underline"
+          >
+            {content.comfortCloud.externalLabel}
+            <Icon name="arrow-right" size={14} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner locale={locale} title={content.cta.title} subtitle={content.cta.subtitle} colorScheme="primary" />
 
   <PartnersCertificationsSections locale={locale} />
 

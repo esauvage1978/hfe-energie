@@ -7,13 +7,21 @@ export interface Props {
   service?: {
     name: string;
     description: string;
-    slug: string;
+    path: string;
   };
   faqs?: Array<{ question: string; answer: string }>;
   breadcrumbs?: Array<{ name: string; url: string }>;
+  article?: {
+    headline: string;
+    description: string;
+    path: string;
+    datePublished: string;
+    dateModified: string;
+    inLanguage?: string;
+  };
 }
 
-const { type = "LocalBusiness", service, faqs, breadcrumbs } = Astro.props;
+const { type = "LocalBusiness", service, faqs, breadcrumbs, article } = Astro.props;
 
 const localBusiness = {
   "@context": "https://schema.org",
@@ -83,13 +91,13 @@ const localBusiness = {
   },
 };
 
-const buildServiceLd = (s: { name: string; description: string; slug: string }) => ({
+const buildServiceLd = (s: { name: string; description: string; path: string }) => ({
   "@context": "https://schema.org",
   "@type": "Service",
   serviceType: s.name,
   name: s.name,
   description: s.description,
-  url: `${site.baseUrl}/${s.slug}`,
+  url: new URL(s.path, site.baseUrl).toString(),
   provider: { "@id": `${site.baseUrl}/#business` },
   areaServed: site.serviceArea.map((city) => ({ "@type": "City", name: city })),
   category: "Énergies renouvelables - Chauffage - Climatisation",
@@ -119,10 +127,42 @@ const buildBreadcrumbLd = (items: Array<{ name: string; url: string }>) => ({
   })),
 });
 
+const buildArticleLd = (a: {
+  headline: string;
+  description: string;
+  path: string;
+  datePublished: string;
+  dateModified: string;
+  inLanguage?: string;
+}) => ({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: a.headline,
+  description: a.description,
+  datePublished: a.datePublished,
+  dateModified: a.dateModified,
+  mainEntityOfPage: new URL(a.path, site.baseUrl).toString(),
+  author: {
+    "@type": "Organization",
+    name: site.legalName,
+    url: site.baseUrl,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: site.legalName,
+    logo: {
+      "@type": "ImageObject",
+      url: `${site.baseUrl}/assets/logo/hfe-sansFond.png`,
+    },
+  },
+  inLanguage: a.inLanguage ?? "fr-FR",
+});
+
 let jsonLd: unknown = localBusiness;
 if (type === "Service" && service) jsonLd = buildServiceLd(service);
 if (type === "FAQPage" && faqs) jsonLd = buildFaqLd(faqs);
 if (type === "BreadcrumbList" && breadcrumbs) jsonLd = buildBreadcrumbLd(breadcrumbs);
+if (type === "Article" && article) jsonLd = buildArticleLd(article);
 ---
 
 <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />

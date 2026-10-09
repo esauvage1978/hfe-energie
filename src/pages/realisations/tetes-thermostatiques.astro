@@ -1,0 +1,20 @@
+---
+import ProjectsPage from "../../templates/ProjectsPage.astro";
+import { getProjectsTetesThermostatiquesContent } from "@i18n/content/projects-tetes-thermostatiques";
+import { pathFor } from "@i18n";
+
+const locale = "fr";
+const content = getProjectsTetesThermostatiquesContent(locale);
+---
+<ProjectsPage
+  locale={locale}
+  seo={content.seo}
+  breadcrumbs={[...content.breadcrumbs]}
+  canonicalPath={pathFor("projectsTetesThermostatiques", locale)}
+  hero={content.hero}
+  intro={content.intro}
+  projectLabel=""
+  projects={[]}
+  cta={content.cta}
+  showInstallCta={false}
+/>

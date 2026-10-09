@@ -129,8 +129,12 @@ const fr = {
           "Durée de vie de 15 ans en moyenne",
           "Installation rapide en remplacement d'un ballon électrique",
         ],
-        scop: "COP 3,0 à 3,5",
+        scop: "3,0 à 3,5",
+        scopLabel: "COP",
         price: "2 500 € à 4 500 €",
+        projectsLabel: "Nos réalisations ballon thermodynamique",
+        projectsRoute: "projectsBallonThermodynamique" as const,
+        colorScheme: "primary" as const,
       },
     ],
   },
@@ -176,8 +180,43 @@ const fr = {
     badge: "FAQ pompe à chaleur",
     title: "Tout savoir sur la pompe à chaleur",
     intro:
-      "Réponses détaillées aux questions les plus fréquentes sur l'installation, le coût, les aides et l'entretien d'une pompe à chaleur.",
+      "Réponses aux questions les plus recherchées sur l'achat, l'installation et le choix d'une pompe à chaleur à Lille, Villeneuve-d'Ascq, Marcq-en-Barœul et dans les Hauts-de-France.",
     items: [
+      {
+        question: "Où acheter et faire installer une pompe à chaleur air-eau à Lille ?",
+        answer:
+          "Hecker & Frères Énergie (HFE) vous accompagne de l'achat à l'installation de votre pompe à chaleur air-eau à Lille et dans toute la métropole. Installateur RGE QualiPAC, nous dimensionnons, fournissons et posons les PAC air-eau Panasonic, Daikin, Atlantic et Mitsubishi. Devis gratuit sous 72 h, étude thermique offerte et accompagnement MaPrimeRénov' & CEE. Pas de vente en ligne : chaque projet fait l'objet d'une visite et d'un devis personnalisé.",
+      },
+      {
+        question: "Qui est installateur de pompe à chaleur à Lille ?",
+        answer:
+          "HFE est installateur RGE QualiPAC basé à Lille (44 rue Jean sans Peur), avec plus de 15 ans d'expérience et 1 500+ installations en pompes à chaleur, climatisation et chauffage. Nous installons PAC air-eau, air-air et chauffe-eau thermodynamique dans un rayon de 50 km autour de Lille. Garantie décennale sur la pose, contrat d'entretien et SAV local.",
+      },
+      {
+        question: "Où acheter une pompe à chaleur air-air à Lille ?",
+        answer:
+          "Pour l'achat et la pose d'une pompe à chaleur air-air (climatisation réversible) à Lille, HFE propose un accompagnement complet : audit de vos pièces, dimensionnement, fourniture et installation mono-split ou multi-split (Panasonic, Daikin, Mitsubishi). Comptez 3 500 € à 9 000 € TTC posé. Devis gratuit sur place — la PAC air-air n'est pas éligible MaPrimeRénov' ni CEE.",
+      },
+      {
+        question: "Installez-vous des pompes à chaleur à Villeneuve-d'Ascq ?",
+        answer:
+          "Oui. HFE intervient à Villeneuve-d'Ascq pour l'installation de pompes à chaleur air-eau, air-air et chauffe-eau thermodynamique, en maison individuelle, copropriété ou tertiaire. Nous y réalisons régulièrement des chantiers PAC air-eau couplées à radiateurs ou plancher chauffant. Installateur RGE QualiPAC, étude thermique et devis gratuits sur place.",
+      },
+      {
+        question: "Installez-vous des pompes à chaleur air-eau à Marcq-en-Barœul ?",
+        answer:
+          "Oui, Marcq-en-Barœul fait partie de notre zone d'intervention prioritaire. Nous y installons des PAC air-eau en remplacement de chaudière fioul ou gaz, avec raccordement aux radiateurs existants ou au plancher chauffant. Installateur RGE QualiPAC, nous gérons le dossier d'aides MaPrimeRénov' et CEE. Délai moyen : devis sous 72 h, pose en 2 à 3 jours.",
+      },
+      {
+        question: "Intervenez-vous pour l'installation de pompe à chaleur dans les Hauts-de-France ?",
+        answer:
+          "Oui. Basés à Lille, nous couvrons la métropole lilloise (MEL) et les Hauts-de-France dans un rayon de 50 km : Nord et Pas-de-Calais, incluant Roubaix, Tourcoing, Lens, Douai, Valenciennes et communes alentour. Pour les projets au-delà de ce périmètre, contactez-nous : nous étudions chaque demande au cas par cas.",
+      },
+      {
+        question: "Proposez-vous la pose de plancher chauffant avec une PAC air-eau à Villeneuve-d'Ascq ?",
+        answer:
+          "Oui. Nous installons des planchers chauffants hydrauliques neufs ou en rénovation à Villeneuve-d'Ascq, couplés à une pompe à chaleur air-eau dimensionnée pour le basse température. Idéal en construction ou rénovation lourde pour un confort optimal et des économies maximales. HFE est certifié RGE pour le chauffage et QualiPAC pour la pompe à chaleur.",
+      },
       {
         question: "Quel est le prix d'une pompe à chaleur installée à Lille en 2026 ?",
         answer:
@@ -189,19 +228,9 @@ const fr = {
           "Choisissez une PAC air-eau si vous avez déjà un circuit de chauffage central (radiateurs ou plancher chauffant) : elle remplace votre chaudière fioul ou gaz et peut produire l'eau chaude sanitaire. Choisissez une PAC air-air (clim réversible) si vous chauffez à l'électrique ou si vous voulez climatiser votre logement en été. La PAC air-eau est plus chère à l'installation mais offre un confort supérieur et un meilleur rendement.",
       },
       {
-        question: "Comment gagner des classes au DPE avec une pompe à chaleur ?",
-        answer:
-          "Sur le terrain, nous constatons qu'une PAC air-air (climatisation réversible), bien dimensionnée, peut faire progresser la note énergétique d'un logement — jusqu'à trois classes dans certains cas, lorsque l'ancien chauffage était très consommateur (radiateurs électriques, appoint). Le gain dépend de votre DPE initial, de la surface réellement chauffée et de la qualité de la pose. La PAC air-eau reste souvent la plus efficace pour un saut important au DPE quand elle remplace une chaudière fioul ou gaz. Hecker & Frères Énergie (HFE) intègre ce point dans l'étude thermique avant devis : nous vous indiquons le potentiel réaliste sur votre bien.",
-      },
-      {
         question: "Est-ce qu'une pompe à chaleur fonctionne bien dans le Nord ?",
         answer:
           "Oui, parfaitement. Les pompes à chaleur modernes restent performantes jusqu'à -15 °C, et le climat du Nord (températures hivernales descendant rarement sous -5 °C) est tout à fait adapté. Les PAC haute température peuvent même remplacer une chaudière fioul sans changer les radiateurs. Le SCOP (rendement saisonnier) reste élevé : entre 3,5 et 4,5 dans les Hauts-de-France.",
-      },
-      {
-        question: "Combien de temps prend l'installation d'une pompe à chaleur ?",
-        answer:
-          "Pour une PAC air-eau en remplacement d'une chaudière : 2 à 3 jours d'intervention. Pour une PAC air-air mono-split : 1 journée. Pour un multi-split (3-4 unités intérieures) : 2 jours. Hecker & Frères Énergie (HFE) réalise au préalable une étude thermique et un dimensionnement précis pour garantir la performance de l'installation.",
       },
       {
         question: "Quelles sont les aides MaPrimeRénov' et CEE pour une PAC en 2026 ?",
@@ -212,21 +241,6 @@ const fr = {
         question: "Faut-il entretenir sa pompe à chaleur ?",
         answer:
           "Oui, l'entretien d'une pompe à chaleur est obligatoire depuis le décret du 30 juillet 2020 : tous les 2 ans pour les PAC < 12 kW, tous les ans pour les PAC ≥ 12 kW. Hecker & Frères Énergie (HFE) propose des contrats d'entretien dès 149 € TTC / an, incluant le contrôle d'étanchéité du circuit frigorifique, le nettoyage des filtres et la vérification des performances.",
-      },
-      {
-        question: "Quelle est la durée de vie d'une pompe à chaleur ?",
-        answer:
-          "Une PAC bien entretenue dure entre 15 et 20 ans. La garantie constructeur est généralement de 2 à 5 ans, prolongeable à 7 ou 10 ans selon les marques (Panasonic, Daikin, Mitsubishi, Atlantic). Hecker & Frères Énergie (HFE) est partenaire Panasonic et offre la garantie décennale sur l'installation.",
-      },
-      {
-        question: "La PAC fait-elle du bruit ?",
-        answer:
-          "Les pompes à chaleur récentes sont très silencieuses : entre 38 et 55 dB(A) à 1 mètre pour l'unité extérieure (équivalent d'un réfrigérateur). Notre équipe vous conseille sur l'emplacement optimal pour respecter la réglementation acoustique (arrêté du 5 décembre 2006) et préserver le confort de vos voisins.",
-      },
-      {
-        question: "Installez-vous des pompes à chaleur à Marcq-en-Barœul et dans la métropole lilloise ?",
-        answer:
-          "Oui. Installateur RGE QualiPAC basé à Lille, Hecker & Frères Énergie (HFE) installe des pompes à chaleur à Lille, La Madeleine, Marcq-en-Barœul, Lambersart, Villeneuve-d'Ascq, Roubaix, Tourcoing, Wasquehal et dans toute la zone d'intervention (50 km). Étude thermique et devis gratuits.",
       },
     ],
   },
@@ -361,8 +375,12 @@ const en = {
           "Average lifespan of 15 years",
           "Quick installation as a replacement for an electric tank",
         ],
-        scop: "COP 3.0 to 3.5",
+        scop: "3.0 to 3.5",
+        scopLabel: "COP",
         price: "€2,500 to €4,500",
+        projectsLabel: "Our thermodynamic water heater projects",
+        projectsRoute: "projectsBallonThermodynamique" as const,
+        colorScheme: "primary" as const,
       },
     ],
   },
@@ -407,8 +425,43 @@ const en = {
     badge: "Heat pump FAQ",
     title: "Everything you need to know about heat pumps",
     intro:
-      "Detailed answers to the most common questions about installation, cost, grants and servicing.",
+      "Answers to the most common questions about buying, installing and choosing a heat pump in Lille, Villeneuve-d'Ascq, Marcq-en-Barœul and across Hauts-de-France.",
     items: [
+      {
+        question: "Where can I buy and have an air-to-water heat pump installed in Lille?",
+        answer:
+          "Hecker & Frères Énergie (HFE) supports you from purchase to installation of your air-to-water heat pump in Lille and across the metropolitan area. As an RGE QualiPAC installer, we size, supply and install Panasonic, Daikin, Atlantic and Mitsubishi air-to-water units. Free quote within 72h, complimentary thermal study and full MaPrimeRénov' & CEE support. No online sales: every project includes a site visit and personalised quote.",
+      },
+      {
+        question: "Who is the heat pump installer in Lille?",
+        answer:
+          "HFE is an RGE QualiPAC-certified installer based in Lille (44 rue Jean sans Peur), with over 15 years of experience and 1,500+ heat pump, air conditioning and heating installations. We install air-to-water, air-to-air and thermodynamic water heaters within a 50 km radius of Lille. Ten-year installation warranty, maintenance contracts and local after-sales service.",
+      },
+      {
+        question: "Where can I buy an air-to-air heat pump in Lille?",
+        answer:
+          "For purchase and installation of an air-to-air heat pump (reversible air conditioning) in Lille, HFE provides end-to-end support: room assessment, sizing, supply and installation of single-split or multi-split systems (Panasonic, Daikin, Mitsubishi). Expect €3,500 to €9,000 incl. VAT installed. Free on-site quote — air-to-air units are not eligible for MaPrimeRénov' or CEE.",
+      },
+      {
+        question: "Do you install heat pumps in Villeneuve-d'Ascq?",
+        answer:
+          "Yes. HFE works in Villeneuve-d'Ascq installing air-to-water, air-to-air and thermodynamic water heaters for single-family homes, co-owned buildings and commercial premises. We regularly carry out air-to-water heat pump projects connected to radiators or underfloor heating. RGE QualiPAC installer — free thermal study and on-site quote.",
+      },
+      {
+        question: "Do you install air-to-water heat pumps in Marcq-en-Barœul?",
+        answer:
+          "Yes, Marcq-en-Barœul is a priority service area for us. We install air-to-water heat pumps there to replace oil or gas boilers, connected to existing radiators or underfloor heating. As an RGE QualiPAC installer, we handle MaPrimeRénov' and CEE grant applications. Typical timeline: quote within 72h, installation in 2 to 3 days.",
+      },
+      {
+        question: "Do you install heat pumps across Hauts-de-France?",
+        answer:
+          "Yes. Based in Lille, we cover the Lille metropolitan area (MEL) and Hauts-de-France within a 50 km radius: Nord and Pas-de-Calais, including Roubaix, Tourcoing, Lens, Douai, Valenciennes and surrounding towns. For projects beyond this area, contact us — we review each request individually.",
+      },
+      {
+        question: "Do you install underfloor heating with an air-to-water heat pump in Villeneuve-d'Ascq?",
+        answer:
+          "Yes. We install new or retrofit hydronic underfloor heating in Villeneuve-d'Ascq, paired with a low-temperature air-to-water heat pump. Ideal for new builds or major renovations for optimal comfort and maximum savings. HFE is RGE certified for heating and QualiPAC certified for heat pumps.",
+      },
       {
         question: "How much does an installed heat pump cost in Lille in 2026?",
         answer:
@@ -420,19 +473,9 @@ const en = {
           "Choose an air-to-water heat pump if you already have a central heating circuit (radiators or underfloor heating): it replaces your oil or gas boiler and can produce domestic hot water. Choose an air-to-air heat pump (reversible AC) if you heat with electricity or want to cool your home in summer. Air-to-water is more expensive to install but offers superior comfort and efficiency.",
       },
       {
-        question: "How can a heat pump improve my EPC rating?",
-        answer:
-          "In our experience, a properly sized air-to-air heat pump (reversible air conditioning) can improve a property's energy performance certificate — by up to three bands in some cases, especially when replacing very inefficient heating (electric radiators, supplementary heaters). The gain depends on your starting rating, the heated floor area and installation quality. Air-to-water heat pumps often deliver the largest EPC jump when replacing oil or gas boilers. Hecker & Frères Énergie (HFE) factors this into your free thermal study and quote, with a realistic estimate for your home.",
-      },
-      {
         question: "Do heat pumps work well in northern France?",
         answer:
           "Yes, perfectly. Modern heat pumps remain efficient down to -15°C, and the climate in northern France (winter temperatures rarely below -5°C) is well suited. High-temperature heat pumps can even replace oil boilers without changing radiators. Seasonal performance (SCOP) remains high: between 3.5 and 4.5 in Hauts-de-France.",
-      },
-      {
-        question: "How long does heat pump installation take?",
-        answer:
-          "For an air-to-water heat pump replacing a boiler: 2 to 3 days. For a single-split air-to-air unit: 1 day. For a multi-split (3–4 indoor units): 2 days. Hecker & Frères Énergie (HFE) carries out a prior thermal study and precise sizing to ensure installation performance.",
       },
       {
         question: "What MaPrimeRénov' and CEE grants are available for a heat pump in 2026?",
@@ -443,21 +486,6 @@ const en = {
         question: "Does a heat pump need servicing?",
         answer:
           "Yes, heat pump servicing is mandatory since the decree of 30 July 2020: every 2 years for units under 12 kW, annually for units ≥ 12 kW. Hecker & Frères Énergie (HFE) offers maintenance contracts from €149 incl. VAT per year, including refrigerant circuit leak testing, filter cleaning and performance checks.",
-      },
-      {
-        question: "What is the lifespan of a heat pump?",
-        answer:
-          "A well-maintained heat pump lasts 15 to 20 years. Manufacturer warranty is typically 2 to 5 years, extendable to 7 or 10 years depending on brand (Panasonic, Daikin, Mitsubishi, Atlantic). Hecker & Frères Énergie (HFE) is a Panasonic partner and provides a ten-year installation warranty.",
-      },
-      {
-        question: "Are heat pumps noisy?",
-        answer:
-          "Recent heat pumps are very quiet: 38 to 55 dB(A) at 1 metre for the outdoor unit (equivalent to a refrigerator). Our team advises on optimal placement to comply with noise regulations (decree of 5 December 2006) and preserve neighbour comfort.",
-      },
-      {
-        question: "Do you install heat pumps in Marcq-en-Barœul and the Lille metropolitan area?",
-        answer:
-          "Yes. As an RGE QualiPAC-certified installer based in Lille, Hecker & Frères Énergie (HFE) installs heat pumps in Lille, La Madeleine, Marcq-en-Barœul, Lambersart, Villeneuve-d'Ascq, Roubaix, Tourcoing, Wasquehal and across our full 50 km service area. Thermal study and quotes are free.",
       },
     ],
   },

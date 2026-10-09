@@ -1,0 +1,13 @@
+---
+import BlogArticlePage from "../../templates/BlogArticlePage.astro";
+import { getBlogReportageTf1PacContent } from "@i18n";
+
+const locale = "fr" as const;
+---
+
+<BlogArticlePage
+  locale={locale}
+  content={getBlogReportageTf1PacContent(locale)}
+  routeId="blogReportageTf1Pac"
+  faqIdPrefix="blog-reportage-tf1-pac-faq"
+/>

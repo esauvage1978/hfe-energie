@@ -1,20 +1,23 @@
 ---
-import type { Locale } from "@i18n";
-import { pathFor } from "@i18n";
+import type { Locale, PageColorScheme } from "@i18n";
+import { getPageThemeClasses, pathFor } from "@i18n";
 import { getProjectsUi } from "@i18n/content/projects-shared";
 import { site } from "@data/site";
 import Icon from "./Icon.astro";
 
 interface Props {
   locale: Locale;
+  colorScheme?: PageColorScheme;
 }
 
-const { locale } = Astro.props;
+const { locale, colorScheme = "accent" } = Astro.props;
 const ui = getProjectsUi(locale);
+const theme = getPageThemeClasses(colorScheme);
+const btnClass = colorScheme === "primary" ? "btn btn-primary" : "btn btn-accent";
 ---
 
-<div class="mt-8 rounded-2xl bg-gradient-to-br from-accent-800 via-accent-900 to-accent-950 p-6 md:p-8 text-white shadow-xl overflow-hidden relative">
-  <div class="absolute top-0 right-0 w-48 h-48 bg-accent-500/20 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl pointer-events-none" aria-hidden="true" />
+<div class:list={["mt-8 rounded-2xl bg-gradient-to-br p-6 md:p-8 text-white shadow-xl overflow-hidden relative", theme.installCtaGradient]}>
+  <div class:list={["absolute top-0 right-0 w-48 h-48 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl pointer-events-none", theme.installCtaGlow]} aria-hidden="true" />
 
   <div class="relative flex flex-col md:flex-row md:items-center md:justify-between gap-6">
     <div class="flex items-start gap-4 max-w-xl">
@@ -25,16 +28,16 @@ const ui = getProjectsUi(locale);
         <p class="font-display font-extrabold text-lg md:text-xl text-white uppercase tracking-wide">
           {ui.installCta.badge}
         </p>
-        <p class="mt-1 text-sm md:text-base text-accent-100">{ui.installCta.subtitle}</p>
+        <p class:list={["mt-1 text-sm md:text-base", theme.installCtaSubtitle]}>{ui.installCta.subtitle}</p>
       </div>
     </div>
 
     <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
-      <a href={pathFor("contact", locale)} class="btn btn-accent shadow-md">
+      <a href={pathFor("contact", locale)} class:list={[btnClass, "shadow-md"]}>
         {ui.installCta.quote}
         <Icon name="arrow-right" size={16} />
       </a>
-      <a href={`tel:${site.phoneRaw}`} class="inline-flex items-center justify-center gap-2 text-white font-semibold text-sm hover:text-accent-100 transition-colors">
+      <a href={`tel:${site.phoneRaw}`} class:list={["inline-flex items-center justify-center gap-2 text-white font-semibold text-sm transition-colors", theme.installCtaPhoneHover]}>
         <Icon name="phone" size={16} />
         {site.phone}
       </a>

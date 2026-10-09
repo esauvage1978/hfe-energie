@@ -5,8 +5,10 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import Breadcrumbs from "@components/Breadcrumbs.astro";
 import CtaBanner from "@components/CtaBanner.astro";
 import Icon from "@components/Icon.astro";
+import Picture from "@components/Picture.astro";
 import StructuredData from "@components/StructuredData.astro";
 import Faq from "@components/Faq.astro";
+import { servicesImages } from "@data/assets";
 import { site } from "@data/site";
 
 interface Props {
@@ -29,20 +31,35 @@ const canonicalPath = pathFor("grants", locale);
   <StructuredData type="FAQPage" faqs={content.faq.items} slot="head" />
 
   <div class="container-page">
-    <Breadcrumbs items={content.breadcrumbs} />
+    <Breadcrumbs locale={locale} items={content.breadcrumbs} />
   </div>
 
   <section class="bg-gradient-to-br from-accent-50 via-white to-accent-50">
     <div class="container-page py-10 md:py-16">
-      <div class="max-w-3xl">
-        <span class="badge bg-accent-100 text-accent-800"><Icon name="euro" size={12} /> {content.hero.badge}</span>
-        <h1 class="mt-3 font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-neutral-900 leading-tight">
-          {content.hero.titleBefore}<span class="text-accent-700">{content.hero.titleHighlight}</span>
-        </h1>
-        <p class="mt-4 text-lg text-neutral-700">{content.hero.description}</p>
-        <div class="mt-6 flex flex-col sm:flex-row gap-3">
-          <a href={pathFor("contact", locale)} class="btn btn-accent"><Icon name="mail" size={18} /> {content.hero.ctaEstimate}</a>
-          <a href={`tel:${site.phoneRaw}`} class="btn btn-outline-accent"><Icon name="phone" size={18} /> {site.phone}</a>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="badge bg-accent-100 text-accent-800"><Icon name="euro" size={12} /> {content.hero.badge}</span>
+          <h1 class="mt-3 font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-neutral-900 leading-tight">
+            {content.hero.titleBefore}<span class="text-accent-700">{content.hero.titleHighlight}</span>
+          </h1>
+          <p class="mt-4 text-lg text-neutral-700">{content.hero.description}</p>
+          <div class="mt-6 flex flex-col sm:flex-row gap-3">
+            <a href={pathFor("contact", locale)} class="btn btn-accent"><Icon name="mail" size={18} /> {content.hero.ctaEstimate}</a>
+            <a href={`tel:${site.phoneRaw}`} class="btn btn-outline-accent"><Icon name="phone" size={18} /> {site.phone}</a>
+          </div>
+        </div>
+        <div>
+          <Picture
+            src={servicesImages.grants.src}
+            alt={servicesImages.grants.alt}
+            width={servicesImages.grants.width}
+            height={servicesImages.grants.height}
+            class="rounded-3xl shadow-xl border border-neutral-100 w-full aspect-[4/3] object-cover"
+            loading="eager"
+            fetchpriority="high"
+            decoding="sync"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+          />
         </div>
       </div>
     </div>

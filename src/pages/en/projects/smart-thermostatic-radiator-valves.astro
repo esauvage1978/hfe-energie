@@ -1,0 +1,40 @@
+---
+
+import ProjectsPage from "../../../templates/ProjectsPage.astro";
+
+import { getProjectsTetesThermostatiquesConnecteesContent } from "@i18n/content/projects-tetes-thermostatiques-connectees";
+
+import { pathFor } from "@i18n";
+
+
+
+const locale = "en";
+
+const content = getProjectsTetesThermostatiquesConnecteesContent(locale);
+
+---
+
+<ProjectsPage
+
+  locale={locale}
+
+  seo={content.seo}
+
+  breadcrumbs={[...content.breadcrumbs]}
+
+  canonicalPath={pathFor("projectsTetesThermostatiquesConnectees", locale)}
+
+  hero={content.hero}
+
+  intro={content.intro}
+
+  projectLabel=""
+
+  projects={[]}
+
+  cta={content.cta}
+
+  showInstallCta={false}
+
+/>
+

@@ -42,11 +42,19 @@ export interface ProjectBrand {
   warranties: readonly string[];
 }
 
+export interface ProjectContentSection {
+  title: string;
+  paragraphs?: readonly string[];
+  items?: readonly string[];
+  afterItems?: readonly string[];
+}
+
 export interface Project {
   slug: string;
   title: string;
   subtitle: string;
   description: string[];
+  sections?: readonly ProjectContentSection[];
   stats: readonly [ProjectStat, ProjectStat, ProjectStat, ProjectStat];
   beforeAfter: {
     before?: ProjectBeforeAfterSide;
@@ -61,11 +69,13 @@ export interface Project {
 const uiFr = {
   statsTitle: "Le chantier en chiffres",
   beforeAfterTitle: "Avant / Après",
+  installPhotosTitle: "L'installation en images",
   beforeLabel: "Avant",
   afterLabel: "Après",
   lightboxClose: "Fermer",
   lightboxPrev: "Photo précédente",
   lightboxNext: "Photo suivante",
+  lightboxPhoto: (n: number) => `Photo ${n}`,
   resultsTitle: "Le résultat",
   aboutTitle: "À propos de cette installation",
   galleryTitle: "Photos du chantier",
@@ -79,11 +89,13 @@ const uiFr = {
 const uiEn = {
   statsTitle: "The project in figures",
   beforeAfterTitle: "Before / After",
+  installPhotosTitle: "The installation in pictures",
   beforeLabel: "Before",
   afterLabel: "After",
   lightboxClose: "Close",
   lightboxPrev: "Previous photo",
   lightboxNext: "Next photo",
+  lightboxPhoto: (n: number) => `Photo ${n}`,
   resultsTitle: "The result",
   aboutTitle: "About this installation",
   galleryTitle: "Project photos",
@@ -98,7 +110,7 @@ export function getProjectsUi(locale: Locale) {
   return locale === "en" ? uiEn : uiFr;
 }
 
-export type ProjectBase = Pick<Project, "slug" | "title" | "subtitle" | "description" | "images">;
+export type ProjectBase = Pick<Project, "slug" | "title" | "subtitle" | "description" | "images" | "sections">;
 
 export function buildProjects(bases: readonly ProjectBase[], locale: Locale, enrich: (slug: string, loc: "fr" | "en") => ProjectEnrichment | undefined): Project[] {
   const loc = locale === "en" ? "en" : "fr";

@@ -5,6 +5,20 @@ import { getProjectEnrichment } from "./projects-enrichment";
 
 export type { Project, ProjectImage } from "./projects-shared";
 
+const heroImageFr: ProjectImage = {
+  src: "/projet/pompe_a_chaleur_air_eau/hero.jpg",
+  alt: "Unité extérieure de pompe à chaleur HFE installée devant une maison contemporaine avec piscine",
+  width: 1024,
+  height: 682,
+};
+
+const heroImageEn: ProjectImage = {
+  src: "/projet/pompe_a_chaleur_air_eau/hero.jpg",
+  alt: "HFE outdoor heat pump unit installed at a contemporary home with swimming pool",
+  width: 1024,
+  height: 682,
+};
+
 const chantier1Images: ProjectImage[] = [
   { src: "/projet/pompe_a_chaleur_air_eau/chantier1/2.jpg", alt: "PAC Panasonic 9 kW — module intérieur et ballon ECS", width: 1206, height: 1586 },
   { src: "/projet/pompe_a_chaleur_air_eau/chantier1/3.jpg", alt: "PAC Panasonic 9 kW — préparation pose unité extérieure", width: 1206, height: 1592 },
@@ -23,15 +37,43 @@ const chantier3Images: ProjectImage[] = [
   { src: "/projet/pompe_a_chaleur_air_eau/chantier3/3.jpg", alt: "Chauffe-eau thermodynamique Atlantic 250 L", width: 1206, height: 1600 },
 ];
 
+const chantier4Images: ProjectImage[] = [
+  {
+    src: "/projet/pompe_a_chaleur_air_eau/chantier4/3.jpg",
+    alt: "PAC Panasonic Aquarea T-CAP Monobloc R290 25 kW — unité extérieure installée",
+    width: 768,
+    height: 1024,
+  },
+  {
+    src: "/projet/pompe_a_chaleur_air_eau/chantier4/apres.jpg",
+    alt: "Ballon thermodynamique Atlantic 250 L, ballon tampon Thermador et réseau hydraulique",
+    width: 1024,
+    height: 768,
+  },
+  {
+    src: "/projet/pompe_a_chaleur_air_eau/chantier4/1.jpg",
+    alt: "Local technique — CET Atlantic, ballon tampon et tuyauterie acier électrozingué",
+    width: 768,
+    height: 1024,
+  },
+  {
+    src: "/projet/pompe_a_chaleur_air_eau/chantier4/2.jpg",
+    alt: "Installation intérieure — ballon Atlantic, vase d'expansion et calorifuge",
+    width: 768,
+    height: 1024,
+  },
+];
+
 const fr = {
   seo: {
     title: "Nos réalisations PAC air-eau à Lille | Pompe à chaleur — HFE",
     description:
-      "Découvrez 3 chantiers de pompe à chaleur air-eau réalisés par Hecker & Frères Énergie (HFE) à Lille et métropole : remplacement chaudière gaz, création circuit chauffage, chauffe-eau thermodynamique.",
+      "Découvrez nos chantiers de pompe à chaleur air-eau réalisés par Hecker & Frères Énergie (HFE) à Lille et métropole : remplacement chaudière fioul ou gaz, monobloc Panasonic, chauffe-eau thermodynamique.",
     keywords: [
       "réalisation PAC air-eau Lille",
       "chantier pompe à chaleur",
-      "remplacement chaudière gaz PAC",
+      "remplacement chaudière fioul PAC",
+      "PAC Panasonic monobloc R290",
       "installation PAC Panasonic Lille",
       "avant après pompe à chaleur",
     ],
@@ -45,8 +87,9 @@ const fr = {
     badge: "Nos réalisations",
     title: "Pompe à chaleur air-eau : nos chantiers",
     description:
-      "Chaque installation est différente. Découvrez 3 projets de pompe à chaleur air-eau réalisés par Hecker & Frères Énergie (HFE) à Lille et dans la métropole lilloise — du remplacement de chaudière gaz à la création complète d'un réseau de chauffage central.",
+      "Chaque installation est différente. Découvrez nos projets de pompe à chaleur air-eau réalisés par Hecker & Frères Énergie (HFE) à Lille et dans la métropole lilloise — du remplacement de chaudière fioul ou gaz à la création complète d'un réseau de chauffage central.",
     ctaQuote: "Demander un devis",
+    image: heroImageFr,
   },
   intro: {
     title: "Installation de pompe à chaleur air-eau",
@@ -69,6 +112,31 @@ const fr = {
   },
   projectLabel: "Chantier",
   projects: [
+    {
+      slug: "panasonic-25kw-monobloc-r290-remplacement-chaudiere-fioul",
+      title: "Remplacement chaudière fioul → PAC Panasonic 25 kW monobloc R290",
+      subtitle: "Panasonic Aquarea T-CAP Monobloc R290 25 kW + ballon thermodynamique Atlantic 250 L",
+      description: [
+        "Nouvelle réalisation signée Hecker Frères Énergie : nos équipes ont remplacé une ancienne chaudière fioul par une pompe à chaleur Panasonic Aquarea T-CAP Monobloc R290 de 25 kW, dernière génération. Cette PAC haute performance utilise le fluide frigorigène naturel R290 et offre un excellent rendement, même par très basses températures, tout en alimentant les radiateurs existants grâce à sa capacité à produire de l'eau à haute température.",
+        "Pour répondre aux besoins d'une famille de cinq personnes, nous avons également installé un ballon thermodynamique Atlantic de 250 litres pour la production d'eau chaude sanitaire — un excellent compromis entre confort, économies d'énergie et respect de l'environnement.",
+        "Cette rénovation a été réalisée par deux techniciens en quatre jours, avec le souci du détail et dans le respect des normes en vigueur. Les propriétaires bénéficient désormais d'un système de chauffage et d'ECS plus économique, plus écologique, plus silencieux et parfaitement adapté à leur habitation.",
+      ],
+      sections: [
+        {
+          title: "Les travaux réalisés",
+          items: [
+            "Dépose complète de l'ancienne chaudière fioul.",
+            "Installation d'une pompe à chaleur Panasonic Aquarea T-CAP Monobloc R290 de 25 kW.",
+            "Pose d'un ballon thermodynamique Atlantic 250 L.",
+            "Réalisation de l'ensemble du réseau hydraulique en acier électrozingué Ø42, garantissant robustesse et longévité.",
+            "Pose d'un calorifuge sur toutes les canalisations afin de limiter les pertes thermiques et d'améliorer le rendement global.",
+            "Installation d'un vase d'expansion sanitaire sur le ballon thermodynamique pour protéger le circuit contre les variations de pression.",
+            "Réglages hydrauliques, mise en service et optimisation des performances.",
+          ],
+        },
+      ],
+      images: chantier4Images,
+    },
     {
       slug: "panasonic-12kw-chauffe-eau-thermodynamique-desembouage",
       title: "PAC Panasonic 12 kW + chauffe-eau thermodynamique Atlantic + désembouage",
@@ -112,11 +180,12 @@ const en = {
   seo: {
     title: "Our air-to-water heat pump projects in Lille | HFE",
     description:
-      "Discover 3 air-to-water heat pump projects by Hecker & Frères Énergie (HFE) in Lille: gas boiler replacement, central heating creation, thermodynamic water heater installation.",
+      "Discover our air-to-water heat pump projects by Hecker & Frères Énergie (HFE) in Lille: oil or gas boiler replacement, Panasonic monobloc, thermodynamic water heater installation.",
     keywords: [
       "air-to-water heat pump project Lille",
       "heat pump installation case study",
-      "gas boiler replacement heat pump",
+      "oil boiler replacement heat pump",
+      "Panasonic monobloc R290",
       "Panasonic heat pump installer Lille",
       "before after heat pump",
     ],
@@ -130,8 +199,9 @@ const en = {
     badge: "Our projects",
     title: "Air-to-water heat pump: our installations",
     description:
-      "Every installation is different. Discover 3 air-to-water heat pump projects completed by Hecker & Frères Énergie (HFE) in Lille and the metropolitan area — from gas boiler replacement to full central heating creation.",
+      "Every installation is different. Discover our air-to-water heat pump projects completed by Hecker & Frères Énergie (HFE) in Lille and the metropolitan area — from oil or gas boiler replacement to full central heating creation.",
     ctaQuote: "Request a quote",
+    image: heroImageEn,
   },
   intro: {
     title: "Air-to-water heat pump installation",
@@ -154,6 +224,31 @@ const en = {
   },
   projectLabel: "Project",
   projects: [
+    {
+      slug: "panasonic-25kw-monobloc-r290-oil-boiler-replacement",
+      title: "Oil boiler replacement → Panasonic 25 kW monobloc R290 heat pump",
+      subtitle: "Panasonic Aquarea T-CAP Monobloc R290 25 kW + Atlantic 250 L thermodynamic water heater",
+      description: [
+        "A new Hecker Frères Énergie project: our teams replaced an old oil boiler with a latest-generation Panasonic Aquarea T-CAP Monobloc R290 25 kW heat pump. This high-performance unit uses natural R290 refrigerant and delivers excellent efficiency even in very cold weather, while supplying existing radiators thanks to its high-temperature water output.",
+        "To meet the needs of a family of five, we also installed an Atlantic 250-litre thermodynamic water heater for domestic hot water — an excellent balance of comfort, energy savings and environmental performance.",
+        "The renovation was completed by two technicians in four days, with careful detailing and full compliance with current standards. The owners now enjoy a heating and DHW system that is more economical, greener, quieter and perfectly suited to their home.",
+      ],
+      sections: [
+        {
+          title: "Work carried out",
+          items: [
+            "Full removal of the old oil boiler.",
+            "Installation of a Panasonic Aquarea T-CAP Monobloc R290 25 kW heat pump.",
+            "Fitting of an Atlantic 250 L thermodynamic water heater.",
+            "Complete hydraulic network in Ø42 electro-galvanised steel for durability.",
+            "Thermal insulation on all pipework to limit heat loss and improve overall efficiency.",
+            "Sanitary expansion vessel on the thermodynamic cylinder to protect against pressure variations.",
+            "Hydraulic commissioning, start-up and performance optimisation.",
+          ],
+        },
+      ],
+      images: chantier4Images,
+    },
     {
       slug: "panasonic-12kw-thermodynamic-heater-flushing",
       title: "Panasonic 12 kW + Atlantic thermodynamic water heater + system flush",

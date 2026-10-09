@@ -50,6 +50,14 @@
       "required": false,
       "fallback": "—"
     },
+    "siren": {
+      "formField": "siren",
+      "label": "SIREN",
+      "required": false,
+      "requiredWhen": "client_type = professionnel",
+      "transform": "9 chiffres sans espaces",
+      "fallback": "—"
+    },
     "service": {
       "formField": "service",
       "label": "Code type de projet",
@@ -61,6 +69,7 @@
         "chauffe-eau",
         "plomberie",
         "depannage",
+        "recrutement",
         "autre"
       ]
     },
@@ -75,6 +84,7 @@
         "chauffe-eau": "Chauffe-eau thermodynamique",
         "plomberie": "Plomberie / sanitaire",
         "depannage": "Dépannage urgent",
+        "recrutement": "Recrutement",
         "autre": "Autre projet"
       }
     },

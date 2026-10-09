@@ -27,7 +27,7 @@ const canonicalPath = pathFor("commercial", locale);
   <StructuredData type="FAQPage" faqs={content.faq.items} slot="head" />
 
   <div class="container-page">
-    <Breadcrumbs items={content.breadcrumbs} />
+    <Breadcrumbs locale={locale} items={content.breadcrumbs} />
   </div>
 
   <section class="bg-gradient-to-br from-accent-50 to-white">
@@ -104,10 +104,15 @@ const canonicalPath = pathFor("commercial", locale);
     variant="clients"
   />
 
-  <div class="container-page pb-6 -mt-4">
-    <a href={pathFor("projectsClimPro", locale)} class="link-projects">
+  <div class="container-page pb-6 -mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-8">
+    <a href={pathFor("projectsPetitTertiaire", locale)} class="link-projects">
       <Icon name="star" size={14} />
-      {locale === "fr" ? "Voir nos chantiers de climatisation professionnelle en détail" : "See our commercial air conditioning projects in detail"}
+      {locale === "fr" ? "Voir nos réalisations petit tertiaire" : "See our small commercial projects"}
+      <Icon name="arrow-right" size={14} />
+    </a>
+    <a href={pathFor("projectsDrvTertiaire", locale)} class="link-projects">
+      <Icon name="star" size={14} />
+      {locale === "fr" ? "Voir nos réalisations système DRV tertiaire" : "See our commercial VRF system projects"}
       <Icon name="arrow-right" size={14} />
     </a>
   </div>

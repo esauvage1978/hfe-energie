@@ -66,8 +66,8 @@ const fr = {
     cards: [
       { slug: "pompe-a-chaleur", title: "Pompes à chaleur", short: "Air / Eau & Air / Air", iconUrl: "/assets/icons-services/pac.png" },
       { slug: "climatisation", title: "Climatisation", short: "Réversible", iconUrl: "/assets/icons-services/clim.png" },
-      { slug: "chauffage", title: "Chauffage", short: "Toutes énergies", iconUrl: "/assets/icons-services/chauffage.png" },
-      { slug: "plomberie", title: "Plomberie", short: "Installation & Rénovation", iconUrl: "/assets/icons-services/plomberie.png" },
+      { slug: "chauffage", title: "Chauffage", short: "Toutes énergies", iconUrl: "/assets/icons-services/chauffage.png", colorScheme: "accent" as const },
+      { slug: "plomberie", title: "Plomberie", short: "Installation & Rénovation", iconUrl: "/assets/icons-services/plomberie-primary.png", colorScheme: "primary" as const },
     ],
     advantages: [
       { icon: "file-text" as const, title: "Étude personnalisée", text: "et devis gratuit", hrefRoute: "contact" as const },
@@ -237,8 +237,8 @@ const en = {
     cards: [
       { slug: "heat-pump", title: "Heat pumps", short: "Air-to-water & air-to-air", iconUrl: "/assets/icons-services/pac.png" },
       { slug: "air-conditioning", title: "Air conditioning", short: "Reversible", iconUrl: "/assets/icons-services/clim.png" },
-      { slug: "heating", title: "Heating", short: "All energy types", iconUrl: "/assets/icons-services/chauffage.png" },
-      { slug: "plumbing", title: "Plumbing", short: "Installation & renovation", iconUrl: "/assets/icons-services/plomberie.png" },
+      { slug: "heating", title: "Heating", short: "All energy types", iconUrl: "/assets/icons-services/chauffage.png", colorScheme: "accent" as const },
+      { slug: "plumbing", title: "Plumbing", short: "Installation & renovation", iconUrl: "/assets/icons-services/plomberie-primary.png", colorScheme: "primary" as const },
     ],
     advantages: [
       { icon: "file-text" as const, title: "Personalised survey", text: "and free quote", hrefRoute: "contact" as const },
