@@ -65,14 +65,18 @@ async function main() {
     .filter((url) => url !== "/" && !EXCLUDED.has(url))
     .sort();
 
+  // Condition sur THE_REQUEST (URL demandée par le navigateur) : la règle ne se
+  // déclenche jamais sur la réécriture interne /page → page.html (sinon boucle
+  // 301 sur OVH, où REDIRECT_STATUS n'est pas fiable).
+  const rule = (pattern, target) => [
+    `  RewriteCond %{THE_REQUEST} ^\\S+\\s/+${pattern}[?\\s]`,
+    `  RewriteRule ^ ${target} [R=301,L]`,
+  ];
   const rules = [
     // Accueil : /index, /index.html, /index.html/ → /
-    `  RewriteRule ^index(?:\\.html)?/*$ ${ORIGIN}/ [R=301,L]`,
+    rule("index(?:\\.html)?/*", `${ORIGIN}/`),
     // Chaque page : /page/ , /page.html , /page.html/ → /page (une seule redirection)
-    ...urls.map((url) => {
-      const p = escapeRegex(url.slice(1));
-      return `  RewriteRule ^${p}(?:\\.html/*|/+)$ ${ORIGIN}${url} [R=301,L]`;
-    }),
+    ...urls.map((url) => rule(`${escapeRegex(url.slice(1))}(?:\\.html/*|/+)`, `${ORIGIN}${url}`)),
   ];
 
   let htaccess = await readFile(HTACCESS, "utf8");
@@ -82,7 +86,7 @@ async function main() {
     BEGIN,
     "  # Généré par scripts/generate-slash-redirects.mjs — ne pas éditer à la main",
     "  # /page/ , /page.html , /page.html/ (www ou non) → https://hfe-energie.fr/page",
-    ...rules,
+    ...rules.flat(),
     `  ${END}`,
     "",
   ].join(eol);
