@@ -13,7 +13,7 @@ export const site = {
   longDescription:
     "Hecker & Frères Énergie (HFE) est une entreprise artisanale spécialisée dans les énergies renouvelables à Lille et son agglomération. Installation, maintenance et dépannage de pompes à chaleur air-eau, climatisation réversible, chaudières et plomberie. Certifiée RGE QualiPAC.",
   /** Auteur des articles du blog (validé par HFE) */
-  blogAuthor: "Kevin Hecker",
+  blogAuthor: "Kévin Hecker",
   email: "contact@hfe-energie.fr",
   phone: "07 67 34 12 53",
   phoneRaw: "+33767341253",
