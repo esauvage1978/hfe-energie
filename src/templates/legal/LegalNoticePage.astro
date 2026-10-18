@@ -1,5 +1,6 @@
 ---
 import type { Locale } from "@i18n";
+import ProtectedEmail from "@components/ProtectedEmail.astro";
 import { pathFor } from "@i18n";
 import LegalLayout from "@layouts/LegalLayout.astro";
 import { legal } from "@data/legal";
@@ -57,7 +58,7 @@ const updatedAt = isEn ? "June 3, 2026" : legal.updatedAt.mentionsLegales;
         <li><strong>Company category</strong>: {legal.company.companyCategory}</li>
         <li><strong>Collective agreement</strong>: {legal.company.collectiveAgreement}</li>
         <li><strong>Phone</strong>: <a href={`tel:${legal.company.phoneRaw}`}>{legal.company.phone}</a></li>
-        <li><strong>Email</strong>: <a href={`mailto:${legal.company.email}`}>{legal.company.email}</a></li>
+        <li><strong>Email</strong>: <ProtectedEmail email={legal.company.email} /></li>
       </ul>
 
       <h2>2. Publication director</h2>
@@ -164,7 +165,7 @@ const updatedAt = isEn ? "June 3, 2026" : legal.updatedAt.mentionsLegales;
         <li><strong>Mediator</strong>: {legal.mediator.name}</li>
         <li><strong>Address</strong>: {legal.mediator.address}</li>
         <li><strong>Website</strong>: <a href={legal.mediator.website} target="_blank" rel="noopener noreferrer">{legal.mediator.website}</a></li>
-        <li><strong>Email</strong>: <a href={`mailto:${legal.mediator.email}`}>{legal.mediator.email}</a></li>
+        <li><strong>Email</strong>: <ProtectedEmail email={legal.mediator.email} /></li>
       </ul>
       <p>
         The European Commission also provides an Online Dispute Resolution (ODR) platform:
@@ -182,7 +183,7 @@ const updatedAt = isEn ? "June 3, 2026" : legal.updatedAt.mentionsLegales;
       <h2>11. Contact</h2>
       <p>For any questions regarding this legal notice:</p>
       <ul>
-        <li>By email: <a href={`mailto:${legal.company.email}`}>{legal.company.email}</a></li>
+        <li>By email: <ProtectedEmail email={legal.company.email} /></li>
         <li>By phone: <a href={`tel:${legal.company.phoneRaw}`}>{legal.company.phone}</a></li>
         <li>By post: {legal.company.legalName} — {legal.company.address}</li>
       </ul>
@@ -215,7 +216,7 @@ const updatedAt = isEn ? "June 3, 2026" : legal.updatedAt.mentionsLegales;
         <li><strong>Catégorie d'entreprise</strong> : {legal.company.companyCategory}</li>
         <li><strong>Convention(s) collective(s)</strong> : {legal.company.collectiveAgreement}</li>
         <li><strong>Téléphone</strong> : <a href={`tel:${legal.company.phoneRaw}`}>{legal.company.phone}</a></li>
-        <li><strong>E-mail</strong> : <a href={`mailto:${legal.company.email}`}>{legal.company.email}</a></li>
+        <li><strong>E-mail</strong> : <ProtectedEmail email={legal.company.email} /></li>
       </ul>
 
       <h2>2. Directeur de la publication</h2>
@@ -329,7 +330,7 @@ const updatedAt = isEn ? "June 3, 2026" : legal.updatedAt.mentionsLegales;
         <li><strong>Médiateur</strong> : {legal.mediator.name}</li>
         <li><strong>Adresse</strong> : {legal.mediator.address}</li>
         <li><strong>Site web</strong> : <a href={legal.mediator.website} target="_blank" rel="noopener noreferrer">{legal.mediator.website}</a></li>
-        <li><strong>E-mail</strong> : <a href={`mailto:${legal.mediator.email}`}>{legal.mediator.email}</a></li>
+        <li><strong>E-mail</strong> : <ProtectedEmail email={legal.mediator.email} /></li>
       </ul>
       <p>
         Une plateforme européenne de Règlement en Ligne des Litiges (RLL) est également mise à disposition
@@ -348,7 +349,7 @@ const updatedAt = isEn ? "June 3, 2026" : legal.updatedAt.mentionsLegales;
       <h2>11. Contact</h2>
       <p>Pour toute question relative aux présentes mentions légales :</p>
       <ul>
-        <li>Par e-mail : <a href={`mailto:${legal.company.email}`}>{legal.company.email}</a></li>
+        <li>Par e-mail : <ProtectedEmail email={legal.company.email} /></li>
         <li>Par téléphone : <a href={`tel:${legal.company.phoneRaw}`}>{legal.company.phone}</a></li>
         <li>Par courrier : {legal.company.legalName} — {legal.company.address}</li>
       </ul>

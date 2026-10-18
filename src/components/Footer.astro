@@ -1,5 +1,6 @@
 ---
 import type { Locale } from "@i18n";
+import ProtectedEmail from "@components/ProtectedEmail.astro";
 import { getUi, pathFor } from "@i18n";
 import { site } from "@data/site";
 import { logos } from "@data/assets";
@@ -151,9 +152,7 @@ const socialLinks = [
           </li>
           <li class="flex items-center gap-2">
             <Icon name="mail" size={18} class="text-accent-400 shrink-0" />
-            <a href={`mailto:${site.email}`} class="text-neutral-200 hover:text-accent-300 break-all">
-              {site.email}
-            </a>
+            <ProtectedEmail email={site.email} class="text-neutral-200 hover:text-accent-300 break-all" />
           </li>
           <li class="flex items-start gap-2">
             <Icon name="clock" size={18} class="text-accent-400 mt-0.5 shrink-0" />

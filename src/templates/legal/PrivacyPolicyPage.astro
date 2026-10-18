@@ -1,5 +1,6 @@
 ---
 import type { Locale } from "@i18n";
+import ProtectedEmail from "@components/ProtectedEmail.astro";
 import { pathFor } from "@i18n";
 import LegalLayout from "@layouts/LegalLayout.astro";
 import { legal } from "@data/legal";
@@ -48,7 +49,7 @@ const updatedAt = isEn ? "June 3, 2026" : legal.updatedAt.confidentialite;
         <li>{legal.company.address}</li>
         <li>SIRET: {legal.company.siret}</li>
         <li>
-          Contact: <a href={`mailto:${legal.company.email}`}>{legal.company.email}</a> ·{" "}
+          Contact: <ProtectedEmail email={legal.company.email} /> ·{" "}
           <a href={`tel:${legal.company.phoneRaw}`}>{legal.company.phone}</a>
         </li>
       </ul>
@@ -203,7 +204,7 @@ const updatedAt = isEn ? "June 3, 2026" : legal.updatedAt.confidentialite;
       <h3>How to exercise your rights</h3>
       <p>To exercise any of these rights, please send us your request:</p>
       <ul>
-        <li>By email: <a href={`mailto:${legal.company.email}`}>{legal.company.email}</a></li>
+        <li>By email: <ProtectedEmail email={legal.company.email} /></li>
         <li>By post: {legal.company.legalName} - {legal.company.address}</li>
       </ul>
       <p>
@@ -257,7 +258,7 @@ const updatedAt = isEn ? "June 3, 2026" : legal.updatedAt.confidentialite;
         <li>{legal.company.address}</li>
         <li>SIRET : {legal.company.siret}</li>
         <li>
-          Contact : <a href={`mailto:${legal.company.email}`}>{legal.company.email}</a> ·{" "}
+          Contact : <ProtectedEmail email={legal.company.email} /> ·{" "}
           <a href={`tel:${legal.company.phoneRaw}`}>{legal.company.phone}</a>
         </li>
       </ul>
@@ -414,7 +415,7 @@ const updatedAt = isEn ? "June 3, 2026" : legal.updatedAt.confidentialite;
       <h3>Comment exercer vos droits ?</h3>
       <p>Pour exercer l'un de ces droits, adressez-nous votre demande :</p>
       <ul>
-        <li>Par e-mail : <a href={`mailto:${legal.company.email}`}>{legal.company.email}</a></li>
+        <li>Par e-mail : <ProtectedEmail email={legal.company.email} /></li>
         <li>Par courrier : {legal.company.legalName} - {legal.company.address}</li>
       </ul>
       <p>

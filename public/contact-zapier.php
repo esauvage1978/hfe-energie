@@ -23,11 +23,54 @@ if (!is_array($data)) {
     exit;
 }
 
-// Honeypot — réponse silencieuse comme le client
-if (!empty($data['website'])) {
+/* --- Anti-robot (sans captcha, même logique que emmanuelsauvage.fr) ---
+ * Honeypot, délai minimal de remplissage, POST direct sans horodatage,
+ * charabia, partie locale d'e-mail truffée de points, origine étrangère.
+ * Réponse = faux succès : le robot ne sait pas qu'il est filtré.
+ * Chaque rejet est tracé dans le journal d'erreurs PHP (logs OVH) pour
+ * repérer d'éventuels faux positifs.
+ */
+function hfe_spam_reject(string $why): void
+{
+    error_log('[contact-antispam] ' . $why . ' ip=' . ($_SERVER['REMOTE_ADDR'] ?? '?'));
     http_response_code(200);
     echo json_encode(['ok' => true]);
     exit;
+}
+
+function hfe_looks_gibberish(string $s): bool
+{
+    $s = trim($s);
+    if ($s === '' || preg_match('/\s/u', $s)) {
+        return false; // un texte humain contient des espaces
+    }
+    if (mb_strlen($s) < 12 || !preg_match('/^[A-Za-z]+$/', $s)) {
+        return false;
+    }
+    $caseChanges = preg_match_all('/[a-z][A-Z]|[A-Z][a-z]/', $s);
+    return $caseChanges >= (int) (mb_strlen($s) / 4); // ex. rPEZEZMpmNDnWYMRUOjUv
+}
+
+// Origine : un navigateur envoie Origin sur un fetch POST ; on refuse un autre site.
+$origin = (string) ($_SERVER['HTTP_ORIGIN'] ?? '');
+if ($origin !== '' && !preg_match('#^https?://(www\.)?hfe-energie\.fr(:\d+)?$#i', $origin)
+    && !preg_match('#^https?://(localhost|127\.0\.0\.1)(:\d+)?$#', $origin)) {
+    hfe_spam_reject('foreign origin: ' . $origin);
+}
+
+// Honeypot
+if (!empty($data['website'])) {
+    hfe_spam_reject('honeypot');
+}
+
+// Délai : form_ts posé à l'affichage du formulaire, fill_ms = durée de saisie
+$formTs = (int) ($data['form_ts'] ?? 0);
+$fillMs = (int) ($data['fill_ms'] ?? 0);
+if ($formTs <= 0) {
+    hfe_spam_reject('no form_ts (POST direct)');
+}
+if ($fillMs < 3000) {
+    hfe_spam_reject('too fast: ' . $fillMs . 'ms');
 }
 
 $clientTypeLabels = [
@@ -97,6 +140,13 @@ if (strlen($message) < 10) {
     exit;
 }
 
+if (hfe_looks_gibberish($name) || hfe_looks_gibberish($message)) {
+    hfe_spam_reject('gibberish name/message');
+}
+if (preg_match('/^(.+?)@/', $email, $em) && substr_count($em[1], '.') >= 3) {
+    hfe_spam_reject('dotted email local part');
+}
+
 function normalizePhoneRaw(string $phone): string
 {
     $digits = preg_replace('/\D/', '', $phone) ?? '';
@@ -133,7 +183,7 @@ $payload = [
     'submitted_at' => $now,
 ];
 
-$webhookUrl = 'https://webhooky.builders/webhook/form/a03063bda3024ab41fc1-83ec-4dd9-9066-3d25f81d0c4e';
+$webhookUrl = getenv('CONTACT_WEBHOOK_URL') ?: 'https://webhooky.builders/webhook/form/a03063bda3024ab41fc1-83ec-4dd9-9066-3d25f81d0c4e';
 $jsonPayload = json_encode($payload, JSON_UNESCAPED_UNICODE);
 
 $ch = curl_init($webhookUrl);

@@ -1,5 +1,6 @@
 ---
 import type { Locale } from "@i18n";
+import ProtectedEmail from "@components/ProtectedEmail.astro";
 import { pathFor } from "@i18n";
 import LegalLayout from "@layouts/LegalLayout.astro";
 import { legal } from "@data/legal";
@@ -91,7 +92,7 @@ const updatedAt = isEn ? "May 16, 2026" : legal.updatedAt.cgv;
       </p>
       <p>
         To exercise this right, the Customer may use the withdrawal form attached to the quote or notify their
-        decision unambiguously to {legal.company.email}, by post to {legal.company.address}, or by any other
+        decision unambiguously to <ProtectedEmail email={legal.company.email} link={false} />, by post to {legal.company.address}, or by any other
         written means.
       </p>
 
@@ -104,7 +105,7 @@ const updatedAt = isEn ? "May 16, 2026" : legal.updatedAt.cgv;
 
       <h3>Withdrawal form template</h3>
       <p class="bg-neutral-50 p-4 rounded-lg border border-neutral-200 text-sm">
-        To the attention of {legal.company.legalName}, {legal.company.address}, email: {legal.company.email}<br /><br />
+        To the attention of {legal.company.legalName}, {legal.company.address}, email: <ProtectedEmail email={legal.company.email} link={false} /><br /><br />
         I hereby notify you of my withdrawal from the contract for the following service:
         [identification of the service]<br /><br />
         Ordered on: [date]<br />
@@ -230,7 +231,7 @@ const updatedAt = isEn ? "May 16, 2026" : legal.updatedAt.cgv;
       <p>For any breakdown or malfunction, you may contact us:</p>
       <ul>
         <li>By phone: <a href={`tel:${legal.company.phoneRaw}`}>{legal.company.phone}</a></li>
-        <li>By email: <a href={`mailto:${legal.company.email}`}>{legal.company.email}</a></li>
+        <li>By email: <ProtectedEmail email={legal.company.email} /></li>
       </ul>
 
       <h2>Article 12 - Financial grants (MaPrimeRénov', CEE)</h2>
@@ -256,7 +257,7 @@ const updatedAt = isEn ? "May 16, 2026" : legal.updatedAt.cgv;
       <h2>Article 14 - Complaints & consumer mediation</h2>
       <p>Any complaint must be sent in writing to {legal.company.name}:</p>
       <ul>
-        <li>By email: <a href={`mailto:${legal.company.email}`}>{legal.company.email}</a></li>
+        <li>By email: <ProtectedEmail email={legal.company.email} /></li>
         <li>By registered post with acknowledgement of receipt to: {legal.company.address}</li>
       </ul>
       <p>
@@ -267,7 +268,7 @@ const updatedAt = isEn ? "May 16, 2026" : legal.updatedAt.cgv;
         <li><strong>{legal.mediator.name}</strong></li>
         <li>{legal.mediator.address}</li>
         <li><a href={legal.mediator.website} target="_blank" rel="noopener noreferrer">{legal.mediator.website}</a></li>
-        <li><a href={`mailto:${legal.mediator.email}`}>{legal.mediator.email}</a></li>
+        <li><ProtectedEmail email={legal.mediator.email} /></li>
       </ul>
       <p>
         European Online Dispute Resolution platform:
@@ -347,7 +348,7 @@ const updatedAt = isEn ? "May 16, 2026" : legal.updatedAt.cgv;
       </p>
       <p>
         Pour exercer ce droit, le Client peut utiliser le formulaire de rétractation joint au devis ou
-        notifier sa décision sans ambiguïté à l'adresse {legal.company.email}, par courrier à l'adresse
+        notifier sa décision sans ambiguïté à l'adresse <ProtectedEmail email={legal.company.email} link={false} />, par courrier à l'adresse
         {legal.company.address}, ou par tout autre moyen écrit.
       </p>
 
@@ -360,7 +361,7 @@ const updatedAt = isEn ? "May 16, 2026" : legal.updatedAt.cgv;
 
       <h3>Modèle de formulaire de rétractation</h3>
       <p class="bg-neutral-50 p-4 rounded-lg border border-neutral-200 text-sm">
-        À l'attention de {legal.company.legalName}, {legal.company.address}, e-mail : {legal.company.email}<br /><br />
+        À l'attention de {legal.company.legalName}, {legal.company.address}, e-mail : <ProtectedEmail email={legal.company.email} link={false} /><br /><br />
         Je vous notifie par la présente ma rétractation du contrat portant sur la prestation suivante :
         [identification de la prestation]<br /><br />
         Commandé le : [date]<br />
@@ -487,7 +488,7 @@ const updatedAt = isEn ? "May 16, 2026" : legal.updatedAt.cgv;
       <p>Pour toute panne ou dysfonctionnement, vous pouvez nous contacter :</p>
       <ul>
         <li>Par téléphone : <a href={`tel:${legal.company.phoneRaw}`}>{legal.company.phone}</a></li>
-        <li>Par e-mail : <a href={`mailto:${legal.company.email}`}>{legal.company.email}</a></li>
+        <li>Par e-mail : <ProtectedEmail email={legal.company.email} /></li>
       </ul>
 
       <h2>Article 12 - Aides financières (MaPrimeRénov', CEE)</h2>
@@ -513,7 +514,7 @@ const updatedAt = isEn ? "May 16, 2026" : legal.updatedAt.cgv;
       <h2>Article 14 - Réclamations & médiation de la consommation</h2>
       <p>Toute réclamation doit être adressée par écrit à {legal.company.name} :</p>
       <ul>
-        <li>Par e-mail : <a href={`mailto:${legal.company.email}`}>{legal.company.email}</a></li>
+        <li>Par e-mail : <ProtectedEmail email={legal.company.email} /></li>
         <li>Par courrier recommandé avec accusé de réception à l'adresse : {legal.company.address}</li>
       </ul>
       <p>
@@ -524,7 +525,7 @@ const updatedAt = isEn ? "May 16, 2026" : legal.updatedAt.cgv;
         <li><strong>{legal.mediator.name}</strong></li>
         <li>{legal.mediator.address}</li>
         <li><a href={legal.mediator.website} target="_blank" rel="noopener noreferrer">{legal.mediator.website}</a></li>
-        <li><a href={`mailto:${legal.mediator.email}`}>{legal.mediator.email}</a></li>
+        <li><ProtectedEmail email={legal.mediator.email} /></li>
       </ul>
       <p>
         Plateforme européenne de Règlement en Ligne des Litiges :

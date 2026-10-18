@@ -32,7 +32,7 @@ const localBusiness = {
   description: site.longDescription,
   url: site.baseUrl,
   telephone: site.phoneRaw,
-  email: site.email,
+  // email volontairement omis : évite d'exposer l'adresse en clair aux robots (cf. ProtectedEmail.astro)
   image: `${site.baseUrl}/assets/pompeAChaleur/pompeAChaleur.jpg`,
   logo: `${site.baseUrl}/assets/logo/hfe-sansFond.png`,
   priceRange: "€€",

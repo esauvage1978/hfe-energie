@@ -1,5 +1,6 @@
 ---
 import type { Locale } from "@i18n";
+import ProtectedEmail from "@components/ProtectedEmail.astro";
 import { pathFor } from "@i18n";
 import LegalLayout from "@layouts/LegalLayout.astro";
 import { legal } from "@data/legal";
@@ -206,7 +207,7 @@ const updatedAt = isEn ? "May 16, 2026" : legal.updatedAt.cgu;
         For any questions regarding these GTU or use of the Site, you may contact {legal.company.legalName}:
       </p>
       <ul>
-        <li>By email: <a href={`mailto:${legal.company.email}`}>{legal.company.email}</a></li>
+        <li>By email: <ProtectedEmail email={legal.company.email} /></li>
         <li>By phone: <a href={`tel:${legal.company.phoneRaw}`}>{legal.company.phone}</a></li>
         <li>By post: {legal.company.legalName} - {legal.company.address}</li>
       </ul>
@@ -401,7 +402,7 @@ const updatedAt = isEn ? "May 16, 2026" : legal.updatedAt.cgu;
         {legal.company.legalName} :
       </p>
       <ul>
-        <li>Par e-mail : <a href={`mailto:${legal.company.email}`}>{legal.company.email}</a></li>
+        <li>Par e-mail : <ProtectedEmail email={legal.company.email} /></li>
         <li>Par téléphone : <a href={`tel:${legal.company.phoneRaw}`}>{legal.company.phone}</a></li>
         <li>Par courrier : {legal.company.legalName} - {legal.company.address}</li>
       </ul>

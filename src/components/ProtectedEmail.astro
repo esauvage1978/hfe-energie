@@ -1,0 +1,55 @@
+---
+/**
+ * Adresse e-mail protégée contre la collecte automatique (robots d'extraction).
+ *
+ * - Le HTML ne contient ni l'adresse en clair, ni de lien « mailto: ».
+ * - L'adresse est stockée inversée puis encodée en base64 (data-pe) ; un petit
+ *   script (bundlé une seule fois par page par Astro) la reconstitue au chargement
+ *   et transforme l'élément en vrai lien mailto pour les visiteurs.
+ * - Sans JavaScript : affichage « contact [at] domaine.fr » (lisible par un humain).
+ *
+ * Props :
+ *   email : adresse à protéger
+ *   link  : true (défaut) = lien mailto cliquable ; false = texte seul
+ *   class : classes CSS de l'élément
+ */
+interface Props {
+  email: string;
+  link?: boolean;
+  class?: string;
+}
+const { email, link = true, class: className } = Astro.props;
+const encoded = Buffer.from([...email].reverse().join(""), "utf8").toString("base64");
+const [user, domain] = email.split("@");
+---
+<span class:list={["protected-email", className]} data-pe={encoded} data-pe-link={link ? "1" : "0"}>{user}<span aria-hidden="true"> [at] </span><span class="sr-only">&nbsp;arobase&nbsp;</span>{domain}</span>
+<script>
+  function revealProtectedEmails() {
+    document.querySelectorAll<HTMLElement>("span.protected-email[data-pe]").forEach((el) => {
+      try {
+        const bin = atob(el.dataset.pe || "");
+        const bytes = Uint8Array.from(bin, (c) => c.charCodeAt(0));
+        const addr = Array.from(new TextDecoder().decode(bytes)).reverse().join("");
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(addr)) return;
+        let target: HTMLElement = el;
+        if (el.dataset.peLink === "1") {
+          const a = document.createElement("a");
+          a.href = "mailto:" + addr;
+          a.className = el.className.replace(/\bprotected-email\b/, "").trim();
+          el.replaceWith(a);
+          target = a;
+        } else {
+          el.removeAttribute("data-pe");
+        }
+        target.textContent = addr;
+      } catch {
+        /* garde l'affichage « [at] » */
+      }
+    });
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", revealProtectedEmails, { once: true });
+  } else {
+    revealProtectedEmails();
+  }
+</script>

@@ -1,5 +1,6 @@
 ---
 import type { Locale } from "@i18n";
+import ProtectedEmail from "@components/ProtectedEmail.astro";
 import { pathFor } from "@i18n";
 import LegalLayout from "@layouts/LegalLayout.astro";
 import { legal } from "@data/legal";
@@ -202,7 +203,7 @@ const updatedAt = isEn ? "May 16, 2026" : legal.updatedAt.cookies;
       <h2>6. Contact</h2>
       <p>For any questions regarding the use of cookies on our website:</p>
       <ul>
-        <li>By email: <a href={`mailto:${legal.company.email}`}>{legal.company.email}</a></li>
+        <li>By email: <ProtectedEmail email={legal.company.email} /></li>
         <li>By post: {legal.company.legalName} - {legal.company.address}</li>
       </ul>
     </>
@@ -386,7 +387,7 @@ const updatedAt = isEn ? "May 16, 2026" : legal.updatedAt.cookies;
       <h2>6. Contact</h2>
       <p>Pour toute question relative à l'utilisation des cookies sur notre site :</p>
       <ul>
-        <li>Par e-mail : <a href={`mailto:${legal.company.email}`}>{legal.company.email}</a></li>
+        <li>Par e-mail : <ProtectedEmail email={legal.company.email} /></li>
         <li>Par courrier : {legal.company.legalName} - {legal.company.address}</li>
       </ul>
     </>

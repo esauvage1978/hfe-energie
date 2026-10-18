@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import type { Locale } from "@i18n";
 import { getFormStrings, pathFor } from "@i18n";
 
@@ -68,8 +68,17 @@ export default function ContactForm({ locale, defaultService }: ContactFormProps
       privacy_policy_accepted_at: now,
       submitted_at: now,
       website: (data.get("website") || "").toString(),
+      // Anti-robot (même logique que emmanuelsauvage.fr) : horodatage d'affichage
+      // du formulaire et durée de remplissage, vérifiés côté serveur.
+      form_ts: formTsRef.current,
+      fill_ms: formTsRef.current ? Date.now() - formTsRef.current : 0,
     };
   };
+
+  const formTsRef = useRef(0);
+  useEffect(() => {
+    formTsRef.current = Date.now();
+  }, []);
 
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<FieldErrors>({});
@@ -300,7 +309,10 @@ export default function ContactForm({ locale, defaultService }: ContactFormProps
         )}
       </div>
 
-      <div className="hidden" aria-hidden="true">
+      <div
+        aria-hidden="true"
+        style={{ position: "absolute", left: "-9999px", width: 1, height: 1, overflow: "hidden" }}
+      >
         <label htmlFor="website">{t.honeypotLabel}</label>
         <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
