@@ -37,6 +37,8 @@ const fr = {
   },
   trust: {
     srTitle: "Nos engagements",
+    answer: (y: number) =>
+      `Plus de ${y} ans d'expérience, du matériel de qualité, des économies d'énergie et une intervention à Lille et dans la métropole : ce sont les engagements de Hecker & Frères Énergie (HFE).`,
     items: [
       { icon: "/assets/icons-trust/shield.png", title: (y: number) => `Plus de ${y} ans`, text: "d'expérience" },
       { icon: "/assets/icons-trust/award.png", title: "Matériel", text: "de qualité" },
@@ -63,6 +65,8 @@ const fr = {
     title: "Des solutions performantes pour votre ",
     titleHighlight: "confort",
     titleEnd: " au quotidien.",
+    answer:
+      "HFE propose quatre services : pompes à chaleur air/eau et air/air, climatisation réversible, chauffage toutes énergies et plomberie (installation et rénovation).",
     cards: [
       { slug: "pompe-a-chaleur", title: "Pompes à chaleur", short: "Air / Eau & Air / Air", iconUrl: "/assets/icons-services/pac.png" },
       { slug: "climatisation", title: "Climatisation", short: "Réversible", iconUrl: "/assets/icons-services/clim.png" },
@@ -115,7 +119,7 @@ const fr = {
 
   partners: {
     title: "Nos partenaires constructeurs",
-    subtitle: "Nous installons les meilleures marques du marché, gage de fiabilité et de performance sur la durée.",
+    subtitle: "Nos marques partenaires : Panasonic, Daikin, Mitsubishi Electric, Atlantic, Toshiba, Samsung, Siemens, Saunier Duval, Frisquet, De Dietrich, Airwell et Cool Smart. Nous installons les meilleures marques du marché, gage de fiabilité et de performance sur la durée.",
   },
   certificationsSection: {
     badge: "Certifications",
@@ -222,6 +226,8 @@ const en = {
   },
   trust: {
     srTitle: "Our commitments",
+    answer: (y: number) =>
+      `Over ${y} years of experience, quality equipment, energy savings and service across Lille and its metropolitan area: these are the commitments of Hecker & Frères Énergie (HFE).`,
     items: [
       { icon: "/assets/icons-trust/shield.png", title: (y: number) => `Over ${y} years`, text: "of experience" },
       { icon: "/assets/icons-trust/award.png", title: "Quality", text: "equipment" },
@@ -234,6 +240,8 @@ const en = {
     title: "High-performance solutions for your everyday ",
     titleHighlight: "comfort",
     titleEnd: ".",
+    answer:
+      "HFE offers four services: air-to-water and air-to-air heat pumps, reversible air conditioning, heating for all energy types, and plumbing (installation and renovation).",
     cards: [
       { slug: "heat-pump", title: "Heat pumps", short: "Air-to-water & air-to-air", iconUrl: "/assets/icons-services/pac.png" },
       { slug: "air-conditioning", title: "Air conditioning", short: "Reversible", iconUrl: "/assets/icons-services/clim.png" },
@@ -299,7 +307,7 @@ const en = {
   },
   partners: {
     title: "Our manufacturer partners",
-    subtitle: "We install leading brands on the market — reliability and long-term performance guaranteed.",
+    subtitle: "Our partner brands include Panasonic, Daikin, Mitsubishi Electric, Atlantic, Toshiba, Samsung, Siemens, Saunier Duval, Frisquet, De Dietrich, Airwell and Cool Smart. We install leading brands on the market — reliability and long-term performance guaranteed.",
   },
   certificationsSection: {
     badge: "Certifications",

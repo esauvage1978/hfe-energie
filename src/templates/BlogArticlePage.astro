@@ -110,6 +110,8 @@ const mediaBrand = getBlogMedia(content.hero.mediaId);
         <p class="mt-3 text-sm text-neutral-500">
           <time datetime={content.article.datePublished}>{content.article.dateLabel}</time>
           <span class="mx-2" aria-hidden="true">·</span>
+          {locale === "en" ? "By " : "Par "}<span class="font-medium text-neutral-700">{site.blogAuthor}</span>
+          <span class="mx-2" aria-hidden="true">·</span>
           {content.hero.lead}
         </p>
         <p class="mt-5 text-lg text-neutral-700 leading-relaxed">{content.article.excerpt}</p>

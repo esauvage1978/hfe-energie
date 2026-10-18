@@ -35,7 +35,7 @@ const fr = {
   types: {
     title: "Quel type de climatisation pour vous ?",
     intro:
-      "Nous adaptons la solution à votre logement, votre budget et votre besoin de confort. Étude technique systématique avant chaque chiffrage.",
+      "HFE installe cinq types de climatisation : mono-split, multi-split, gainable, petit tertiaire et DRV tertiaire. Nous adaptons la solution à votre logement, votre budget et votre besoin de confort. Étude technique systématique avant chaque chiffrage.",
     idealForLabel: "Idéal pour",
     advantagesLabel: "Les avantages",
     items: [
@@ -241,7 +241,7 @@ const en = {
   types: {
     title: "Which air conditioning system is right for you?",
     intro:
-      "We tailor the solution to your property, budget and comfort requirements. A technical survey is carried out before every quote.",
+      "HFE installs five types of air conditioning: single-split, multi-split, ducted, small commercial and commercial VRF. We tailor the solution to your property, budget and comfort requirements. A technical survey is carried out before every quote.",
     idealForLabel: "Ideal for",
     advantagesLabel: "Benefits",
     items: [

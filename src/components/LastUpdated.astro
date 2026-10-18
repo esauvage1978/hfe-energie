@@ -1,0 +1,44 @@
+---
+/**
+ * Date de dernière mise à jour réelle d'une page : date du dernier commit git
+ * du fichier de contenu, calculée au build. Rien n'est affiché si git
+ * n'est pas disponible ou si le fichier n'est pas suivi.
+ */
+import { execFileSync } from "node:child_process";
+import type { Locale } from "@i18n";
+
+interface Props {
+  locale: Locale;
+  /** Chemin du fichier source, relatif à la racine du projet */
+  file: string;
+}
+
+const { locale, file } = Astro.props;
+
+let iso: string | null = null;
+try {
+  const out = execFileSync("git", ["log", "-1", "--format=%cs", "--", file], {
+    cwd: process.cwd(),
+    encoding: "utf8",
+    stdio: ["ignore", "pipe", "ignore"],
+  }).trim();
+  if (/^\d{4}-\d{2}-\d{2}$/.test(out)) iso = out;
+} catch {
+  iso = null;
+}
+
+const label = iso
+  ? new Intl.DateTimeFormat(locale === "en" ? "en-GB" : "fr-FR", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+      timeZone: "UTC",
+    }).format(new Date(`${iso}T00:00:00Z`))
+  : null;
+---
+
+{iso && label && (
+  <p class="mt-1 text-xs text-neutral-500">
+    {locale === "en" ? "Updated " : "Mis à jour le "}<time datetime={iso}>{label}</time>
+  </p>
+)}

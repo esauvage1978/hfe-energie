@@ -35,6 +35,8 @@ const fr = {
   },
   offers: {
     title: "Nos prestations de plomberie",
+    answer:
+      "HFE propose quatre prestations de plomberie : la rénovation de salle de bain et des sanitaires, le dépannage, l'adoucisseur d'eau et le remplacement de ballon d'eau chaude.",
     items: [
       {
         title: "Sanitaire & rénovation",
@@ -193,6 +195,8 @@ const en = {
   },
   offers: {
     title: "Our plumbing services",
+    answer:
+      "HFE offers four plumbing services: bathroom and sanitary renovation, plumbing repairs, water softeners and hot water tank replacement.",
     items: [
       {
         title: "Bathroom & renovation",

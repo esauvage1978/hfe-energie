@@ -3,6 +3,7 @@ import type { Locale } from "@i18n";
 import { getHeatPumpContent, pathFor } from "@i18n";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Breadcrumbs from "@components/Breadcrumbs.astro";
+import LastUpdated from "@components/LastUpdated.astro";
 import CtaBanner from "@components/CtaBanner.astro";
 import Gallery from "@components/Gallery.astro";
 import Icon from "@components/Icon.astro";
@@ -45,6 +46,7 @@ const seoCities = site.serviceArea;
 
   <div class="container-page">
     <Breadcrumbs locale={locale} items={content.breadcrumbs} />
+    <LastUpdated locale={locale} file="src/i18n/content/heat-pump.ts" />
   </div>
 
   <section class="relative overflow-hidden bg-gradient-to-br from-accent-50 via-white to-accent-50/20">
@@ -131,6 +133,7 @@ const seoCities = site.serviceArea;
         <h2 id="types-title" class="mt-3 font-display text-3xl md:text-4xl font-extrabold text-neutral-900">
           {content.types.title}
         </h2>
+        <p class="mt-4 text-lg text-neutral-700 leading-relaxed max-w-3xl">{content.types.answer}</p>
       </div>
 
       <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">

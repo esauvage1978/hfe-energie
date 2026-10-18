@@ -7,6 +7,7 @@ import { getWaterSoftenerContent, pathFor } from "@i18n";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
 import Breadcrumbs from "@components/Breadcrumbs.astro";
+import LastUpdated from "@components/LastUpdated.astro";
 
 import CtaBanner from "@components/CtaBanner.astro";
 
@@ -99,6 +100,7 @@ const heroImage = {
     <div class="container-page">
 
       <Breadcrumbs locale={locale} items={content.breadcrumbs} />
+    <LastUpdated locale={locale} file="src/i18n/content/water-softener.ts" />
 
     </div>
 

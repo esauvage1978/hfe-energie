@@ -35,6 +35,8 @@ const fr = {
   },
   offers: {
     title: "Nos solutions de chauffage",
+    answer:
+      "HFE propose quatre solutions de chauffage : le remplacement de chaudière (par une chaudière à condensation, une PAC ou une chaudière hybride), le plancher chauffant, les radiateurs nouvelle génération et les têtes thermostatiques.",
     items: [
       {
         title: "Remplacement de chaudière",
@@ -134,6 +136,8 @@ const en = {
   },
   offers: {
     title: "Our heating solutions",
+    answer:
+      "HFE offers four heating solutions: boiler replacement (with a condensing boiler, a heat pump or a hybrid boiler), underfloor heating, next-generation radiators and thermostatic radiator valves.",
     items: [
       {
         title: "Boiler replacement",

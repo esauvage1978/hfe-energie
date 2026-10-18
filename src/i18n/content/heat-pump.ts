@@ -57,6 +57,8 @@ const fr = {
   types: {
     badge: "Nos installations",
     title: "Les types de pompes à chaleur que nous installons",
+    answer:
+      "HFE installe quatre types d'équipements : la pompe à chaleur air-eau, la pompe à chaleur air-air, la pompe à chaleur eau-eau et le chauffe-eau thermodynamique.",
     budgetLabel: "Budget indicatif",
     budgetNote: "avant aides MaPrimeRénov' & CEE",
     idealForLabel: "Pourquoi choisir ce système ?",
@@ -303,6 +305,8 @@ const en = {
   types: {
     badge: "Our installations",
     title: "The types of heat pumps we install",
+    answer:
+      "HFE installs four types of equipment: air-to-water, air-to-air and water-to-water heat pumps, and thermodynamic water heaters.",
     budgetLabel: "Indicative budget",
     budgetNote: "before MaPrimeRénov' & CEE grants",
     idealForLabel: "Why choose this system?",

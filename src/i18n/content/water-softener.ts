@@ -35,7 +35,7 @@ const fr = {
   types: {
     title: "Nos trois solutions anti-calcaire",
     intro:
-      "Chaque technologie répond à un besoin différent. Nous vous orientons après analyse de votre eau et visite sur place — sans imposer une solution unique.",
+      "HFE propose trois solutions contre le calcaire : l'adoucisseur à sel, l'adoucisseur au CO₂ SoluCalc® et le système DRAGO. Chaque technologie répond à un besoin différent. Nous vous orientons après analyse de votre eau et visite sur place — sans imposer une solution unique.",
     items: [
       {
         title: "Adoucisseur à sel",
@@ -141,7 +141,7 @@ const en = {
   types: {
     title: "Our three anti-limescale solutions",
     intro:
-      "Each technology meets a different need. We advise you after analysing your water and visiting your property — without pushing a one-size-fits-all solution.",
+      "HFE offers three anti-limescale solutions: salt water softener, SoluCalc® CO₂ softener and the DRAGO system. Each technology meets a different need. We advise you after analysing your water and visiting your property — without pushing a one-size-fits-all solution.",
     items: [
       {
         title: "Salt water softener",

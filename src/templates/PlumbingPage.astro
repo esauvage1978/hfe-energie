@@ -7,6 +7,7 @@ import { getPlumbingContent, pathFor } from "@i18n";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
 import Breadcrumbs from "@components/Breadcrumbs.astro";
+import LastUpdated from "@components/LastUpdated.astro";
 
 import CtaBanner from "@components/CtaBanner.astro";
 
@@ -85,6 +86,7 @@ const canonicalPath = pathFor("plumbing", locale);
     <div class="container-page">
 
       <Breadcrumbs locale={locale} items={content.breadcrumbs} />
+    <LastUpdated locale={locale} file="src/i18n/content/plumbing.ts" />
 
     </div>
 
@@ -163,6 +165,7 @@ const canonicalPath = pathFor("plumbing", locale);
           {content.offers.title}
 
         </h2>
+        <p class="mt-4 text-lg text-neutral-700 leading-relaxed max-w-3xl">{content.offers.answer}</p>
 
         <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-5">
 
