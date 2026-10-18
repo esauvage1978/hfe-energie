@@ -3,6 +3,27 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { projectImageUrlsByPage } from "./src/data/project-sitemap-images.ts";
+import { routes } from "./src/i18n/routes.ts";
+import { getBlogTvaClimContent } from "./src/i18n/content/blog-tva-climatisation-reversible.ts";
+import { getBlogReportageBfmPacContent } from "./src/i18n/content/blog-reportage-bfm-pac.ts";
+import { getBlogReportageRecrutementContent } from "./src/i18n/content/blog-reportage-recrutement.ts";
+import { getBlogReportageTf1PacContent } from "./src/i18n/content/blog-reportage-tf1-pac.ts";
+import { getBlogReportageTf1ClimContent } from "./src/i18n/content/blog-reportage-tf1-clim.ts";
+
+// lastmod réel des articles (dateModified déjà présente dans les contenus) ;
+// les autres pages gardent la date du build.
+const articleLastmod = new Map<string, string>();
+for (const [routeId, getContent] of [
+  ["blogTvaClimReversible", getBlogTvaClimContent],
+  ["blogReportageBfmPac", getBlogReportageBfmPacContent],
+  ["blogReportageRecrutement", getBlogReportageRecrutementContent],
+  ["blogReportageTf1Pac", getBlogReportageTf1PacContent],
+  ["blogReportageTf1Clim", getBlogReportageTf1ClimContent],
+] as const) {
+  for (const locale of ["fr", "en"] as const) {
+    articleLastmod.set(routes[routeId][locale], getContent(locale).article.dateModified);
+  }
+}
 
 // https://astro.build/config
 export default defineConfig({
@@ -54,6 +75,9 @@ export default defineConfig({
           item.priority = 0.2;
           item.changefreq = "yearly";
         }
+
+        const articleDate = articleLastmod.get(path);
+        if (articleDate) item.lastmod = new Date(`${articleDate}T00:00:00Z`).toISOString();
 
         const imageUrls = projectImageUrlsByPage.get(item.url);
         if (imageUrls?.length) {

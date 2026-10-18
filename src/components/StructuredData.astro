@@ -142,6 +142,8 @@ const buildArticleLd = (a: {
   datePublished: a.datePublished,
   dateModified: a.dateModified,
   mainEntityOfPage: new URL(a.path, site.baseUrl).toString(),
+  // Même visuel que l'og:image déclarée par la page (Seo.astro, valeur par défaut)
+  image: `${site.baseUrl}/og-image.jpg`,
   author: {
     "@type": "Organization",
     name: site.legalName,

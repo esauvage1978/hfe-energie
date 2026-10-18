@@ -1,0 +1,41 @@
+# Hecker & Frères Énergie (HFE)
+
+> Entreprise artisanale de Lille (Nord), installateur certifié RGE QualiPAC : pompes à chaleur air-eau et air-air, climatisation réversible, chauffage (remplacement de chaudière, PAC hybride, plancher chauffant) et plomberie, pour les particuliers, les copropriétés et les professionnels de Lille et de sa métropole. Installateur partenaire Panasonic ProClub. Devis gratuit.
+
+- Zone d'intervention : Lille, la métropole lilloise et un rayon d'environ 50 km (Nord et Pas-de-Calais).
+- Téléphone : 07 67 34 12 53 (pompe à chaleur, climatisation, chauffage) ; 06 13 46 67 90 (plomberie et dépannage sanitaire).
+- Horaires : du lundi au vendredi de 7 h 30 à 20 h, le samedi de 9 h à 17 h, fermé le dimanche.
+- Site en français, avec une version anglaise sous /en.
+
+## Services
+
+- [Pompe à chaleur](https://hfe-energie.fr/pompe-a-chaleur) : installation de pompes à chaleur air-eau et air-air à Lille et dans la métropole, prix indicatifs, aides MaPrimeRénov' et CEE.
+- [Climatisation réversible](https://hfe-energie.fr/climatisation) : mono-split, multi-split et gainable (Panasonic, Daikin, Mitsubishi), TVA à 5,5 % sous conditions.
+- [Chauffage](https://hfe-energie.fr/chauffage) : remplacement de chaudière fioul ou gaz, PAC hybride, plancher chauffant et radiateurs.
+- [Plomberie](https://hfe-energie.fr/plomberie) : dépannage, rénovation de salle de bain, adoucisseur d'eau et chauffe-eau.
+- [Adoucisseur d'eau](https://hfe-energie.fr/plomberie/adoucisseur-eau) : adoucisseur au sel, au CO₂ (SoluCalc®) ou système DRAGO.
+- [Copropriétés](https://hfe-energie.fr/copropriete) : pompes à chaleur collectives en cascade, remplacement de chaufferie fioul, MaPrimeRénov' Copropriété.
+- [Particuliers](https://hfe-energie.fr/particuliers) et [professionnels](https://hfe-energie.fr/professionnels) : offres par type de client (tertiaire, contrats de maintenance et dépannage).
+
+## Informations pratiques
+
+- [Aides et financement](https://hfe-energie.fr/aides-financement) : MaPrimeRénov', CEE Coup de pouce, TVA à 5,5 %, éco-PTZ.
+- [Partenaire Panasonic ProClub](https://hfe-energie.fr/partenaire-panasonic) : pompes à chaleur Panasonic, garantie constructeur, télémaintenance.
+- [Réalisations](https://hfe-energie.fr/realisations) : photos de chantiers à Lille et dans la métropole.
+- [Zone d'intervention](https://hfe-energie.fr/zone-intervention) : liste des communes desservies.
+- [Contact et devis gratuit](https://hfe-energie.fr/contact)
+- [Recrutement](https://hfe-energie.fr/recrutement)
+
+## Articles
+
+- [TVA à 5,5 % sur la climatisation réversible : ce qui change](https://hfe-energie.fr/blog/tva-5-5-climatisation-reversible-ce-qui-change) (mis à jour le 19/07/2026) : conditions, dates et simulations depuis le 18 juillet 2026.
+- [Climatisation Panasonic sur TF1](https://hfe-energie.fr/blog/reportage-tf1-climatisation-panasonic-lille) (01/06/2026) : reportage du JT de 20 h de TF1 sur un chantier HFE à Lille.
+- [Pompe à chaleur Panasonic sur TF1](https://hfe-energie.fr/blog/reportage-tf1-pompe-a-chaleur-climatisation-hfe) (02/07/2025) : reportage sur l'installation d'une PAC Panasonic à Lille.
+- [Pompes à chaleur sur BFM TV](https://hfe-energie.fr/blog/reportage-bfm-pompes-a-chaleur-hfe) (23/02/2023) : reportage BFM TV sur l'installation de pompes à chaleur à Lille.
+- [Pénurie de plombiers-chauffagistes](https://hfe-energie.fr/blog/reportage-recrutement-plomberie-chauffage-hfe) (23/01/2022) : reportage sur le recrutement dans la plomberie et le chauffage.
+
+## Optional
+
+- [English version](https://hfe-energie.fr/en)
+- [Mentions légales](https://hfe-energie.fr/mentions-legales)
+- [Plan du site (sitemap XML)](https://hfe-energie.fr/sitemap-index.xml)
