@@ -1,6 +1,5 @@
 ---
 import { site } from "@data/site";
-import { googleReviews } from "@data/google";
 
 export interface Props {
   type?: "LocalBusiness" | "Service" | "FAQPage" | "BreadcrumbList" | "Article";
@@ -82,13 +81,8 @@ const localBusiness = {
   ],
   slogan: "Chauffagiste & climaticien à Lille",
   foundingDate: "2010",
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: String(googleReviews.rating),
-    reviewCount: String(googleReviews.userRatingCount || 200),
-    bestRating: "5",
-    worstRating: "1",
-  },
+  // Pas d'aggregateRating ni de review : avis sur l'entreprise affichés sur son
+  // propre site = « avis autopromotionnels », non admissibles (LocalBusiness).
 };
 
 const buildServiceLd = (s: { name: string; description: string; path: string }) => ({
