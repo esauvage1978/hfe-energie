@@ -10,6 +10,8 @@ export type BlogArticleContent = {
   breadcrumbs: readonly { name: string; url: string }[];
   article: {
     headline: string;
+    /** Image principale (og:image + schéma Article) */
+    image?: string;
     datePublished: string;
     dateModified: string;
     dateLabel: string;

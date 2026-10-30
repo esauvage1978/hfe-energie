@@ -62,6 +62,7 @@ const mediaBrand = getBlogMedia(content.hero.mediaId);
   keywords={[...content.seo.keywords]}
   canonicalPath={canonicalPath}
   ogType="article"
+  image={content.article.image}
 >
   <StructuredData type="BreadcrumbList" breadcrumbs={[...content.breadcrumbs]} slot="head" />
   <StructuredData
@@ -73,6 +74,7 @@ const mediaBrand = getBlogMedia(content.hero.mediaId);
       datePublished: content.article.datePublished,
       dateModified: content.article.dateModified,
       inLanguage: locale === "en" ? "en-GB" : "fr-FR",
+      image: content.article.image,
     }}
     slot="head"
   />

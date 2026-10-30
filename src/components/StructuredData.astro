@@ -17,6 +17,7 @@ export interface Props {
     datePublished: string;
     dateModified: string;
     inLanguage?: string;
+    image?: string;
   };
 }
 
@@ -128,6 +129,7 @@ const buildArticleLd = (a: {
   datePublished: string;
   dateModified: string;
   inLanguage?: string;
+  image?: string;
 }) => ({
   "@context": "https://schema.org",
   "@type": "Article",
@@ -137,7 +139,7 @@ const buildArticleLd = (a: {
   dateModified: a.dateModified,
   mainEntityOfPage: new URL(a.path, site.baseUrl).toString(),
   // Même visuel que l'og:image déclarée par la page (Seo.astro, valeur par défaut)
-  image: `${site.baseUrl}/og-image.jpg`,
+  image: a.image ? new URL(a.image, site.baseUrl).toString() : `${site.baseUrl}/og-image.jpg`,
   author: {
     "@type": "Person",
     name: site.blogAuthor,

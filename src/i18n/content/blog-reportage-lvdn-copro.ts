@@ -6,14 +6,14 @@ const LVDN_URL =
 
 const PHOTO_FR = `
 <figure class="my-6">
-  <img src="/projet/copropriete/projet2/4.jpg" alt="Cascade de 5 pompes à chaleur Panasonic Aquarea installées par HFE en toiture-terrasse d’une copropriété lilloise" width="1024" height="768" loading="lazy" decoding="async" class="rounded-xl w-full h-auto" />
-  <figcaption class="mt-2 text-sm text-neutral-500">Une autre de nos réalisations en copropriété : cinq pompes à chaleur Panasonic montées en cascade sur un toit-terrasse. Photo HFE.</figcaption>
+  <img src="/assets/blog/lvdn/kevin-hecker-pac-copropriete-lille.jpg" alt="Kévin Hecker, de HFE, debout dans la chaufferie d’une copropriété lilloise, entre les ballons et les pompes à chaleur Panasonic installées en cascade" width="642" height="362" loading="lazy" decoding="async" class="rounded-xl w-full h-auto" />
+  <figcaption class="mt-2 text-sm text-neutral-500">Kévin Hecker devant les pompes à chaleur installées dans une copropriété de Lille. Photo PIB / La Voix du Nord.</figcaption>
 </figure>`;
 
 const PHOTO_EN = `
 <figure class="my-6">
-  <img src="/projet/copropriete/projet2/4.jpg" alt="Cascade of 5 Panasonic Aquarea heat pumps installed by HFE on the flat roof of a Lille co-ownership building" width="1024" height="768" loading="lazy" decoding="async" class="rounded-xl w-full h-auto" />
-  <figcaption class="mt-2 text-sm text-neutral-500">Another of our co-ownership projects: five Panasonic heat pumps in cascade on a flat roof. Photo HFE.</figcaption>
+  <img src="/assets/blog/lvdn/kevin-hecker-pac-copropriete-lille.jpg" alt="Kévin Hecker of HFE standing in the boiler room of a Lille co-ownership building, between the tanks and the Panasonic heat pumps installed in cascade" width="642" height="362" loading="lazy" decoding="async" class="rounded-xl w-full h-auto" />
+  <figcaption class="mt-2 text-sm text-neutral-500">Kévin Hecker in front of the heat pumps installed in a Lille co-ownership building. Photo: PIB / La Voix du Nord.</figcaption>
 </figure>`;
 
 const fr = {
@@ -40,6 +40,7 @@ const fr = {
   ],
   article: {
     headline: "Pompes à chaleur en copropriété : notre chantier lillois dans La Voix du Nord",
+    image: "/assets/blog/lvdn/kevin-hecker-pac-copropriete-lille.jpg",
     datePublished: "2026-10-30",
     dateModified: "2026-10-30",
     dateLabel: "Publié le 30 octobre 2026",
@@ -204,6 +205,7 @@ const en = {
   ],
   article: {
     headline: "Heat pumps in co-ownership buildings: our Lille project in La Voix du Nord",
+    image: "/assets/blog/lvdn/kevin-hecker-pac-copropriete-lille.jpg",
     datePublished: "2026-10-30",
     dateModified: "2026-10-30",
     dateLabel: "Published 30 October 2026",
