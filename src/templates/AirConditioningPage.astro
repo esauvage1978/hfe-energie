@@ -136,6 +136,26 @@ const canonicalPath = pathFor("airConditioning", locale);
           );
         })}
       </div>
+      <div class="mt-10 rounded-2xl bg-white border border-neutral-200 p-6 flex flex-wrap items-center justify-between gap-4">
+        <a
+          href={pathFor("heatPump", locale)}
+          class="inline-flex items-center gap-2 font-bold text-accent-700 hover:text-accent-800 text-sm md:text-base"
+        >
+          {locale === "en"
+            ? "Compare with an air-to-water heat pump and see all our heat pump solutions in Lille"
+            : "Comparer PAC air-air et PAC air-eau : voir notre guide pompe à chaleur à Lille (prix & aides)"}
+          <Icon name="arrow-right" size={18} />
+        </a>
+        <a
+          href={pathFor("blogTvaClimReversible", locale)}
+          class="inline-flex items-center gap-2 font-bold text-primary-700 hover:text-primary-800 text-sm"
+        >
+          {locale === "en"
+            ? "5.5% VAT on reversible air conditioning (July 2026 rules)"
+            : "TVA à 5,5 % sur les PAC air-air : conditions de l'arrêté de juillet 2026"}
+          <Icon name="arrow-right" size={16} />
+        </a>
+      </div>
     </div>
   </section>
 

@@ -105,6 +105,11 @@ const canonicalPath = pathFor("commercial", locale);
   />
 
   <div class="container-page pb-6 -mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-8">
+    <a href={pathFor("heatPump", locale)} class="link-projects">
+      <Icon name="heat-pump" size={14} />
+      {locale === "fr" ? "Pompes à chaleur air-eau et air-air pour locaux professionnels à Lille" : "Air-to-water & air-to-air heat pumps for commercial premises in Lille"}
+      <Icon name="arrow-right" size={14} />
+    </a>
     <a href={pathFor("projectsPetitTertiaire", locale)} class="link-projects">
       <Icon name="star" size={14} />
       {locale === "fr" ? "Voir nos réalisations petit tertiaire" : "See our small commercial projects"}

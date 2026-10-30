@@ -25,8 +25,8 @@ const fr = {
     items: [
       {
         icon: "heat-pump" as const,
-        title: "Pompe à chaleur",
-        desc: "Remplacement de chaudière par une PAC performante, compatible radiateurs ou plancher chauffant.",
+        title: "Pompe à chaleur air-eau & air-air",
+        desc: "Achat, pose et entretien de PAC performante à Lille (remplacement de chaudière, radiateurs ou plancher chauffant).",
         link: "/pompe-a-chaleur",
       },
       {

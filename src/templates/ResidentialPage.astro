@@ -118,6 +118,11 @@ const canonicalPath = pathFor("residential", locale);
       </div>
 
       <div class="mt-8 flex flex-wrap gap-3 items-start">
+        <a href={pathFor("heatPump", locale)} class="link-projects">
+          <Icon name="heat-pump" size={14} />
+          {locale === "fr" ? "Installation, prix et aides pour votre pompe à chaleur air-eau ou air-air à Lille" : "Air-to-water & air-to-air heat pump installation in Lille (prices & grants)"}
+          <Icon name="arrow-right" size={14} />
+        </a>
         <a href={pathFor("projectsClim", locale)} class="link-projects">
           <Icon name="star" size={14} />
           {locale === "fr" ? "Voir nos chantiers de climatisation en détail" : "See our air conditioning projects in detail"}

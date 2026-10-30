@@ -81,9 +81,9 @@ function serviceHref(slug: string) {
           </h1>
           <p class="mt-5 text-base md:text-lg text-neutral-700 leading-relaxed max-w-xl">
             {content.hero.descriptionBefore(site.name)}<strong>{content.hero.descriptionStrong1}</strong>
-            {content.hero.descriptionMiddle}<strong>{content.hero.descriptionStrong2}</strong>
-            {content.hero.descriptionAnd1}<strong>{content.hero.descriptionStrong3}</strong>
-            {content.hero.descriptionAnd2}<strong>{content.hero.descriptionStrong4}</strong>
+            {content.hero.descriptionMiddle}<a href={pathFor("heatPump", locale)} class="font-bold text-accent-700 underline decoration-accent-300 underline-offset-2 hover:text-accent-800">{content.hero.descriptionStrong2}</a>
+            {content.hero.descriptionAnd1}<a href={pathFor("airConditioning", locale)} class="font-bold text-primary-700 underline decoration-primary-300 underline-offset-2 hover:text-primary-800">{content.hero.descriptionStrong3}</a>
+            {content.hero.descriptionAnd2}<a href={pathFor("plumbing", locale)} class="font-bold text-primary-700 underline decoration-primary-300 underline-offset-2 hover:text-primary-800">{content.hero.descriptionStrong4}</a>
             {content.hero.descriptionEnd}
           </p>
 
@@ -414,6 +414,14 @@ function serviceHref(slug: string) {
 
       <div class="mt-8 max-w-4xl">
         <Faq items={content.faq.items} />
+      </div>
+      <div class="mt-8 max-w-4xl">
+        <a href={pathFor("heatPump", locale)} class="inline-flex items-center gap-2 font-bold text-accent-700 hover:text-accent-800 text-sm md:text-base">
+          {locale === "en"
+            ? "Complete guide: air-to-water & air-to-air heat pump installation, prices and grants in Lille"
+            : "Guide complet : installation, prix et aides pour votre pompe à chaleur air-eau ou air-air à Lille"}
+          <Icon name="arrow-right" size={16} />
+        </a>
       </div>
     </div>
   </section>

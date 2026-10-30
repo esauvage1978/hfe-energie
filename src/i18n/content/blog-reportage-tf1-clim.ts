@@ -137,6 +137,7 @@ const fr = {
     title: "À lire aussi sur hfe-energie.fr",
     links: [
       { label: "Climatisation", routeId: "airConditioning" as const },
+      { label: "Pompes à chaleur air-eau et air-air à Lille", routeId: "heatPump" as const },
       { label: "Réalisations clim multi-split", routeId: "projectsClim" as const },
       { label: "Partenaire Panasonic", routeId: "panasonicPartner" as const },
       { label: "Reportage TF1 PAC 2025", routeId: "blogReportageTf1Pac" as const },

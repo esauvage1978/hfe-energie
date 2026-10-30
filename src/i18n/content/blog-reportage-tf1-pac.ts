@@ -137,7 +137,7 @@ const fr = {
     title: "À lire aussi sur hfe-energie.fr",
     links: [
       { label: "Climatisation", routeId: "airConditioning" as const },
-      { label: "Pompes à chaleur", routeId: "heatPump" as const },
+      { label: "Achat, pose et tarifs pompe à chaleur air-eau & air-air à Lille", routeId: "heatPump" as const },
       { label: "Partenaire Panasonic", routeId: "panasonicPartner" as const },
       { label: "TVA 5,5 % clim réversible", routeId: "blogTvaClimReversible" as const },
       { label: "Reportage BFM pompes à chaleur", routeId: "blogReportageBfmPac" as const },

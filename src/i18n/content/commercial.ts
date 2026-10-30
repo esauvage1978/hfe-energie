@@ -44,6 +44,8 @@ const fr = {
       {
         title: "Accompagnement et évaluation thermique",
         desc: "Évaluation thermique de vos locaux, préconisations de travaux et dimensionnement de vos équipements de chauffage et climatisation.",
+        projectsLabel: "Découvrir nos pompes à chaleur à Lille",
+        projectsRoute: "heatPump" as const,
       },
       {
         title: "Décret tertiaire",

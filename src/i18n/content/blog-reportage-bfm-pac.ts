@@ -134,7 +134,7 @@ const fr = {
   related: {
     title: "À lire aussi sur hfe-energie.fr",
     links: [
-      { label: "Pompes à chaleur", routeId: "heatPump" as const },
+      { label: "Installation, prix et entretien de pompe à chaleur à Lille (air-eau & air-air)", routeId: "heatPump" as const },
       { label: "Partenaire Panasonic", routeId: "panasonicPartner" as const },
       { label: "Aides & financement", routeId: "grants" as const },
       { label: "Réalisations PAC air-eau", routeId: "projectsPacAirEau" as const },

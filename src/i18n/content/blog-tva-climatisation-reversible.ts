@@ -299,7 +299,7 @@ const fr = {
     title: "À lire aussi sur hfe-energie.fr",
     links: [
       { label: "Climatisation réversible", routeId: "airConditioning" as const },
-      { label: "Pompes à chaleur", routeId: "heatPump" as const },
+      { label: "Achat et installation de pompe à chaleur air-air et air-eau à Lille", routeId: "heatPump" as const },
       { label: "Aides & financements", routeId: "grants" as const },
       { label: "Réalisations multi-split", routeId: "projectsClim" as const },
       { label: "Zone d’intervention", routeId: "serviceArea" as const },
