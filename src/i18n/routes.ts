@@ -39,6 +39,7 @@ export type RouteId =
   | "blogReportageBfmPac"
   | "blogReportageTf1Pac"
   | "blogReportageTf1Clim"
+  | "blogReportageLvdnCopro"
   | "contact"
   | "recruitment"
   | "serviceArea"
@@ -105,6 +106,10 @@ export const routes: Record<RouteId, Record<Locale, string>> = {
   blogReportageTf1Clim: {
     fr: "/blog/reportage-tf1-climatisation-panasonic-lille",
     en: "/en/blog/tf1-panasonic-air-conditioning-lille-report",
+  },
+  blogReportageLvdnCopro: {
+    fr: "/blog/reportage-voix-du-nord-pompes-a-chaleur-copropriete",
+    en: "/en/blog/la-voix-du-nord-heat-pumps-co-ownership",
   },
   contact: { fr: "/contact", en: "/en/contact" },
   recruitment: { fr: "/recrutement", en: "/en/careers" },

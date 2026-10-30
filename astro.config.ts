@@ -9,6 +9,7 @@ import { getBlogReportageBfmPacContent } from "./src/i18n/content/blog-reportage
 import { getBlogReportageRecrutementContent } from "./src/i18n/content/blog-reportage-recrutement.ts";
 import { getBlogReportageTf1PacContent } from "./src/i18n/content/blog-reportage-tf1-pac.ts";
 import { getBlogReportageTf1ClimContent } from "./src/i18n/content/blog-reportage-tf1-clim.ts";
+import { getBlogReportageLvdnCoproContent } from "./src/i18n/content/blog-reportage-lvdn-copro.ts";
 
 // lastmod réel des articles (dateModified déjà présente dans les contenus) ;
 // les autres pages gardent la date du build.
@@ -19,6 +20,7 @@ for (const [routeId, getContent] of [
   ["blogReportageRecrutement", getBlogReportageRecrutementContent],
   ["blogReportageTf1Pac", getBlogReportageTf1PacContent],
   ["blogReportageTf1Clim", getBlogReportageTf1ClimContent],
+  ["blogReportageLvdnCopro", getBlogReportageLvdnCoproContent],
 ] as const) {
   for (const locale of ["fr", "en"] as const) {
     articleLastmod.set(routes[routeId][locale], getContent(locale).article.dateModified);

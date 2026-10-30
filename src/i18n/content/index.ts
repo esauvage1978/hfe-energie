@@ -32,6 +32,10 @@ export {
   getBlogReportageTf1ClimContent,
   type BlogReportageTf1ClimContent,
 } from "./blog-reportage-tf1-clim";
+export {
+  getBlogReportageLvdnCoproContent,
+  type BlogReportageLvdnCoproContent,
+} from "./blog-reportage-lvdn-copro";
 export { getContactContent, type ContactContent } from "./contact";
 export { getRecruitmentContent, type RecruitmentContent } from "./recruitment";
 export { getServiceAreaContent, type ServiceAreaContent } from "./service-area";

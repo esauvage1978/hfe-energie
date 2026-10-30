@@ -1,0 +1,13 @@
+---
+import BlogArticlePage from "../../templates/BlogArticlePage.astro";
+import { getBlogReportageLvdnCoproContent } from "@i18n";
+
+const locale = "fr" as const;
+---
+
+<BlogArticlePage
+  locale={locale}
+  content={getBlogReportageLvdnCoproContent(locale)}
+  routeId="blogReportageLvdnCopro"
+  faqIdPrefix="blog-reportage-lvdn-copro-faq"
+/>

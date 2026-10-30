@@ -48,6 +48,15 @@ const fr = {
   },
   posts: [
     {
+      routeId: "blogReportageLvdnCopro" as RouteId,
+      date: "2026-10-30",
+      dateLabel: "30 octobre 2026",
+      title: "Pompes à chaleur en copropriété : notre chantier lillois dans La Voix du Nord",
+      excerpt:
+        "Deux PAC Panasonic de 30 kW en cascade remplacent une chaudière fioul de 134 kW dans une copropriété de 19 logements à Lille.",
+      tag: "Presse",
+    },
+    {
       routeId: "blogTvaClimReversible" as RouteId,
       date: "2026-07-19",
       dateLabel: "19 juillet 2026",
@@ -147,6 +156,15 @@ const en = {
     },
   },
   posts: [
+    {
+      routeId: "blogReportageLvdnCopro" as RouteId,
+      date: "2026-10-30",
+      dateLabel: "30 October 2026",
+      title: "Heat pumps in co-ownership buildings: our Lille project in La Voix du Nord",
+      excerpt:
+        "Two 30 kW Panasonic heat pumps in cascade replace a 134 kW oil boiler in a 19-flat co-ownership building in Lille.",
+      tag: "Press",
+    },
     {
       routeId: "blogTvaClimReversible" as RouteId,
       date: "2026-07-19",
