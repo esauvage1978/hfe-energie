@@ -298,6 +298,7 @@ const fr = {
   related: {
     title: "À lire aussi sur hfe-energie.fr",
     links: [
+      { label: "Nouveauté : Panasonic Aquarea EcoFlex (clim + chauffage + eau chaude)", routeId: "blogNouveauteEcoflex" as const },
       { label: "Climatisation réversible", routeId: "airConditioning" as const },
       { label: "Achat et installation de pompe à chaleur air-air et air-eau à Lille", routeId: "heatPump" as const },
       { label: "Aides & financements", routeId: "grants" as const },
@@ -515,6 +516,7 @@ const en = {
   related: {
     title: "Also on hfe-energie.fr",
     links: [
+      { label: "New: Panasonic Aquarea EcoFlex (cooling + heating + hot water)", routeId: "blogNouveauteEcoflex" as const },
       { label: "Reversible air conditioning", routeId: "airConditioning" as const },
       { label: "Heat pumps", routeId: "heatPump" as const },
       { label: "Grants & financing", routeId: "grants" as const },

@@ -36,6 +36,10 @@ export {
   getBlogReportageLvdnCoproContent,
   type BlogReportageLvdnCoproContent,
 } from "./blog-reportage-lvdn-copro";
+export {
+  getBlogNouveauteEcoflexContent,
+  type BlogNouveauteEcoflexContent,
+} from "./blog-nouveaute-ecoflex";
 export { getContactContent, type ContactContent } from "./contact";
 export { getRecruitmentContent, type RecruitmentContent } from "./recruitment";
 export { getServiceAreaContent, type ServiceAreaContent } from "./service-area";

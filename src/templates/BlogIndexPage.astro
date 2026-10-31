@@ -12,26 +12,45 @@ import { getBlogMedia } from "@data/blog-media";
 
 interface Props {
   locale: Locale;
+  /** Page de catégorie (ex. « nouveautes ») ; absent = tous les articles */
+  category?: "nouveautes";
 }
 
-const { locale } = Astro.props;
+const { locale, category } = Astro.props;
 const content = getBlogIndexContent(locale);
-const canonicalPath = pathFor("blog", locale);
-const { hero } = content;
+const cat = category ? content.categories[category] : null;
+const canonicalPath = pathFor(category ? "blogNouveautes" : "blog", locale);
+const hero = cat ? { ...content.hero, titleEyebrow: cat.titleEyebrow, title: cat.title } : content.hero;
+const posts = category
+  ? content.posts.filter((post) => "category" in post && post.category === category)
+  : content.posts;
+const breadcrumbs = cat
+  ? [...content.breadcrumbs, { name: cat.breadcrumb, url: pathFor("blogNouveautes", locale) }]
+  : [...content.breadcrumbs];
+const pageTitle = cat ? cat.seoTitle : content.seo.title;
+const pageDescription = cat ? cat.seoDescription : content.seo.description;
+const categoryLinks = [
+  { label: content.categories.all, href: pathFor("blog", locale), active: !category },
+  {
+    label: content.categories.nouveautes.label,
+    href: pathFor("blogNouveautes", locale),
+    active: category === "nouveautes",
+  },
+];
 ---
 
 <BaseLayout
   locale={locale}
-  title={content.seo.title}
-  description={content.seo.description}
+  title={pageTitle}
+  description={pageDescription}
   keywords={[...content.seo.keywords]}
   canonicalPath={canonicalPath}
   image={hero.image.src}
 >
-  <StructuredData type="BreadcrumbList" breadcrumbs={[...content.breadcrumbs]} slot="head" />
+  <StructuredData type="BreadcrumbList" breadcrumbs={breadcrumbs} slot="head" />
 
   <div class="container-page">
-    <Breadcrumbs locale={locale} items={[...content.breadcrumbs]} />
+    <Breadcrumbs locale={locale} items={breadcrumbs} />
   </div>
 
   <section class="blog-hero" aria-labelledby="blog-hero-title">
@@ -63,6 +82,9 @@ const { hero } = content;
               <span class="blog-hero__title-main">{hero.title}</span>
             </h1>
 
+            {cat ? (
+            <p class="blog-hero__desc">{cat.intro}</p>
+            ) : (
             <p class="blog-hero__desc">
               {hero.descriptionBefore}
               {" "}
@@ -71,6 +93,7 @@ const { hero } = content;
               {locale === "en" ? " and " : " et "}
               <strong>{hero.highlights[2]}</strong>.
             </p>
+            )}
 
             <ul class="blog-hero__pillars">
               {hero.pillars.map((pillar) => (
@@ -121,10 +144,30 @@ const { hero } = content;
   <section class="section bg-white" aria-labelledby="blog-posts-title">
     <div class="container-page max-w-3xl">
       <h2 id="blog-posts-title" class="sr-only">
-        {locale === "en" ? "Articles" : "Articles"}
+        {cat ? cat.label : "Articles"}
       </h2>
+      <nav aria-label={content.categories.navLabel} class="mb-6">
+        <ul class="flex flex-wrap gap-2">
+          {categoryLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                aria-current={link.active ? "page" : undefined}
+                class:list={[
+                  "inline-flex items-center min-h-[44px] rounded-full border px-4 text-sm font-semibold transition-colors",
+                  link.active
+                    ? "border-accent-800 bg-accent-800 text-white"
+                    : "border-neutral-300 bg-white text-neutral-800 hover:border-accent-400",
+                ]}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
       <ul class="space-y-5">
-        {content.posts.map((post) => {
+        {posts.map((post) => {
           const media = "mediaId" in post ? getBlogMedia(post.mediaId) : null;
           return (
           <li>

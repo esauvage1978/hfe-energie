@@ -1,0 +1,13 @@
+---
+import BlogArticlePage from "../../templates/BlogArticlePage.astro";
+import { getBlogNouveauteEcoflexContent } from "@i18n";
+
+const locale = "fr" as const;
+---
+
+<BlogArticlePage
+  locale={locale}
+  content={getBlogNouveauteEcoflexContent(locale)}
+  routeId="blogNouveauteEcoflex"
+  faqIdPrefix="blog-nouveaute-ecoflex-faq"
+/>

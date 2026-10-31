@@ -166,6 +166,7 @@ ${PHOTO_FR}
   related: {
     title: "À lire aussi sur hfe-energie.fr",
     links: [
+      { label: "Nouveauté : Panasonic Aquarea EcoFlex", routeId: "blogNouveauteEcoflex" as const },
       { label: "Pompe à chaleur en copropriété", routeId: "coOwnership" as const },
       { label: "Nos réalisations de PAC collective", routeId: "projectsCopropriete" as const },
       { label: "Achat, pose et tarifs pompe à chaleur air-eau & air-air à Lille", routeId: "heatPump" as const },
@@ -331,6 +332,7 @@ ${PHOTO_EN}
   related: {
     title: "Also on hfe-energie.fr",
     links: [
+      { label: "New: Panasonic Aquarea EcoFlex", routeId: "blogNouveauteEcoflex" as const },
       { label: "Heat pumps in co-ownership", routeId: "coOwnership" as const },
       { label: "Our collective heat pump projects", routeId: "projectsCopropriete" as const },
       { label: "Heat pumps", routeId: "heatPump" as const },

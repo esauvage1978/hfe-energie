@@ -48,6 +48,16 @@ const fr = {
   },
   posts: [
     {
+      routeId: "blogNouveauteEcoflex" as RouteId,
+      date: "2026-10-31",
+      dateLabel: "31 octobre 2026",
+      title: "Panasonic Aquarea EcoFlex : chauffage, clim et eau chaude avec une seule unité extérieure",
+      excerpt:
+        "La nouvelle gamme Panasonic qui chauffe, rafraîchit et produit l’eau chaude en récupérant la chaleur de la clim. Composants, chiffres officiels, cas d’usage et limites.",
+      tag: "Nouveautés",
+      category: "nouveautes" as const,
+    },
+    {
       routeId: "blogReportageLvdnCopro" as RouteId,
       date: "2026-10-30",
       dateLabel: "30 octobre 2026",
@@ -105,6 +115,21 @@ const fr = {
       tag: "Reportage",
     },
   ],
+  categories: {
+    navLabel: "Catégories",
+    all: "Tous les articles",
+    nouveautes: {
+      label: "Nouveautés",
+      seoTitle: "Nouveautés chauffage et climatisation | Blog HFE Lille",
+      seoDescription:
+        "Nouveaux produits et innovations en pompe à chaleur, climatisation et eau chaude, expliqués par HFE, installateur RGE à Lille : pour qui et dans quels cas.",
+      breadcrumb: "Nouveautés",
+      titleEyebrow: "LES",
+      title: "NOUVEAUTÉS",
+      intro:
+        "Les innovations et nouveaux produits que nous avons vus de près ou installés, expliqués simplement : à quoi ils servent, pour quels logements, et quand choisir autre chose.",
+    },
+  },
   cta: {
     title: "Un projet énergie à chiffrer ?",
     subtitle: "Étude personnalisée et devis gratuit, sans engagement.",
@@ -156,6 +181,16 @@ const en = {
     },
   },
   posts: [
+    {
+      routeId: "blogNouveauteEcoflex" as RouteId,
+      date: "2026-10-31",
+      dateLabel: "31 October 2026",
+      title: "Panasonic Aquarea EcoFlex: heating, cooling and hot water from one outdoor unit",
+      excerpt:
+        "Panasonic’s new range that heats, cools and makes hot water by recovering heat from the air conditioning. Components, official figures, use cases and limits.",
+      tag: "New products",
+      category: "nouveautes" as const,
+    },
     {
       routeId: "blogReportageLvdnCopro" as RouteId,
       date: "2026-10-30",
@@ -214,6 +249,21 @@ const en = {
       tag: "Report",
     },
   ],
+  categories: {
+    navLabel: "Categories",
+    all: "All articles",
+    nouveautes: {
+      label: "New products",
+      seoTitle: "New heating and cooling products | HFE Lille blog",
+      seoDescription:
+        "New heat pump, air conditioning and hot-water products explained by HFE, certified installer in Lille: who they suit and when to use them.",
+      breadcrumb: "New products",
+      titleEyebrow: "NEW",
+      title: "PRODUCTS",
+      intro:
+        "Innovations and new products we have seen up close or installed, explained simply: what they do, which homes they suit, and when to choose something else.",
+    },
+  },
   cta: {
     title: "Planning an energy project?",
     subtitle: "Personalised study and free quote, no obligation.",
