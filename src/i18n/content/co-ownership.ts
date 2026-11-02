@@ -2,9 +2,9 @@ import type { Locale } from "../config";
 
 const fr = {
   seo: {
-    title: "PAC collective en copropriété à Lille – HFE",
+    title: "Chauffage en copropriété à Lille : charges, comptage | HFE",
     description:
-      "Chauffage collectif performant pour copropriétés à Lille : PAC en cascade, remplacement de chaufferie fioul, aides MaPrimeRénov' Copropriété. Étude gratuite.",
+      "Réduire les charges de chauffage de votre copropriété à Lille : PAC collective, comptage individuel, aides jusqu'à 75 %. HFE Énergie, étude gratuite.",
     keywords: [
       "chauffage copropriété Lille",
       "pompe à chaleur copropriété",
@@ -178,9 +178,9 @@ const fr = {
 
 const en = {
   seo: {
-    title: "Collective heat pumps for co-ownerships in Lille – HFE",
+    title: "Co-ownership heating in Lille: lower costs, metering | HFE",
     description:
-      "HFE installs centralised heating systems in co-owned buildings in Lille: collective heat pumps, high-performance boilers. Up to 75% grants with MaPrimeRénov' Copropriété. Free quote.",
+      "Cut heating costs in your Lille co-owned building: collective heat pumps, individual metering, up to 75% grants. HFE Énergie, free assessment.",
     keywords: [
       "co-ownership heating Lille",
       "collective heat pump",
