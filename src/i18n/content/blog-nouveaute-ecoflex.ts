@@ -247,6 +247,7 @@ ${PHOTO_FR}
   related: {
     title: "À lire aussi sur hfe-energie.fr",
     links: [
+      { label: "Interclima 2026 : notre chantier présenté par Panasonic", routeId: "blogInterclimaPanasonic" as const },
       { label: "Pompe à chaleur air-eau et air-air à Lille", routeId: "heatPump" as const },
       { label: "Climatisation réversible", routeId: "airConditioning" as const },
       { label: "Chauffage", routeId: "heating" as const },
@@ -445,6 +446,7 @@ ${PHOTO_EN}
   related: {
     title: "Also on hfe-energie.fr",
     links: [
+      { label: "Interclima 2026: our project showcased by Panasonic", routeId: "blogInterclimaPanasonic" as const },
       { label: "Air-to-water and air-to-air heat pumps in Lille", routeId: "heatPump" as const },
       { label: "Air conditioning", routeId: "airConditioning" as const },
       { label: "Heating", routeId: "heating" as const },

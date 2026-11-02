@@ -48,14 +48,13 @@ const fr = {
   },
   posts: [
     {
-      routeId: "blogNouveauteEcoflex" as RouteId,
-      date: "2026-10-31",
-      dateLabel: "31 octobre 2026",
-      title: "Panasonic Aquarea EcoFlex : chauffage, clim et eau chaude avec une seule unité extérieure",
+      routeId: "blogInterclimaPanasonic" as RouteId,
+      date: "2026-11-02",
+      dateLabel: "2 novembre 2026",
+      title: "Interclima 2026 : Panasonic met en avant notre chantier de copropriété à Lille",
       excerpt:
-        "La nouvelle gamme Panasonic qui chauffe, rafraîchit et produit l’eau chaude en récupérant la chaleur de la clim. Composants, chiffres officiels, cas d’usage et limites.",
-      tag: "Nouveautés",
-      category: "nouveautes" as const,
+        "Au salon Interclima à Paris et dans une étude de cas, Panasonic présente notre chantier : 2 PAC Big Aquarea T-CAP de 30 kW à la place d’une chaudière fioul de 134 kW, pour 19 studios.",
+      tag: "Presse",
     },
     {
       routeId: "blogReportageLvdnCopro" as RouteId,
@@ -65,6 +64,16 @@ const fr = {
       excerpt:
         "Deux PAC Panasonic de 30 kW en cascade remplacent une chaudière fioul de 134 kW dans une copropriété de 19 logements à Lille.",
       tag: "Presse",
+    },
+    {
+      routeId: "blogNouveauteEcoflex" as RouteId,
+      date: "2026-10-31",
+      dateLabel: "31 octobre 2026",
+      title: "Panasonic Aquarea EcoFlex : chauffage, clim et eau chaude avec une seule unité extérieure",
+      excerpt:
+        "La nouvelle gamme Panasonic qui chauffe, rafraîchit et produit l’eau chaude en récupérant la chaleur de la clim. Composants, chiffres officiels, cas d’usage et limites.",
+      tag: "Nouveautés",
+      category: "nouveautes" as const,
     },
     {
       routeId: "blogTvaClimReversible" as RouteId,
@@ -182,14 +191,13 @@ const en = {
   },
   posts: [
     {
-      routeId: "blogNouveauteEcoflex" as RouteId,
-      date: "2026-10-31",
-      dateLabel: "31 October 2026",
-      title: "Panasonic Aquarea EcoFlex: heating, cooling and hot water from one outdoor unit",
+      routeId: "blogInterclimaPanasonic" as RouteId,
+      date: "2026-11-02",
+      dateLabel: "2 November 2026",
+      title: "Interclima 2026: Panasonic showcases our Lille co-ownership project",
       excerpt:
-        "Panasonic’s new range that heats, cools and makes hot water by recovering heat from the air conditioning. Components, official figures, use cases and limits.",
-      tag: "New products",
-      category: "nouveautes" as const,
+        "At the Interclima show in Paris and in a case study, Panasonic presents our project: 2 Big Aquarea T-CAP 30 kW heat pumps replacing a 134 kW oil boiler for 19 studios.",
+      tag: "Press",
     },
     {
       routeId: "blogReportageLvdnCopro" as RouteId,
@@ -199,6 +207,16 @@ const en = {
       excerpt:
         "Two 30 kW Panasonic heat pumps in cascade replace a 134 kW oil boiler in a 19-flat co-ownership building in Lille.",
       tag: "Press",
+    },
+    {
+      routeId: "blogNouveauteEcoflex" as RouteId,
+      date: "2026-10-31",
+      dateLabel: "31 October 2026",
+      title: "Panasonic Aquarea EcoFlex: heating, cooling and hot water from one outdoor unit",
+      excerpt:
+        "Panasonic’s new range that heats, cools and makes hot water by recovering heat from the air conditioning. Components, official figures, use cases and limits.",
+      tag: "New products",
+      category: "nouveautes" as const,
     },
     {
       routeId: "blogTvaClimReversible" as RouteId,

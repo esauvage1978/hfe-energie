@@ -40,6 +40,10 @@ export {
   getBlogNouveauteEcoflexContent,
   type BlogNouveauteEcoflexContent,
 } from "./blog-nouveaute-ecoflex";
+export {
+  getBlogInterclimaPanasonicContent,
+  type BlogInterclimaPanasonicContent,
+} from "./blog-interclima-panasonic";
 export { getContactContent, type ContactContent } from "./contact";
 export { getRecruitmentContent, type RecruitmentContent } from "./recruitment";
 export { getServiceAreaContent, type ServiceAreaContent } from "./service-area";

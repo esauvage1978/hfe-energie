@@ -42,6 +42,7 @@ export type RouteId =
   | "blogReportageLvdnCopro"
   | "blogNouveautes"
   | "blogNouveauteEcoflex"
+  | "blogInterclimaPanasonic"
   | "contact"
   | "recruitment"
   | "serviceArea"
@@ -117,6 +118,10 @@ export const routes: Record<RouteId, Record<Locale, string>> = {
   blogNouveauteEcoflex: {
     fr: "/blog/nouveaute-panasonic-aquarea-ecoflex",
     en: "/en/blog/new-panasonic-aquarea-ecoflex",
+  },
+  blogInterclimaPanasonic: {
+    fr: "/blog/interclima-panasonic-hfe-copropriete",
+    en: "/en/blog/interclima-panasonic-hfe-co-ownership",
   },
   contact: { fr: "/contact", en: "/en/contact" },
   recruitment: { fr: "/recrutement", en: "/en/careers" },

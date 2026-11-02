@@ -1,0 +1,13 @@
+---
+import BlogArticlePage from "../../../templates/BlogArticlePage.astro";
+import { getBlogInterclimaPanasonicContent } from "@i18n";
+
+const locale = "en" as const;
+---
+
+<BlogArticlePage
+  locale={locale}
+  content={getBlogInterclimaPanasonicContent(locale)}
+  routeId="blogInterclimaPanasonic"
+  faqIdPrefix="blog-interclima-panasonic-faq"
+/>
