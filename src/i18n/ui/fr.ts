@@ -80,6 +80,7 @@ export const uiFr = {
     serviceArea: (areas: string, radius: number) =>
       `${areas} — et la métropole lilloise (MEL), dans un rayon de ${radius} km autour de Lille.`,
     legalNav: "Liens légaux",
+    manageCookies: "Gérer les cookies",
     copyright: (year: number, legalName: string) =>
       `© ${year} ${legalName}. Tous droits réservés.`,
     certifications: "Certifié RGE QualiPAC · Assurance décennale & RC pro",

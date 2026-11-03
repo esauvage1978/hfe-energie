@@ -1,0 +1,33 @@
+---
+import { GA_MEASUREMENT_ID, CONSENT_KEY, CONSENT_JOURS } from "@/config/analytics";
+---
+<script is:inline define:vars={{ GA_ID: GA_MEASUREMENT_ID }}>
+/*mnz-consent-adv-v1*/window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){dataLayer.push(arguments);};gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});(function(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;document.head.appendChild(s);})();gtag('js',new Date());gtag('config',GA_ID);
+</script>
+<script is:inline define:vars={{ KEY: CONSENT_KEY, JOURS: CONSENT_JOURS }}>
+  window.hfeConsent = {
+    lire: function () {
+      try {
+        var o = JSON.parse(localStorage.getItem(KEY) || "null");
+        if (!o || (o.v !== "granted" && o.v !== "denied") || !(Date.now() - o.t < JOURS * 864e5)) {
+          return null;
+        }
+        return o.v;
+      } catch (e) {
+        return null;
+      }
+    },
+    ecrire: function (v) {
+      try {
+        localStorage.setItem(KEY, JSON.stringify({ v: v, t: Date.now() }));
+      } catch (e) {}
+    },
+    charge: false,
+    accorderStats: function () {
+      if (window.hfeConsent.charge) return;
+      window.hfeConsent.charge = true;
+      window.gtag("consent", "update", { analytics_storage: "granted" });
+    },
+  };
+  if (window.hfeConsent.lire() === "granted") window.hfeConsent.accorderStats();
+</script>

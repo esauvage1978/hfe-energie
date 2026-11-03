@@ -189,6 +189,15 @@ const socialLinks = [
             <a href={l.href} class="text-neutral-300 hover:text-accent-300 transition-colors">{l.label}</a>
           </li>
         ))}
+        <li>
+          <button
+            type="button"
+            class="text-neutral-300 hover:text-accent-300 transition-colors underline-offset-2 hover:underline bg-transparent border-0 p-0 font-inherit text-xs cursor-pointer"
+            data-gerer-cookies
+          >
+            {t.footer.manageCookies}
+          </button>
+        </li>
       </ul>
     </nav>
 

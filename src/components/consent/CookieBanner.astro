@@ -1,0 +1,117 @@
+---
+import type { Locale } from "@i18n";
+import { pathFor } from "@i18n";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const fr = locale === "fr";
+const cookiePolicyHref = pathFor("cookies", locale);
+const t = fr
+  ? {
+      aria: "Choix des cookies et mesure d'audience",
+      title: "Cookies et mesure d'audience",
+      text: "Nous utilisons Google Analytics pour mesurer l'audience du site (pages vues, provenance des visites). Aucun cookie publicitaire n'est utilisé. Vous pouvez accepter ou refuser la mesure d'audience, et modifier votre choix à tout moment via « Gérer les cookies » en bas de page.",
+      policy: "Politique des cookies",
+      accept: "Accepter",
+      decline: "Refuser",
+    }
+  : {
+      aria: "Cookie and analytics choices",
+      title: "Cookies and audience measurement",
+      text: 'We use Google Analytics to measure site traffic (page views, traffic sources). No advertising cookies are used. You can accept or decline audience measurement, and change your choice at any time via "Manage cookies" at the bottom of the page.',
+      policy: "Cookie policy",
+      accept: "Accept",
+      decline: "Decline",
+    };
+---
+<div
+  id="bandeau-cookies"
+  class="bandeau-cookies"
+  role="dialog"
+  aria-modal="false"
+  aria-label={t.aria}
+  aria-labelledby="bandeau-cookies-titre"
+  aria-describedby="bandeau-cookies-texte"
+  hidden
+>
+  <div class="bandeau-cookies-contenu" tabindex="-1">
+    <p id="bandeau-cookies-titre" class="bandeau-cookies-titre">{t.title}</p>
+    <p id="bandeau-cookies-texte" class="bandeau-cookies-texte">
+      {t.text}{" "}
+      <a href={cookiePolicyHref}>{t.policy}</a>.
+    </p>
+    <div class="bandeau-cookies-actions">
+      <button type="button" class="bandeau-cookies-btn" id="cookies-refuser">{t.decline}</button>
+      <button type="button" class="bandeau-cookies-btn" id="cookies-accepter">{t.accept}</button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var C = window.hfeConsent;
+    var bandeau = document.getElementById("bandeau-cookies");
+    if (!C || !bandeau) return;
+    var contenu = bandeau.querySelector(".bandeau-cookies-contenu");
+
+    function ouvrir() {
+      bandeau.hidden = false;
+      if (contenu && contenu.focus) contenu.focus({ preventScroll: true });
+    }
+    function fermer() {
+      bandeau.hidden = true;
+    }
+    function supprimerCookiesGa() {
+      var hote = location.hostname.replace(/^www\./, "");
+      document.cookie.split(";").forEach(function (c) {
+        var nom = c.split("=")[0].trim();
+        if (!/^_ga/.test(nom)) return;
+        ["", "; domain=" + hote, "; domain=." + hote].forEach(function (d) {
+          document.cookie = nom + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/" + d;
+        });
+      });
+    }
+    function accepter() {
+      C.ecrire("granted");
+      fermer();
+      C.accorderStats();
+    }
+    function refuser() {
+      C.ecrire("denied");
+      fermer();
+      window.gtag("consent", "update", { analytics_storage: "denied" });
+      supprimerCookiesGa();
+    }
+
+    document.getElementById("cookies-accepter").addEventListener("click", accepter);
+    document.getElementById("cookies-refuser").addEventListener("click", refuser);
+    document.querySelectorAll("[data-gerer-cookies]").forEach(function (b) {
+      b.addEventListener("click", function (e) {
+        e.preventDefault();
+        ouvrir();
+      });
+    });
+
+    bandeau.addEventListener("keydown", function (e) {
+      if (e.key !== "Tab" || bandeau.hidden) return;
+      var focusables = bandeau.querySelectorAll(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      if (!focusables.length) return;
+      var first = focusables[0];
+      var last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
+
+    if (C.lire() === null) ouvrir();
+  })();
+</script>

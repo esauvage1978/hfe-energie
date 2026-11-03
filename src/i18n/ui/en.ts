@@ -80,6 +80,7 @@ export const uiEn = {
     serviceArea: (areas: string, radius: number) =>
       `${areas} — and the Lille metropolitan area (MEL), within a ${radius} km radius of Lille.`,
     legalNav: "Legal links",
+    manageCookies: "Manage cookies",
     copyright: (year: number, legalName: string) => `© ${year} ${legalName}. All rights reserved.`,
     certifications: "RGE QualiPAC certified · Ten-year warranty & professional liability insurance",
     builtBy: "Website designed and developed by",
