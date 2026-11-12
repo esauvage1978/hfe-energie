@@ -7,7 +7,6 @@ import CtaBanner from "@components/CtaBanner.astro";
 import Icon from "@components/Icon.astro";
 import Picture from "@components/Picture.astro";
 import StructuredData from "@components/StructuredData.astro";
-import { logos } from "@data/assets";
 import { getBlogMedia } from "@data/blog-media";
 
 interface Props {
@@ -58,25 +57,6 @@ const categoryLinks = [
       <div class="blog-hero__panel">
         <div class="blog-hero__grid">
           <div class="blog-hero__copy">
-            <div class="blog-hero__brand">
-              <Picture
-                src={logos.icon.src}
-                alt=""
-                width={48}
-                height={38}
-                class="blog-hero__logo"
-                loading="eager"
-                fetchpriority="high"
-              />
-              <div>
-                <p class="blog-hero__brand-name" aria-hidden="true">
-                  <span class="text-primary-700">H</span><span class="text-primary-600">F</span><span class="text-accent-500">E</span>
-                </p>
-                <p class="blog-hero__brand-legal">{hero.brandName}</p>
-                <p class="blog-hero__brand-tagline">{hero.brandTagline}</p>
-              </div>
-            </div>
-
             <h1 id="blog-hero-title" class="blog-hero__title">
               <span class="blog-hero__title-eyebrow">{hero.titleEyebrow}</span>
               <span class="blog-hero__title-main">{hero.title}</span>
@@ -253,42 +233,6 @@ const categoryLinks = [
   .blog-hero__copy {
     position: relative;
     z-index: 1;
-  }
-
-  .blog-hero__brand {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1rem;
-  }
-
-  .blog-hero__logo {
-    width: 2.75rem;
-    height: auto;
-    flex-shrink: 0;
-  }
-
-  .blog-hero__brand-name {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: 1.35rem;
-    line-height: 1;
-    letter-spacing: 0.02em;
-  }
-
-  .blog-hero__brand-legal {
-    margin-top: 0.1rem;
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: var(--color-primary-900);
-    line-height: 1.2;
-  }
-
-  .blog-hero__brand-tagline {
-    font-size: 0.68rem;
-    font-weight: 600;
-    color: var(--color-accent-600);
-    line-height: 1.2;
   }
 
   .blog-hero__title {
