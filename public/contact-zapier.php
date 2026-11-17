@@ -183,6 +183,58 @@ $payload = [
     'submitted_at' => $now,
 ];
 
+/* --- Journal local des demandes (filet de sécurité si le webhook tombe) ---
+ * Chaque demande valide est écrite AVANT l'appel au webhook, puis son résultat.
+ * Dossier hors de /www si possible (non accessible depuis internet), sinon
+ * /www/_contact-journal protégé par .htaccess. Un fichier JSONL par mois,
+ * fichiers de plus de 3 mois supprimés automatiquement (RGPD).
+ */
+function hfe_journal_dir(): ?string
+{
+    $candidates = [dirname(__DIR__) . '/contact-journal', __DIR__ . '/_contact-journal'];
+    foreach ($candidates as $dir) {
+        if (!is_dir($dir)) {
+            @mkdir($dir, 0700, true);
+        }
+        if (is_dir($dir) && is_writable($dir)) {
+            if (str_starts_with($dir, __DIR__)) {
+                if (!is_file($dir . '/.htaccess')) {
+                    @file_put_contents($dir . '/.htaccess', "Require all denied\nDeny from all\n");
+                }
+                if (!is_file($dir . '/index.html')) {
+                    @file_put_contents($dir . '/index.html', '');
+                }
+            }
+            return $dir;
+        }
+    }
+    return null;
+}
+
+function hfe_journal_write(array $entry): void
+{
+    $dir = hfe_journal_dir();
+    if ($dir === null) {
+        error_log('[contact-journal] dossier non inscriptible');
+        return;
+    }
+    $file = $dir . '/demandes-' . gmdate('Y-m') . '.jsonl';
+    $ok = @file_put_contents($file, json_encode($entry, JSON_UNESCAPED_UNICODE) . "\n", FILE_APPEND | LOCK_EX);
+    if ($ok === false) {
+        error_log('[contact-journal] écriture impossible: ' . $file);
+    }
+    // Purge : on garde le mois courant et les 2 précédents.
+    $limit = gmdate('Y-m', strtotime('first day of -2 months'));
+    foreach ((array) glob($dir . '/demandes-*.jsonl') as $old) {
+        if (preg_match('/demandes-(\d{4}-\d{2})\.jsonl$/', (string) $old, $m) && $m[1] < $limit) {
+            @unlink((string) $old);
+        }
+    }
+}
+
+$journalId = bin2hex(random_bytes(6));
+hfe_journal_write(['id' => $journalId, 'etape' => 'recue', 'ip' => $_SERVER['REMOTE_ADDR'] ?? '?'] + $payload);
+
 $webhookUrl = getenv('CONTACT_WEBHOOK_URL') ?: 'https://webhooky.builders/webhook/form/a03063bda3024ab41fc1-83ec-4dd9-9066-3d25f81d0c4e';
 $jsonPayload = json_encode($payload, JSON_UNESCAPED_UNICODE);
 
@@ -202,6 +254,7 @@ $curlError = curl_error($ch);
 curl_close($ch);
 
 if ($responseBody === false || $httpCode < 200 || $httpCode >= 300) {
+    hfe_journal_write(['id' => $journalId, 'etape' => 'echec', 'at' => gmdate('c'), 'http' => $httpCode, 'curl' => $curlError, 'reponse' => substr((string) $responseBody, 0, 300)]);
     error_log('[contact-webhook] http=' . $httpCode . ' curl=' . $curlError . ' body=' . substr((string) $responseBody, 0, 500));
     http_response_code(502);
     echo json_encode([
@@ -212,6 +265,8 @@ if ($responseBody === false || $httpCode < 200 || $httpCode >= 300) {
     ]);
     exit;
 }
+
+hfe_journal_write(['id' => $journalId, 'etape' => 'envoyee', 'at' => gmdate('c'), 'http' => $httpCode]);
 
 http_response_code(200);
 echo $responseBody !== '' ? $responseBody : json_encode(['ok' => true]);
