@@ -193,6 +193,7 @@ curl_setopt_array($ch, [
     CURLOPT_HTTPHEADER => ['Content-Type: application/json', 'Accept: application/json'],
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_TIMEOUT => 15,
+    CURLOPT_USERAGENT => 'HFE-Energie-Form/1.0 (+https://hfe-energie.fr)',
 ]);
 
 $responseBody = curl_exec($ch);
@@ -201,11 +202,13 @@ $curlError = curl_error($ch);
 curl_close($ch);
 
 if ($responseBody === false || $httpCode < 200 || $httpCode >= 300) {
+    error_log('[contact-webhook] http=' . $httpCode . ' curl=' . $curlError . ' body=' . substr((string) $responseBody, 0, 500));
     http_response_code(502);
     echo json_encode([
         'ok' => false,
         'message' => 'Impossible de transmettre la demande. Merci de réessayer ou de nous appeler.',
         'detail' => $curlError !== '' ? $curlError : null,
+        'upstream_status' => $httpCode,
     ]);
     exit;
 }
